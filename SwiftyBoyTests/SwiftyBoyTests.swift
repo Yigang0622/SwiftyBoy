@@ -21,6 +21,10 @@ class SwiftyBoyTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let cpu = CPU()
+        cpu.bc = 0xFFAA
+        let a = 1
+        
     }
 
     func testPerformanceExample() throws {

@@ -17,6 +17,7 @@
 		DDF24EFC274FCAE2007929DA /* CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EFB274FCAE2007929DA /* CPU.swift */; };
 		DDF24EFF274FD7A5007929DA /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EFE274FD7A5007929DA /* Motherboard.swift */; };
 		DDF24F01274FD9B3007929DA /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */; };
+		DDF24F0327527F6B007929DA /* CPU+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24F0227527F6B007929DA /* CPU+Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
 		DDF24EFE274FD7A5007929DA /* Motherboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
 		DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
+		DDF24F0227527F6B007929DA /* CPU+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CPU+Util.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				DDF24EFB274FCAE2007929DA /* CPU.swift */,
 				DDF24EFE274FD7A5007929DA /* Motherboard.swift */,
 				DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */,
+				DDF24F0227527F6B007929DA /* CPU+Util.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
+				DDF24F0327527F6B007929DA /* CPU+Util.swift in Sources */,
 				DDF24EFF274FD7A5007929DA /* Motherboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

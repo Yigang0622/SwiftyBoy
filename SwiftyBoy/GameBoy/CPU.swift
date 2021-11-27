@@ -12,7 +12,7 @@ import Foundation
  */
 class CPU {
     
-    weak var motherboard: Motherboard!;
+    weak var mb: Motherboard!;
     
     private var _a: UInt8 = 0x00
     private var _f: UInt8 = 0x00
@@ -101,18 +101,18 @@ class CPU {
         }
     }
     
-    public var sp: UInt16 {
+    public var sp: UInt {
         get {
-            return _sp
+            return UInt(_sp)
         }
         set {
-            _sp = newValue & 0xFFFF
+            _sp = UInt16(newValue & 0xFFFF)
         }
     }
     
-    public var bc: UInt16 {
+    public var bc: UInt {
         get {
-            return UInt16(_b << 8 + _c)
+            return UInt(_b << 8 + _c)
         }
         set {
             _b = UInt8(newValue >> 8)
@@ -120,13 +120,23 @@ class CPU {
         }
     }
     
-    public var de: UInt16 {
+    public var de: UInt {
         get {
-            return UInt16(_d << 8 + _e)
+            return UInt(_d << 8 + _e)
         }
         set {
             _d = UInt8(newValue >> 8)
             _e = UInt8(newValue & 0x00FF)
+        }
+    }
+    
+    public var hl: UInt {
+        get {
+            return UInt(_h << 8 + _l)
+        }
+        set {
+            _h = UInt8(newValue >> 8)
+            _l = UInt8(newValue & 0x00FF)
         }
     }
     
@@ -135,20 +145,20 @@ class CPU {
     
     init() {
         // 1. LD nn,n
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD B, N", opcode: 0x06, inscruction: LD_B_N))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD C, N", opcode: 0x0E, inscruction: LD_C_N))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD D, N", opcode: 0x16, inscruction: LD_D_N))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD E, N", opcode: 0x1E, inscruction: LD_E_N))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD H, N", opcode: 0x26, inscruction: LD_H_N))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD L, N", opcode: 0x2E, inscruction: LD_L_N))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD B, N", opcode: 0x06, inscruction: LD_06))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD C, N", opcode: 0x0E, inscruction: LD_0E))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD D, N", opcode: 0x16, inscruction: LD_16))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD E, N", opcode: 0x1E, inscruction: LD_1E))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD H, N", opcode: 0x26, inscruction: LD_26))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD L, N", opcode: 0x2E, inscruction: LD_2E))
         // 2. LD r1, r2
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, A", opcode: 0x7F, inscruction: LD_A_A))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, B", opcode: 0x78, inscruction: LD_A_B))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, C", opcode: 0x79, inscruction: LD_A_C))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, D", opcode: 0x7A, inscruction: LD_A_D))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, E", opcode: 0x7B, inscruction: LD_A_E))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, H", opcode: 0x7C, inscruction: LD_A_H))
-        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, L", opcode: 0x7D, inscruction: LD_A_L))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, A", opcode: 0x7F, inscruction: LD_7F))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, B", opcode: 0x78, inscruction: LD_78))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, C", opcode: 0x79, inscruction: LD_79))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, D", opcode: 0x7A, inscruction: LD_7A))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, E", opcode: 0x7B, inscruction: LD_7B))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, H", opcode: 0x7C, inscruction: LD_7C))
+        setupBaseInstructions(instruction: CPUInstruction(name: "LD A, L", opcode: 0x7D, inscruction: LD_7D))
         
     }
     

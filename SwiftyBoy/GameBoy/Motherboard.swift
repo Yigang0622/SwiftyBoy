@@ -14,15 +14,15 @@ class Motherboard {
     private var memory = Array<UInt8>(repeating: 0xFF, count: 64 * 1024)
     
     init() {
-        cpu.motherboard = self
+        cpu.mb = self
     }
     
     public func getMem(address: UInt) -> UInt {
         return UInt(memory[Int(address)])
     }
     
-    public func setMem(address: UInt, val: UInt8) {
-        memory[Int(address)] = val
+    public func setMem(address: UInt, val: UInt) {
+        memory[Int(address)] = UInt8(val & 0xFF)
     }
     
     

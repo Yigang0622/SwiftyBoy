@@ -17,12 +17,12 @@ class Motherboard {
         cpu.mb = self
     }
     
-    public func getMem(address: UInt) -> UInt {
-        return UInt(memory[Int(address)])
+    public func getMem(address: Int) -> Int {
+        return Int(memory[Int(address)])
     }
     
-    public func setMem(address: UInt, val: UInt) {
-        memory[Int(address)] = UInt8(val & 0xFF)
+    public func setMem(address: Int, val: Int) {
+        memory[address] = UInt8(val & 0xFF)
     }
     
     

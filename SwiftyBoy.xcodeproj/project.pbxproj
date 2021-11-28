@@ -112,9 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				DDF24EFB274FCAE2007929DA /* CPU.swift */,
-				DDF24EFE274FD7A5007929DA /* Motherboard.swift */,
 				DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */,
 				DDF24F0227527F6B007929DA /* CPU+Util.swift */,
+				DDF24EFE274FD7A5007929DA /* Motherboard.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";

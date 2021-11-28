@@ -15,7 +15,7 @@ struct CPUInstruction {
 
 extension CPU {
     
-    func execute(opcode: UInt) -> Int {
+    func execute(opcode: Int) -> Int {
         if baseInstructions[Int(opcode)] != nil{
             print("exec op \(String(format:"%02X", opcode))")
             let cycle = baseInstructions[Int(opcode)]!.inscruction()
@@ -112,7 +112,7 @@ extension CPU {
     }
     
     func LD_7E() -> Int {
-        a = hl
+        a = mb.getMem(address: hl)
         self.pc += 1
         return 8
     }
@@ -154,7 +154,7 @@ extension CPU {
     }
     
     func LD_46() -> Int {
-        b = hl
+        b = mb.getMem(address: hl)
         pc += 1
         return 8
     }
@@ -196,7 +196,7 @@ extension CPU {
     }
     
     func LD_4E() -> Int {
-        c = hl
+        c = mb.getMem(address: hl)
         pc += 1
         return 8
     }
@@ -238,7 +238,7 @@ extension CPU {
     }
     
     func LD_56() -> Int {
-        d = hl
+        d = mb.getMem(address: hl)
         pc += 1
         return 8
     }
@@ -280,7 +280,7 @@ extension CPU {
     }
     
     func LD_5E() -> Int {
-        e = hl
+        e = mb.getMem(address: hl)
         pc += 1
         return 8
     }
@@ -322,7 +322,7 @@ extension CPU {
     }
     
     func LD_66() -> Int {
-        h = hl
+        h = mb.getMem(address: hl)
         pc += 1
         return 8
     }
@@ -364,68 +364,70 @@ extension CPU {
     }
     
     func LD_6E() -> Int {
-        l = hl
+        l = mb.getMem(address: hl)
         pc += 1
         return 8
     }
     
     func LD_70() -> Int {
-        hl = b
+        mb.setMem(address: hl, val: b)
         pc += 1
         return 8
     }
     
     func LD_71() -> Int {
-        hl = c
+        mb.setMem(address: hl, val: c)
         pc += 1
         return 8
     }
     
     func LD_72() -> Int {
-        hl = d
+        mb.setMem(address: hl, val: d)
         pc += 1
         return 8
     }
     
     func LD_73() -> Int {
-        hl = e
+        mb.setMem(address: hl, val: e)
         pc += 1
         return 8
     }
     
     func LD_74() -> Int {
-        hl = h
+        mb.setMem(address: hl, val: h)
         pc += 1
         return 8
     }
     
     func LD_75() -> Int {
-        hl = l
+        mb.setMem(address: hl, val: l)
         pc += 1
         return 8
     }
     
     func LD_36() -> Int {
-        hl = mb.getMem(address: pc + 1)
+        let n = mb.getMem(address: pc + 1)
+        mb.setMem(address: hl, val: n)
         pc += 2
         return 12
     }
     
     // 3. LD A.n
     func LD_0A() -> Int {
-        a = bc
+        a = mb.getMem(address: bc)
         self.pc += 1
         return 8
     }
     
     func LD_1A() -> Int {
-        a = de
+        a = mb.getMem(address: de)
         self.pc += 1
         return 8
     }
 
     func LD_FA() -> Int {
-        a = get16BitMem(address: pc + 1)
+        let addr = get16BitMem(address: pc + 1)
+        a = mb.getMem(address: addr)
         self.pc += 3
         return 16
     }
@@ -474,26 +476,26 @@ extension CPU {
     }
     
     func LD_02() -> Int {
-        bc = a
+        mb.setMem(address: bc, val: a)
         pc += 1
         return 8
     }
     
     func LD_12() -> Int {
-        de = a
+        mb.setMem(address: de, val: a)
         pc += 1
         return 8
     }
     
     func LD_77() -> Int {
-        hl = a
+        mb.setMem(address: hl, val: a)
         pc += 1
         return 8
     }
     
     func LD_EA() -> Int {
-        let v = get16BitMem(address: pc + 1)
-        mb.setMem(address: v, val: a)
+        let addr = get16BitMem(address: pc + 1)
+        mb.setMem(address: addr, val: a)
         pc += 3
         return 16
     }
@@ -581,6 +583,193 @@ extension CPU {
         pc += 1
         return 8
     }
+    
+    func LDHL_F8() -> Int{
+        let n = get8BitSignedImmediateValue()
+        hl = sp + n
+        fZ = false
+        fN = false
+        fC = getFullCarryForAdd(oprand1: sp, oprand2: n)
+        fH = getHalfCarryForAdd(oprand1: sp, oprand2: n)
+        //        fC = sp + n > 0xFF
+        //        fH = (sp & 0xF) + (n & 0xF) > 0xF
+        pc += 2
+        return 12
+    }
+    
+    func LD_08() -> Int {
+        let nn = get16BitImmediate()
+        mb.setMem(address: nn, val: sp & 0xFF)
+        mb.setMem(address: nn + 1, val: sp >> 8)
+        pc += 3
+        return 20
+    }
+    
+    // TODO double check
+    func PUSH_F5() -> Int {
+        mb.setMem(address: sp - 1, val: a)
+        mb.setMem(address: sp - 2, val: f)
+        sp -= 2
+        pc += 1
+        return 16
+    }
+    
+    func PUSH_C5() -> Int {
+        mb.setMem(address: sp - 1, val: b)
+        mb.setMem(address: sp - 2, val: c)
+        sp -= 2
+        pc += 1
+        return 16
+    }
+    
+    func PUSH_D5() -> Int {
+        mb.setMem(address: sp - 1, val: d)
+        mb.setMem(address: sp - 2, val: e)
+        sp -= 2
+        pc += 1
+        return 16
+    }
+    
+    func PUSH_E5() -> Int {
+        mb.setMem(address: sp - 1, val: h)
+        mb.setMem(address: sp - 2, val: l)
+        sp -= 2
+        pc += 1
+        return 16
+    }
+    
+    func POP_F1() -> Int {
+        a = mb.getMem(address: sp + 1)
+        f = mb.getMem(address: sp)
+        sp += 2
+        pc += 1
+        return 16
+    }
+    
+    func POP_C1() -> Int {
+        b = mb.getMem(address: sp + 1)
+        c = mb.getMem(address: sp)
+        sp += 2
+        pc += 1
+        return 14
+    }
+    
+    func POP_D1() -> Int {
+        d = mb.getMem(address: sp + 1)
+        e = mb.getMem(address: sp)
+        sp += 2
+        pc += 1
+        return 14
+    }
+    
+    func POP_E1() -> Int {
+        h = mb.getMem(address: sp + 1)
+        l = mb.getMem(address: sp)
+        sp += 2
+        pc += 1
+        return 14
+    }
+    
+    // ALU
+    func ADD_87() -> Int {
+        let r = a + a
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: a)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: a)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_80() -> Int {
+        let r = a + b
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: b)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: b)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_81() -> Int {
+        let r = a + c
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: c)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: c)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_82() -> Int {
+        let r = a + d
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: d)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: d)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_83() -> Int {
+        let r = a + e
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: e)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: e)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_84() -> Int {
+        let r = a + h
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: h)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: h)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_85() -> Int {
+        let r = a + l
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: l)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: l)
+        pc += 1
+        return 4
+    }
+    
+    func ADD_86() -> Int {
+        let v = mb.getMem(address: hl)
+        let r = a + v
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: v)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: v)
+        pc += 1
+        return 8
+    }
+    
+    func ADD_C6() -> Int {
+        let v = get8BitImmediate()
+        let r = a + v
+        a = r
+        fZ = r == 0x0
+        fN = false
+        fH = getHalfCarryForAdd(oprand1: a, oprand2: v)
+        fC = getFullCarryForAdd(oprand1: a, oprand2: v)
+        pc += 2
+        return 8
+    }
+    
 }
-
-

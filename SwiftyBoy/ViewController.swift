@@ -17,10 +17,13 @@ class ViewController: UIViewController {
         mb.setMem(address: 1, val: 0x0F)
         mb.setMem(address: 2, val: 0x78)
         
-        for i in 0...1 {
-            let opcode = mb.getMem(address: mb.cpu.pc)
-            mb.cpu.execute(opcode: opcode)
-        }
+        mb.cpu.fN = true
+        let a = mb.cpu.fN
+        let b = mb.cpu.fH
+//        for i in 0...1 {
+//            let opcode = mb.getMem(address: mb.cpu.pc)
+//            mb.cpu.execute(opcode: opcode)
+//        }
 
     }
 

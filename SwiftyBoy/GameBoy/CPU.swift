@@ -29,90 +29,90 @@ class CPU {
     private var _sp: UInt16 = 0x0000
     private var _pc: UInt16 = 0x0000
     
-    public var a: UInt {
+    public var a: Int {
         get {
-            return UInt(_a)
+            return Int(_a)
         }
         set {
             _a = UInt8(newValue & 0xFF)
         }
     }
     
-    public var b: UInt {
+    public var b: Int {
         get {
-            return UInt(_b)
+            return Int(_b)
         }
         set {
             _b = UInt8(newValue & 0xFF)
         }
     }
     
-    public var c: UInt {
+    public var c: Int {
         get {
-            return UInt(_c)
+            return Int(_c)
         }
         set {
             _c = UInt8(newValue & 0xFF)
         }
     }
     
-    public var d: UInt {
+    public var d: Int {
         get {
-            return UInt(_d)
+            return Int(_d)
         }
         set {
             _d = UInt8(newValue & 0xFF)
         }
     }
     
-    public var e: UInt {
+    public var e: Int {
         get {
-            return UInt(_e)
+            return Int(_e)
         }
         set {
             _e = UInt8(newValue & 0xFF)
         }
     }
     
-    public var h: UInt {
+    public var h: Int {
         get {
-            return UInt(_h)
+            return Int(_h)
         }
         set {
             _h = UInt8(newValue & 0xFF)
         }
     }
     
-    public var l: UInt {
+    public var l: Int {
         get {
-            return UInt(_l)
+            return Int(_l)
         }
         set {
             _l = UInt8(newValue & 0xFF)
         }
     }
     
-    public var pc: UInt {
+    public var pc: Int {
         get {
-            return UInt(_pc)
+            return Int(_pc)
         }
         set {
             _pc = UInt16(newValue & 0xFFFF)
         }
     }
     
-    public var sp: UInt {
+    public var sp: Int {
         get {
-            return UInt(_sp)
+            return Int(_sp)
         }
         set {
             _sp = UInt16(newValue & 0xFFFF)
         }
     }
     
-    public var bc: UInt {
+    public var bc: Int {
         get {
-            return UInt(_b << 8 + _c)
+            return Int(_b << 8 + _c)
         }
         set {
             _b = UInt8(newValue >> 8)
@@ -120,9 +120,9 @@ class CPU {
         }
     }
     
-    public var de: UInt {
+    public var de: Int {
         get {
-            return UInt(_d << 8 + _e)
+            return Int(_d << 8 + _e)
         }
         set {
             _d = UInt8(newValue >> 8)
@@ -130,13 +130,62 @@ class CPU {
         }
     }
     
-    public var hl: UInt {
+    public var hl: Int {
         get {
-            return UInt(_h << 8 + _l)
+            return Int(_h << 8 + _l)
         }
         set {
             _h = UInt8(newValue >> 8)
             _l = UInt8(newValue & 0x00FF)
+        }
+    }
+    
+    public var f: Int {
+        get {
+            return Int(_f)
+        }
+        set {
+            _f = UInt8(newValue & 0b11110000)
+        }
+    }
+    
+    public var fZ: Bool {
+        get {
+            return Int(_f & 0b10000000) >> 7 == 1
+        }
+        set {
+            let z = newValue.integerValue << 7
+            _f |= UInt8(z)
+        }
+    }
+    
+    public var fN: Bool {
+        get {
+            return Int(_f & 0b01000000) >> 6 == 1
+        }
+        set {
+            let z = newValue.integerValue << 6
+            _f |= UInt8(z)
+        }
+    }
+    
+    public var fH: Bool {
+        get {
+            return Int(_f & 0b00100000) >> 5 == 1
+        }
+        set {
+            let z = newValue.integerValue << 5
+            _f |= UInt8(z)
+        }
+    }
+    
+    public var fC: Bool {
+        get {
+            return Int(_f & 0b00010000) >> 4 == 1
+        }
+        set {
+            let z = newValue.integerValue << 4
+            _f |= UInt8(z)
         }
     }
     
@@ -166,4 +215,12 @@ class CPU {
         baseInstructions[Int(instruction.opcode)] = instruction
     }
     
+}
+
+extension Bool {
+    var integerValue: Int {
+        get {
+            return self == true ? 1 : 0
+        }
+    }
 }

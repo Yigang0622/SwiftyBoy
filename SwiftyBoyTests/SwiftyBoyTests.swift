@@ -21,10 +21,26 @@ class SwiftyBoyTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let cpu = CPU()
-        cpu.bc = 0xFFAA
-        let a = 1
+        let mb = Motherboard()
         
+        
+       
+//        XCTAssert(mb.cpu.setBit(val: 0b00001111, n: 7) == 0b10001111 )
+//        XCTAssert(mb.cpu.resetBit(val: 0b10001111, n: 7) == 0b00001111 )
+        
+    }
+    
+    func testPopAndPushStack() {
+        let mb = Motherboard()
+        mb.cpu.pc = 0xABCD
+        let spAddress = 65530
+        mb.cpu.sp = spAddress
+        mb.cpu.pushPCToStack()
+        XCTAssert(mb.cpu.sp == spAddress - 2)
+        mb.cpu.pc = 0
+        XCTAssert(mb.cpu.pc == 0)
+        mb.cpu.popPCFromStack()
+        XCTAssert(mb.cpu.pc == 0xABCD)
     }
 
     func testPerformanceExample() throws {

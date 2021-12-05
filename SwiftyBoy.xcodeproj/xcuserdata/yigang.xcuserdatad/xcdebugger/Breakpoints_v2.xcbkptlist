@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C78F1608-9D9B-4F9C-A64C-C295A875B27D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SwiftyBoyTests/SwiftyBoyTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "testExample()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "99BE861B-9108-4453-A5C1-F0CD0B9F9B2A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -30,8 +14,8 @@
             filePath = "SwiftyBoy/GameBoy/CPU.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "c"
             landmarkType = "24">
          </BreakpointContent>
@@ -39,15 +23,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6566A2F2-3BB5-412D-9E5A-5E6BE31930B6"
+            uuid = "5643C950-D536-46A3-8EBD-F05892985CFE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftyBoy/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,15 +39,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5643C950-D536-46A3-8EBD-F05892985CFE"
+            uuid = "F642C6D0-CA96-4FC4-9659-407B9C4FA7DF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftyBoyTests/SwiftyBoyTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "testExample()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "231BCC02-D044-48D0-A451-23FA0EC03741"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftyBoyTests/SwiftyBoyTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "testExample()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "231BCC02-D044-48D0-A451-23FA0EC03741 - aba6b5c918dea5ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyBoyTests.SwiftyBoyTests.testExample() throws -&gt; ()"
+                  moduleName = "SwiftyBoyTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yigang/Developer/2_iosProjects/SwiftyBoy/SwiftyBoyTests/SwiftyBoyTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "210">
+               </Location>
+               <Location
+                  uuid = "231BCC02-D044-48D0-A451-23FA0EC03741 - aba6b5c918dea5ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyBoyTests.SwiftyBoyTests.testExample() throws -&gt; ()"
+                  moduleName = "SwiftyBoyTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yigang/Developer/2_iosProjects/SwiftyBoy/SwiftyBoyTests/SwiftyBoyTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "213">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC8E023D-FEAC-4987-AC5F-C43B8A1FFD09"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftyBoy/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

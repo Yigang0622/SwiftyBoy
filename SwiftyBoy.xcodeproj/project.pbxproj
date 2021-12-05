@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD1094B7275C952500A5AAEB /* CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B2275C952400A5AAEB /* CPU.swift */; };
+		DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */; };
+		DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B5275C952500A5AAEB /* CPU+Util.swift */; };
+		DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B6275C952500A5AAEB /* Motherboard.swift */; };
+		DD1094BE275C95EA00A5AAEB /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */; };
+		DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -14,10 +20,6 @@
 		DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED3274FCA8F007929DA /* Assets.xcassets */; };
 		DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */; };
 		DDF24EE2274FCA8F007929DA /* SwiftyBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */; };
-		DDF24EFC274FCAE2007929DA /* CPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EFB274FCAE2007929DA /* CPU.swift */; };
-		DDF24EFF274FD7A5007929DA /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EFE274FD7A5007929DA /* Motherboard.swift */; };
-		DDF24F01274FD9B3007929DA /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */; };
-		DDF24F0327527F6B007929DA /* CPU+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24F0227527F6B007929DA /* CPU+Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD1094B2275C952400A5AAEB /* CPU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPU.swift; sourceTree = "<group>"; };
+		DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+BaseInstructions.swift"; sourceTree = "<group>"; };
+		DD1094B5275C952500A5AAEB /* CPU+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Util.swift"; sourceTree = "<group>"; };
+		DD1094B6275C952500A5AAEB /* Motherboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
+		DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CPU+CBInstructions.swift"; path = "../../../../../../PycharmProjects/SwiftyBoyUtil/CPU+CBInstructions.swift"; sourceTree = "<group>"; };
+		DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,11 +49,7 @@
 		DDF24ED8274FCA8F007929DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDF24EDD274FCA8F007929DA /* SwiftyBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBoyTests.swift; sourceTree = "<group>"; };
-		DDF24EFB274FCAE2007929DA /* CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU.swift; sourceTree = "<group>"; };
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
-		DDF24EFE274FD7A5007929DA /* Motherboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
-		DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
-		DDF24F0227527F6B007929DA /* CPU+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CPU+Util.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD1094BC275C953300A5AAEB /* CPU */ = {
+			isa = PBXGroup;
+			children = (
+				DD1094B2275C952400A5AAEB /* CPU.swift */,
+				DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */,
+				DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */,
+				DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */,
+				DD1094B5275C952500A5AAEB /* CPU+Util.swift */,
+			);
+			path = CPU;
+			sourceTree = "<group>";
+		};
 		DDF24EBE274FCA8C007929DA = {
 			isa = PBXGroup;
 			children = (
@@ -111,10 +127,8 @@
 		DDF24EFA274FCAD6007929DA /* GameBoy */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24EFB274FCAE2007929DA /* CPU.swift */,
-				DDF24F00274FD9B3007929DA /* CPU+Instruction.swift */,
-				DDF24F0227527F6B007929DA /* CPU+Util.swift */,
-				DDF24EFE274FD7A5007929DA /* Motherboard.swift */,
+				DD1094BC275C953300A5AAEB /* CPU */,
+				DD1094B6275C952500A5AAEB /* Motherboard.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -220,13 +234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDF24EFC274FCAE2007929DA /* CPU.swift in Sources */,
-				DDF24F01274FD9B3007929DA /* CPU+Instruction.swift in Sources */,
+				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
+				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
+				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
+				DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
+				DD1094BE275C95EA00A5AAEB /* CPU+CBInstructions.swift in Sources */,
+				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
-				DDF24F0327527F6B007929DA /* CPU+Util.swift in Sources */,
-				DDF24EFF274FD7A5007929DA /* Motherboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,14 +19,13 @@ extension CPU {
     func fetchAndExecute() -> Int {
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
-            pc += 1
-            opcode = mb.getMem(address: pc)
-            print("exec op \(String(format:"%02X", opcode))")
-            let cycle = baseInstructions[opcode]!.instruction()
+            opcode = mb.getMem(address: pc + 1)
+            print("\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)")
+            let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
-            print("exec cb op \(String(format:"%02X", opcode))")
-            let cycle = cbInstructions[opcode]!.instruction()
+            print("\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)")
+            let cycle = baseInstructions[opcode]!.instruction()
             return cycle
         }
     }

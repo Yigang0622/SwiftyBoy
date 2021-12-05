@@ -221,8 +221,8 @@ extension CPU {
 
      // 0x18 JR r8
      func JR_18() -> Int {
-           pc += 2
            let v = get8BitSignedImmediateValue()
+           pc += 2
            pc += v
            return 12
      }
@@ -297,8 +297,8 @@ extension CPU {
 
      // 0x20 JR NZ,r8
      func JR_20() -> Int {
-           pc += 2
            let v = get8BitSignedImmediateValue()
+           pc += 2
            if !fZ {
                  pc += v
                  return 12
@@ -389,8 +389,8 @@ extension CPU {
 
      // 0x28 JR Z,r8
      func JR_28() -> Int {
-           pc += 2
            let v = get8BitSignedImmediateValue()
+           pc += 2
            if fZ {
                  pc += v
                  return 12
@@ -466,8 +466,8 @@ extension CPU {
 
      // 0x30 JR NC,r8
      func JR_30() -> Int {
-           pc += 2
            let v = get8BitSignedImmediateValue()
+           pc += 2
            if !fC {
                  pc += v
                  return 12
@@ -540,8 +540,8 @@ extension CPU {
 
      // 0x38 JR C,r8
      func JR_38() -> Int {
-           pc += 2
            let v = get8BitSignedImmediateValue()
+           pc += 2
            if fC {
                  pc += v
                  return 12
@@ -1833,7 +1833,7 @@ extension CPU {
      func POP_C1() -> Int {
            b = mb.getMem(address: sp + 1)
            c = mb.getMem(address: sp)
-           sp += 1
+           sp += 2
            pc += 1
            return 12
      }
@@ -1859,8 +1859,8 @@ extension CPU {
 
      // 0xc4 CALL NZ,a16
      func CALL_C4() -> Int {
-           pc += 3
            let v = get16BitImmediate()
+           pc += 3
            if !fZ {
                  pushPCToStack()
                  pc = v
@@ -1936,8 +1936,8 @@ extension CPU {
 
      // 0xcc CALL Z,a16
      func CALL_CC() -> Int {
-           pc += 3
            let v = get16BitImmediate()
+           pc += 3
            if fZ {
                  pushPCToStack()
                  pc = v
@@ -1949,8 +1949,8 @@ extension CPU {
 
      // 0xcd CALL a16
      func CALL_CD() -> Int {
-           pc += 3
            let v = get16BitImmediate()
+           pc += 3
            pushPCToStack()
            pc = v
            return 24
@@ -1991,7 +1991,7 @@ extension CPU {
      func POP_D1() -> Int {
            d = mb.getMem(address: sp + 1)
            e = mb.getMem(address: sp)
-           sp += 1
+           sp += 2
            pc += 1
            return 12
      }
@@ -2010,8 +2010,8 @@ extension CPU {
 
      // 0xd4 CALL NC,a16
      func CALL_D4() -> Int {
-           pc += 3
            let v = get16BitImmediate()
+           pc += 3
            if !fC {
                  pushPCToStack()
                  pc = v
@@ -2081,8 +2081,8 @@ extension CPU {
 
      // 0xdc CALL C,a16
      func CALL_DC() -> Int {
-           pc += 3
            let v = get16BitImmediate()
+           pc += 3
            if fC {
                  pushPCToStack()
                  pc = v
@@ -2125,7 +2125,7 @@ extension CPU {
      func POP_E1() -> Int {
            h = mb.getMem(address: sp + 1)
            l = mb.getMem(address: sp)
-           sp += 1
+           sp += 2
            pc += 1
            return 12
      }
@@ -2226,7 +2226,7 @@ extension CPU {
      func POP_F1() -> Int {
            a = mb.getMem(address: sp + 1)
            f = mb.getMem(address: sp)
-           sp += 1
+           sp += 2
            pc += 1
            return 12
      }

@@ -13,6 +13,7 @@
 		DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B6275C952500A5AAEB /* Motherboard.swift */; };
 		DD1094BE275C95EA00A5AAEB /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */; };
 		DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */; };
+		DD1094C4275CF4A600A5AAEB /* Tiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tiles.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 		DD1094B6275C952500A5AAEB /* Motherboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
 		DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CPU+CBInstructions.swift"; path = "../../../../../../PycharmProjects/SwiftyBoyUtil/CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
+		DD1094C3275CF4A600A5AAEB /* Tiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiles.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				DD1094BC275C953300A5AAEB /* CPU */,
 				DD1094B6275C952500A5AAEB /* Motherboard.swift */,
+				DD1094C3275CF4A600A5AAEB /* Tiles.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
+				DD1094C4275CF4A600A5AAEB /* Tiles.swift in Sources */,
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,

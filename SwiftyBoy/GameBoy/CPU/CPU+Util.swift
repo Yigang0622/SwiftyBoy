@@ -14,10 +14,12 @@ extension CPU {
     func get16BitMem(address: Int) -> Int {
         let fs = mb.getMem(address: address + 1)
         let ls = mb.getMem(address: address)
+        print("get 16 bit mem result \( String(format:"%02X", fs << 8 + ls))")
         return fs << 8 + ls
     }
     
     func get8BitImmediate() -> Int {
+        print("get 8 bit mem result \( String(format:"%02X", mb.getMem(address: pc + 1)))")
         return mb.getMem(address: pc + 1)
     }
     
@@ -71,6 +73,7 @@ extension CPU {
     }
     
     func pushPCToStack() {
+        print("push \(pc >> 8) \(pc & 0xFF)")
         mb.setMem(address: sp - 1, val: pc >> 8) // High
         mb.setMem(address: sp - 2, val: pc & 0xFF) // Low
         sp -= 2
@@ -78,6 +81,7 @@ extension CPU {
     
     func popPCFromStack() {
         pc = popFromStack(numOfByte: 2)
+        print("PC set to \(String(format:"%02X", pc))")
     }
     
     func popFromStack(numOfByte: Int) -> Int{

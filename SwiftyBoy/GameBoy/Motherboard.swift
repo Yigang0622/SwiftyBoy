@@ -11,7 +11,7 @@ class Motherboard {
     
     public let cpu = CPU()
     
-    private var memory = Array<UInt8>(repeating: 0xFF, count: 0xFFFF)
+    public var memory = Array<UInt8>(repeating: 0x00, count: 0xFFFF)
     
     init() {
         cpu.mb = self

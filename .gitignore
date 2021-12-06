@@ -24,3 +24,7 @@ DerivedData/
 
 ## Gcc Patch
 /*.gcno
+
+.idea/
+__pycache__/
+venv/

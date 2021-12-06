@@ -33,15 +33,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let mb = Motherboard()
         
-//        mb.cpu.fZ = false
-//        print(mb.cpu.fZ)
+        let bytes = loadTestRom()
+        
+        let mb = Motherboard()
+
         for (i, each) in bootRom.enumerated() {
             mb.setMem(address: i, val: each)
         }
         
-        var i = bootRom.capacity
+        for (i, each) in bytes.enumerated() {
+            mb.setMem(address: i + 100, val: Int(each))
+        }
+        
         var cycles = 0
         while mb.cpu.pc >= 0 {
             cycles += mb.cpu.fetchAndExecute()
@@ -57,6 +61,21 @@ class ViewController: UIViewController {
             
 //        let t = Tiles(bytes: tiles)
         
+    }
+    
+    func loadTestRom() -> [UInt8] {
+
+        if let fileURL = Bundle.main.url(forResource: "cpu_instrs", withExtension: "gb") {
+            
+            do {
+                let raw = try Data(contentsOf: fileURL)
+    
+                return [UInt8](raw)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return []
     }
     
 

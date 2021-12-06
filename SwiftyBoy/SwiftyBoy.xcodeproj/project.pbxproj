@@ -11,9 +11,11 @@
 		DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */; };
 		DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B5275C952500A5AAEB /* CPU+Util.swift */; };
 		DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B6275C952500A5AAEB /* Motherboard.swift */; };
-		DD1094BE275C95EA00A5AAEB /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */; };
 		DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */; };
 		DD1094C4275CF4A600A5AAEB /* Tiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tiles.swift */; };
+		DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
+		DD1094C8275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
+		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -38,9 +40,10 @@
 		DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+BaseInstructions.swift"; sourceTree = "<group>"; };
 		DD1094B5275C952500A5AAEB /* CPU+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Util.swift"; sourceTree = "<group>"; };
 		DD1094B6275C952500A5AAEB /* Motherboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
-		DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CPU+CBInstructions.swift"; path = "../../../../../../PycharmProjects/SwiftyBoyUtil/CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
 		DD1094C3275CF4A600A5AAEB /* Tiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiles.swift; sourceTree = "<group>"; };
+		DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = cpu_instrs.gb; sourceTree = "<group>"; };
+		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,11 +80,19 @@
 			children = (
 				DD1094B2275C952400A5AAEB /* CPU.swift */,
 				DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */,
-				DD1094BD275C95EA00A5AAEB /* CPU+CBInstructions.swift */,
+				DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */,
 				DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */,
 				DD1094B5275C952500A5AAEB /* CPU+Util.swift */,
 			);
 			path = CPU;
+			sourceTree = "<group>";
+		};
+		DD1094C5275DF50A00A5AAEB /* Roms */ = {
+			isa = PBXGroup;
+			children = (
+				DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */,
+			);
+			path = Roms;
 			sourceTree = "<group>";
 		};
 		DDF24EBE274FCA8C007929DA = {
@@ -105,6 +116,7 @@
 		DDF24EC9274FCA8C007929DA /* SwiftyBoy */ = {
 			isa = PBXGroup;
 			children = (
+				DD1094C5275DF50A00A5AAEB /* Roms */,
 				DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */,
 				DDF24EFA274FCAD6007929DA /* GameBoy */,
 				DDF24ECA274FCA8C007929DA /* AppDelegate.swift */,
@@ -219,6 +231,7 @@
 			files = (
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
+				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
 				DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD1094C8275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +258,7 @@
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
-				DD1094BE275C95EA00A5AAEB /* CPU+CBInstructions.swift in Sources */,
+				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
 			);

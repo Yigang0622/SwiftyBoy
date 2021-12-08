@@ -18,16 +18,34 @@ class GPU {
     
     weak var mb: Motherboard!
     
-    
-    private var LY = 0
-    private var clock = 0
-    private var targetClock = 0
+    private static let FULL_FRAME_CYCLE = 70224
+//    private var LY = 0
+    private var clock:Int = 0
+    private var targetClock:Int = 0
     
     private var currentState: GPUState = .oamSearch
     private var nextState: GPUState = .oamSearch
+    private var frameCount = 0
+    
+    var statRegister = STATRegister(val: 0)
+    var lcdcRegister = LCDCRegister(val: 0)
+    var scy = 0x00
+    var scx = 0x00
+    var ly = 0x00
+    var lyc = 0x00
+    var backgroundPalette = PaletteRegister(val: 0xFC)
+    var obj1Palatte = PaletteRegister(val: 0xFF)
+    var obj2Palatte = PaletteRegister(val: 0xFF)
+    var wy = 0x00
+    var wx = 0x00
     
     func tick(numOfCycles: Int) {
         clock += numOfCycles
+        
+        if targetClock > GPU.FULL_FRAME_CYCLE {
+            clock %=  GPU.FULL_FRAME_CYCLE
+            targetClock %= GPU.FULL_FRAME_CYCLE
+        }
         
         // should change state
         if clock > targetClock {
@@ -46,11 +64,14 @@ class GPU {
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
                 // draw line
-                LY += 1
-                print("[GPU] HBLANK line \(LY) until \(targetClock)")
+                ly += 1
+                print("[GPU] HBLANK line \(ly) until \(targetClock)")
+                
                 // full frame drawn
-                if LY > 143 {
-                    LY = 0
+                if ly > 143 {
+                    frameCount += 1
+                    print("[GPU] drawn new frame \(frameCount) at clock \(clock)")
+                    ly = 0
                     nextState = .vBlank
                 } else {
                     nextState = .oamSearch

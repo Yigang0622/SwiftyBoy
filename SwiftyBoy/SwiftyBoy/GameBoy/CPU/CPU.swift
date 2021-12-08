@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum InterruptType {
+    case vblank
+    case lcdc
+    case timer
+    case serial
+    case highToLow
+}
+
 /**
  GameBoy CPU
  */
@@ -29,8 +37,11 @@ class CPU {
     private var _sp: UInt16 = 0x0000
     private var _pc: UInt16 = 0x0000
     
+    private var duringInterrupt = false
+    
     public var halted: Bool = false
     public var interruptMasterEnable = false
+    
     
     public var a: Int {
         get {

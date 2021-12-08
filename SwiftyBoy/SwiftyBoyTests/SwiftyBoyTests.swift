@@ -21,8 +21,9 @@ class SwiftyBoyTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let mb = Motherboard()
-        
+//        let mb = Motherboard()
+        let r = LCDCRegister(val: 0b11111111)
+        let p = PaletteRegister(val: 0b11111111)
         
        
 //        XCTAssert(mb.cpu.setBit(val: 0b00001111, n: 7) == 0b10001111 )

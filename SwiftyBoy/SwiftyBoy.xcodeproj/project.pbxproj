@@ -19,6 +19,10 @@
 		DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */; };
 		DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08E275FA01C005E45D4 /* BootRom.swift */; };
 		DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D090275FAB5A005E45D4 /* GPU.swift */; };
+		DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D093275FBD53005E45D4 /* LCDCRegister.swift */; };
+		DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0952760E7D7005E45D4 /* BaseRegister.swift */; };
+		DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0972760F5F1005E45D4 /* STATRegister.swift */; };
+		DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
@@ -51,6 +55,10 @@
 		DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeMeta.swift; sourceTree = "<group>"; };
 		DD25D08E275FA01C005E45D4 /* BootRom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRom.swift; sourceTree = "<group>"; };
 		DD25D090275FAB5A005E45D4 /* GPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPU.swift; sourceTree = "<group>"; };
+		DD25D093275FBD53005E45D4 /* LCDCRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDCRegister.swift; sourceTree = "<group>"; };
+		DD25D0952760E7D7005E45D4 /* BaseRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRegister.swift; sourceTree = "<group>"; };
+		DD25D0972760F5F1005E45D4 /* STATRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STATRegister.swift; sourceTree = "<group>"; };
+		DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteRegister.swift; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +120,17 @@
 			path = Cartridge;
 			sourceTree = "<group>";
 		};
+		DD25D092275FBD3E005E45D4 /* GPU */ = {
+			isa = PBXGroup;
+			children = (
+				DD25D090275FAB5A005E45D4 /* GPU.swift */,
+				DD25D093275FBD53005E45D4 /* LCDCRegister.swift */,
+				DD25D0972760F5F1005E45D4 /* STATRegister.swift */,
+				DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */,
+			);
+			path = GPU;
+			sourceTree = "<group>";
+		};
 		DDF24EBE274FCA8C007929DA = {
 			isa = PBXGroup;
 			children = (
@@ -158,12 +177,13 @@
 		DDF24EFA274FCAD6007929DA /* GameBoy */ = {
 			isa = PBXGroup;
 			children = (
+				DD25D092275FBD3E005E45D4 /* GPU */,
 				DD25D089275F96E6005E45D4 /* Cartridge */,
 				DD1094BC275C953300A5AAEB /* CPU */,
 				DD1094B6275C952500A5AAEB /* Motherboard.swift */,
 				DD1094C3275CF4A600A5AAEB /* Tiles.swift */,
 				DD25D08E275FA01C005E45D4 /* BootRom.swift */,
-				DD25D090275FAB5A005E45D4 /* GPU.swift */,
+				DD25D0952760E7D7005E45D4 /* BaseRegister.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -273,6 +293,7 @@
 			files = (
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
 				DD1094C4275CF4A600A5AAEB /* Tiles.swift in Sources */,
+				DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */,
 				DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */,
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
@@ -282,9 +303,12 @@
 				DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
+				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
+				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
 				DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */,
+				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

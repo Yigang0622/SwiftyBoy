@@ -21,10 +21,10 @@ class ViewController: UIViewController {
         let gpu = GPU()
         
         var cycles = 0
-        while mb.cpu.pc >= 0 {
-            cycles = mb.cpu.fetchAndExecute()
-            gpu.tick(numOfCycles: cycles)
-        }
+//        while mb.cpu.pc >= 0 {
+//            cycles = mb.cpu.fetchAndExecute()
+//            gpu.tick(numOfCycles: cycles)
+//        }
         print("\(cycles) passed")
 
         

@@ -170,8 +170,6 @@ class CPU {
             return a
         }
         set {
-            let mask = newValue ? 0b11110000 : 0b01110000
-//            f = newValue.integerValue << 7 & mask
             f = newValue ? setBit(n: 7, val: f) : resetBit(n: 7, val: f)
         }
     }
@@ -181,8 +179,6 @@ class CPU {
             return Int(_f & 0b01000000) >> 6 == 1
         }
         set {
-//            let mask = newValue ? 0b11110000 : 0b10110000
-//            _f = UInt8(newValue.integerValue << 6 & mask)
             f = newValue ? setBit(n: 6, val: f) : resetBit(n: 6, val: f)
         }
     }
@@ -192,8 +188,6 @@ class CPU {
             return Int(_f & 0b00100000) >> 5 == 1
         }
         set {
-//            let mask = newValue ? 0b11110000 : 0b11010000
-//            _f = UInt8(newValue.integerValue << 5 & mask)
             f = newValue ? setBit(n: 5, val: f) : resetBit(n: 5, val: f)
         }
     }
@@ -203,8 +197,6 @@ class CPU {
             return Int(_f & 0b00010000) >> 4 == 1
         }
         set {
-//            let mask = newValue ? 0b11110000 : 0b11100000
-//            _f = UInt8(newValue.integerValue << 4 & mask)
             f = newValue ? setBit(n: 4, val: f) : resetBit(n: 4, val: f)
         }
     }

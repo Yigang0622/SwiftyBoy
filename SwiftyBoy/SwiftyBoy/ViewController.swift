@@ -17,19 +17,53 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+       
+        
         let mb = Motherboard()
-        let gpu = GPU()
         
-        var cycles = 0
-//        while mb.cpu.pc >= 0 {
-//            cycles = mb.cpu.fetchAndExecute()
-//            gpu.tick(numOfCycles: cycles)
-//        }
-        print("\(cycles) passed")
+        
+        
 
+        mb.run()
         
+        
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 256, height: 256))
+        imageView.image = drawRectangle(pixels: mb.gpu.backgroundPixels, palette: mb.gpu.backgroundPalette)
+        view.addSubview(imageView)
     }
-   
+    
+    // 16 * 16
+    
+    func drawRectangle(pixels: [[Int]], palette: PaletteRegister) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 256, height: 256))
+
+
+        let img = renderer.image { ctx in
+            for i in 0..<256 {
+                for j in 0..<256 {
+                    let rectangle = CGRect(x: j, y: i, width: 1, height: 1)
+                    var color = pixels[i][j]
+                    color = palette.getColor(i: color)
+                    if color == 0 {
+                        ctx.cgContext.setStrokeColor(UIColor.white.cgColor)
+                    } else if color == 1 {
+                        ctx.cgContext.setStrokeColor(UIColor.lightGray.cgColor)
+                    } else if color == 2 {
+                        ctx.cgContext.setStrokeColor(UIColor.darkGray.cgColor)
+                    } else if color == 3 {
+                        ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+                    }
+
+                    ctx.cgContext.addRect(rectangle)
+                    ctx.cgContext.drawPath(using: .fillStroke)
+                }
+            }
+            
+            
+        }
+        
+       return img
+    }
     
 
 

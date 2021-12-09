@@ -12,7 +12,7 @@
 		DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B5275C952500A5AAEB /* CPU+Util.swift */; };
 		DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B6275C952500A5AAEB /* Motherboard.swift */; };
 		DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */; };
-		DD1094C4275CF4A600A5AAEB /* Tiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tiles.swift */; };
+		DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tile.swift */; };
 		DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
 		DD1094C8275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
 		DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08A275F96F7005E45D4 /* Cartridge.swift */; };
@@ -23,6 +23,8 @@
 		DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0952760E7D7005E45D4 /* BaseRegister.swift */; };
 		DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0972760F5F1005E45D4 /* STATRegister.swift */; };
 		DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */; };
+		DD25D09C27623B34005E45D4 /* RAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D09B27623B34005E45D4 /* RAM.swift */; };
+		DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D09D276241DE005E45D4 /* ld_r_r.gb */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
@@ -49,7 +51,7 @@
 		DD1094B5275C952500A5AAEB /* CPU+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Util.swift"; sourceTree = "<group>"; };
 		DD1094B6275C952500A5AAEB /* Motherboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
 		DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
-		DD1094C3275CF4A600A5AAEB /* Tiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiles.swift; sourceTree = "<group>"; };
+		DD1094C3275CF4A600A5AAEB /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = cpu_instrs.gb; sourceTree = "<group>"; };
 		DD25D08A275F96F7005E45D4 /* Cartridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartridge.swift; sourceTree = "<group>"; };
 		DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeMeta.swift; sourceTree = "<group>"; };
@@ -59,6 +61,8 @@
 		DD25D0952760E7D7005E45D4 /* BaseRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRegister.swift; sourceTree = "<group>"; };
 		DD25D0972760F5F1005E45D4 /* STATRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STATRegister.swift; sourceTree = "<group>"; };
 		DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteRegister.swift; sourceTree = "<group>"; };
+		DD25D09B27623B34005E45D4 /* RAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAM.swift; sourceTree = "<group>"; };
+		DD25D09D276241DE005E45D4 /* ld_r_r.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = ld_r_r.gb; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 		DD1094C5275DF50A00A5AAEB /* Roms */ = {
 			isa = PBXGroup;
 			children = (
+				DD25D09D276241DE005E45D4 /* ld_r_r.gb */,
 				DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */,
 			);
 			path = Roms;
@@ -181,9 +186,10 @@
 				DD25D089275F96E6005E45D4 /* Cartridge */,
 				DD1094BC275C953300A5AAEB /* CPU */,
 				DD1094B6275C952500A5AAEB /* Motherboard.swift */,
-				DD1094C3275CF4A600A5AAEB /* Tiles.swift */,
+				DD1094C3275CF4A600A5AAEB /* Tile.swift */,
 				DD25D08E275FA01C005E45D4 /* BootRom.swift */,
 				DD25D0952760E7D7005E45D4 /* BaseRegister.swift */,
+				DD25D09B27623B34005E45D4 /* RAM.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */,
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
@@ -292,7 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
-				DD1094C4275CF4A600A5AAEB /* Tiles.swift in Sources */,
+				DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */,
 				DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */,
 				DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */,
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
@@ -304,6 +311,7 @@
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
+				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,

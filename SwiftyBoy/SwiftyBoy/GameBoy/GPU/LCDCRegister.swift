@@ -9,13 +9,13 @@ import Foundation
 import AppKit
 
 enum LCDCTileMapSelect {
-    case tile0
-    case tile1
+    case map0
+    case map1
 }
 
 enum LCDCTileDataSelect {
-    case data0
-    case data1
+    case tile0
+    case tile1
 }
 
 enum LCDCSpriteSize {
@@ -26,10 +26,10 @@ enum LCDCSpriteSize {
 class LCDCRegister: BaseRegister {
     
     var lcdEnable = false
-    var windowTileMapSelect: LCDCTileMapSelect = .tile0
+    var windowTileMapSelect: LCDCTileMapSelect = .map0
     var windowEnable = false
-    var tileDataSelect: LCDCTileDataSelect = .data0
-    var backgroundTileMapSelect: LCDCTileMapSelect = .tile0
+    var tileDataSelect: LCDCTileDataSelect = .tile0
+    var backgroundTileMapSelect: LCDCTileMapSelect = .map0
     var spriteSize: LCDCSpriteSize = .size0
     var spriteEnable = false
     var backgroundEnable = false
@@ -43,10 +43,10 @@ class LCDCRegister: BaseRegister {
     override func setVal(val: Int) {
         super.setVal(val: val)
         lcdEnable = getBit(n: 7)
-        windowTileMapSelect = getBit(n: 6) ? .tile1 : .tile0
+        windowTileMapSelect = getBit(n: 6) ? .map1 : .map0
         windowEnable = getBit(n: 5)
-        tileDataSelect = getBit(n: 4) ? .data1 : .data0
-        backgroundTileMapSelect = getBit(n: 3) ? .tile1 : .tile0
+        tileDataSelect = getBit(n: 4) ? .tile1 : .tile0
+        backgroundTileMapSelect = getBit(n: 3) ? .map1 : .map0
         spriteSize = getBit(n: 2) ? .size1 : .size0
         spriteEnable = getBit(n: 1)
         backgroundEnable = getBit(n: 0)

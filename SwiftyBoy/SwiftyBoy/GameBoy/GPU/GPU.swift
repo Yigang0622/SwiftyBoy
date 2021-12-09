@@ -16,7 +16,14 @@ enum GPUState {
 
 class GPU {
     
+    var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+    
     weak var mb: Motherboard!
+    
+    var vram = Array<UInt8>(repeating: 0x00, count: 8 * 1024)
+    var oam = Array<UInt8>(repeating: 0x00, count: 0xA0)
+    
+    public var onFrameUpdate: (([[Int]]) -> Void)?
     
     private static let FULL_FRAME_CYCLE = 70224
 //    private var LY = 0
@@ -34,10 +41,11 @@ class GPU {
     var ly = 0x00
     var lyc = 0x00
     var backgroundPalette = PaletteRegister(val: 0xFC)
+    var obj0Palatte = PaletteRegister(val: 0xFF)
     var obj1Palatte = PaletteRegister(val: 0xFF)
-    var obj2Palatte = PaletteRegister(val: 0xFF)
     var wy = 0x00
     var wx = 0x00
+    var lyMax = 153
     
     func tick(numOfCycles: Int) {
         clock += numOfCycles
@@ -51,11 +59,17 @@ class GPU {
         if clock > targetClock {
             print("[GPU] clock \(clock) target \(targetClock)")
             
+            if ly == lyMax {
+                nextState = .oamSearch
+                ly = -1
+            }
+            
             currentState = nextState
             if currentState == .oamSearch {
                 // 20 clocks
                 targetClock += 20 * 4
                 nextState = .pixelTransfer
+                ly += 1
                 print("[GPU] OAM SEARCH until \(targetClock)")
             } else if currentState == .pixelTransfer {
                 targetClock += 43 * 4
@@ -64,25 +78,73 @@ class GPU {
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
                 // draw line
-                ly += 1
                 print("[GPU] HBLANK line \(ly) until \(targetClock)")
                 
                 // full frame drawn
-                if ly > 143 {
-                    frameCount += 1
+                if ly <= 143 {
                     print("[GPU] drawn new frame \(frameCount) at clock \(clock)")
-                    ly = 0
-                    nextState = .vBlank
-                } else {
+            
                     nextState = .oamSearch
+                } else {
+                    nextState = .vBlank
                 }
                 
             } else if currentState == .vBlank {
-                targetClock += 10 * (20 + 43 + 51) * 4
-                nextState = .oamSearch
+                targetClock += (20 + 43 + 51) * 4
+                nextState = .vBlank
+                if ly == 144 {
+                    print("[GPU] frame done")
+                    draw()
+                }
+                ly += 1
                 print("[GPU] VBLANK until \(targetClock)")
             }
         }
+    }
+    
+    func draw() {
+        var offset = 0x8000
+        var backgound = [UInt8]()
+        var tileData = [UInt8]()
+        var tiles = [Tile]()
+        if lcdcRegister.backgroundTileMapSelect == .map0 {
+            backgound = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
+        } else if lcdcRegister.backgroundTileMapSelect == .map1 {
+            backgound = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
+        }
+        
+        if lcdcRegister.tileDataSelect == .tile0 {
+            tileData = Array(vram[(0x8800 - offset)...(0x97FF - offset)])
+        } else if lcdcRegister.tileDataSelect == .tile1 {
+            tileData = Array(vram[(0x8000 - offset)...(0x8FFF - offset)])
+        }
+        
+        for i in 0...255 {
+            let start = i * 16
+            let end = start + 16
+            let sub = Array(tileData[start ..< end])
+            let t = Tile(bytes: sub)
+            tiles.append(t)
+        }
+        
+        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+        
+        for i in 0..<32 {
+            for j in 0..<32 {
+                let idx = i * 32 + j
+                let tileId = Int(backgound[idx])
+                print(tileId, terminator: "\t")
+                for tileY in 0...7 {
+                    for tileX in 0...7 {
+                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
+                    }
+                }
+                
+            }
+            print()
+        }
+        self.backgroundPixels = backgroundPixels
+//        onFrameUpdate?(backgroundPixels)
     }
     
 }

@@ -12,7 +12,7 @@ class Motherboard {
     public let cpu = CPU()
     let gpu = GPU()
     let ram = RAM()
-    public var memory = Array<UInt8>(repeating: 0x00, count: 0xFFFF)
+    public var memory = Array<Int>(repeating: 0x00, count: 0xFFFF)
     
     var cart: Cartridge!
     var bootRom = BootRom()
@@ -21,6 +21,7 @@ class Motherboard {
     
     init() {
         cpu.mb = self
+        gpu.mb = self
         let bytes = loadTestRom(name: "ld_r_r")
         cart = Cartridge(bytes: bytes)
     }
@@ -133,7 +134,7 @@ class Motherboard {
     }
     
     public func setMem(address: Int, val: Int) {
-        let v = UInt8(val & 0xFF)
+        let v = val & 0xFF
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
             print("1111")
@@ -148,7 +149,7 @@ class Motherboard {
             print("!!!!!!!!")
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
-            ram.internalRam0[address - 0xC00] = v
+            ram.internalRam0[address - 0xC000] = v
         } else if address >= 0xE000 && address < 0xFE00 {
             // Echo of 8kB Internal RAM
             self.setMem(address: address - 0x2000, val: val)
@@ -232,7 +233,7 @@ class Motherboard {
         } else {
             
         }
-        memory[address] = UInt8(val & 0xFF)
+//        memory[address] = val & 0xFF
     }
     
     

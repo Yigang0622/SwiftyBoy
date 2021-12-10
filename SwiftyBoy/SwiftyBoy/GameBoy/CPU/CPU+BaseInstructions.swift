@@ -1840,7 +1840,7 @@ extension CPU {
 
      // 0xc2 JP NZ,a16
      func JP_C2() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if !fZ {
                  pc = v
                  return 16
@@ -1852,7 +1852,7 @@ extension CPU {
 
      // 0xc3 JP a16
      func JP_C3() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            pc = v
            return 16
      }
@@ -1918,7 +1918,7 @@ extension CPU {
 
      // 0xca JP Z,a16
      func JP_CA() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if fZ {
                  pc = v
                  return 16
@@ -1998,7 +1998,7 @@ extension CPU {
 
      // 0xd2 JP NC,a16
      func JP_D2() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if !fC {
                  pc = v
                  return 16
@@ -2069,7 +2069,7 @@ extension CPU {
 
      // 0xda JP C,a16
      func JP_DA() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if fC {
                  pc = v
                  return 16

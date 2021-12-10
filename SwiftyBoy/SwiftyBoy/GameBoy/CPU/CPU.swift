@@ -22,20 +22,20 @@ class CPU {
     
     weak var mb: Motherboard!;
     
-    private var _a: UInt8 = 0x00
-    private var _f: UInt8 = 0x00
+    private var _a: Int = 0x00
+    private var _f: Int = 0x00
     
-    private var _b: UInt8 = 0x00
-    private var _c: UInt8 = 0x00
+    private var _b: Int = 0x00
+    private var _c: Int = 0x00
     
-    private var _d: UInt8 = 0x00
-    private var _e: UInt8 = 0x00
+    private var _d: Int = 0x00
+    private var _e: Int = 0x00
     
-    private var _h: UInt8 = 0x00
-    private var _l: UInt8 = 0x00
+    private var _h: Int = 0x00
+    private var _l: Int = 0x00
     
-    private var _sp: UInt16 = 0x0000
-    private var _pc: UInt16 = 0x0000
+    private var _sp: Int = 0x0000
+    private var _pc: Int = 0x0000
     
     private var duringInterrupt = false
     
@@ -45,83 +45,83 @@ class CPU {
     
     public var a: Int {
         get {
-            return Int(_a)
+            return _a
         }
         set {
-            _a = UInt8(newValue & 0xFF)
+            _a = newValue & 0xFF
         }
     }
     
     public var b: Int {
         get {
-            return Int(_b)
+            return _b
         }
         set {
-            _b = UInt8(newValue & 0xFF)
+            _b = newValue & 0xFF
         }
     }
     
     public var c: Int {
         get {
-            return Int(_c)
+            return _c
         }
         set {
-            _c = UInt8(newValue & 0xFF)
+            _c = newValue & 0xFF
         }
     }
     
     public var d: Int {
         get {
-            return Int(_d)
+            return _d
         }
         set {
-            _d = UInt8(newValue & 0xFF)
+            _d = newValue & 0xFF
         }
     }
     
     public var e: Int {
         get {
-            return Int(_e)
+            return _e
         }
         set {
-            _e = UInt8(newValue & 0xFF)
+            _e = newValue & 0xFF
         }
     }
     
     public var h: Int {
         get {
-            return Int(_h)
+            return _h
         }
         set {
-            _h = UInt8(newValue & 0xFF)
+            _h = newValue & 0xFF
         }
     }
     
     public var l: Int {
         get {
-            return Int(_l)
+            return _l
         }
         set {
-            _l = UInt8(newValue & 0xFF)
+            _l = newValue & 0xFF
         }
     }
     
     public var pc: Int {
         get {
-            return Int(_pc)
+            return _pc
         }
         set {
-            _pc = UInt16(newValue & 0xFFFF)
+            _pc = newValue & 0xFFFF
         }
     }
     
     public var sp: Int {
         get {
-            return Int(_sp)
+            return _sp
         }
         set {
             print("set SP \(newValue)")
-            _sp = UInt16(newValue & 0xFFFF)
+            _sp = newValue & 0xFFFF
         }
     }
     
@@ -130,8 +130,8 @@ class CPU {
             return b << 8 + c
         }
         set {
-            _b = UInt8(newValue >> 8)
-            _c = UInt8(newValue & 0x00FF)
+            _b = (newValue & 0xFFFF) >> 8
+            _c = (newValue & 0xFFFF) & 0x00FF
         }
     }
     
@@ -140,8 +140,8 @@ class CPU {
             return d << 8 + e
         }
         set {
-            _d = UInt8(newValue >> 8)
-            _e = UInt8(newValue & 0x00FF)
+            _d = (newValue & 0xFFFF) >> 8
+            _e = (newValue & 0xFFFF) & 0x00FF
         }
     }
     
@@ -150,17 +150,17 @@ class CPU {
             return h << 8 + l
         }
         set {
-            _h = UInt8(newValue >> 8)
-            _l = UInt8(newValue & 0x00FF)
+            _h = (newValue & 0xFFFF) >> 8
+            _l = (newValue & 0xFFFF) & 0x00FF
         }
     }
     
     public var f: Int {
         get {
-            return Int(_f)
+            return _f
         }
         set {
-            _f = UInt8(newValue & 0b11110000)
+            _f = newValue & 0b11110000
         }
     }
     

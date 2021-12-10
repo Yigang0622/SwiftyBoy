@@ -26,6 +26,7 @@
 		DD25D09C27623B34005E45D4 /* RAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D09B27623B34005E45D4 /* RAM.swift */; };
 		DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D09D276241DE005E45D4 /* ld_r_r.gb */; };
 		DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D09F276382C5005E45D4 /* Tetris.gb */; };
+		DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
@@ -65,6 +66,7 @@
 		DD25D09B27623B34005E45D4 /* RAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAM.swift; sourceTree = "<group>"; };
 		DD25D09D276241DE005E45D4 /* ld_r_r.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = ld_r_r.gb; sourceTree = "<group>"; };
 		DD25D09F276382C5005E45D4 /* Tetris.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tetris.gb; sourceTree = "<group>"; };
+		DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "10-bit ops.gb"; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		DD1094C5275DF50A00A5AAEB /* Roms */ = {
 			isa = PBXGroup;
 			children = (
+				DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */,
 				DD25D09F276382C5005E45D4 /* Tetris.gb */,
 				DD25D09D276241DE005E45D4 /* ld_r_r.gb */,
 				DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */,
@@ -280,6 +283,7 @@
 			files = (
 				DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */,
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
+				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
 				DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */,
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,

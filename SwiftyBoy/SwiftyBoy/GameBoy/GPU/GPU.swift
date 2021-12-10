@@ -20,8 +20,8 @@ class GPU {
     
     weak var mb: Motherboard!
     
-    var vram = Array<UInt8>(repeating: 0x00, count: 8 * 1024)
-    var oam = Array<UInt8>(repeating: 0x00, count: 0xA0)
+    var vram = Array<Int>(repeating: 0x00, count: 8 * 1024)
+    var oam = Array<Int>(repeating: 0x00, count: 0xA0)
     
     public var onFrameUpdate: (([[Int]]) -> Void)?
     
@@ -82,7 +82,8 @@ class GPU {
                 
                 // full frame drawn
                 if ly <= 143 {
-//                    print("[GPU] drawn new frame \(frameCount) at clock \(clock)")
+                    
+//                    print("[GPU] drawn new frame ")
             
                     nextState = .oamSearch
                 } else {
@@ -93,8 +94,11 @@ class GPU {
                 targetClock += (20 + 43 + 51) * 4
                 nextState = .vBlank
                 if ly == 144 {
-//                    print("[GPU] frame done")
+                    frameCount += 1
+                    print("[GPU] frame done \(frameCount)")
                     draw()
+                    
+//
                 }
                 ly += 1
 //                print("[GPU] VBLANK until \(targetClock)")
@@ -104,8 +108,8 @@ class GPU {
     
     func draw() {
         var offset = 0x8000
-        var backgound = [UInt8]()
-        var tileData = [UInt8]()
+        var backgound = [Int]()
+        var tileData = [Int]()
         var tiles = [Tile]()
         if lcdcRegister.backgroundTileMapSelect == .map0 {
             backgound = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
@@ -124,8 +128,24 @@ class GPU {
             let start = i * 16
             let end = start + 16
             let sub = Array(tileData[start ..< end])
-            let t = Tile(bytes: sub)
+            let t = Tile(bytes: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
             tiles.append(t)
+        }
+        
+        
+        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+        
+        for i in 0..<16 {
+            for j in 0..<16 {
+                let tileId = i * 16 + j
+//                print(tileId)
+                for tileY in 0...7 {
+                    for tileX in 0...7 {
+                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
+                    }
+                }
+                
+            }
         }
         
         var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
@@ -144,7 +164,6 @@ class GPU {
             }
 //            print()
         }
-//        self.backgroundPixels = backgroundPixels
         onFrameUpdate?(backgroundPixels)
     }
     

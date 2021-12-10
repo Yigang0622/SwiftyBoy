@@ -15,7 +15,7 @@ extension CPU {
         let fs = mb.getMem(address: address + 1)
         let ls = mb.getMem(address: address)
 //        print("-> get 16 bit mem result \((fs << 8 + ls).asHexString)")
-        return fs << 8 + ls
+        return (fs << 8) + ls
     }
     
     func get8BitImmediate() -> Int {

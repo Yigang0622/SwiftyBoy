@@ -32,7 +32,7 @@ class Cartridge {
         if address >= 0x0000 && address < 0x4000 {
             return Int(romBanks[0][address])
         } else if address >= 0x4000 && address < 0x8000 {
-            return Int(romBanks[1][address])
+            return Int(romBanks[1][address-0x4000])
         }
         print("cart get mem fail")
         return 0

@@ -24,7 +24,7 @@ extension CPU {
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
-            print("\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)")
+//            print("\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)")
             let cycle = baseInstructions[opcode]!.instruction()
             return cycle
         }

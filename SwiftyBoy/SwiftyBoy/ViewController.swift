@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         let mb = Motherboard()
         
-        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 256, height: 256))
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256, height: 256))
         view.addSubview(imageView)
         
         var drawing = false

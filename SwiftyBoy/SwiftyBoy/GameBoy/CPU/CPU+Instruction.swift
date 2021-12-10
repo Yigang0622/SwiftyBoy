@@ -20,7 +20,7 @@ extension CPU {
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
             opcode = mb.getMem(address: pc + 1)
-            print("\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)")
+//            print("\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)")
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {

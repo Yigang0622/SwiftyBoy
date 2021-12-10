@@ -17,19 +17,30 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-       
-        
         let mb = Motherboard()
         
-        
-        
-
-        mb.run()
-        
-        
         let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 256, height: 256))
-        imageView.image = drawRectangle(pixels: mb.gpu.backgroundPixels, palette: mb.gpu.backgroundPalette)
         view.addSubview(imageView)
+        
+        var drawing = false
+        mb.gpu.onFrameUpdate = { pixels in
+            if !drawing {
+                DispatchQueue.main.async {
+                    if !drawing {
+                        drawing = true
+                        imageView.image = self.drawRectangle(pixels: pixels, palette: mb.gpu.backgroundPalette)
+                        drawing = false
+                    } else {
+                        print("drawing ignore")
+                    }
+                }
+            }
+        }
+        
+        DispatchQueue.global().async {
+            mb.run()
+        }
+        
     }
     
     // 16 * 16

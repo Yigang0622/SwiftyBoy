@@ -57,7 +57,7 @@ class GPU {
         
         // should change state
         if clock > targetClock {
-            print("[GPU] clock \(clock) target \(targetClock)")
+//            print("[GPU] clock \(clock) target \(targetClock)")
             
             if ly == lyMax {
                 nextState = .oamSearch
@@ -70,19 +70,19 @@ class GPU {
                 targetClock += 20 * 4
                 nextState = .pixelTransfer
                 ly += 1
-                print("[GPU] OAM SEARCH until \(targetClock)")
+//                print("[GPU] OAM SEARCH until \(targetClock)")
             } else if currentState == .pixelTransfer {
                 targetClock += 43 * 4
                 nextState = .hBlank
-                print("[GPU] PIXEL TRANSFER until \(targetClock)")
+//                print("[GPU] PIXEL TRANSFER until \(targetClock)")
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
                 // draw line
-                print("[GPU] HBLANK line \(ly) until \(targetClock)")
+//                print("[GPU] HBLANK line \(ly) until \(targetClock)")
                 
                 // full frame drawn
                 if ly <= 143 {
-                    print("[GPU] drawn new frame \(frameCount) at clock \(clock)")
+//                    print("[GPU] drawn new frame \(frameCount) at clock \(clock)")
             
                     nextState = .oamSearch
                 } else {
@@ -93,11 +93,11 @@ class GPU {
                 targetClock += (20 + 43 + 51) * 4
                 nextState = .vBlank
                 if ly == 144 {
-                    print("[GPU] frame done")
+//                    print("[GPU] frame done")
                     draw()
                 }
                 ly += 1
-                print("[GPU] VBLANK until \(targetClock)")
+//                print("[GPU] VBLANK until \(targetClock)")
             }
         }
     }
@@ -112,6 +112,7 @@ class GPU {
         } else if lcdcRegister.backgroundTileMapSelect == .map1 {
             backgound = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
         }
+        
         
         if lcdcRegister.tileDataSelect == .tile0 {
             tileData = Array(vram[(0x8800 - offset)...(0x97FF - offset)])
@@ -133,7 +134,7 @@ class GPU {
             for j in 0..<32 {
                 let idx = i * 32 + j
                 let tileId = Int(backgound[idx])
-                print(tileId, terminator: "\t")
+//                print(tileId, terminator: "\t")
                 for tileY in 0...7 {
                     for tileX in 0...7 {
                         backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
@@ -141,10 +142,10 @@ class GPU {
                 }
                 
             }
-            print()
+//            print()
         }
-        self.backgroundPixels = backgroundPixels
-//        onFrameUpdate?(backgroundPixels)
+//        self.backgroundPixels = backgroundPixels
+        onFrameUpdate?(backgroundPixels)
     }
     
 }

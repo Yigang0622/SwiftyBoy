@@ -16,6 +16,7 @@ class Motherboard {
     
     var cart: Cartridge!
     var bootRom = BootRom()
+    var bootRomEnable = true
     
     
     init() {
@@ -25,18 +26,18 @@ class Motherboard {
     }
     
     func run() {
-        var cycleTotal = 0
-        while cycleTotal < 2000000 {
+//        var cycleTotal = 0
+        while cpu.pc >= 0 {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
-            cycleTotal += cycles
+//            cycleTotal += cycles
         }
     }
     
     public func getMem(address: Int) -> Int {
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
-            if address <= 0xFF {
+            if address <= 0xFF && bootRomEnable {
                 return bootRom.getMem(address: address)
             } else {
                 return cart.getMem(address: address)
@@ -49,7 +50,7 @@ class Motherboard {
             return Int(gpu.vram[address - 0x8000])
         } else if address >= 0xA000 && address < 0xC000 {
             // 8kb switchable RAM bank
-            
+            print("5555555555")
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
             return Int(ram.internalRam0[address - 0xC000])
@@ -135,16 +136,16 @@ class Motherboard {
         let v = UInt8(val & 0xFF)
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
-            
+            print("1111")
         } else if address >= 0x4000 && address < 0x8000 {
             // 16k switchable ROM bank
-            
+            print("222222")
         } else if address >= 0x8000 && address < 0xA000 {
             // 8kb video ram
             gpu.vram[address - 0x8000] = v
         } else if address >= 0xA000 && address < 0xC000 {
             // 8kb switchable RAM bank
-            
+            print("!!!!!!!!")
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
             ram.internalRam0[address - 0xC00] = v
@@ -217,6 +218,9 @@ class Motherboard {
                 ram.ioPortsRAM[address - 0xFF00] = v
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
+            if (address == 0xFF50 && val == 1) {
+                self.bootRomEnable = false
+            }
             // non io internal ram
             ram.nonIoInternalRam1[address - 0xFF4C] = v
         } else if address >= 0xFF80 && address < 0xFFFF {

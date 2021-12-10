@@ -229,7 +229,7 @@ extension CPU {
 
      // 0x19 ADD HL,DE
      func ADD_19() -> Int {
-           let r = hl + de
+           let r = (hl + de) & 0xFFFF
            hl = r
            fZ = getZeroFlag(val: r)
            fN = false

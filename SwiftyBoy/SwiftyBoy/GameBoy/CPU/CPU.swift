@@ -19,6 +19,10 @@ enum InterruptType {
  GameBoy CPU
  */
 class CPU {
+    var counter = 0
+    var opD = Dictionary<String, Int>()
+    var opS = Set<String>()
+    var opArr = [String]()
     
     weak var mb: Motherboard!;
     
@@ -120,7 +124,7 @@ class CPU {
             return _sp
         }
         set {
-            print("set SP \(newValue)")
+//            print("set SP \(newValue)")
             _sp = newValue & 0xFFFF
         }
     }

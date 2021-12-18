@@ -35,6 +35,9 @@
 		DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED3274FCA8F007929DA /* Assets.xcassets */; };
 		DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */; };
 		DDF24EE2274FCA8F007929DA /* SwiftyBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */; };
+		DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */; };
+		DDF7A771276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDF7A770276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb */; };
+		DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDF7A772276615150016F1A1 /* 04-op r,imm.gb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		DDF24EDD274FCA8F007929DA /* SwiftyBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBoyTests.swift; sourceTree = "<group>"; };
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
+		DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "11-op a,(hl).gb"; sourceTree = "<group>"; };
+		DDF7A770276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "07-jr,jp,call,ret,rst.gb"; sourceTree = "<group>"; };
+		DDF7A772276615150016F1A1 /* 04-op r,imm.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "04-op r,imm.gb"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,9 @@
 				DD25D09F276382C5005E45D4 /* Tetris.gb */,
 				DD25D09D276241DE005E45D4 /* ld_r_r.gb */,
 				DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */,
+				DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */,
+				DDF7A770276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb */,
+				DDF7A772276615150016F1A1 /* 04-op r,imm.gb */,
 			);
 			path = Roms;
 			sourceTree = "<group>";
@@ -282,11 +291,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */,
+				DDF7A771276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb in Resources */,
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
 				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
+				DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
 				DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */,
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
+				DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */,
 				DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

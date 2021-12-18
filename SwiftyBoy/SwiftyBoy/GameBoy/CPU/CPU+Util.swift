@@ -14,12 +14,12 @@ extension CPU {
     func get16BitMem(address: Int) -> Int {
         let fs = mb.getMem(address: address + 1)
         let ls = mb.getMem(address: address)
-//        print("-> get 16 bit mem result \((fs << 8 + ls).asHexString)")
+        print("-> get 16 bit mem result \((fs << 8 + ls).asHexString)")
         return (fs << 8) + ls
     }
     
     func get8BitImmediate() -> Int {
-//        print("-> get 8 bit mem result \(mb.getMem(address: pc + 1).asHexString)")
+        print("-> get 8 bit mem result \(mb.getMem(address: pc + 1).asHexString)")
         return mb.getMem(address: pc + 1)
     }
     
@@ -28,7 +28,7 @@ extension CPU {
     }
     
     func get8BitSignedImmediateValue() -> Int {
-        let v: Int = Int(mb.getMem(address: pc + 1))
+        let v = get8BitImmediate()
         return (v ^ 0x80) - 0x80
     }
     
@@ -46,6 +46,22 @@ extension CPU {
             result += each
         }
         return result > 0xFF
+    }
+    
+    func getHalfCarryForAdd16Bit(operands: Int...) -> Bool {
+        var result = 0
+        for each in operands{
+            result += each & 0xFFF
+        }
+        return result > 0xFFF
+    }
+    
+    func getFullCarryForAdd16Bit(operands: Int...) -> Bool {
+        var result = 0
+        for each in operands{
+            result += each
+        }
+        return result > 0xFFFF
     }
     
     func getHalfCarryForSub(operands: Int...) -> Bool {
@@ -73,7 +89,7 @@ extension CPU {
     }
     
     func pushPCToStack() {
-        print("push \(pc >> 8) \(pc & 0xFF)")
+//        print("push \(pc >> 8) \(pc & 0xFF)")
         mb.setMem(address: sp - 1, val: pc >> 8) // High
         mb.setMem(address: sp - 2, val: pc & 0xFF) // Low
         sp -= 2

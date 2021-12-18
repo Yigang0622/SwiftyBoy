@@ -50,6 +50,8 @@ class GPU {
     func tick(numOfCycles: Int) {
         clock += numOfCycles
         
+//        print("ly \(ly)")
+        
         if targetClock > GPU.FULL_FRAME_CYCLE {
             clock %=  GPU.FULL_FRAME_CYCLE
             targetClock %= GPU.FULL_FRAME_CYCLE
@@ -96,9 +98,7 @@ class GPU {
                 if ly == 144 {
                     frameCount += 1
                     print("[GPU] frame done \(frameCount)")
-                    draw()
-                    
-//
+//                    draw()
                 }
                 ly += 1
 //                print("[GPU] VBLANK until \(targetClock)")
@@ -132,21 +132,21 @@ class GPU {
             tiles.append(t)
         }
         
-        
-        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-        
-        for i in 0..<16 {
-            for j in 0..<16 {
-                let tileId = i * 16 + j
-//                print(tileId)
-                for tileY in 0...7 {
-                    for tileX in 0...7 {
-                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
-                    }
-                }
-                
-            }
-        }
+//
+//        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+//
+//        for i in 0..<16 {
+//            for j in 0..<16 {
+//                let tileId = i * 16 + j
+////                print(tileId)
+//                for tileY in 0...7 {
+//                    for tileX in 0...7 {
+//                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
+//                    }
+//                }
+//
+//            }
+//        }
         
         var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
         

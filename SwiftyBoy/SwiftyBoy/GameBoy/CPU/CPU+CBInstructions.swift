@@ -10,7 +10,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -23,7 +23,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -36,7 +36,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -49,7 +49,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -62,7 +62,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -75,7 +75,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -89,7 +89,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -102,7 +102,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -115,7 +115,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -128,7 +128,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -141,7 +141,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -154,7 +154,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -167,7 +167,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -180,7 +180,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -194,7 +194,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -207,7 +207,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -220,7 +220,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -233,7 +233,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -246,7 +246,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -259,7 +259,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -272,7 +272,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -285,7 +285,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -299,7 +299,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -312,7 +312,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -325,7 +325,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -338,7 +338,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -351,7 +351,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -364,7 +364,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -377,7 +377,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -390,7 +390,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -404,7 +404,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -417,7 +417,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -430,7 +430,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -443,7 +443,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -456,7 +456,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -469,7 +469,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -482,7 +482,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -495,7 +495,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -509,7 +509,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -522,7 +522,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -535,7 +535,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -548,7 +548,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -561,7 +561,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -574,7 +574,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -587,7 +587,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -600,7 +600,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -614,7 +614,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -627,7 +627,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -635,7 +635,7 @@ extension CPU {
      // 0x30 SWAP B
      func SWAP_30() -> Int {
            b = swap(val: b)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = false
            fC = false
@@ -646,7 +646,7 @@ extension CPU {
      // 0x31 SWAP C
      func SWAP_31() -> Int {
            c = swap(val: c)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = false
            fC = false
@@ -657,7 +657,7 @@ extension CPU {
      // 0x32 SWAP D
      func SWAP_32() -> Int {
            d = swap(val: d)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = false
            fC = false
@@ -668,7 +668,7 @@ extension CPU {
      // 0x33 SWAP E
      func SWAP_33() -> Int {
            e = swap(val: e)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = false
            fC = false
@@ -679,7 +679,7 @@ extension CPU {
      // 0x34 SWAP H
      func SWAP_34() -> Int {
            h = swap(val: h)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = false
            fC = false
@@ -690,7 +690,7 @@ extension CPU {
      // 0x35 SWAP L
      func SWAP_35() -> Int {
            l = swap(val: l)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = false
            fC = false
@@ -703,7 +703,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = swap(val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = false
            fC = false
@@ -714,7 +714,7 @@ extension CPU {
      // 0x37 SWAP A
      func SWAP_37() -> Int {
            a = swap(val: a)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = false
            fC = false
@@ -730,7 +730,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -743,7 +743,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -756,7 +756,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -769,7 +769,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -782,7 +782,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -795,7 +795,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -809,7 +809,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 16
      }
@@ -822,7 +822,7 @@ extension CPU {
            fC = carry
            fN = false
            fH = false
-           fZ = r == 0x0
+           fZ = getZeroFlag(val: r)
            pc += 2
            return 8
      }
@@ -1942,7 +1942,7 @@ extension CPU {
      // 0xc0 SET 0,B
      func SET_C0() -> Int {
            b = setBit(n: b, val: 0)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -1952,7 +1952,7 @@ extension CPU {
      // 0xc1 SET 0,C
      func SET_C1() -> Int {
            c = setBit(n: c, val: 0)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -1962,7 +1962,7 @@ extension CPU {
      // 0xc2 SET 0,D
      func SET_C2() -> Int {
            d = setBit(n: d, val: 0)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -1972,7 +1972,7 @@ extension CPU {
      // 0xc3 SET 0,E
      func SET_C3() -> Int {
            e = setBit(n: e, val: 0)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -1982,7 +1982,7 @@ extension CPU {
      // 0xc4 SET 0,H
      func SET_C4() -> Int {
            h = setBit(n: h, val: 0)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -1992,7 +1992,7 @@ extension CPU {
      // 0xc5 SET 0,L
      func SET_C5() -> Int {
            l = setBit(n: l, val: 0)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2004,7 +2004,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 0, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2014,7 +2014,7 @@ extension CPU {
      // 0xc7 SET 0,A
      func SET_C7() -> Int {
            a = setBit(n: a, val: 0)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2024,7 +2024,7 @@ extension CPU {
      // 0xc8 SET 1,B
      func SET_C8() -> Int {
            b = setBit(n: b, val: 1)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2034,7 +2034,7 @@ extension CPU {
      // 0xc9 SET 1,C
      func SET_C9() -> Int {
            c = setBit(n: c, val: 1)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2044,7 +2044,7 @@ extension CPU {
      // 0xca SET 1,D
      func SET_CA() -> Int {
            d = setBit(n: d, val: 1)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2054,7 +2054,7 @@ extension CPU {
      // 0xcb SET 1,E
      func SET_CB() -> Int {
            e = setBit(n: e, val: 1)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2064,7 +2064,7 @@ extension CPU {
      // 0xcc SET 1,H
      func SET_CC() -> Int {
            h = setBit(n: h, val: 1)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2074,7 +2074,7 @@ extension CPU {
      // 0xcd SET 1,L
      func SET_CD() -> Int {
            l = setBit(n: l, val: 1)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2086,7 +2086,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 1, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2096,7 +2096,7 @@ extension CPU {
      // 0xcf SET 1,A
      func SET_CF() -> Int {
            a = setBit(n: a, val: 1)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2106,7 +2106,7 @@ extension CPU {
      // 0xd0 SET 2,B
      func SET_D0() -> Int {
            b = setBit(n: b, val: 2)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2116,7 +2116,7 @@ extension CPU {
      // 0xd1 SET 2,C
      func SET_D1() -> Int {
            c = setBit(n: c, val: 2)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2126,7 +2126,7 @@ extension CPU {
      // 0xd2 SET 2,D
      func SET_D2() -> Int {
            d = setBit(n: d, val: 2)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2136,7 +2136,7 @@ extension CPU {
      // 0xd3 SET 2,E
      func SET_D3() -> Int {
            e = setBit(n: e, val: 2)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2146,7 +2146,7 @@ extension CPU {
      // 0xd4 SET 2,H
      func SET_D4() -> Int {
            h = setBit(n: h, val: 2)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2156,7 +2156,7 @@ extension CPU {
      // 0xd5 SET 2,L
      func SET_D5() -> Int {
            l = setBit(n: l, val: 2)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2168,7 +2168,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 2, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2178,7 +2178,7 @@ extension CPU {
      // 0xd7 SET 2,A
      func SET_D7() -> Int {
            a = setBit(n: a, val: 2)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2188,7 +2188,7 @@ extension CPU {
      // 0xd8 SET 3,B
      func SET_D8() -> Int {
            b = setBit(n: b, val: 3)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2198,7 +2198,7 @@ extension CPU {
      // 0xd9 SET 3,C
      func SET_D9() -> Int {
            c = setBit(n: c, val: 3)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2208,7 +2208,7 @@ extension CPU {
      // 0xda SET 3,D
      func SET_DA() -> Int {
            d = setBit(n: d, val: 3)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2218,7 +2218,7 @@ extension CPU {
      // 0xdb SET 3,E
      func SET_DB() -> Int {
            e = setBit(n: e, val: 3)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2228,7 +2228,7 @@ extension CPU {
      // 0xdc SET 3,H
      func SET_DC() -> Int {
            h = setBit(n: h, val: 3)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2238,7 +2238,7 @@ extension CPU {
      // 0xdd SET 3,L
      func SET_DD() -> Int {
            l = setBit(n: l, val: 3)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2250,7 +2250,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 3, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2260,7 +2260,7 @@ extension CPU {
      // 0xdf SET 3,A
      func SET_DF() -> Int {
            a = setBit(n: a, val: 3)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2270,7 +2270,7 @@ extension CPU {
      // 0xe0 SET 4,B
      func SET_E0() -> Int {
            b = setBit(n: b, val: 4)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2280,7 +2280,7 @@ extension CPU {
      // 0xe1 SET 4,C
      func SET_E1() -> Int {
            c = setBit(n: c, val: 4)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2290,7 +2290,7 @@ extension CPU {
      // 0xe2 SET 4,D
      func SET_E2() -> Int {
            d = setBit(n: d, val: 4)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2300,7 +2300,7 @@ extension CPU {
      // 0xe3 SET 4,E
      func SET_E3() -> Int {
            e = setBit(n: e, val: 4)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2310,7 +2310,7 @@ extension CPU {
      // 0xe4 SET 4,H
      func SET_E4() -> Int {
            h = setBit(n: h, val: 4)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2320,7 +2320,7 @@ extension CPU {
      // 0xe5 SET 4,L
      func SET_E5() -> Int {
            l = setBit(n: l, val: 4)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2332,7 +2332,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 4, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2342,7 +2342,7 @@ extension CPU {
      // 0xe7 SET 4,A
      func SET_E7() -> Int {
            a = setBit(n: a, val: 4)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2352,7 +2352,7 @@ extension CPU {
      // 0xe8 SET 5,B
      func SET_E8() -> Int {
            b = setBit(n: b, val: 5)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2362,7 +2362,7 @@ extension CPU {
      // 0xe9 SET 5,C
      func SET_E9() -> Int {
            c = setBit(n: c, val: 5)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2372,7 +2372,7 @@ extension CPU {
      // 0xea SET 5,D
      func SET_EA() -> Int {
            d = setBit(n: d, val: 5)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2382,7 +2382,7 @@ extension CPU {
      // 0xeb SET 5,E
      func SET_EB() -> Int {
            e = setBit(n: e, val: 5)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2392,7 +2392,7 @@ extension CPU {
      // 0xec SET 5,H
      func SET_EC() -> Int {
            h = setBit(n: h, val: 5)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2402,7 +2402,7 @@ extension CPU {
      // 0xed SET 5,L
      func SET_ED() -> Int {
            l = setBit(n: l, val: 5)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2414,7 +2414,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 5, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2424,7 +2424,7 @@ extension CPU {
      // 0xef SET 5,A
      func SET_EF() -> Int {
            a = setBit(n: a, val: 5)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2434,7 +2434,7 @@ extension CPU {
      // 0xf0 SET 6,B
      func SET_F0() -> Int {
            b = setBit(n: b, val: 6)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2444,7 +2444,7 @@ extension CPU {
      // 0xf1 SET 6,C
      func SET_F1() -> Int {
            c = setBit(n: c, val: 6)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2454,7 +2454,7 @@ extension CPU {
      // 0xf2 SET 6,D
      func SET_F2() -> Int {
            d = setBit(n: d, val: 6)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2464,7 +2464,7 @@ extension CPU {
      // 0xf3 SET 6,E
      func SET_F3() -> Int {
            e = setBit(n: e, val: 6)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2474,7 +2474,7 @@ extension CPU {
      // 0xf4 SET 6,H
      func SET_F4() -> Int {
            h = setBit(n: h, val: 6)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2484,7 +2484,7 @@ extension CPU {
      // 0xf5 SET 6,L
      func SET_F5() -> Int {
            l = setBit(n: l, val: 6)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2496,7 +2496,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 6, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2506,7 +2506,7 @@ extension CPU {
      // 0xf7 SET 6,A
      func SET_F7() -> Int {
            a = setBit(n: a, val: 6)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2
@@ -2516,7 +2516,7 @@ extension CPU {
      // 0xf8 SET 7,B
      func SET_F8() -> Int {
            b = setBit(n: b, val: 7)
-           fZ = b == 0x0
+           fZ = getZeroFlag(val: b)
            fN = false
            fH = true
            pc += 2
@@ -2526,7 +2526,7 @@ extension CPU {
      // 0xf9 SET 7,C
      func SET_F9() -> Int {
            c = setBit(n: c, val: 7)
-           fZ = c == 0x0
+           fZ = getZeroFlag(val: c)
            fN = false
            fH = true
            pc += 2
@@ -2536,7 +2536,7 @@ extension CPU {
      // 0xfa SET 7,D
      func SET_FA() -> Int {
            d = setBit(n: d, val: 7)
-           fZ = d == 0x0
+           fZ = getZeroFlag(val: d)
            fN = false
            fH = true
            pc += 2
@@ -2546,7 +2546,7 @@ extension CPU {
      // 0xfb SET 7,E
      func SET_FB() -> Int {
            e = setBit(n: e, val: 7)
-           fZ = e == 0x0
+           fZ = getZeroFlag(val: e)
            fN = false
            fH = true
            pc += 2
@@ -2556,7 +2556,7 @@ extension CPU {
      // 0xfc SET 7,H
      func SET_FC() -> Int {
            h = setBit(n: h, val: 7)
-           fZ = h == 0x0
+           fZ = getZeroFlag(val: h)
            fN = false
            fH = true
            pc += 2
@@ -2566,7 +2566,7 @@ extension CPU {
      // 0xfd SET 7,L
      func SET_FD() -> Int {
            l = setBit(n: l, val: 7)
-           fZ = l == 0x0
+           fZ = getZeroFlag(val: l)
            fN = false
            fH = true
            pc += 2
@@ -2578,7 +2578,7 @@ extension CPU {
            var v = mb.getMem(address: hl)
            v = setBit(n: 7, val: v)
            mb.setMem(address: hl, val: v)
-           fZ = v == 0x0
+           fZ = getZeroFlag(val: v)
            fN = false
            fH = true
            pc += 2
@@ -2588,7 +2588,7 @@ extension CPU {
      // 0xff SET 7,A
      func SET_FF() -> Int {
            a = setBit(n: a, val: 7)
-           fZ = a == 0x0
+           fZ = getZeroFlag(val: a)
            fN = false
            fH = true
            pc += 2

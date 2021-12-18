@@ -32,10 +32,10 @@ extension CPU {
      // 0x04 INC B
      func INC_04() -> Int {
            let r = b + 1
-           b = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: b, 1)
+           b = r
            pc += 1
            return 4
      }
@@ -43,10 +43,10 @@ extension CPU {
      // 0x05 DEC B
      func DEC_05() -> Int {
            let r = b - 1
-           b = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: b, 1)
+           b = r
            pc += 1
            return 4
      }
@@ -62,7 +62,7 @@ extension CPU {
      func RLCA_07() -> Int {
            let c = (a & 0x80) >> 7 == 0x01
            let r = (a << 1) | (c ? 0x1: 0)
-           fZ = getZeroFlag(val: r)
+           fZ = false
            fN = false
            fH = false
            fC = c
@@ -83,11 +83,10 @@ extension CPU {
      // 0x09 ADD HL,BC
      func ADD_09() -> Int {
            let r = hl + bc
-           hl = r
-           fZ = getZeroFlag(val: r)
            fN = false
-           fH = getHalfCarryForAdd(operands: a, bc)
-           fC = getFullCarryForAdd(operands: a, bc)
+           fH = getHalfCarryForAdd16Bit(operands: hl, bc)
+           fC = getFullCarryForAdd16Bit(operands: hl, bc)
+           hl = r
            pc += 1
            return 8
      }
@@ -109,10 +108,10 @@ extension CPU {
      // 0x0c INC C
      func INC_0C() -> Int {
            let r = c + 1
-           c = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: c, 1)
+           c = r
            pc += 1
            return 4
      }
@@ -120,10 +119,10 @@ extension CPU {
      // 0x0d DEC C
      func DEC_0D() -> Int {
            let r = c - 1
-           c = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: c, 1)
+           c = r
            pc += 1
            return 4
      }
@@ -139,7 +138,7 @@ extension CPU {
      func RRCA_0F() -> Int {
            let c = a & 0x01 == 0x01
            let r = (a >> 1) | (c ? 0x80: 0)
-           fZ = getZeroFlag(val: r)
+           fZ = false
            fN = false
            fH = false
            fC = c
@@ -180,10 +179,10 @@ extension CPU {
      // 0x14 INC D
      func INC_14() -> Int {
            let r = d + 1
-           d = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: d, 1)
+           d = r
            pc += 1
            return 4
      }
@@ -191,10 +190,10 @@ extension CPU {
      // 0x15 DEC D
      func DEC_15() -> Int {
            let r = d - 1
-           d = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: d, 1)
+           d = r
            pc += 1
            return 4
      }
@@ -210,7 +209,7 @@ extension CPU {
      func RLA_17() -> Int {
            let c = (a & 0x80) >> 7 == 0x01
            let r = (a << 1) | (fC ? 0x1: 0)
-           fZ = getZeroFlag(val: r)
+           fZ = false
            fN = false
            fH = false
            fC = c
@@ -230,11 +229,10 @@ extension CPU {
      // 0x19 ADD HL,DE
      func ADD_19() -> Int {
            let r = hl + de
-           hl = r
-           fZ = getZeroFlag(val: r)
            fN = false
-           fH = getHalfCarryForAdd(operands: a, de)
-           fC = getFullCarryForAdd(operands: a, de)
+           fH = getHalfCarryForAdd16Bit(operands: hl, de)
+           fC = getFullCarryForAdd16Bit(operands: hl, de)
+           hl = r
            pc += 1
            return 8
      }
@@ -256,10 +254,10 @@ extension CPU {
      // 0x1c INC E
      func INC_1C() -> Int {
            let r = e + 1
-           e = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: e, 1)
+           e = r
            pc += 1
            return 4
      }
@@ -267,10 +265,10 @@ extension CPU {
      // 0x1d DEC E
      func DEC_1D() -> Int {
            let r = e - 1
-           e = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: e, 1)
+           e = r
            pc += 1
            return 4
      }
@@ -286,7 +284,7 @@ extension CPU {
      func RRA_1F() -> Int {
            let c = a & 0x01 == 0x01
            let r = (a >> 1) | (fC ? 0x80: 0)
-           fZ = getZeroFlag(val: r)
+           fZ = false
            fN = false
            fH = false
            fC = c
@@ -332,10 +330,10 @@ extension CPU {
      // 0x24 INC H
      func INC_24() -> Int {
            let r = h + 1
-           h = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: h, 1)
+           h = r
            pc += 1
            return 4
      }
@@ -343,10 +341,10 @@ extension CPU {
      // 0x25 DEC H
      func DEC_25() -> Int {
            let r = h - 1
-           h = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: h, 1)
+           h = r
            pc += 1
            return 4
      }
@@ -402,11 +400,10 @@ extension CPU {
      // 0x29 ADD HL,HL
      func ADD_29() -> Int {
            let r = hl + hl
-           hl = r
-           fZ = getZeroFlag(val: r)
            fN = false
-           fH = getHalfCarryForAdd(operands: a, hl)
-           fC = getFullCarryForAdd(operands: a, hl)
+           fH = getHalfCarryForAdd16Bit(operands: hl, hl)
+           fC = getFullCarryForAdd16Bit(operands: hl, hl)
+           hl = r
            pc += 1
            return 8
      }
@@ -429,10 +426,10 @@ extension CPU {
      // 0x2c INC L
      func INC_2C() -> Int {
            let r = l + 1
-           l = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: l, 1)
+           l = r
            pc += 1
            return 4
      }
@@ -440,10 +437,10 @@ extension CPU {
      // 0x2d DEC L
      func DEC_2D() -> Int {
            let r = l - 1
-           l = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: l, 1)
+           l = r
            pc += 1
            return 4
      }
@@ -502,10 +499,10 @@ extension CPU {
      func INC_34() -> Int {
            let v = mb.getMem(address: hl)
            let r = v + 1
-           mb.setMem(address: hl, val: r)
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: v, 1)
+           mb.setMem(address: hl, val: r)
            pc += 1
            return 12
      }
@@ -514,10 +511,10 @@ extension CPU {
      func DEC_35() -> Int {
            let v = mb.getMem(address: hl)
            let r = v - 1
-           mb.setMem(address: hl, val: r)
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: v, 1)
+           mb.setMem(address: hl, val: r)
            pc += 1
            return 12
      }
@@ -553,11 +550,10 @@ extension CPU {
      // 0x39 ADD HL,SP
      func ADD_39() -> Int {
            let r = hl + sp
-           hl = r
-           fZ = getZeroFlag(val: r)
            fN = false
-           fH = getHalfCarryForAdd(operands: a, sp)
-           fC = getFullCarryForAdd(operands: a, sp)
+           fH = getHalfCarryForAdd16Bit(operands: hl, sp)
+           fC = getFullCarryForAdd16Bit(operands: hl, sp)
+           hl = r
            pc += 1
            return 8
      }
@@ -580,10 +576,10 @@ extension CPU {
      // 0x3c INC A
      func INC_3C() -> Int {
            let r = a + 1
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, 1)
+           a = r
            pc += 1
            return 4
      }
@@ -591,10 +587,10 @@ extension CPU {
      // 0x3d DEC A
      func DEC_3D() -> Int {
            let r = a - 1
-           a = r
            fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, 1)
+           a = r
            pc += 1
            return 4
      }
@@ -1065,11 +1061,11 @@ extension CPU {
      // 0x80 ADD A,B
      func ADD_80() -> Int {
            let r = a + b
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, b)
            fC = getFullCarryForAdd(operands: a, b)
+           a = r
            pc += 1
            return 4
      }
@@ -1077,11 +1073,11 @@ extension CPU {
      // 0x81 ADD A,C
      func ADD_81() -> Int {
            let r = a + c
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, c)
            fC = getFullCarryForAdd(operands: a, c)
+           a = r
            pc += 1
            return 4
      }
@@ -1089,11 +1085,11 @@ extension CPU {
      // 0x82 ADD A,D
      func ADD_82() -> Int {
            let r = a + d
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, d)
            fC = getFullCarryForAdd(operands: a, d)
+           a = r
            pc += 1
            return 4
      }
@@ -1101,11 +1097,11 @@ extension CPU {
      // 0x83 ADD A,E
      func ADD_83() -> Int {
            let r = a + e
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, e)
            fC = getFullCarryForAdd(operands: a, e)
+           a = r
            pc += 1
            return 4
      }
@@ -1113,11 +1109,11 @@ extension CPU {
      // 0x84 ADD A,H
      func ADD_84() -> Int {
            let r = a + h
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, h)
            fC = getFullCarryForAdd(operands: a, h)
+           a = r
            pc += 1
            return 4
      }
@@ -1125,11 +1121,11 @@ extension CPU {
      // 0x85 ADD A,L
      func ADD_85() -> Int {
            let r = a + l
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, l)
            fC = getFullCarryForAdd(operands: a, l)
+           a = r
            pc += 1
            return 4
      }
@@ -1138,11 +1134,11 @@ extension CPU {
      func ADD_86() -> Int {
            let v = mb.getMem(address: hl)
            let r = a + v
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, v)
            fC = getFullCarryForAdd(operands: a, v)
+           a = r
            pc += 1
            return 8
      }
@@ -1150,11 +1146,11 @@ extension CPU {
      // 0x87 ADD A,A
      func ADD_87() -> Int {
            let r = a + a
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, a)
            fC = getFullCarryForAdd(operands: a, a)
+           a = r
            pc += 1
            return 4
      }
@@ -1162,11 +1158,11 @@ extension CPU {
      // 0x88 ADC A,B
      func ADC_88() -> Int {
            let r = a + b + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, b, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, b, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
@@ -1174,11 +1170,11 @@ extension CPU {
      // 0x89 ADC A,C
      func ADC_89() -> Int {
            let r = a + c + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, c, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, c, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
@@ -1186,11 +1182,11 @@ extension CPU {
      // 0x8a ADC A,D
      func ADC_8A() -> Int {
            let r = a + d + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, d, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, d, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
@@ -1198,11 +1194,11 @@ extension CPU {
      // 0x8b ADC A,E
      func ADC_8B() -> Int {
            let r = a + e + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, e, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, e, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
@@ -1210,11 +1206,11 @@ extension CPU {
      // 0x8c ADC A,H
      func ADC_8C() -> Int {
            let r = a + h + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, h, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, h, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
@@ -1222,11 +1218,11 @@ extension CPU {
      // 0x8d ADC A,L
      func ADC_8D() -> Int {
            let r = a + l + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, l, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, l, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
@@ -1235,11 +1231,11 @@ extension CPU {
      func ADC_8E() -> Int {
            let v = mb.getMem(address: hl)
            let r = a + v + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, v, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, v, fC.integerValue)
+           a = r
            pc += 1
            return 8
      }
@@ -1247,77 +1243,83 @@ extension CPU {
      // 0x8f ADC A,A
      func ADC_8F() -> Int {
            let r = a + a + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, a, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, a, fC.integerValue)
+           a = r
            pc += 1
            return 4
      }
 
      // 0x90 SUB B
      func SUB_90() -> Int {
-           a = a - b
-           fZ = getZeroFlag(val: a)
+           let r = a - b
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, b)
            fC = getFullCarryForSub(operands: a, b)
+           a = r
            pc += 1
            return 4
      }
 
      // 0x91 SUB C
      func SUB_91() -> Int {
-           a = a - c
-           fZ = getZeroFlag(val: a)
+           let r = a - c
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, c)
            fC = getFullCarryForSub(operands: a, c)
+           a = r
            pc += 1
            return 4
      }
 
      // 0x92 SUB D
      func SUB_92() -> Int {
-           a = a - d
-           fZ = getZeroFlag(val: a)
+           let r = a - d
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, d)
            fC = getFullCarryForSub(operands: a, d)
+           a = r
            pc += 1
            return 4
      }
 
      // 0x93 SUB E
      func SUB_93() -> Int {
-           a = a - e
-           fZ = getZeroFlag(val: a)
+           let r = a - e
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, e)
            fC = getFullCarryForSub(operands: a, e)
+           a = r
            pc += 1
            return 4
      }
 
      // 0x94 SUB H
      func SUB_94() -> Int {
-           a = a - h
-           fZ = getZeroFlag(val: a)
+           let r = a - h
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, h)
            fC = getFullCarryForSub(operands: a, h)
+           a = r
            pc += 1
            return 4
      }
 
      // 0x95 SUB L
      func SUB_95() -> Int {
-           a = a - l
-           fZ = getZeroFlag(val: a)
+           let r = a - l
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, l)
            fC = getFullCarryForSub(operands: a, l)
+           a = r
            pc += 1
            return 4
      }
@@ -1325,22 +1327,24 @@ extension CPU {
      // 0x96 SUB (HL)
      func SUB_96() -> Int {
            let v = mb.getMem(address: hl)
-           a = a - v
-           fZ = getZeroFlag(val: a)
+           let r = a - v
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, v)
            fC = getFullCarryForSub(operands: a, v)
+           a = r
            pc += 1
            return 8
      }
 
      // 0x97 SUB A
      func SUB_97() -> Int {
-           a = a - a
-           fZ = getZeroFlag(val: a)
+           let r = a - a
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, a)
            fC = getFullCarryForSub(operands: a, a)
+           a = r
            pc += 1
            return 4
      }
@@ -1825,6 +1829,7 @@ extension CPU {
                  popPCFromStack()
                  return 20
            } else {
+                 pc += 1
                  return 8
            }
      }
@@ -1840,7 +1845,7 @@ extension CPU {
 
      // 0xc2 JP NZ,a16
      func JP_C2() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if !fZ {
                  pc = v
                  return 16
@@ -1852,7 +1857,7 @@ extension CPU {
 
      // 0xc3 JP a16
      func JP_C3() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            pc = v
            return 16
      }
@@ -1883,11 +1888,11 @@ extension CPU {
      func ADD_C6() -> Int {
            let v = get8BitImmediate()
            let r = a + v
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, v)
            fC = getFullCarryForAdd(operands: a, v)
+           a = r
            pc += 2
            return 8
      }
@@ -1906,6 +1911,7 @@ extension CPU {
                  popPCFromStack()
                  return 20
            } else {
+                 pc += 1
                  return 8
            }
      }
@@ -1918,7 +1924,7 @@ extension CPU {
 
      // 0xca JP Z,a16
      func JP_CA() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if fZ {
                  pc = v
                  return 16
@@ -1960,11 +1966,11 @@ extension CPU {
      func ADC_CE() -> Int {
            let v = get8BitImmediate()
            let r = a + v + fC.integerValue
-           a = r
            fZ = getZeroFlag(val: r)
            fN = false
            fH = getHalfCarryForAdd(operands: a, v, fC.integerValue)
            fC = getFullCarryForAdd(operands: a, v, fC.integerValue)
+           a = r
            pc += 2
            return 8
      }
@@ -1983,6 +1989,7 @@ extension CPU {
                  popPCFromStack()
                  return 20
            } else {
+                 pc += 1
                  return 8
            }
      }
@@ -1998,7 +2005,7 @@ extension CPU {
 
      // 0xd2 JP NC,a16
      func JP_D2() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if !fC {
                  pc = v
                  return 16
@@ -2033,11 +2040,12 @@ extension CPU {
      // 0xd6 SUB d8
      func SUB_D6() -> Int {
            let v = get8BitImmediate()
-           a = a - v
-           fZ = getZeroFlag(val: a)
+           let r = a - v
+           fZ = getZeroFlag(val: r)
            fN = true
            fH = getHalfCarryForSub(operands: a, v)
            fC = getFullCarryForSub(operands: a, v)
+           a = r
            pc += 2
            return 8
      }
@@ -2056,6 +2064,7 @@ extension CPU {
                  popPCFromStack()
                  return 20
            } else {
+                 pc += 1
                  return 8
            }
      }
@@ -2063,13 +2072,13 @@ extension CPU {
      // 0xd9 RETI
      func RETI_D9() -> Int {
            interruptMasterEnable = true
-           pc = popFromStack(numOfByte: 2)
+           popPCFromStack()
            return 16
      }
 
      // 0xda JP C,a16
      func JP_DA() -> Int {
-           let v = mb.getMem(address: get16BitImmediate())
+           let v = get16BitImmediate()
            if fC {
                  pc = v
                  return 16
@@ -2170,11 +2179,11 @@ extension CPU {
      func ADD_E8() -> Int {
            let v = get8BitSignedImmediateValue()
            let r = sp + v
-           sp = r
-           fZ = getZeroFlag(val: r)
+           fZ = false
            fN = false
-           fH = getHalfCarryForAdd(operands: a, v)
-           fC = getFullCarryForAdd(operands: a, v)
+           fH = getHalfCarryForAdd(operands: sp, v)
+           fC = getFullCarryForAdd(operands: sp, v)
+           sp = r
            pc += 2
            return 16
      }

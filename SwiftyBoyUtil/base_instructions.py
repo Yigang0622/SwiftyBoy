@@ -71,32 +71,47 @@ def handle_ADD_commend(ins: Instruction):
         lines.append('let r = {} + {}'.format(ins.operand_1.lower(), ins.operand_2.lower()))
         operand2 = ins.operand_2.lower()
 
+    # ADD HL HL
+    if ins.operand_1 == 'HL':
+        lines.append('fN = false')
+        lines.append('fH = getHalfCarryForAdd16Bit(operands: hl, {})'.format(operand2))
+        lines.append('fC = getFullCarryForAdd16Bit(operands: hl, {})'.format(operand2))
+    # ADD SP n8
+    elif ins.operand_1 == 'SP':
+        lines.append('fZ = false')
+        lines.append('fN = false')
+        lines.append('fH = getHalfCarryForAdd(operands: sp, {})'.format(operand2))
+        lines.append('fC = getFullCarryForAdd(operands: sp, {})'.format(operand2))
+    else:
+        lines.append('fZ = getZeroFlag(val: r)')
+        lines.append('fN = false')
+        lines.append('fH = getHalfCarryForAdd(operands: a, {})'.format(operand2))
+        lines.append('fC = getFullCarryForAdd(operands: a, {})'.format(operand2))
     lines.append('{} = r'.format(ins.operand_1.lower()))
-    lines.append('fZ = getZeroFlag(val: r)')
-    lines.append('fN = false')
-    lines.append('fH = getHalfCarryForAdd(operands: a, {})'.format(operand2))
-    lines.append('fC = getFullCarryForAdd(operands: a, {})'.format(operand2))
     return SwiftInstructionFunction(ins, lines)
 
 
 def handle_SUB_commend(ins: Instruction):
     lines = []
+    assign = ''
     if ins.operand_1 == '(HL)':
         lines.append('let v = mb.getMem(address: hl)')
-        lines.append('a = a - v')
+        lines.append('let r = a - v')
+        assign = 'a = r'
         operand2 = 'v'
     elif ins.operand_1 == 'd8':
         lines.append('let v = {}'.format(code_template[ins.operand_1]))
-        lines.append('a = a - v')
+        lines.append('let r = a - v')
         operand2 = 'v'
     else:
-        lines.append('a = a - {}'.format(ins.operand_1.lower()))
+        lines.append('let r = a - {}'.format(ins.operand_1.lower()))
         operand2 = ins.operand_1.lower()
 
-    lines.append('fZ = getZeroFlag(val: a)')
+    lines.append('fZ = getZeroFlag(val: r)')
     lines.append('fN = true')
     lines.append('fH = getHalfCarryForSub(operands: a, {})'.format(operand2))
     lines.append('fC = getFullCarryForSub(operands: a, {})'.format(operand2))
+    lines.append('a = r')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -125,20 +140,20 @@ def handle_INC_commend(ins: Instruction):
     if ins.operand_1 == '(HL)':
         lines.append('let v = mb.getMem(address: hl)')
         lines.append('let r = v + 1')
-        lines.append('mb.setMem(address: hl, val: r)')
         lines.append('fZ = getZeroFlag(val: r)')
         lines.append('fN = false')
         lines.append('fH = getHalfCarryForAdd(operands: v, 1)')
-    elif len(ins.operand_1) == 2:
+        lines.append('mb.setMem(address: hl, val: r)')
+    elif len(ins.operand_1) == 2: # BC SP ...
         reg = ins.operand_1.lower()
         lines.append('{} = {} + 1'.format(reg, reg))
     elif len(ins.operand_1) == 1:
         reg = ins.operand_1.lower()
         lines.append('let r = {} + 1'.format(reg))
-        lines.append('{} = r'.format(reg))
         lines.append('fZ = getZeroFlag(val: r)')
         lines.append('fN = false')
         lines.append('fH = getHalfCarryForAdd(operands: {}, 1)'.format(reg))
+        lines.append('{} = r'.format(reg))
     else:
         raise Exception("not impl inc commend")
 
@@ -150,20 +165,20 @@ def handle_DEC_commend(ins: Instruction):
     if ins.operand_1 == '(HL)':
         lines.append('let v = mb.getMem(address: hl)')
         lines.append('let r = v - 1')
-        lines.append('mb.setMem(address: hl, val: r)')
         lines.append('fZ = getZeroFlag(val: r)')
         lines.append('fN = true')
         lines.append('fH = getHalfCarryForSub(operands: v, 1)')
+        lines.append('mb.setMem(address: hl, val: r)')
     elif len(ins.operand_1) == 2:
         reg = ins.operand_1.lower()
         lines.append('{} = {} - 1'.format(reg, reg))
     elif len(ins.operand_1) == 1:
         reg = ins.operand_1.lower()
         lines.append('let r = {} - 1'.format(reg))
-        lines.append('{} = r'.format(reg))
         lines.append('fZ = getZeroFlag(val: r)')
         lines.append('fN = true')
         lines.append('fH = getHalfCarryForSub(operands: {}, 1)'.format(reg))
+        lines.append('{} = r'.format(reg))
     else:
         raise Exception("not impl dec commend")
 
@@ -184,11 +199,11 @@ def handle_ADC_commend(ins: Instruction):
     else:
         raise Exception("not impl adc commend")
     lines.append('let r = {} + {} + fC.integerValue'.format(op1, op2))
-    lines.append('{} = r'.format(op1))
     lines.append('fZ = getZeroFlag(val: r)')
     lines.append('fN = false')
     lines.append('fH = getHalfCarryForAdd(operands: {}, {}, fC.integerValue)'.format(op1, op2))
     lines.append('fC = getFullCarryForAdd(operands: {}, {}, fC.integerValue)'.format(op1, op2))
+    lines.append('{} = r'.format(op1))
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -365,6 +380,7 @@ def handle_RET_commend(ins: Instruction):
         lines.append('      popPCFromStack()')
         lines.append('      return {}'.format(cycle_true))
         lines.append('} else {')
+        lines.append('      pc += {}'.format(ins.byte_length))
         lines.append('      return {}'.format(cycle_false))
         lines.append('}')
     else:
@@ -377,7 +393,7 @@ def handle_RET_commend(ins: Instruction):
 def handle_RETI_commend(ins: Instruction):
     lines = [
         'interruptMasterEnable = true',
-        'pc = popFromStack(numOfByte: 2)'
+        'popPCFromStack()'
     ]
     f = SwiftInstructionFunction(ins, lines)
     f.disablePCInc()
@@ -396,7 +412,7 @@ def handle_RRA_commend(ins: Instruction):
     lines = [
         'let c = a & 0x01 == 0x01',
         'let r = (a >> 1) | (fC ? 0x80: 0)',
-        'fZ = getZeroFlag(val: r)',
+        'fZ = false',
         'fN = false',
         'fH = false',
         'fC = c',
@@ -409,7 +425,7 @@ def handle_RRCA_commend(ins: Instruction):
     lines = [
         'let c = a & 0x01 == 0x01',
         'let r = (a >> 1) | (c ? 0x80: 0)',
-        'fZ = getZeroFlag(val: r)',
+        'fZ = false',
         'fN = false',
         'fH = false',
         'fC = c',
@@ -422,7 +438,7 @@ def handle_RLA_commend(ins: Instruction):
     lines = [
         'let c = (a & 0x80) >> 7 == 0x01',
         'let r = (a << 1) | (fC ? 0x1: 0)',
-        'fZ = getZeroFlag(val: r)',
+        'fZ = false',
         'fN = false',
         'fH = false',
         'fC = c',
@@ -435,7 +451,7 @@ def handle_RLCA_commend(ins: Instruction):
     lines = [
         'let c = (a & 0x80) >> 7 == 0x01',
         'let r = (a << 1) | (c ? 0x1: 0)',
-        'fZ = getZeroFlag(val: r)',
+        'fZ = false',
         'fN = false',
         'fH = false',
         'fC = c',
@@ -469,8 +485,10 @@ def handle_JR_commend(ins: Instruction):
 
 def handle_JP_commend(ins: Instruction):
     lines = []
-    if ins.operand_1 == 'a16' or ins.operand_1 == '(HL)':
-        lines.append('let v = {}'.format(code_template[ins.operand_1]))
+    if ins.operand_1 == 'a16' or ins.operand_2 == 'a16':
+        lines.append('let v = get16BitImmediate()')
+    elif ins.operand_1 == '(HL)':
+        lines.append('let v = mb.getMem(address: hl)')
     else:
         lines.append('let v = {}'.format(code_template[ins.operand_2]))
 
@@ -613,3 +631,10 @@ def get_base_functions():
         function_list.append(f)
     return function_list
 
+#
+# ins_list = [x for x in get_base_instructions() if x.command == 'LD']
+# for each in ins_list:
+#     # print(each)
+#     f = handle_LD_command(each)
+#     print(f)
+#     print()

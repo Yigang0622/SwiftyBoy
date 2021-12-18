@@ -9,10 +9,10 @@ def handle_SET_commend(ins: Instruction):
         lines.append('var v = {}'.format(code_template['(HL)']))
         lines.append('v = setBit(n: {}, val: v)'.format(ins.operand_1))
         lines.append('mb.setMem(address: hl, val: v)')
-        lines.append('fZ = v == 0x0')
+        lines.append('fZ = getZeroFlag(val: v)')
     else:
         lines.append('{} = setBit(n: {}, val: {})'.format(code_template[ins.operand_2],code_template[ins.operand_2], ins.operand_1))
-        lines.append('fZ = {} == 0x0'.format(code_template[ins.operand_2]))
+        lines.append('fZ = getZeroFlag(val: {})'.format(code_template[ins.operand_2]))
     lines.append('fN = false')
     lines.append('fH = true')
     return SwiftInstructionFunction(ins, lines)
@@ -24,10 +24,10 @@ def handle_SWAP_commend(ins: Instruction):
         lines.append('var v = {}'.format(code_template['(HL)']))
         lines.append('v = swap(val: v)'.format(ins.operand_1))
         lines.append('mb.setMem(address: hl, val: v)')
-        lines.append('fZ = v == 0x0')
+        lines.append('fZ = getZeroFlag(val: v)')
     else:
         lines.append('{} = swap(val: {})'.format(code_template[ins.operand_1],code_template[ins.operand_1]))
-        lines.append('fZ = {} == 0x0'.format(code_template[ins.operand_1]))
+        lines.append('fZ = getZeroFlag(val: {})'.format(code_template[ins.operand_1]))
     lines.append('fN = false')
     lines.append('fH = false')
     lines.append('fC = false')
@@ -74,7 +74,7 @@ def handle_RL_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -93,7 +93,7 @@ def handle_RLC_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -112,7 +112,7 @@ def handle_RR_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -131,7 +131,7 @@ def handle_RRC_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -150,7 +150,7 @@ def handle_SLA_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -169,7 +169,7 @@ def handle_SRA_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 
@@ -188,7 +188,7 @@ def handle_SRL_commend(ins: Instruction):
     lines.append('fC = carry')
     lines.append('fN = false')
     lines.append('fH = false')
-    lines.append('fZ = r == 0x0')
+    lines.append('fZ = getZeroFlag(val: r)')
     return SwiftInstructionFunction(ins, lines)
 
 

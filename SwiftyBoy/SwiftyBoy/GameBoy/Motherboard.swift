@@ -22,12 +22,13 @@ class Motherboard {
     init() {
         cpu.mb = self
         gpu.mb = self
-        let bytes = loadTestRom(name: "ld_r_r")
+        let bytes = loadTestRom(name: "11-op a,(hl)")
         cart = Cartridge(bytes: bytes)
     }
     
     func run() {
 //        var cycleTotal = 0
+//        gpu.ly = 144
         while cpu.pc >= 0 {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
@@ -75,7 +76,7 @@ class Motherboard {
             } else if address == 0xFF07 {
                 // timer TAC
             } else if address == 0xFF0F {
-                // CPI interruptes flag
+                // CPU interruptes flag
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
             } else if address == 0xFF40 {
@@ -126,13 +127,17 @@ class Motherboard {
             return Int(ram.internalRam1[address - 0xFF80])
         } else if address == 0xFFFF {
             // IE
+            return cpu.interruptMasterEnable.integerValue
         } else {
-            
             return Int(memory[Int(address)])
         }
         return 0
     }
     
+
+    
+    var serialOutput: String = ""
+//
     public func setMem(address: Int, val: Int) {
         let v = val & 0xFF
         if address >= 0x0000 && address < 0x4000 {
@@ -165,7 +170,16 @@ class Motherboard {
                 // TODO io
                 self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF01 {
-                // todo
+                // todo serial
+                self.ram.ioPortsRAM[address - 0xFF00] = v
+            } else if address == 0xFF02 {
+                // serial
+                if val == 0x81 {
+                    let chr = getMem(address: 0xff01)
+                    serialOutput += String(Character(UnicodeScalar(chr)!))
+                    print(serialOutput)
+                }
+                self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF04 {
                 // timer DIV
             } else if address == 0xFF05 {
@@ -229,11 +243,10 @@ class Motherboard {
             ram.internalRam1[address - 0xFF80] = v
         } else if address == 0xFFFF {
             // IE
-            
+            cpu.interruptMasterEnable = (val == 1)
         } else {
             
         }
-//        memory[address] = val & 0xFF
     }
     
     

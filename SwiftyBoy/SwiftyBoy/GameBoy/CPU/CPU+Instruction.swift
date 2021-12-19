@@ -37,7 +37,7 @@ extension CPU {
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
             opcode = mb.getMem(address: pc + 1)
-            print("\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)")
+//            print("\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)")
             let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
             if opD[log] != nil {
                 opD[log]! += 1
@@ -47,7 +47,7 @@ extension CPU {
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
-            print("\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)")
+//            print("\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)")
             let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
             if opD[log] != nil {
                 opD[log]! += 1

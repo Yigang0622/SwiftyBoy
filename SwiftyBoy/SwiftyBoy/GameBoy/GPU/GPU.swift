@@ -98,7 +98,7 @@ class GPU {
                 if ly == 144 {
                     frameCount += 1
                     print("[GPU] frame done \(frameCount)")
-//                    draw()
+                    draw()
                 }
                 ly += 1
 //                print("[GPU] VBLANK until \(targetClock)")
@@ -132,39 +132,39 @@ class GPU {
             tiles.append(t)
         }
         
+
+        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+
+        for i in 0..<16 {
+            for j in 0..<16 {
+                let tileId = i * 16 + j
+//                print(tileId)
+                for tileY in 0...7 {
+                    for tileX in 0...7 {
+                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
+                    }
+                }
+
+            }
+        }
+        
+//        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
 //
-//        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-//
-//        for i in 0..<16 {
-//            for j in 0..<16 {
-//                let tileId = i * 16 + j
-////                print(tileId)
+//        for i in 0..<32 {
+//            for j in 0..<32 {
+//                let idx = i * 32 + j
+//                let tileId = Int(backgound[idx])
+////                print(tileId, terminator: "\t")
 //                for tileY in 0...7 {
 //                    for tileX in 0...7 {
-//                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
+//                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
 //                    }
 //                }
 //
 //            }
+////            print()
 //        }
-        
-        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-        
-        for i in 0..<32 {
-            for j in 0..<32 {
-                let idx = i * 32 + j
-                let tileId = Int(backgound[idx])
-//                print(tileId, terminator: "\t")
-                for tileY in 0...7 {
-                    for tileX in 0...7 {
-                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
-                    }
-                }
-                
-            }
-//            print()
-        }
-        onFrameUpdate?(backgroundPixels)
+        onFrameUpdate?(tileMaps)
     }
     
 }

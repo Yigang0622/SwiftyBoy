@@ -1,16 +1,68 @@
 //
-//  CartridgeMeta.swift
+//  CartridgeLoader.swift
 //  SwiftyBoy
 //
-//  Created by Yigang Zhou on 2021/12/7.
+//  Created by Yigang Zhou on 2021/12/19.
 //
 
 import Foundation
 
-class CartridgeUtil {
+enum CartridgeType: Int {
+    case ROMOnly
+    case MBC1
+    case MBC2
+    case MBC3
+    case MBC5
+}
+
+struct CartridgeMeta {
+    var type: CartridgeType
+    var sram: Bool
+    var battery: Bool
+    var rtc: Bool
+}
+
+
+
+class CartageLoader {
+    
+    static func loadCartage() -> Cartridge {
+        print("loading cartage")
+        let fileName = "Tetris"
+        let bytes = loadTestRom(name: fileName)
+        let meta = getCaridgeMeta(flag: bytes[0x0147])
+        let name = bytes[0x0134...0x0142].reduce("") { partialResult, next in
+            partialResult + String(Character(UnicodeScalar(next)))
+        }
+        print("[Cartridge Name] \(name)")
+        print(meta)
+        if meta.type == .MBC1 {
+            return MBC1(bytes: bytes, name: name, meta: meta)
+        } else if meta.type == .ROMOnly {
+            return ROMOnly(bytes: bytes, name: name, meta: meta)
+        } else {
+            fatalError("cart not supported")
+        }
+    }
     
     
-    static func getCaridgeMeta(flag: UInt8) -> CartridgeMeta {
+    private static func loadTestRom(name: String) -> [UInt8] {
+
+        if let fileURL = Bundle.main.url(forResource: name, withExtension: "gb") {
+            
+            do {
+                let raw = try Data(contentsOf: fileURL)
+    
+                return [UInt8](raw)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return []
+    }
+    
+    
+    private static func getCaridgeMeta(flag: UInt8) -> CartridgeMeta {
         switch flag {
         case 0x00: return CartridgeMeta(type: .ROMOnly, sram: false, battery: false, rtc: false)
         case 0x01: return CartridgeMeta(type: .MBC1, sram: false, battery: false, rtc: false)
@@ -42,5 +94,3 @@ class CartridgeUtil {
 
     
 }
-
-

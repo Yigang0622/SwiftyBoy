@@ -28,6 +28,10 @@
 		DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D09F276382C5005E45D4 /* Tetris.gb */; };
 		DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
+		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
+		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
+		DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD7276F21D800E475D3 /* MBCBase.swift */; };
+		DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD9276F24F900E475D3 /* ROMOnly.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -71,6 +75,10 @@
 		DD25D09F276382C5005E45D4 /* Tetris.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tetris.gb; sourceTree = "<group>"; };
 		DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "10-bit ops.gb"; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
+		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
+		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
+		DDD84FD7276F21D800E475D3 /* MBCBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCBase.swift; sourceTree = "<group>"; };
+		DDD84FD9276F24F900E475D3 /* ROMOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMOnly.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +144,10 @@
 			children = (
 				DD25D08A275F96F7005E45D4 /* Cartridge.swift */,
 				DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */,
+				DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */,
+				DDD84FD3276F171E00E475D3 /* MBC1.swift */,
+				DDD84FD7276F21D800E475D3 /* MBCBase.swift */,
+				DDD84FD9276F24F900E475D3 /* ROMOnly.swift */,
 			);
 			path = Cartridge;
 			sourceTree = "<group>";
@@ -326,17 +338,21 @@
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
+				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
+				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
+				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
 				DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */,
 				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,
+				DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

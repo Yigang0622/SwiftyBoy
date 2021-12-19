@@ -22,8 +22,7 @@ class Motherboard {
     init() {
         cpu.mb = self
         gpu.mb = self
-        let bytes = loadTestRom(name: "11-op a,(hl)")
-        cart = Cartridge(bytes: bytes)
+        cart = CartageLoader.loadCartage()
     }
     
     func run() {
@@ -52,7 +51,7 @@ class Motherboard {
             return Int(gpu.vram[address - 0x8000])
         } else if address >= 0xA000 && address < 0xC000 {
             // 8kb switchable RAM bank
-            print("5555555555")
+            return cart.getMem(address: address)
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
             return Int(ram.internalRam0[address - 0xC000])
@@ -66,7 +65,7 @@ class Motherboard {
             // Empty but unusable for I/O
             return Int(ram.nonIoInternalRam0[address - 0xFEA0])
         } else if address >= 0xFF00 && address < 0xFF4C {
-            // Empty but unusable for I/O
+            // I/O ports
             if address == 0xFF04 {
                 // timer DIV
             } else if address == 0xFF05 {
@@ -128,13 +127,10 @@ class Motherboard {
         } else if address == 0xFFFF {
             // IE
             return cpu.interruptMasterEnable.integerValue
-        } else {
-            return Int(memory[Int(address)])
         }
-        return 0
+        fatalError("[Motherboard] get mem address \(address) error")
     }
     
-
     
     var serialOutput: String = ""
 //
@@ -142,16 +138,16 @@ class Motherboard {
         let v = val & 0xFF
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
-            print("1111")
+            cart.setMem(address: address, val: v)
         } else if address >= 0x4000 && address < 0x8000 {
             // 16k switchable ROM bank
-            print("222222")
+            cart.setMem(address: address, val: v)
         } else if address >= 0x8000 && address < 0xA000 {
             // 8kb video ram
             gpu.vram[address - 0x8000] = v
         } else if address >= 0xA000 && address < 0xC000 {
             // 8kb switchable RAM bank
-            print("!!!!!!!!")
+            cart.setMem(address: address, val: v)
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
             ram.internalRam0[address - 0xC000] = v
@@ -189,7 +185,7 @@ class Motherboard {
             } else if address == 0xFF07 {
                 // timer TAC
             } else if address == 0xFF0F {
-                // CPI interruptes flag
+                // CPU interruptes flag
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
             } else if address == 0xFF40 {
@@ -245,7 +241,7 @@ class Motherboard {
             // IE
             cpu.interruptMasterEnable = (val == 1)
         } else {
-            
+            fatalError("[Motherboard] set mem address \(address.asHexString) error")
         }
     }
     

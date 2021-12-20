@@ -32,6 +32,8 @@
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
 		DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD7276F21D800E475D3 /* MBCBase.swift */; };
 		DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD9276F24F900E475D3 /* ROMOnly.swift */; };
+		DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */; };
+		DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -79,6 +81,8 @@
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
 		DDD84FD7276F21D800E475D3 /* MBCBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBCBase.swift; sourceTree = "<group>"; };
 		DDD84FD9276F24F900E475D3 /* ROMOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMOnly.swift; sourceTree = "<group>"; };
+		DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptEnableRegister.swift; sourceTree = "<group>"; };
+		DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptFlagRegister.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */,
 				DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */,
 				DD1094B5275C952500A5AAEB /* CPU+Util.swift */,
+				DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */,
+				DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */,
 			);
 			path = CPU;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
+				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
@@ -347,6 +354,7 @@
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
+				DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,

@@ -284,7 +284,7 @@ extension CPU {
      func RRA_1F() -> Int {
            let c = a & 0x01 == 0x01
            let r = (a >> 1) | (fC ? 0x80: 0)
-           fZ = false
+           fZ = getZeroFlag(val: r)
            fN = false
            fH = false
            fC = c

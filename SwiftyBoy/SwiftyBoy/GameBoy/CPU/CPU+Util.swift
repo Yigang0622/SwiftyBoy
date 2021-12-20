@@ -14,12 +14,12 @@ extension CPU {
     func get16BitMem(address: Int) -> Int {
         let fs = mb.getMem(address: address + 1)
         let ls = mb.getMem(address: address)
-        print("-> get 16 bit mem result \((fs << 8 + ls).asHexString)")
+//        print("-> get 16 bit mem result \((fs << 8 + ls).asHexString)")
         return (fs << 8) + ls
     }
     
     func get8BitImmediate() -> Int {
-        print("-> get 8 bit mem result \(mb.getMem(address: pc + 1).asHexString)")
+//        print("-> get 8 bit mem result \(mb.getMem(address: pc + 1).asHexString)")
         return mb.getMem(address: pc + 1)
     }
     
@@ -69,7 +69,7 @@ extension CPU {
         var result = temp[0] & 0xF
         temp.remove(at: 0)
         for each in temp {
-            result -= each & 0xF
+            result -= (each & 0xF)
         }
         return result < 0
     }
@@ -111,7 +111,7 @@ extension CPU {
             sp += 2
             return h << 8 | l
         } else {
-            print("popFromStack error")
+            fatalError("popFromStack error")
             return 0
         }
     }

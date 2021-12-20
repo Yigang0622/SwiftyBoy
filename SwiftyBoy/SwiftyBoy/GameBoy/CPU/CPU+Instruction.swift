@@ -33,26 +33,45 @@ extension CPU {
     
     
     func fetchAndExecute() -> Int {
+        
+        if mb.serialOutput == "06-ld r,r\n\n" {
+            start = true
+        } else if mb.serialOutput == "06-ld r,r\n\n0" {
+                printOpD()
+        }
+        
+//        if pc == 0xc0cd {
+//            start = true
+//        } else if pc == 0xC018 && start{
+//            printOpD()
+//        }
     
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
             opcode = mb.getMem(address: pc + 1)
 //            print("\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)")
-            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
-            if opD[log] != nil {
-                opD[log]! += 1
-            } else {
-                opD[log] = 1
+//            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
+            let log = "\(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
+            if start {
+                if opD[log] != nil {
+                    opD[log]! += 1
+                } else {
+                    opD[log] = 1
+                }
             }
+            
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
 //            print("\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)")
-            let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
-            if opD[log] != nil {
-                opD[log]! += 1
-            } else {
-                opD[log] = 1
+//            let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
+            let log = "\(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
+            if start {
+                if opD[log] != nil {
+                    opD[log]! += 1
+                } else {
+                    opD[log] = 1
+                }
             }
             let cycle = baseInstructions[opcode]!.instruction()
             return cycle

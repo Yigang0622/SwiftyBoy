@@ -23,6 +23,7 @@ class CPU {
     var opD = Dictionary<String, Int>()
     var opS = Set<String>()
     var opArr = [String]()
+    var start = false
     
     weak var mb: Motherboard!;
     
@@ -45,7 +46,8 @@ class CPU {
     
     public var halted: Bool = false
     public var interruptMasterEnable = false
-    
+    public var interruptEnableRegister = InterruptEnableRegister(val: 0)
+    public var interruptFlagRegister = InterruptFlagRegister(val: 0)
     
     public var a: Int {
         get {

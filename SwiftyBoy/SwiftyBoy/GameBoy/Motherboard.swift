@@ -76,6 +76,7 @@ class Motherboard {
                 // timer TAC
             } else if address == 0xFF0F {
                 // CPU interruptes flag
+                return cpu.interruptFlagRegister.getVal()
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
             } else if address == 0xFF40 {
@@ -126,7 +127,7 @@ class Motherboard {
             return Int(ram.internalRam1[address - 0xFF80])
         } else if address == 0xFFFF {
             // IE
-            return cpu.interruptMasterEnable.integerValue
+            return cpu.interruptEnableRegister.getVal()
         }
         fatalError("[Motherboard] get mem address \(address) error")
     }
@@ -186,6 +187,7 @@ class Motherboard {
                 // timer TAC
             } else if address == 0xFF0F {
                 // CPU interruptes flag
+                cpu.interruptFlagRegister.setVal(val: v)
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
             } else if address == 0xFF40 {
@@ -239,7 +241,7 @@ class Motherboard {
             ram.internalRam1[address - 0xFF80] = v
         } else if address == 0xFFFF {
             // IE
-            cpu.interruptMasterEnable = (val == 1)
+            cpu.interruptEnableRegister.setVal(val: v)
         } else {
             fatalError("[Motherboard] set mem address \(address.asHexString) error")
         }

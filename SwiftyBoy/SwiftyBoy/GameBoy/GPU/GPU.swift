@@ -50,8 +50,6 @@ class GPU {
     func tick(numOfCycles: Int) {
         clock += numOfCycles
         
-//        print("ly \(ly)")
-        
         if targetClock > GPU.FULL_FRAME_CYCLE {
             clock %=  GPU.FULL_FRAME_CYCLE
             targetClock %= GPU.FULL_FRAME_CYCLE
@@ -63,7 +61,11 @@ class GPU {
             
             if ly == lyMax {
                 nextState = .oamSearch
-                ly = -1
+                resetLY()
+            }
+            
+            if nextState == .vBlank {
+                mb.cpu.interruptFlagRegister.vblank = true
             }
             
             currentState = nextState
@@ -71,22 +73,18 @@ class GPU {
                 // 20 clocks
                 targetClock += 20 * 4
                 nextState = .pixelTransfer
-                ly += 1
-//                print("[GPU] OAM SEARCH until \(targetClock)")
+                increaseLY()
             } else if currentState == .pixelTransfer {
                 targetClock += 43 * 4
                 nextState = .hBlank
-//                print("[GPU] PIXEL TRANSFER until \(targetClock)")
+                
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
-                // draw line
-//                print("[GPU] HBLANK line \(ly) until \(targetClock)")
+                // TODO draw line
                 
                 // full frame drawn
                 if ly <= 143 {
-                    
 //                    print("[GPU] drawn new frame ")
-            
                     nextState = .oamSearch
                 } else {
                     nextState = .vBlank
@@ -98,11 +96,22 @@ class GPU {
                 if ly == 144 {
                     frameCount += 1
                     print("[GPU] frame done \(frameCount)")
-                    draw()
+                    self.draw()
+                    mb.cpu.interruptFlagRegister.vblank = true
                 }
-                ly += 1
-//                print("[GPU] VBLANK until \(targetClock)")
+                increaseLY()
             }
+        }
+    }
+    
+    func resetLY() {
+        ly = -1
+    }
+    
+    func increaseLY() {
+        ly += 1
+        if ly == lyc {
+            mb.cpu.interruptFlagRegister.lcdc = true
         }
     }
     
@@ -148,23 +157,23 @@ class GPU {
             }
         }
         
-//        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-//
-//        for i in 0..<32 {
-//            for j in 0..<32 {
-//                let idx = i * 32 + j
-//                let tileId = Int(backgound[idx])
-////                print(tileId, terminator: "\t")
-//                for tileY in 0...7 {
-//                    for tileX in 0...7 {
-//                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
-//                    }
-//                }
-//
-//            }
-////            print()
-//        }
-        onFrameUpdate?(tileMaps)
+        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+
+        for i in 0..<32 {
+            for j in 0..<32 {
+                let idx = i * 32 + j
+                let tileId = Int(backgound[idx])
+//                print(tileId, terminator: "\t")
+                for tileY in 0...7 {
+                    for tileX in 0...7 {
+                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
+                    }
+                }
+
+            }
+//            print()
+        }
+        onFrameUpdate?(backgroundPixels)
     }
     
 }

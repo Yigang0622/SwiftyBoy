@@ -17,34 +17,55 @@ struct CPUInstruction {
 extension CPU {
     
 
-    func printOpD() {
-        var t = [(String, Int)]()
-        opD.forEach { key, val in
-            t.append((key, val))
-        }
-        t = t.sorted { a, b in
-            return a.1 > b.1
-        }
-        for each in t {
-            print("\(each.0)    \(each.1)")
+   
+    func handleInterruptes() {
+        
+        if interruptMasterEnable {
+            if interruptFlagRegister.vblank && interruptEnableRegister.vblank {
+                interruptMasterEnable = false
+                pushPCToStack()
+                pc = 0x40
+                interruptFlagRegister.vblank = false
+            } else if interruptFlagRegister.lcdc && interruptEnableRegister.lcdc {
+                interruptMasterEnable = false
+                pushPCToStack()
+                pc = 0x48
+                interruptFlagRegister.lcdc = false
+            } else if interruptFlagRegister.timerOverflow && interruptEnableRegister.timerOverflow {
+                interruptMasterEnable = false
+                pushPCToStack()
+                pc = 0x50
+                interruptFlagRegister.timerOverflow = false
+            } else if interruptFlagRegister.serial && interruptEnableRegister.serial {
+                interruptMasterEnable = false
+                pushPCToStack()
+                pc = 0x58
+                interruptFlagRegister.serial = false
+            } else if interruptFlagRegister.highToLow && interruptEnableRegister.highToLow {
+                interruptMasterEnable = false
+                pushPCToStack()
+                pc = 0x60
+                interruptFlagRegister.highToLow = false
+            } else {
+                print("no interrupts")
+            }
         }
     }
     
-    
-    
     func fetchAndExecute() -> Int {
         
-        if mb.serialOutput == "06-ld r,r\n\n" {
-            start = true
-        } else if mb.serialOutput == "06-ld r,r\n\n0" {
-                printOpD()
-        }
+//        if mb.serialOutput == "06-ld r,r\n\n" {
+//            start = true
+//        } else if mb.serialOutput == "06-ld r,r\n\n0" {
+//            printOpD()
+//        }
         
 //        if pc == 0xc0cd {
 //            start = true
 //        } else if pc == 0xC018 && start{
 //            printOpD()
 //        }
+//        handleInterruptes()
     
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
@@ -77,5 +98,19 @@ extension CPU {
             return cycle
         }
     }
+    
+    func printOpD() {
+        var t = [(String, Int)]()
+        opD.forEach { key, val in
+            t.append((key, val))
+        }
+        t = t.sorted { a, b in
+            return a.1 > b.1
+        }
+        for each in t {
+            print("\(each.0)    \(each.1)")
+        }
+    }
+    
     
 }

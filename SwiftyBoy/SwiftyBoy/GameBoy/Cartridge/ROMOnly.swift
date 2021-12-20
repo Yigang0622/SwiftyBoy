@@ -17,7 +17,8 @@ class ROMOnly: MBCBase {
         } else if address >= 0xA000 && address < 0xC000 {
             self.ramBanks[self.ramBankSelect][address - 0xA000] = val
         } else {
-            fatalError("ROMOnly setMem error \(address.asHexString)")
+//            fatalError("ROMOnly setMem error \(address.asHexString)")
+            print("ROMOnly setMem error \(address.asHexString)")
         }
     }
     

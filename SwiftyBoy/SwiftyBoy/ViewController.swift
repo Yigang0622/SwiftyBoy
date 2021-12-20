@@ -18,24 +18,24 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let mb = Motherboard()
-        mb.cpu.fZ = true
-        mb.cpu.fN = true
-        mb.cpu.fH = true
-        mb.cpu.fC = true
-        mb.cpu.a = 0xAB
-        mb.cpu.sp = 0xFFEE
-        
-        mb.cpu.PUSH_F5()
-        mb.cpu.f = 0x0
-        mb.cpu.a = 0x0
-        
-        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC )
-        mb.cpu.POP_F1()
-        
-        
-        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC , mb.cpu.a.asHexString)
-
-       
+//        mb.cpu.fZ = true
+//        mb.cpu.fN = true
+//        mb.cpu.fH = true
+//        mb.cpu.fC = true
+//        mb.cpu.a = 0xAB
+//        mb.cpu.sp = 0xFFEE
+//
+//        mb.cpu.PUSH_F5()
+//        mb.cpu.f = 0x0
+//        mb.cpu.a = 0x0
+//
+//        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC )
+//        mb.cpu.POP_F1()
+//
+//
+//        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC , mb.cpu.a.asHexString)
+//
+//
         
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256, height: 256))
         view.addSubview(imageView)
@@ -44,14 +44,13 @@ class ViewController: UIViewController {
         mb.gpu.onFrameUpdate = { pixels in
             if !drawing {
                 DispatchQueue.main.async {
-                    if !drawing {
-                        drawing = true
-                        imageView.image = self.drawRectangle(pixels: pixels, palette: mb.gpu.backgroundPalette)
-                        drawing = false
-                    } else {
-                        print("drawing ignore")
-                    }
+                    drawing = true
+                    imageView.image = self.drawRectangle(pixels: pixels, palette: mb.gpu.backgroundPalette)
+                    drawing = false
+                    print("drawing done")
                 }
+            } else {
+                print("drawing ignore")
             }
         }
         

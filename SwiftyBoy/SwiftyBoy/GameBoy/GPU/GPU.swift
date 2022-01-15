@@ -49,7 +49,7 @@ class GPU {
     
     func tick(numOfCycles: Int) {
         clock += numOfCycles
-        
+                
         if targetClock > GPU.FULL_FRAME_CYCLE {
             clock %=  GPU.FULL_FRAME_CYCLE
             targetClock %= GPU.FULL_FRAME_CYCLE

@@ -15,6 +15,22 @@ enum InterruptType {
     case highToLow
 }
 
+enum RegisterType {
+    case a
+    case f
+    case b
+    case c
+    case d
+    case e
+    case h
+    case l
+    case bc
+    case de
+    case hl
+    case sp
+    case af
+}
+
 /**
  GameBoy CPU
  */
@@ -22,8 +38,12 @@ class CPU {
     var counter = 0
     var opD = Dictionary<String, Int>()
     var opS = Set<String>()
+    var logs = [String]()
     var opArr = [String]()
     var start = false
+    
+    let reg8Bit = Set<RegisterType>([.a, .f, .b, .c, .d, .e, .h, .l])
+    let reg16Bit = Set<RegisterType>([.af, .bc, .de, .hl, .sp])
     
     weak var mb: Motherboard!;
     
@@ -126,8 +146,17 @@ class CPU {
             return _sp
         }
         set {
-//            print("set SP \(newValue)")
             _sp = newValue & 0xFFFF
+        }
+    }
+    
+    public var af: Int {
+        get {
+            return a << 8 + f
+        }
+        set {
+            _a = (newValue & 0xFFFF) >> 8
+            _f = (newValue & 0xFFFF) & 0x00FF
         }
     }
     

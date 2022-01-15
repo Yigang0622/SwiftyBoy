@@ -175,6 +175,7 @@ class Motherboard {
                     let chr = getMem(address: 0xff01)
                     serialOutput += String(Character(UnicodeScalar(chr)!))
                     print(serialOutput)
+                    cpu.logs.append(serialOutput)
                 }
                 self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF04 {
@@ -233,6 +234,8 @@ class Motherboard {
         } else if address >= 0xFF4C && address < 0xFF80 {
             if (address == 0xFF50 && val == 1) {
                 self.bootRomEnable = false
+                cpu.logs.removeAll()
+                cpu.logs.append("boot end!!!")
             }
             // non io internal ram
             ram.nonIoInternalRam1[address - 0xFF4C] = v

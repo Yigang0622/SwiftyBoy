@@ -21,7 +21,12 @@ class ViewController: UIViewController {
 //        mb.cpu.fZ = true
 //        mb.cpu.fN = true
 //        mb.cpu.fH = true
-//        mb.cpu.fC = true
+        mb.cpu.de = 0xFFFD
+        print(mb.cpu.de.asHexString)
+        mb.cpu.de += 1
+        
+        print(mb.cpu.de.asHexString)
+        
 //        mb.cpu.a = 0xAB
 //        mb.cpu.sp = 0xFFEE
 //
@@ -36,6 +41,10 @@ class ViewController: UIViewController {
 //        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC , mb.cpu.a.asHexString)
 //
 //
+        
+//        let r = mb.cpu.getHalfCarryForSub(operands: 0xA, 0xF)
+        let r = mb.cpu.getHalfCarryForAdd(operands: 2, 0xE)
+        print(r)
         
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256, height: 256))
         view.addSubview(imageView)

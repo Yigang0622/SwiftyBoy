@@ -631,10 +631,9 @@ def get_base_functions():
         function_list.append(f)
     return function_list
 
-#
-# ins_list = [x for x in get_base_instructions() if x.command == 'LD']
-# for each in ins_list:
-#     # print(each)
-#     f = handle_LD_command(each)
-#     print(f)
-#     print()
+ins_list = [x for x in get_base_instructions()]
+for each in ins_list:
+    print(SwiftInstructionFunction(each, []))
+    # f = handle_SUB_commend(each)
+    # print(f)
+    # print()

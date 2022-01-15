@@ -38,6 +38,8 @@ class SwiftInstructionFunction:
             lines.append("      pc += {}".format(self.ins.byte_length))
         if self.returnEnable:
             lines.append('      return {}'.format(self.ins.cycle))
+        else:
+            lines.append('      //{}'.format(self.ins.cycle))
         lines.append('}')
         return '\n'.join(lines)
 

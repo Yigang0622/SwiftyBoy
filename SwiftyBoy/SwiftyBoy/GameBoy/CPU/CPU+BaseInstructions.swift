@@ -1497,8 +1497,7 @@ extension CPU {
     }
     // 0xe9 JP (HL)
     func JP_E9() -> Int {
-        let v = get16BitMem(address: hl)
-        _jp(val: v)        
+        _jp(val: hl)
         return 4
     }
     // 0xea LD (a16),A

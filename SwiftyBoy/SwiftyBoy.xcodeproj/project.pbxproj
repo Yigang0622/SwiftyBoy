@@ -34,6 +34,7 @@
 		DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD9276F24F900E475D3 /* ROMOnly.swift */; };
 		DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */; };
 		DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */; };
+		DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5F42793E37000D74122 /* 05-op rp.gb */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -83,6 +84,7 @@
 		DDD84FD9276F24F900E475D3 /* ROMOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMOnly.swift; sourceTree = "<group>"; };
 		DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptEnableRegister.swift; sourceTree = "<group>"; };
 		DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptFlagRegister.swift; sourceTree = "<group>"; };
+		DDE6B5F42793E37000D74122 /* 05-op rp.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "05-op rp.gb"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		DD1094C5275DF50A00A5AAEB /* Roms */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B5F42793E37000D74122 /* 05-op rp.gb */,
 				DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */,
 				DD25D09F276382C5005E45D4 /* Tetris.gb */,
 				DD25D09D276241DE005E45D4 /* ld_r_r.gb */,
@@ -314,6 +317,7 @@
 				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
 				DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
+				DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */,
 				DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */,
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
 				DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */,

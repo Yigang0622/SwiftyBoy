@@ -34,35 +34,37 @@ extension CPU {
     }
     
     func getHalfCarryForAdd(operands: Int...) -> Bool {
-        var result = 0
-        for each in operands{
-            result += each & 0xF
+        if operands.count == 2 {
+            return (operands[0] & 0x0F) + (operands[1] & 0x0F) > 0x0F
+        } else if operands.count == 3 {
+            return (operands[0] & 0x0F) + (operands[1] & 0x0F) + (operands[2] & 0x0F) > 0x0F
+        } else {
+            fatalError("getHalfCarryForAdd error")
         }
-        return result > 0xF
     }
     
     func getFullCarryForAdd(operands: Int...) -> Bool {
-        var result = 0
-        for each in operands{
-            result += each
+        if operands.count == 2 {
+            return (operands[0] & 0xFF) + (operands[1] & 0xFF) > 0xFF
+        } else if operands.count == 3 {
+            return (operands[0] & 0xFF) + (operands[1] & 0xFF) + (operands[2] & 0xFF) > 0xFF
+        } else {
+            fatalError("getFullCarryForAdd error")
         }
-        return result > 0xFF
     }
     
     func getHalfCarryForAdd16Bit(operands: Int...) -> Bool {
-        var result = 0
-        for each in operands{
-            result += each & 0xFFF
+        if operands.count == 2 {
+            return (operands[0] & 0x0FFF) + (operands[1] & 0x0FFF) > 0x0FFF
         }
-        return result > 0xFFF
+        fatalError("getHalfCarryForAdd16Bit error")
     }
     
     func getFullCarryForAdd16Bit(operands: Int...) -> Bool {
-        var result = 0
-        for each in operands{
-            result += each
+        if operands.count == 2 {
+            return operands[0] + operands[1] > 0xFFFF
         }
-        return result > 0xFFFF
+        fatalError("getFullCarryForAdd16Bit error")
     }
     
     func getHalfCarryForSub(operands: Int...) -> Bool {
@@ -337,7 +339,7 @@ extension CPU {
         let v = mb.getMem(address: address)
         let r = v - 1
         fZ = getZeroFlag(val: r)
-        fN = false
+        fN = true
         fH = getHalfCarryForSub(operands: v, 1)
         mb.setMem(address: address, val: r)
     }

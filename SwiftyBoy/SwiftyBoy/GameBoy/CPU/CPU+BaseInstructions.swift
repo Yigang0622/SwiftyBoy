@@ -53,8 +53,9 @@ extension CPU {
     }
     // 0x08 LD (a16),SP
     func LD_08() -> Int {
-        let v = get16BitImmediate()
-        _ld(toAddress: v, fromReg: .sp)
+        let addr = get16BitImmediate()
+        mb.setMem(address: addr, val: sp & 0xFF)
+        mb.setMem(address: addr + 1, val: sp >> 8)    
         pc += 3
         return 20
     }
@@ -1302,8 +1303,7 @@ extension CPU {
     // 0xcb PREFIX CB
     func PREFIX_CB() -> Int {
         pc += 1
-        fatalError("???")
-        return 4
+        fatalError("PREFIX_CB error")
     }
     // 0xcc CALL Z,a16
     func CALL_CC() -> Int {
@@ -1534,7 +1534,6 @@ extension CPU {
         return 12
     }
     // 0xf2 LD A,(C)
-    // TODO
     func LD_F2() -> Int {
         _ld(to: .a, address: 0xFF00 + c)
         pc += 1

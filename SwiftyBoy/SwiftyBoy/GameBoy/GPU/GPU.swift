@@ -95,7 +95,7 @@ class GPU {
                 nextState = .vBlank
                 if ly == 144 {
                     frameCount += 1
-                    print("[GPU] frame done \(frameCount)")
+//                    print("[GPU] frame done \(frameCount)")
                     self.draw()
                     mb.cpu.interruptFlagRegister.vblank = true
                 }

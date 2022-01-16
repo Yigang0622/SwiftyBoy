@@ -66,28 +66,25 @@ extension CPU {
 //            printOpD()
 //        }
         
+        
 
-//        handleInterruptes()
-        
-        
-    
+        handleInterruptes()
+
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
             opcode = mb.getMem(address: pc + 1)
-            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
-//            let log = "\(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
-            logs.append(log)
-
+//            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
+//
+//            logs.append(log)
+//
 
             
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
-            let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
-//            let log = "\(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
-            logs.append(log)
-//            print(log)
-            
+//            let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
+//            logs.append(log)
+//            
             let cycle = baseInstructions[opcode]!.instruction()
             return cycle
         }

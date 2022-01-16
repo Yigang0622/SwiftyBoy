@@ -1465,7 +1465,7 @@ extension CPU {
     }
     // 0xe2 LD (C),A
     func LD_E2() -> Int {
-        _ld(toAddress: c, fromReg: .a)
+        _ld(toAddress: 0xFF00 + c, fromReg: .a)
         pc += 1
         return 8
     }
@@ -1534,9 +1534,10 @@ extension CPU {
         return 12
     }
     // 0xf2 LD A,(C)
+    // TODO
     func LD_F2() -> Int {
-        _ld(to: .a, address: c)
-        pc += 2
+        _ld(to: .a, address: 0xFF00 + c)
+        pc += 1
         return 8
     }
     // 0xf3 DI

@@ -56,10 +56,10 @@ class ViewController: UIViewController {
                     drawing = true
                     imageView.image = self.drawRectangle(pixels: pixels, palette: mb.gpu.backgroundPalette)
                     drawing = false
-                    print("drawing done")
+//                    print("drawing done")
                 }
             } else {
-                print("drawing ignore")
+//                print("drawing ignore")
             }
         }
         

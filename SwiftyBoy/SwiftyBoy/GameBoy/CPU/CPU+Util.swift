@@ -99,7 +99,7 @@ extension CPU {
     
     func popPCFromStack() {
         pc = popFromStack(numOfByte: 2)
-        print("PC set to \(String(format:"%02X", pc))")
+//        print("PC set to \(String(format:"%02X", pc))")
     }
     
     func popFromStack(numOfByte: Int) -> Int{

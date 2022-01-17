@@ -24,6 +24,7 @@ class GPU {
     var oam = Array<Int>(repeating: 0x00, count: 0xA0)
     
     public var onFrameUpdate: (([[Int]]) -> Void)?
+    public var onFrameUpdateV2: (([UInt32]) -> Void)?
     
     private static let FULL_FRAME_CYCLE = 70224
 //    private var LY = 0
@@ -116,7 +117,7 @@ class GPU {
     }
     
     func draw() {
-        var offset = 0x8000
+        let offset = 0x8000
         var backgound = [Int]()
         var tileData = [Int]()
         var tiles = [Tile]()
@@ -142,38 +143,64 @@ class GPU {
         }
         
 
-        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-
-        for i in 0..<16 {
-            for j in 0..<16 {
-                let tileId = i * 16 + j
-//                print(tileId)
-                for tileY in 0...7 {
-                    for tileX in 0...7 {
-                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
-                    }
-                }
-
-            }
-        }
+//        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+//
+//        for i in 0..<16 {
+//            for j in 0..<16 {
+//                let tileId = i * 16 + j
+//                for tileY in 0...7 {
+//                    for tileX in 0...7 {
+//                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
+//
+//        for i in 0..<32 {
+//            for j in 0..<32 {
+//                let idx = i * 32 + j
+//                let tileId = Int(backgound[idx])
+////                print(tileId, terminator: "\t")
+//                for tileY in 0...7 {
+//                    for tileX in 0...7 {
+//                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
+//                    }
+//                }
+//
+//            }
+//        }
+//        onFrameUpdate?(backgroundPixels)
         
-        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-
+        let backgroundWidth = 256
+        let backgroundHeight = 256
+        var backgroundData = Array<UInt32>(repeating: 0x000000FF, count: backgroundWidth * backgroundHeight)
         for i in 0..<32 {
             for j in 0..<32 {
                 let idx = i * 32 + j
                 let tileId = Int(backgound[idx])
-//                print(tileId, terminator: "\t")
                 for tileY in 0...7 {
                     for tileX in 0...7 {
-                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
-                    }
-                }
+                        let color = tiles[tileId].pixels[tileY][tileX]
+                        let dataIdx = (i * 8 + tileY) * 256 + j * 8 + tileX
 
+                        if color == 0 {
+                            backgroundData[dataIdx] = 0xFFFFFFFF
+                        } else if color == 1 {
+                            backgroundData[dataIdx] = 0xAAAAAAFF
+                        } else if color == 2 {
+                            backgroundData[dataIdx] = 0x444444FF
+                        } else if color == 3 {
+                            backgroundData[dataIdx] = 0x000000FF
+                        }
+                    }
+                }                
             }
-//            print()
         }
-        onFrameUpdate?(backgroundPixels)
+        onFrameUpdateV2?(backgroundData)
+        
     }
     
 }

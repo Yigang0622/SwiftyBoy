@@ -63,6 +63,43 @@ class ViewController: UIViewController {
             }
         }
         
+        mb.gpu.onFrameUpdateV2 = { pixels in
+            
+            DispatchQueue.main.async {
+                var pixels = pixels
+                let w = 256
+                let h = 256
+                //           var pixels = Array<UInt32>(repeating: 0xAAAAAAff, count: 100 * 100)
+
+                let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
+                let bitsPerComponent = 8
+                let bitsPerPixel = 32
+
+
+                let providerRef = CGDataProvider(data: NSData(bytes: &pixels, length: pixels.count * 4))
+
+                let cgim = CGImage(
+                   width: w,
+                   height: h,
+                   bitsPerComponent: bitsPerComponent,
+                   bitsPerPixel: bitsPerPixel,
+                   bytesPerRow: w * 4,
+                   space: rgbColorSpace,
+                   bitmapInfo: bitmapInfo,
+                   provider: providerRef!,
+                   decode: nil,
+                   shouldInterpolate: true,
+                   intent: .defaultIntent
+                   )
+
+
+                imageView.image =  UIImage(cgImage: cgim!)
+            }
+            
+
+        }
+        
         DispatchQueue.global().async {
             mb.run()
         }

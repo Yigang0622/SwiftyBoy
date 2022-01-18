@@ -513,6 +513,230 @@ extension CPU {
         fZ = result == 0
         _setReg(reg: .a, val: result)
     }
+            
+    func _bit(n: Int, val: Int) {
+        let r = val & (1 << n) == 0x00
+        fZ = r
+        fN = false
+        fH = true
+    }
+    
+    func _bit(n: Int, reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        _bit(n: n, val: v)
+    }
+    
+    func _bit(n: Int, addr: Int) {
+        let v = mb.getMem(address: addr)
+        _bit(n: n, val: v)
+    }
+    
+    func _set(n: Int, val: Int) -> Int{
+        return val | (1 << n)
+    }
+    
+    func _set(n: Int, reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _set(n: n, val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _set(n: Int, addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _set(n: n, val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _res(n: Int, val: Int) -> Int{
+        return val & ~(1 << n)
+    }
+    
+    func _res(n: Int, reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _res(n: n, val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _res(n: Int, addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _res(n: n, val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _swap(val: Int) -> Int {
+        let r = swap(val: val)
+        fZ = getZeroFlag(val: r)
+        fN = false
+        fH = false
+        fC = false
+        return r
+    }
+    
+    func _swap(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _swap(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _swap(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _swap(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _rl(val: Int) -> Int {
+        let carry = (val & 0x80) >> 7 == 0x01
+        let r = (val << 1) | fC.integerValue
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _rl(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _rl(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _rl(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _rl(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _rlc(val: Int) -> Int {
+        let carry = (val & 0x80) >> 7 == 0x01
+        let r = (val << 1) + carry.integerValue
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _rlc(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _rlc(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _rlc(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _rlc(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _rr(val: Int) -> Int {
+        let carry = val & 0x01 == 0x01
+        let r = fC ? (0x80 | (val >> 1)) : (val >> 1)
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _rr(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _rr(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _rr(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _rr(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _rrc(val: Int) -> Int {
+        let carry = val & 0x01 == 0x01
+        let r = carry ? (0x80 | (val >> 1)) : (val >> 1)
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _rrc(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _rrc(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _rrc(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _rrc(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _sra(val: Int) -> Int {
+        let carry = (val & 0x01) == 0x01
+        let r = (val >> 1) | (val & 0x80)
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _sra(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _sra(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _sra(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _sra(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _sla(val: Int) -> Int {
+        let carry = (val & 0x80) >> 7 == 0x01
+        let r = val << 1
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _sla(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _sla(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _sla(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _sla(val: v)
+        mb.setMem(address: addr, val: r)
+    }
+    
+    func _srl(val: Int) -> Int {
+        let carry = (val & 0x01) == 0x01
+        let r = val >> 1
+        fC = carry
+        fN = false
+        fH = false
+        fZ = getZeroFlag(val: r)
+        return r
+    }
+    
+    func _srl(reg: RegisterType) {
+        let v = _getReg(reg: reg)
+        let r = _sla(val: v)
+        _setReg(reg: reg, val: r)
+    }
+    
+    func _srl(addr: Int) {
+        let v = mb.getMem(address: addr)
+        let r = _sla(val: v)
+        mb.setMem(address: addr, val: r)
+    }
     
 }
 

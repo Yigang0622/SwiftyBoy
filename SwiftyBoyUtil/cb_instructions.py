@@ -222,3 +222,8 @@ def get_cb_functions():
             raise Exception(each.command + 'not impl')
         function_list.append(f)
     return function_list
+
+
+ins_list = [x for x in get_cb_instructions()]
+for each in ins_list:
+    print(SwiftInstructionFunction(each, []))

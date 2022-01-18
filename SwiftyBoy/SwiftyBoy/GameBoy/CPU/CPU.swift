@@ -156,7 +156,7 @@ class CPU {
         }
         set {
             _a = (newValue & 0xFFFF) >> 8
-            _f = (newValue & 0xFFFF) & 0x00FF
+            _f = (newValue & 0xFFFF) & 0x00F0
         }
     }
     

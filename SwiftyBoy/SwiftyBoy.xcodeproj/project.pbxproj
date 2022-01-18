@@ -39,6 +39,7 @@
 		DDE6B5F92794150000D74122 /* 03-op sp,hl.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */; };
 		DDE6B5FB27941AE800D74122 /* 09-op r,r.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */; };
 		DDE6B6012794202700D74122 /* 01-special.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6002794202700D74122 /* 01-special.gb */; };
+		DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B604279712C000D74122 /* 02-interrupts.gb */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -93,6 +94,7 @@
 		DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "03-op sp,hl.gb"; sourceTree = "<group>"; };
 		DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "09-op r,r.gb"; sourceTree = "<group>"; };
 		DDE6B6002794202700D74122 /* 01-special.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "01-special.gb"; sourceTree = "<group>"; };
+		DDE6B604279712C000D74122 /* 02-interrupts.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "02-interrupts.gb"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				DDE6B6002794202700D74122 /* 01-special.gb */,
+				DDE6B604279712C000D74122 /* 02-interrupts.gb */,
 				DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */,
 				DDF7A772276615150016F1A1 /* 04-op r,imm.gb */,
 				DDE6B5F42793E37000D74122 /* 05-op rp.gb */,
@@ -329,6 +332,7 @@
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
 				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
 				DDE6B5F92794150000D74122 /* 03-op sp,hl.gb in Resources */,
+				DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */,
 				DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
 				DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */,

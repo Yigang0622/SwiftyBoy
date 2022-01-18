@@ -728,13 +728,13 @@ extension CPU {
     
     func _srl(reg: RegisterType) {
         let v = _getReg(reg: reg)
-        let r = _sla(val: v)
+        let r = _srl(val: v)
         _setReg(reg: reg, val: r)
     }
     
     func _srl(addr: Int) {
         let v = mb.getMem(address: addr)
-        let r = _sla(val: v)
+        let r = _srl(val: v)
         mb.setMem(address: addr, val: r)
     }
     

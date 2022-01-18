@@ -1568,7 +1568,11 @@ extension CPU {
     func LD_F8() -> Int {
         let v = get8BitImmediate()
         let signedV = converToSignedValue(val: v)
-        _ld(to: .hl, val: sp + signedV)
+        hl = sp + signedV
+        fZ = false
+        fN = false
+        fH = getHalfCarryForAdd(operands: sp, v)
+        fC = getFullCarryForAdd(operands: sp, v)
         pc += 2
         return 12
     }

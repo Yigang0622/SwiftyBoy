@@ -438,8 +438,8 @@ extension CPU {
     // check
     func _rra() {
         let c = a & 0x01 == 0x01
-        let r = (a >> 1) | (fC ? 0x80: 0)
-        fZ = getZeroFlag(val: r)
+        let r = fC ? 0x80 | (a >> 1) : a >> 1
+        fZ = false
         fN = false
         fH = false
         fC = c
@@ -449,8 +449,8 @@ extension CPU {
     // check
     func _rrca() {
         let c = a & 0x01 == 0x01
-        let r = (a >> 1) | (c ? 0x80: 0)
-        fZ = getZeroFlag(val: r)
+        let r = c ? 0x80 | (a >> 1) : a >> 1
+        fZ = false
         fN = false
         fH = false
         fC = c

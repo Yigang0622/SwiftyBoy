@@ -18,50 +18,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let mb = Motherboard()
-//        mb.cpu.fZ = true
-//        mb.cpu.fN = true
-//        mb.cpu.fH = true
-        mb.cpu.de = 0xFFFD
-        print(mb.cpu.de.asHexString)
-        mb.cpu.de += 1
-        
-        print(mb.cpu.de.asHexString)
-        
-//        mb.cpu.a = 0xAB
-//        mb.cpu.sp = 0xFFEE
-//
-//        mb.cpu.PUSH_F5()
-//        mb.cpu.f = 0x0
-//        mb.cpu.a = 0x0
-//
-//        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC )
-//        mb.cpu.POP_F1()
-//
-//
-//        print(mb.cpu.fZ, mb.cpu.fN, mb.cpu.fH, mb.cpu.fC , mb.cpu.a.asHexString)
-//
-//
-        
-//        let r = mb.cpu.getHalfCarryForSub(operands: 0xA, 0xF)
-        let r = mb.cpu.getHalfCarryForAdd(operands: 2, 0xE)
-        print(r)
-        
+
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256, height: 256))
         view.addSubview(imageView)
         
-        var drawing = false
-        mb.gpu.onFrameUpdate = { pixels in
-            if !drawing {
-                DispatchQueue.main.async {
-                    drawing = true
-                    imageView.image = self.drawRectangle(pixels: pixels, palette: mb.gpu.backgroundPalette)
-                    drawing = false
-//                    print("drawing done")
-                }
-            } else {
-//                print("drawing ignore")
-            }
-        }
         
         mb.gpu.onFrameUpdateV2 = { pixels in
             
@@ -92,8 +52,7 @@ class ViewController: UIViewController {
                    shouldInterpolate: true,
                    intent: .defaultIntent
                    )
-
-
+                
                 imageView.image =  UIImage(cgImage: cgim!)
             }
             

@@ -14,13 +14,13 @@ extension CPU {
     func get16BitMem(address: Int) -> Int {
         let fs = mb.getMem(address: address + 1)
         let ls = mb.getMem(address: address)
-        logs.append("get16BitMem \((fs << 8 + ls).asHexString)")
+//        logs.append("get16BitMem \((fs << 8 + ls).asHexString)")
         return (fs << 8) + ls
     }
     
     func get8BitImmediate() -> Int {
         let log = "get8BitImmediate \(mb.getMem(address: pc + 1).asHexString)"
-        logs.append(log)
+//        logs.append(log)
 //        print(log)
         return mb.getMem(address: pc + 1)
     }

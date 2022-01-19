@@ -31,5 +31,8 @@ class InterruptEnableRegister: BaseRegister {
         highToLow = getBit(n: 4)
     }
     
+    override func getVal() -> Int {
+        return vblank.integerValue << 0 | lcdc.integerValue << 1 | timerOverflow.integerValue << 2 | serial.integerValue << 3 | highToLow.integerValue << 4
+    }
     
 }

@@ -9,6 +9,9 @@ import Foundation
 
 class Motherboard {
     
+    var timer: DispatchSourceTimer!
+    var queue: DispatchQueue!
+    
     public let cpu = CPU()
     let gpu = GPU()
     let ram = RAM()
@@ -22,16 +25,29 @@ class Motherboard {
     init() {
         cpu.mb = self
         gpu.mb = self
+        
+        queue = DispatchQueue(label: "mbtimer")
+        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
+        
         cart = CartageLoader.loadCartage()
     }
     
     func run() {
-//        var cycleTotal = 0
-//        gpu.ly = 144
+
+        tick()
+//        timer.setEventHandler {
+//            self.tick()
+//        }
+//        
+//        let repeatInterval = 1 / 4000000 * 1000000000 * 10
+//        timer.schedule(deadline: .now(), repeating: .nanoseconds(repeatInterval), leeway: .milliseconds(10))
+//        timer.resume()
+    }
+    
+    func tick() {
         while cpu.pc >= 0 {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
-//            cycleTotal += cycles
         }
     }
     
@@ -175,7 +191,7 @@ class Motherboard {
                     let chr = getMem(address: 0xff01)
                     serialOutput += String(Character(UnicodeScalar(chr)!))
                     print(serialOutput)
-                    cpu.logs.append(serialOutput)
+//                    cpu.logs.append(serialOutput)
                 }
                 self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF04 {
@@ -235,7 +251,7 @@ class Motherboard {
             if (address == 0xFF50 && val == 1) {
                 self.bootRomEnable = false
                 cpu.logs.removeAll()
-                cpu.logs.append("boot end!!!")
+//                cpu.logs.append("boot end!!!")
             }
             // non io internal ram
             ram.nonIoInternalRam1[address - 0xFF4C] = v

@@ -47,7 +47,7 @@ extension CPU {
                 pc = 0x60
                 interruptFlagRegister.highToLow = false
             } else {
-                print("no interrupts")
+//                print("no interrupts")
             }
         }
     }
@@ -60,31 +60,18 @@ extension CPU {
     
     func fetchAndExecute() -> Int {
         
-//        if mb.serialOutput == "06-ld r,r\n\n" {
-//            start = true
-//        } else if mb.serialOutput == "06-ld r,r\n\n0" {
-//            printOpD()
-//        }
-        
-        
-
         handleInterruptes()
 
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
             opcode = mb.getMem(address: pc + 1)
-//            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"
-//
-//            logs.append(log)
-//
-
-            
+//            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"//
+//            logs.append(log)//
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
 //            let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
-//            logs.append(log)
-//            
+//            logs.append(log)//
             let cycle = baseInstructions[opcode]!.instruction()
             return cycle
         }

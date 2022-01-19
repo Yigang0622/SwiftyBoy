@@ -161,7 +161,6 @@ extension CPU {
         case .sp:
             return sp
         }
-        fatalError("_getReg error")
     }
     
     func _setReg(reg: RegisterType, val: Int) {

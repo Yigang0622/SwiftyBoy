@@ -11,7 +11,7 @@
 		DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */; };
 		DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B5275C952500A5AAEB /* CPU+Util.swift */; };
 		DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B6275C952500A5AAEB /* Motherboard.swift */; };
-		DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */; };
+		DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Pipeline.swift */; };
 		DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tile.swift */; };
 		DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
 		DD1094C8275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
@@ -40,6 +40,7 @@
 		DDE6B5FB27941AE800D74122 /* 09-op r,r.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */; };
 		DDE6B6012794202700D74122 /* 01-special.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6002794202700D74122 /* 01-special.gb */; };
 		DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B604279712C000D74122 /* 02-interrupts.gb */; };
+		DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B60627985B9300D74122 /* CPUTimer.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -67,7 +68,7 @@
 		DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+BaseInstructions.swift"; sourceTree = "<group>"; };
 		DD1094B5275C952500A5AAEB /* CPU+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Util.swift"; sourceTree = "<group>"; };
 		DD1094B6275C952500A5AAEB /* Motherboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
-		DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Instruction.swift"; sourceTree = "<group>"; };
+		DD1094C1275C979100A5AAEB /* CPU+Pipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Pipeline.swift"; sourceTree = "<group>"; };
 		DD1094C3275CF4A600A5AAEB /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = cpu_instrs.gb; sourceTree = "<group>"; };
 		DD25D08A275F96F7005E45D4 /* Cartridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartridge.swift; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "09-op r,r.gb"; sourceTree = "<group>"; };
 		DDE6B6002794202700D74122 /* 01-special.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "01-special.gb"; sourceTree = "<group>"; };
 		DDE6B604279712C000D74122 /* 02-interrupts.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "02-interrupts.gb"; sourceTree = "<group>"; };
+		DDE6B60627985B9300D74122 /* CPUTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUTimer.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,10 +135,11 @@
 			isa = PBXGroup;
 			children = (
 				DD1094B2275C952400A5AAEB /* CPU.swift */,
-				DD1094C1275C979100A5AAEB /* CPU+Instruction.swift */,
+				DD1094C1275C979100A5AAEB /* CPU+Pipeline.swift */,
 				DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */,
 				DD1094B3275C952400A5AAEB /* CPU+BaseInstructions.swift */,
 				DD1094B5275C952500A5AAEB /* CPU+Util.swift */,
+				DDE6B60627985B9300D74122 /* CPUTimer.swift */,
 				DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */,
 				DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */,
 			);
@@ -371,7 +374,8 @@
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
-				DD1094C2275C979100A5AAEB /* CPU+Instruction.swift in Sources */,
+				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
+				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,

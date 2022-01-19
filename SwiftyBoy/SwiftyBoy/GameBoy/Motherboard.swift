@@ -13,6 +13,7 @@ class Motherboard {
     var queue: DispatchQueue!
     
     public let cpu = CPU()
+    let cpuTimer = CPUTimer()
     let gpu = GPU()
     let ram = RAM()
     public var memory = Array<Int>(repeating: 0x00, count: 0xFFFF)
@@ -25,6 +26,7 @@ class Motherboard {
     init() {
         cpu.mb = self
         gpu.mb = self
+        cpuTimer.mb = self
         
         queue = DispatchQueue(label: "mbtimer")
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
@@ -48,6 +50,7 @@ class Motherboard {
         while cpu.pc >= 0 {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
+            cpuTimer.tick(cycles: cycles)
         }
     }
     
@@ -84,12 +87,16 @@ class Motherboard {
             // I/O ports
             if address == 0xFF04 {
                 // timer DIV
+                return cpuTimer.div
             } else if address == 0xFF05 {
                 // timer TIMA
+                return cpuTimer.tima
             } else if address == 0xFF06 {
                 // timer TMA
+                return cpuTimer.tma
             } else if address == 0xFF07 {
                 // timer TAC
+                return cpuTimer.tac
             } else if address == 0xFF0F {
                 // CPU interruptes flag
                 return cpu.interruptFlagRegister.getVal()
@@ -196,12 +203,16 @@ class Motherboard {
                 self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF04 {
                 // timer DIV
+                self.cpuTimer.reset()
             } else if address == 0xFF05 {
                 // timer TIMA
+                self.cpuTimer.tima = v
             } else if address == 0xFF06 {
                 // timer TMA
+                self.cpuTimer.tma = v
             } else if address == 0xFF07 {
                 // timer TAC
+                self.cpuTimer.tac = v
             } else if address == 0xFF0F {
                 // CPU interruptes flag
                 cpu.interruptFlagRegister.setVal(val: v)
@@ -227,7 +238,7 @@ class Motherboard {
                 gpu.lyc = val
             } else if address == 0xFF46 {
                 // DMA
-                
+                dma(src: v)
             } else if address == 0xFF47 {
                 // BGP
                 gpu.backgroundPalette.setVal(val: Int(v))
@@ -266,6 +277,14 @@ class Motherboard {
         }
     }
     
+    
+    func dma(src: Int) {
+        let dst = 0xFE00
+        let offset = src * 0x100
+        for i in 0...0xA0 {
+            self.setMem(address: dst + i, val: self.getMem(address: i + offset))
+        }
+    }
     
     func loadTestRom(name: String) -> [UInt8] {
 

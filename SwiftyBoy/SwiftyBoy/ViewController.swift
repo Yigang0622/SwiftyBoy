@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         let mb = Motherboard()
 
-        let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256, height: 256))
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * 2, height: 256 * 2))
         view.addSubview(imageView)
         
         
@@ -53,7 +53,10 @@ class ViewController: UIViewController {
                    intent: .defaultIntent
                    )
                 
-                imageView.image =  UIImage(cgImage: cgim!)
+                if let cgImage = cgim {
+                    imageView.image =  UIImage(cgImage: cgImage, scale: 2, orientation: .up)
+                }
+                
             }
             
 

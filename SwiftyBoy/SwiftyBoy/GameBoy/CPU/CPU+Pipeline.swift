@@ -17,7 +17,6 @@ struct CPUInstruction {
 extension CPU {
     
 
-   
     func handleInterruptes() {
         
         if interruptMasterEnable {
@@ -61,6 +60,10 @@ extension CPU {
     func fetchAndExecute() -> Int {
         
         handleInterruptes()
+        
+//        if halted {
+//            return 4
+//        }
 
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
@@ -76,19 +79,5 @@ extension CPU {
             return cycle
         }
     }
-    
-    func printOpD() {
-        var t = [(String, Int)]()
-        opD.forEach { key, val in
-            t.append((key, val))
-        }
-        t = t.sorted { a, b in
-            return a.1 > b.1
-        }
-        for each in t {
-            print("\(each.0)    \(each.1)")
-        }
-    }
-    
     
 }

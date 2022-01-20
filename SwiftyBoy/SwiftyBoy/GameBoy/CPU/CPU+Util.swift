@@ -416,6 +416,7 @@ extension CPU {
     }
     
     func _rst(val: Int) {
+        print("RST \(val.asHexString)")
         pushPCToStack()
         pc = val
     }

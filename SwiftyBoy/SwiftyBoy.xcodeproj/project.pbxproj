@@ -41,6 +41,14 @@
 		DDE6B6012794202700D74122 /* 01-special.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6002794202700D74122 /* 01-special.gb */; };
 		DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B604279712C000D74122 /* 02-interrupts.gb */; };
 		DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B60627985B9300D74122 /* CPUTimer.swift */; };
+		DDE6B6092799AE0000D74122 /* 175-sprite-parallax-starfield.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6082799AE0000D74122 /* 175-sprite-parallax-starfield.gb */; };
+		DDE6B60B2799B46500D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B60A2799B46400D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb */; };
+		DDE6B60D2799B53E00D74122 /* dump_boot_hwio.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B60C2799B53E00D74122 /* dump_boot_hwio.gb */; };
+		DDE6B60F2799B64C00D74122 /* Legend of Zelda, The - Link's Awakening (G) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B60E2799B64C00D74122 /* Legend of Zelda, The - Link's Awakening (G) [!].gb */; };
+		DDE6B6112799B69A00D74122 /* Pac-Man (U) (Namco).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */; };
+		DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */; };
+		DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */; };
+		DDE6B6172799B81A00D74122 /* Doraemon 2 (J).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -97,6 +105,14 @@
 		DDE6B6002794202700D74122 /* 01-special.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "01-special.gb"; sourceTree = "<group>"; };
 		DDE6B604279712C000D74122 /* 02-interrupts.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "02-interrupts.gb"; sourceTree = "<group>"; };
 		DDE6B60627985B9300D74122 /* CPUTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUTimer.swift; sourceTree = "<group>"; };
+		DDE6B6082799AE0000D74122 /* 175-sprite-parallax-starfield.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "175-sprite-parallax-starfield.gb"; sourceTree = "<group>"; };
+		DDE6B60A2799B46400D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb"; sourceTree = "<group>"; };
+		DDE6B60C2799B53E00D74122 /* dump_boot_hwio.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = dump_boot_hwio.gb; sourceTree = "<group>"; };
+		DDE6B60E2799B64C00D74122 /* Legend of Zelda, The - Link's Awakening (G) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Legend of Zelda, The - Link's Awakening (G) [!].gb"; sourceTree = "<group>"; };
+		DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pac-Man (U) (Namco).gb"; sourceTree = "<group>"; };
+		DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Super Mario Land (JUE) (V1.1) [!].gb"; sourceTree = "<group>"; };
+		DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tetris (JUE) (V1.1) [!].gb"; sourceTree = "<group>"; };
+		DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Doraemon 2 (J).gb"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +165,7 @@
 		DD1094C5275DF50A00A5AAEB /* Roms */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */,
 				DDE6B6002794202700D74122 /* 01-special.gb */,
 				DDE6B604279712C000D74122 /* 02-interrupts.gb */,
 				DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */,
@@ -162,6 +179,13 @@
 				DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */,
 				DD25D09F276382C5005E45D4 /* Tetris.gb */,
 				DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */,
+				DDE6B6082799AE0000D74122 /* 175-sprite-parallax-starfield.gb */,
+				DDE6B60A2799B46400D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb */,
+				DDE6B60C2799B53E00D74122 /* dump_boot_hwio.gb */,
+				DDE6B60E2799B64C00D74122 /* Legend of Zelda, The - Link's Awakening (G) [!].gb */,
+				DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */,
+				DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */,
+				DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */,
 			);
 			path = Roms;
 			sourceTree = "<group>";
@@ -331,11 +355,15 @@
 			files = (
 				DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */,
 				DDF7A771276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb in Resources */,
+				DDE6B60D2799B53E00D74122 /* dump_boot_hwio.gb in Resources */,
 				DDE6B6012794202700D74122 /* 01-special.gb in Resources */,
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
+				DDE6B60F2799B64C00D74122 /* Legend of Zelda, The - Link's Awakening (G) [!].gb in Resources */,
 				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
+				DDE6B6092799AE0000D74122 /* 175-sprite-parallax-starfield.gb in Resources */,
 				DDE6B5F92794150000D74122 /* 03-op sp,hl.gb in Resources */,
 				DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */,
+				DDE6B6172799B81A00D74122 /* Doraemon 2 (J).gb in Resources */,
 				DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
 				DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */,
@@ -343,8 +371,12 @@
 				DDE6B5F72794147E00D74122 /* 08-misc instrs.gb in Resources */,
 				DDE6B5FB27941AE800D74122 /* 09-op r,r.gb in Resources */,
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
+				DDE6B6112799B69A00D74122 /* Pac-Man (U) (Namco).gb in Resources */,
 				DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */,
 				DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */,
+				DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */,
+				DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */,
+				DDE6B60B2799B46500D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,16 +21,19 @@ extension CPU {
         
         if interruptMasterEnable {
             if interruptFlagRegister.vblank && interruptEnableRegister.vblank {
+                print("v-blank")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x40
                 interruptFlagRegister.vblank = false
             } else if interruptFlagRegister.lcdc && interruptEnableRegister.lcdc {
+                print("lcdc")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x48
                 interruptFlagRegister.lcdc = false
             } else if interruptFlagRegister.timerOverflow && interruptEnableRegister.timerOverflow {
+                print("overflow")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x50

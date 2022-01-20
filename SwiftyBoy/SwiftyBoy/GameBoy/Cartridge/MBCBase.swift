@@ -39,6 +39,9 @@ class MBCBase: Cartridge {
         romBanks = bytes.chunked(into: bankSize)
         print("[rom banks] \(romBanks.count) ")
         self.externalRomcount = romBanks.count
+        self.externalRamCount = MBCBase.externalRamCountLookup[romBanks[0][0x0149]]!
+        initRamBanks()
+        
     }
     
     override func getMem(address: Int) -> Int {
@@ -62,7 +65,7 @@ class MBCBase: Cartridge {
     }
 
     func initRamBanks() {
-        print("init ram bank")
+        print("init ram bank, count \(externalRamCount)")
         self.ramBanks =  Array(repeating: Array(repeating: 0, count: 8*1024), count: externalRamCount)
     }
     

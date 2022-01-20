@@ -40,7 +40,7 @@ class Motherboard {
 //        timer.setEventHandler {
 //            self.tick()
 //        }
-//        
+//
 //        let repeatInterval = 1 / 4000000 * 1000000000 * 10
 //        timer.schedule(deadline: .now(), repeating: .nanoseconds(repeatInterval), leeway: .milliseconds(10))
 //        timer.resume()
@@ -102,6 +102,7 @@ class Motherboard {
                 return cpu.interruptFlagRegister.getVal()
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
+                return 0
             } else if address == 0xFF40 {
                 // lcdc
                 return gpu.lcdcRegister.getVal()
@@ -140,6 +141,10 @@ class Motherboard {
                 return gpu.wx
             } else {
                 // io ports
+                if address == 0xff00 {
+                    return 0b001111
+                }
+                
                 return Int(ram.ioPortsRAM[address - 0xFF00])
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
@@ -259,9 +264,10 @@ class Motherboard {
                 ram.ioPortsRAM[address - 0xFF00] = v
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
-            if (address == 0xFF50 && val == 1) {
+            if (address == 0xFF50 && val == 1 && self.bootRomEnable) {
                 self.bootRomEnable = false
-                cpu.logs.removeAll()
+//                cpu.logs.removeAll()
+                print("boot end")
 //                cpu.logs.append("boot end!!!")
             }
             // non io internal ram

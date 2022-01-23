@@ -28,7 +28,7 @@ class CartageLoader {
     
     static func loadCartage() -> Cartridge {
         print("loading cartage")
-        let fileName = "Legend of Zelda, The - Link's Awakening (G) [!]"
+        let fileName = "Super Mario Land (JUE) (V1.1) [!]"
         let bytes = loadTestRom(name: fileName)
         let meta = getCaridgeMeta(flag: bytes[0x0147])
         let name = bytes[0x0134...0x0142].reduce("") { partialResult, next in

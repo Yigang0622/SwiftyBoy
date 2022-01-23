@@ -134,7 +134,12 @@ class GPU {
             tileData = Array(vram[(0x8000 - offset)...(0x8FFF - offset)])
         }
         
-        for i in 0...255 {
+        // todo debug
+        tileData = Array(vram[(0x8000 - offset)...(0x97FF - offset)])
+        //todo figure out why 0xFF + 1
+        let tileOffset = lcdcRegister.tileDataSelect == .tile0 ? 0xFF + 1 : 0
+        
+        for i in 0...255 + 128 {
             let start = i * 16
             let end = start + 16
             let sub = Array(tileData[start ..< end])
@@ -180,7 +185,11 @@ class GPU {
         for i in 0..<32 {
             for j in 0..<32 {
                 let idx = i * 32 + j
-                let tileId = Int(backgound[idx])
+                var tileId = Int(backgound[idx])
+                if tileId <= 0x7F {
+                    tileId += tileOffset
+                }
+                
                 for tileY in 0...7 {
                     for tileX in 0...7 {
                         let colorIdx = tiles[tileId].pixels[tileY][tileX]

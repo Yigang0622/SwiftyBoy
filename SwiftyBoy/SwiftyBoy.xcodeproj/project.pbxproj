@@ -53,6 +53,7 @@
 		DDE6B61C279D0B0700D74122 /* JoypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61B279D0B0700D74122 /* JoypadButton.swift */; };
 		DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61D279D0B8000D74122 /* Joypad.swift */; };
 		DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */; };
+		DDE6B623279D194200D74122 /* InterruptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B622279D194200D74122 /* InterruptManager.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -121,6 +122,7 @@
 		DDE6B61B279D0B0700D74122 /* JoypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoypadButton.swift; sourceTree = "<group>"; };
 		DDE6B61D279D0B8000D74122 /* Joypad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joypad.swift; sourceTree = "<group>"; };
 		DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAccessable.swift; sourceTree = "<group>"; };
+		DDE6B622279D194200D74122 /* InterruptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptManager.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		DD25D092275FBD3E005E45D4 /* GPU */ = {
 			isa = PBXGroup;
 			children = (
+				DD1094C3275CF4A600A5AAEB /* Tile.swift */,
 				DD25D090275FAB5A005E45D4 /* GPU.swift */,
 				DD25D093275FBD53005E45D4 /* LCDCRegister.swift */,
 				DD25D0972760F5F1005E45D4 /* STATRegister.swift */,
@@ -230,6 +233,15 @@
 				DDE6B61D279D0B8000D74122 /* Joypad.swift */,
 			);
 			path = Joypad;
+			sourceTree = "<group>";
+		};
+		DDE6B621279D157200D74122 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DD25D0952760E7D7005E45D4 /* BaseRegister.swift */,
+				DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		DDF24EBE274FCA8C007929DA = {
@@ -278,16 +290,15 @@
 		DDF24EFA274FCAD6007929DA /* GameBoy */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B621279D157200D74122 /* Common */,
 				DDE6B61A279D0AE900D74122 /* Joypad */,
 				DD25D092275FBD3E005E45D4 /* GPU */,
 				DD25D089275F96E6005E45D4 /* Cartridge */,
 				DD1094BC275C953300A5AAEB /* CPU */,
 				DD1094B6275C952500A5AAEB /* Motherboard.swift */,
-				DD1094C3275CF4A600A5AAEB /* Tile.swift */,
 				DD25D08E275FA01C005E45D4 /* BootRom.swift */,
-				DD25D0952760E7D7005E45D4 /* BaseRegister.swift */,
 				DD25D09B27623B34005E45D4 /* RAM.swift */,
-				DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */,
+				DDE6B622279D194200D74122 /* InterruptManager.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -435,6 +446,7 @@
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,
 				DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
+				DDE6B623279D194200D74122 /* InterruptManager.swift in Sources */,
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */,

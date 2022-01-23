@@ -1054,7 +1054,7 @@ extension CPU {
         return 8
     }
     // 0xa7 AND A
-    func AND_A7() -> Int {
+    func AND_A7() -> Int {        
         _and(val: a)
         pc += 1
         return 4

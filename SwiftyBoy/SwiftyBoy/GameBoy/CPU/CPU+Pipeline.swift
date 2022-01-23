@@ -54,6 +54,10 @@ extension CPU {
         }
     }
     
+    func interruptRequested() -> Bool {
+        return interruptFlagRegister.getVal() > 0
+    }
+    
     func printLogs() {
         for each in logs {
             print(each)
@@ -62,11 +66,16 @@ extension CPU {
     
     func fetchAndExecute() -> Int {
         
+        if self.halted && interruptRequested() {
+            print("exit halt")
+            halted = false
+        }
+        
         handleInterruptes()
         
-//        if halted {
-//            return 4
-//        }
+        if halted {
+            return 4
+        }
 
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {

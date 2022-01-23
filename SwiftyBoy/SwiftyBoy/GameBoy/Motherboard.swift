@@ -86,7 +86,9 @@ class Motherboard {
             return Int(ram.nonIoInternalRam0[address - 0xFEA0])
         } else if address >= 0xFF00 && address < 0xFF4C {
             // I/O ports
-            if address == 0xFF04 {
+            if address == 0xFF00 {
+                return joypad.getMem(address: address)
+            }else if address == 0xFF04 {
                 // timer DIV
                 return cpuTimer.div
             } else if address == 0xFF05 {
@@ -142,7 +144,7 @@ class Motherboard {
                 return gpu.wx
             } else {
                 // io ports
-                return joypad.getMem(address: address)
+                return self.ram.ioPortsRAM[address - 0xFF00]
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
             // non io internal ram
@@ -189,9 +191,8 @@ class Motherboard {
         } else if address >= 0xFF00 && address < 0xFF4C {
             // Empty but unusable for I/O
             if address == 0xFF00 {
-                // TODO io
+                // joypad
                 joypad.setMem(address: address, val: v)
-//                self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF01 {
                 // todo serial
                 self.ram.ioPortsRAM[address - 0xFF00] = v
@@ -266,7 +267,6 @@ class Motherboard {
                 self.bootRomEnable = false
 //                cpu.logs.removeAll()
                 print("boot end")
-//                cpu.logs.append("boot end!!!")
             }
             // non io internal ram
             ram.nonIoInternalRam1[address - 0xFF4C] = v

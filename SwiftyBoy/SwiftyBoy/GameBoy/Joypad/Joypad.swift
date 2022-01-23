@@ -16,33 +16,33 @@ class Joypad {
     private var p1 = 0
     private var pressedButtons = Set<JoypadButton>()
     
-    private let rightButton = JoypadButton(mask: 0x01, line: 0x10)
-    private let leftButton = JoypadButton(mask: 0x02, line: 0x10)
-    private let upButton = JoypadButton(mask: 0x04, line: 0x10)
-    private let downButton = JoypadButton(mask: 0x08, line: 0x10)
-    private let aButton = JoypadButton(mask: 0x01, line: 0x20)
-    private let bButton = JoypadButton(mask: 0x02, line: 0x20)
-    private let selectButton = JoypadButton(mask: 0x04, line: 0x20)
-    private let startButton = JoypadButton(mask: 0x08, line: 0x20)
+    private static let rightButton = JoypadButton(mask: 0x01, line: 0x10)
+    private static let leftButton = JoypadButton(mask: 0x02, line: 0x10)
+    private static let upButton = JoypadButton(mask: 0x04, line: 0x10)
+    private static let downButton = JoypadButton(mask: 0x08, line: 0x10)
+    private static let aButton = JoypadButton(mask: 0x01, line: 0x20)
+    private static let bButton = JoypadButton(mask: 0x02, line: 0x20)
+    private static let selectButton = JoypadButton(mask: 0x04, line: 0x20)
+    private static let startButton = JoypadButton(mask: 0x08, line: 0x20)
     
     private func getButton(type: JoypadButtonType) -> JoypadButton {
         switch type {
         case .up:
-            return upButton
+            return Joypad.upButton
         case .down:
-            return downButton
+            return Joypad.downButton
         case .left:
-            return leftButton
+            return Joypad.leftButton
         case .right:
-            return rightButton
+            return Joypad.rightButton
         case .a:
-            return aButton
+            return Joypad.aButton
         case .b:
-            return bButton
+            return Joypad.bButton
         case .select:
-            return selectButton
+            return Joypad.selectButton
         case .start:
-            return startButton
+            return Joypad.startButton
         }
     }
     

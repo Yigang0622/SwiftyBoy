@@ -7,4 +7,12 @@
 
 import Foundation
 
+class InterruptManager {
+    
+    let interrputEnableRegister = InterruptEnableRegister(val: 0)
+    let interruptFlagRegister = InterruptFlagRegister(val: 0)
+    
+    
+    
+}
 

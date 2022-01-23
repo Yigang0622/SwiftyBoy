@@ -54,6 +54,10 @@
 		DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61D279D0B8000D74122 /* Joypad.swift */; };
 		DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */; };
 		DDE6B623279D194200D74122 /* InterruptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B622279D194200D74122 /* InterruptManager.swift */; };
+		DDE6B627279D447900D74122 /* Example.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B626279D447900D74122 /* Example.gb */; };
+		DDE6B629279D461200D74122 /* main.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B628279D461200D74122 /* main.gb */; };
+		DDE6B62B279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */; };
+		DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -123,6 +127,10 @@
 		DDE6B61D279D0B8000D74122 /* Joypad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joypad.swift; sourceTree = "<group>"; };
 		DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAccessable.swift; sourceTree = "<group>"; };
 		DDE6B622279D194200D74122 /* InterruptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptManager.swift; sourceTree = "<group>"; };
+		DDE6B626279D447900D74122 /* Example.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Example.gb; sourceTree = "<group>"; };
+		DDE6B628279D461200D74122 /* main.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.gb; sourceTree = "<group>"; };
+		DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kirby's Dream Land (USA, Europe).gb"; sourceTree = "<group>"; };
+		DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInputMask.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +183,9 @@
 		DD1094C5275DF50A00A5AAEB /* Roms */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */,
+				DDE6B628279D461200D74122 /* main.gb */,
+				DDE6B626279D447900D74122 /* Example.gb */,
 				DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */,
 				DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */,
 				DDE6B6002794202700D74122 /* 01-special.gb */,
@@ -299,6 +310,7 @@
 				DD25D08E275FA01C005E45D4 /* BootRom.swift */,
 				DD25D09B27623B34005E45D4 /* RAM.swift */,
 				DDE6B622279D194200D74122 /* InterruptManager.swift */,
+				DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -384,7 +396,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE6B629279D461200D74122 /* main.gb in Resources */,
 				DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */,
+				DDE6B627279D447900D74122 /* Example.gb in Resources */,
 				DDF7A771276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb in Resources */,
 				DDE6B60D2799B53E00D74122 /* dump_boot_hwio.gb in Resources */,
 				DDE6B6012794202700D74122 /* 01-special.gb in Resources */,
@@ -405,6 +419,7 @@
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
 				DDE6B6112799B69A00D74122 /* Pac-Man (U) (Namco).gb in Resources */,
 				DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */,
+				DDE6B62B279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb in Resources */,
 				DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */,
 				DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */,
 				DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */,
@@ -427,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */,
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
 				DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */,
 				DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */,

@@ -16,7 +16,7 @@ class Motherboard {
     let cpuTimer = CPUTimer()
     let gpu = GPU()
     let ram = RAM()
-    let joypad = Joypad()
+    let joypad = Joypad(interruptManager: InterruptManager())
     public var memory = Array<Int>(repeating: 0x00, count: 0xFFFF)
     
     var cart: Cartridge!
@@ -28,6 +28,7 @@ class Motherboard {
         cpu.mb = self
         gpu.mb = self
         cpuTimer.mb = self
+        joypad.mb = self
         
         queue = DispatchQueue(label: "mbtimer")
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)

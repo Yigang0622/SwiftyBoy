@@ -13,6 +13,9 @@ enum JoypadButtonType {
 
 class Joypad {
     
+    private weak var interruptManager: InterruptManager!
+    weak var mb: Motherboard!
+    
     private var p1 = 0
     private var pressedButtons = Set<JoypadButton>()
     
@@ -24,6 +27,10 @@ class Joypad {
     private static let bButton = JoypadButton(mask: 0x02, line: 0x20)
     private static let selectButton = JoypadButton(mask: 0x04, line: 0x20)
     private static let startButton = JoypadButton(mask: 0x08, line: 0x20)
+    
+    init(interruptManager: InterruptManager) {
+        self.interruptManager = interruptManager
+    }
     
     private func getButton(type: JoypadButtonType) -> JoypadButton {
         switch type {
@@ -46,9 +53,23 @@ class Joypad {
         }
     }
     
+    func pressButton(type: JoypadButtonType) {
+        let button = getButton(type: type)
+        self.pressedButtons.insert(button)
+        // todo request interrupt
+        mb.cpu.interruptFlagRegister.highToLow = true
+    }
+    
+    func releaseButton(type: JoypadButtonType) {
+        let button = getButton(type: type)
+        print("remove button")
+        self.pressedButtons.remove(button)
+    }    
+    
 }
 
 extension Joypad: MemoryAccessable {
+    
     
     func canAccess(address: Int) -> Bool {
         return address == 0xff00

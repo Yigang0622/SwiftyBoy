@@ -22,7 +22,7 @@ class ROMOnly: MBCBase {
     }
     
     override func setMem(address: Int, val: Int) {
-        print("set \(address.asHexString)")
+        print("set ROMOnly \(address.asHexString)")
 //        if address >= 0x2000 && address < 0x4000 {
 //            let v = val == 0 ? 1 : val
 //            self.romBankSelect = v & 0b1

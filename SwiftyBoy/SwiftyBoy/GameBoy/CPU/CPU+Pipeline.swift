@@ -21,7 +21,7 @@ extension CPU {
         
         if interruptMasterEnable {
             if interruptFlagRegister.vblank && interruptEnableRegister.vblank {
-                print("v-blank")
+//                print("v-blank")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x40
@@ -44,6 +44,7 @@ extension CPU {
                 pc = 0x58
                 interruptFlagRegister.serial = false
             } else if interruptFlagRegister.highToLow && interruptEnableRegister.highToLow {
+                print("high to low")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x60

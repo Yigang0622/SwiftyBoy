@@ -164,11 +164,7 @@ extension CPU {
     }
     
     func _setReg(reg: RegisterType, val: Int) {
-//        if reg8Bit.contains(reg) && val > 0xFF{
-//            fatalError("set 8bit reg error, val overflow \(val.asHexString) reg\(reg)")
-//        } else if reg16Bit.contains(reg) && val > 0xFFFF {
-//            fatalError("set 16bit reg error, val overflow \(val.asHexString) reg\(reg)")
-//        }
+        
         switch reg {
         case .a:
             a = val
@@ -416,7 +412,6 @@ extension CPU {
     }
     
     func _rst(val: Int) {
-        print("RST \(val.asHexString)")
         pushPCToStack()
         pc = val
     }

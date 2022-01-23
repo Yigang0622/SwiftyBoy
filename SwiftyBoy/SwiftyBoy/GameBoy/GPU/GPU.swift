@@ -183,9 +183,9 @@ class GPU {
                 let tileId = Int(backgound[idx])
                 for tileY in 0...7 {
                     for tileX in 0...7 {
-                        let color = tiles[tileId].pixels[tileY][tileX]
+                        let colorIdx = tiles[tileId].pixels[tileY][tileX]
                         let dataIdx = (i * 8 + tileY) * 256 + j * 8 + tileX
-
+                        let color = self.backgroundPalette.getColor(i: colorIdx)
                         if color == 0 {
                             backgroundData[dataIdx] = 0xFFFFFFFF
                         } else if color == 1 {

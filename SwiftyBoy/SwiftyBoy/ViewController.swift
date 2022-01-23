@@ -9,19 +9,15 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController {
+        
+    let mb = Motherboard()
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        let mb = Motherboard()
-
+               
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * 2, height: 256 * 2))
         view.addSubview(imageView)
-        
         
         mb.gpu.onFrameUpdateV2 = { pixels in
             
@@ -63,8 +59,23 @@ class ViewController: UIViewController {
         }
         
         DispatchQueue.global().async {
-            mb.run()
+            self.mb.run()
         }
+        
+        
+        let keyInputMask = KeyInputMask(frame: self.view.bounds)
+        keyInputMask.becomeFirstResponder()
+        
+        keyInputMask.onKeyPress = { button in
+            self.mb.joypad.pressButton(type: button)
+        }
+        
+        keyInputMask.onKeyRelease = { button in
+            self.mb.joypad.releaseButton(type: button)
+        }
+        
+        self.view.addSubview(keyInputMask)
+        
         
     }
     

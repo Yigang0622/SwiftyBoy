@@ -16,6 +16,7 @@ class Motherboard {
     let cpuTimer = CPUTimer()
     let gpu = GPU()
     let ram = RAM()
+    let joypad = Joypad()
     public var memory = Array<Int>(repeating: 0x00, count: 0xFFFF)
     
     var cart: Cartridge!
@@ -141,11 +142,7 @@ class Motherboard {
                 return gpu.wx
             } else {
                 // io ports
-                if address == 0xff00 {
-                    return 0b001111
-                }
-                
-                return Int(ram.ioPortsRAM[address - 0xFF00])
+                return joypad.getMem(address: address)
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
             // non io internal ram
@@ -193,7 +190,8 @@ class Motherboard {
             // Empty but unusable for I/O
             if address == 0xFF00 {
                 // TODO io
-                self.ram.ioPortsRAM[address - 0xFF00] = v
+                joypad.setMem(address: address, val: v)
+//                self.ram.ioPortsRAM[address - 0xFF00] = v
             } else if address == 0xFF01 {
                 // todo serial
                 self.ram.ioPortsRAM[address - 0xFF00] = v

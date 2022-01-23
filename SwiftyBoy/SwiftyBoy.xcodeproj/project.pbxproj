@@ -49,6 +49,10 @@
 		DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */; };
 		DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */; };
 		DDE6B6172799B81A00D74122 /* Doraemon 2 (J).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */; };
+		DDE6B6192799C9A700D74122 /* Pokemon Red (UE) [S][!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */; };
+		DDE6B61C279D0B0700D74122 /* JoypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61B279D0B0700D74122 /* JoypadButton.swift */; };
+		DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61D279D0B8000D74122 /* Joypad.swift */; };
+		DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -113,6 +117,10 @@
 		DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Super Mario Land (JUE) (V1.1) [!].gb"; sourceTree = "<group>"; };
 		DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tetris (JUE) (V1.1) [!].gb"; sourceTree = "<group>"; };
 		DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Doraemon 2 (J).gb"; sourceTree = "<group>"; };
+		DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon Red (UE) [S][!].gb"; sourceTree = "<group>"; };
+		DDE6B61B279D0B0700D74122 /* JoypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoypadButton.swift; sourceTree = "<group>"; };
+		DDE6B61D279D0B8000D74122 /* Joypad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joypad.swift; sourceTree = "<group>"; };
+		DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAccessable.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 		DD1094C5275DF50A00A5AAEB /* Roms */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */,
 				DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */,
 				DDE6B6002794202700D74122 /* 01-special.gb */,
 				DDE6B604279712C000D74122 /* 02-interrupts.gb */,
@@ -214,6 +223,15 @@
 			path = GPU;
 			sourceTree = "<group>";
 		};
+		DDE6B61A279D0AE900D74122 /* Joypad */ = {
+			isa = PBXGroup;
+			children = (
+				DDE6B61B279D0B0700D74122 /* JoypadButton.swift */,
+				DDE6B61D279D0B8000D74122 /* Joypad.swift */,
+			);
+			path = Joypad;
+			sourceTree = "<group>";
+		};
 		DDF24EBE274FCA8C007929DA = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +278,7 @@
 		DDF24EFA274FCAD6007929DA /* GameBoy */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B61A279D0AE900D74122 /* Joypad */,
 				DD25D092275FBD3E005E45D4 /* GPU */,
 				DD25D089275F96E6005E45D4 /* Cartridge */,
 				DD1094BC275C953300A5AAEB /* CPU */,
@@ -268,6 +287,7 @@
 				DD25D08E275FA01C005E45D4 /* BootRom.swift */,
 				DD25D0952760E7D7005E45D4 /* BaseRegister.swift */,
 				DD25D09B27623B34005E45D4 /* RAM.swift */,
+				DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -362,6 +382,7 @@
 				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
 				DDE6B6092799AE0000D74122 /* 175-sprite-parallax-starfield.gb in Resources */,
 				DDE6B5F92794150000D74122 /* 03-op sp,hl.gb in Resources */,
+				DDE6B6192799C9A700D74122 /* Pokemon Red (UE) [S][!].gb in Resources */,
 				DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */,
 				DDE6B6172799B81A00D74122 /* Doraemon 2 (J).gb in Resources */,
 				DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */,
@@ -405,12 +426,14 @@
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
+				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,
+				DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
@@ -421,6 +444,7 @@
 				DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */,
 				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,
 				DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */,
+				DDE6B61C279D0B0700D74122 /* JoypadButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

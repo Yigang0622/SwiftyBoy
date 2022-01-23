@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AppKit
 
 enum LCDCTileMapSelect {
     case map0

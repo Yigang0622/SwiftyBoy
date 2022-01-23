@@ -62,7 +62,6 @@ class Joypad {
     
     func releaseButton(type: JoypadButtonType) {
         let button = getButton(type: type)
-        print("remove button")
         self.pressedButtons.remove(button)
     }    
     

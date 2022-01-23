@@ -16,7 +16,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
                
-        let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * 2, height: 256 * 2))
+        let scale = 1.5
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * scale, height: 256 * scale))
         view.addSubview(imageView)
         
         mb.gpu.onFrameUpdateV2 = { pixels in

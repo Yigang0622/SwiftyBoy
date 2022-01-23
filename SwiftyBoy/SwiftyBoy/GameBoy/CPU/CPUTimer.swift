@@ -33,7 +33,6 @@ class CPUTimer {
         let divider = [1024, 16, 64, 256][self.tac & 0b11]
         
         if self.timaCounter >= divider {
-//            print("divider check")
             self.timaCounter -= divider
             self.tima += 1
             

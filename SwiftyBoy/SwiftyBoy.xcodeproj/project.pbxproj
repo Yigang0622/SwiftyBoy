@@ -58,6 +58,8 @@
 		DDE6B629279D461200D74122 /* main.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B628279D461200D74122 /* main.gb */; };
 		DDE6B62B279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */; };
 		DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */; };
+		DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62E279D904F00D74122 /* MBC3.swift */; };
+		DDE6B631279D994000D74122 /* Crayon Shin-Chan (J).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -131,6 +133,8 @@
 		DDE6B628279D461200D74122 /* main.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.gb; sourceTree = "<group>"; };
 		DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kirby's Dream Land (USA, Europe).gb"; sourceTree = "<group>"; };
 		DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInputMask.swift; sourceTree = "<group>"; };
+		DDE6B62E279D904F00D74122 /* MBC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC3.swift; sourceTree = "<group>"; };
+		DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Crayon Shin-Chan (J).gb"; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				DDE6B60E2799B64C00D74122 /* Legend of Zelda, The - Link's Awakening (G) [!].gb */,
 				DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */,
 				DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */,
+				DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */,
 				DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */,
 			);
 			path = Roms;
@@ -221,6 +226,7 @@
 				DDD84FD3276F171E00E475D3 /* MBC1.swift */,
 				DDD84FD7276F21D800E475D3 /* MBCBase.swift */,
 				DDD84FD9276F24F900E475D3 /* ROMOnly.swift */,
+				DDE6B62E279D904F00D74122 /* MBC3.swift */,
 			);
 			path = Cartridge;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */,
 				DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */,
 				DDE6B5F72794147E00D74122 /* 08-misc instrs.gb in Resources */,
+				DDE6B631279D994000D74122 /* Crayon Shin-Chan (J).gb in Resources */,
 				DDE6B5FB27941AE800D74122 /* 09-op r,r.gb in Resources */,
 				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
 				DDE6B6112799B69A00D74122 /* Pac-Man (U) (Namco).gb in Resources */,
@@ -452,6 +459,7 @@
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
+				DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,

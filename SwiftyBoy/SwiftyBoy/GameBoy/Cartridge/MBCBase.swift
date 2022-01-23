@@ -32,6 +32,8 @@ class MBCBase: Cartridge {
     var externalRamCount = 0
     var externalRomcount = 0
     
+    var rtcEnabled = false
+    
     override init(bytes: [UInt8], name: String, meta: CartridgeMeta) {
         super.init(bytes: bytes, name: name, meta: meta)
         // 16kb
@@ -54,7 +56,12 @@ class MBCBase: Cartridge {
                 return 0xFF
             }
             // RTC
-            return self.ramBanks[self.ramBankSelect % self.externalRamCount][address - 0xA0000]
+            if self.ramBankSelect >= 0x08 && self.ramBankSelect <= 0x0C {
+                return 0xFF
+            } else {
+                return self.ramBanks[self.ramBankSelect % self.externalRamCount][address - 0xA000]
+            }
+            
         } else {
             fatalError("MBCBase get mem \(address.asHexString)")
         }

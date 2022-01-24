@@ -24,6 +24,8 @@ class Motherboard {
     var bootRomEnable = true
     
     
+    let semaphore = DispatchSemaphore(value: 1)
+    
     init() {
         cpu.mb = self
         gpu.mb = self
@@ -37,15 +39,19 @@ class Motherboard {
     }
     
     func run() {
+        gpu.onPhaseChange = { phase in
+            if phase == .vBlank {
+                self.semaphore.wait()
+            }
+        }
 
+        timer.setEventHandler {
+            self.semaphore.signal()
+        }
+        // 1 / 60s = 17ms
+        timer.schedule(deadline: .now(), repeating: .milliseconds(17), leeway: .nanoseconds(1))
+        timer.resume()
         tick()
-//        timer.setEventHandler {
-//            self.tick()
-//        }
-//
-//        let repeatInterval = 1 / 4000000 * 1000000000 * 10
-//        timer.schedule(deadline: .now(), repeating: .nanoseconds(repeatInterval), leeway: .milliseconds(10))
-//        timer.resume()
     }
     
     func tick() {

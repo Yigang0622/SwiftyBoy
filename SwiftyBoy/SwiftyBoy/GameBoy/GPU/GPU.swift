@@ -25,6 +25,7 @@ class GPU {
     
     public var onFrameUpdate: (([[Int]]) -> Void)?
     public var onFrameUpdateV2: (([UInt32]) -> Void)?
+    public var onPhaseChange: ((GPUState) -> Void)?
     
     private static let FULL_FRAME_CYCLE = 70224
 //    private var LY = 0
@@ -33,7 +34,6 @@ class GPU {
     
     private var currentState: GPUState = .oamSearch
     private var nextState: GPUState = .oamSearch
-    private var frameCount = 0
     
     var statRegister = STATRegister(val: 0)
     var lcdcRegister = LCDCRegister(val: 0)
@@ -95,10 +95,9 @@ class GPU {
                 targetClock += (20 + 43 + 51) * 4
                 nextState = .vBlank
                 if ly == 144 {
-                    frameCount += 1
-//                    print("[GPU] frame done \(frameCount)")
                     self.draw()
                     mb.cpu.interruptFlagRegister.vblank = true
+                    onPhaseChange?(.vBlank)
                 }
                 increaseLY()
             }

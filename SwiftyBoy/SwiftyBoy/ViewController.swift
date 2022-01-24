@@ -12,15 +12,41 @@ class ViewController: UIViewController {
         
     let mb = Motherboard()
     
+    var fpsTimer: DispatchSourceTimer!
+    var queue: DispatchQueue!
+    var frameCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-               
+    
+        let fpsLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 100, height: 50))
+        fpsLabel.backgroundColor = .black
+        fpsLabel.textColor = .red
+        fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        self.view.addSubview(fpsLabel)
+        
+        queue = DispatchQueue(label: "fpsQueue")
+        fpsTimer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
+        
+        fpsTimer.setEventHandler {
+            let fps = self.frameCount
+            self.frameCount = 0
+            DispatchQueue.main.async {
+                fpsLabel.text = "\(fps)"
+            }
+            
+        }
+        
+        self.fpsTimer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
+        self.fpsTimer.resume()
+        
         let scale = 1.5
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * scale, height: 256 * scale))
         view.addSubview(imageView)
         
         mb.gpu.onFrameUpdateV2 = { pixels in
+            self.frameCount += 1
             
             DispatchQueue.main.async {
                 var pixels = pixels
@@ -61,6 +87,7 @@ class ViewController: UIViewController {
         
         DispatchQueue.global().async {
             self.mb.run()
+            
         }
         
         
@@ -76,9 +103,9 @@ class ViewController: UIViewController {
         }
         
         self.view.addSubview(keyInputMask)
-        
-        
     }
+    
+    
     
     // 16 * 16
     

@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         self.fpsTimer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
         self.fpsTimer.resume()
         
-        let scale = 1.5
+        let scale = 3
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * scale, height: 256 * scale))
         view.addSubview(imageView)
         
@@ -54,11 +54,10 @@ class ViewController: UIViewController {
                 let h = 256
                 //           var pixels = Array<UInt32>(repeating: 0xAAAAAAff, count: 100 * 100)
 
-                let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+                let rgbColorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
                 let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
                 let bitsPerComponent = 8
                 let bitsPerPixel = 32
-
 
                 let providerRef = CGDataProvider(data: NSData(bytes: &pixels, length: pixels.count * 4))
 

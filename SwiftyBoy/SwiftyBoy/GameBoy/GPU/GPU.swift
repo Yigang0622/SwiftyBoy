@@ -142,41 +142,21 @@ class GPU {
             let start = i * 16
             let end = start + 16
             let sub = Array(tileData[start ..< end])
-            let t = Tile(bytes: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
+            let t = Tile.from(with: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
+//            t.update(with: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
+            
+//            let t = Tile(bytes: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
             tiles.append(t)
         }
         
 
-//        var tileMaps = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-//
-//        for i in 0..<16 {
-//            for j in 0..<16 {
-//                let tileId = i * 16 + j
-//                for tileY in 0...7 {
-//                    for tileX in 0...7 {
-//                        tileMaps[i*16+tileY][j*16+tileX] = tiles[tileId].pixels[tileY][tileX]
-//                    }
-//                }
-//
-//            }
-//        }
-//
-//        var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
-//
-//        for i in 0..<32 {
-//            for j in 0..<32 {
-//                let idx = i * 32 + j
-//                let tileId = Int(backgound[idx])
-////                print(tileId, terminator: "\t")
-//                for tileY in 0...7 {
-//                    for tileX in 0...7 {
-//                        backgroundPixels[i*8+tileY][j*8+tileX] = tiles[tileId].pixels[tileY][tileX]
-//                    }
-//                }
-//
-//            }
-//        }
-//        onFrameUpdate?(backgroundPixels)
+        let sprites: [Sprite] = Array(0..<40).map { i in
+            return Sprite.from(byte0: oam[i * 4 + 0],
+                               byte1: oam[i * 4 + 1],
+                               byte2: oam[i * 4 + 2],
+                               byte3: oam[i * 4 + 3])
+        }
+                            
         
         let backgroundWidth = 256
         let backgroundHeight = 256
@@ -191,24 +171,61 @@ class GPU {
                 
                 for tileY in 0...7 {
                     for tileX in 0...7 {
-                        let colorIdx = tiles[tileId].pixels[tileY][tileX]
+                        let colorIdx = tiles[tileId].getPixel(i: tileY, j: tileX)
                         let dataIdx = (i * 8 + tileY) * 256 + j * 8 + tileX
                         let color = self.backgroundPalette.getColor(i: colorIdx)
-                        if color == 0 {
-                            backgroundData[dataIdx] = 0xFFFFFFFF
-                        } else if color == 1 {
-                            backgroundData[dataIdx] = 0xAAAAAAFF
-                        } else if color == 2 {
-                            backgroundData[dataIdx] = 0x444444FF
-                        } else if color == 3 {
-                            backgroundData[dataIdx] = 0x000000FF
-                        }
+                        backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
                     }
                 }                
             }
         }
+    
+        // draw sprites
+        sprites.forEach { sprite in
+            if sprite.visibleOnScreen() {
+                let x = sprite.posX
+                let y = sprite.posY
+                let tile = tiles[sprite.patternNumber]
+                            
+                for tileY in 0...7 {
+                    for tileX in 0...7 {
+                        let tY = sprite.yFlip ? 7 - tileY : tileY
+                        let tX = sprite.xFlip ? 7 - tileX : tileX
+                        let palatteIndex = tile.getPixel(i: tY, j: tX)
+                        let dataIdx = (y - 16 + tileY) * 256 + x - 8 + tileX
+                        if palatteIndex != 0 {
+                            let color = self.obj0Palatte.getColor(i: palatteIndex)
+                            backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                        }
+                        
+                        
+                    }
+                }
+                
+                if lcdcRegister.spriteSize == .size1 {
+                    let x = sprite.posX
+                    let y = sprite.posY + 8
+                    let tile = tiles[sprite.patternNumber + 1]
+                                
+                    for tileY in 0...7 {
+                        for tileX in 0...7 {
+                            let tY = sprite.yFlip ? 7 - tileY : tileY
+                            let tX = sprite.xFlip ? 7 - tileX : tileX
+                            let palatteIndex = tile.getPixel(i: tY, j: tX)
+                            let dataIdx = (y - 16 + tileY) * 256 + x - 8 + tileX
+                            if palatteIndex != 0 {
+                                let color = self.obj0Palatte.getColor(i: palatteIndex)
+                                backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
         onFrameUpdateV2?(backgroundData)
         
     }
+    
     
 }

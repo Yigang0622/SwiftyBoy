@@ -60,6 +60,8 @@
 		DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */; };
 		DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62E279D904F00D74122 /* MBC3.swift */; };
 		DDE6B631279D994000D74122 /* Crayon Shin-Chan (J).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */; };
+		DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63227A03B0B00D74122 /* Sprite.swift */; };
+		DDE6B63527A04F8800D74122 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63427A04F8800D74122 /* Palette.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
@@ -135,6 +137,8 @@
 		DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInputMask.swift; sourceTree = "<group>"; };
 		DDE6B62E279D904F00D74122 /* MBC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC3.swift; sourceTree = "<group>"; };
 		DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Crayon Shin-Chan (J).gb"; sourceTree = "<group>"; };
+		DDE6B63227A03B0B00D74122 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
+		DDE6B63427A04F8800D74122 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				DD25D093275FBD53005E45D4 /* LCDCRegister.swift */,
 				DD25D0972760F5F1005E45D4 /* STATRegister.swift */,
 				DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */,
+				DDE6B63227A03B0B00D74122 /* Sprite.swift */,
+				DDE6B63427A04F8800D74122 /* Palette.swift */,
 			);
 			path = GPU;
 			sourceTree = "<group>";
@@ -462,9 +468,11 @@
 				DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
+				DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
+				DDE6B63527A04F8800D74122 /* Palette.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,

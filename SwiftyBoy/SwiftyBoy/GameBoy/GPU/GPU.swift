@@ -117,24 +117,25 @@ class GPU {
     
     func draw() {
         let offset = 0x8000
-        var backgound = [Int]()
-        var tileData = [Int]()
+        var backgound = Array(repeating: 0, count: 1024)
+        var window = Array(repeating: 0, count: 1024)
+        
         var tiles = [Tile]()
+        
         if lcdcRegister.backgroundTileMapSelect == .map0 {
             backgound = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
         } else if lcdcRegister.backgroundTileMapSelect == .map1 {
             backgound = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
         }
         
-        
-        if lcdcRegister.tileDataSelect == .tile0 {
-            tileData = Array(vram[(0x8800 - offset)...(0x97FF - offset)])
-        } else if lcdcRegister.tileDataSelect == .tile1 {
-            tileData = Array(vram[(0x8000 - offset)...(0x8FFF - offset)])
+        if lcdcRegister.windowTileMapSelect == .map0 {
+            window = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
+        } else if lcdcRegister.windowTileMapSelect == .map1 {
+            window = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
         }
         
-        // todo debug
-        tileData = Array(vram[(0x8000 - offset)...(0x97FF - offset)])
+        
+        let tileData = Array(vram[(0x8000 - offset)...(0x97FF - offset)])
         //todo figure out why 0xFF + 1
         let tileOffset = lcdcRegister.tileDataSelect == .tile0 ? 0xFF + 1 : 0
         
@@ -142,14 +143,10 @@ class GPU {
             let start = i * 16
             let end = start + 16
             let sub = Array(tileData[start ..< end])
-            let t = Tile.from(with: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
-//            t.update(with: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
-            
-//            let t = Tile(bytes: sub, mode: lcdcRegister.tileDataSelect == .tile1 ? 0 : 1 )
+            let t = Tile.from(with: sub)
             tiles.append(t)
         }
         
-
         let sprites: [Sprite] = Array(0..<40).map { i in
             return Sprite.from(byte0: oam[i * 4 + 0],
                                byte1: oam[i * 4 + 1],

@@ -29,7 +29,7 @@ struct Sprite {
     }
     
     func visibleOnScreen() -> Bool {
-        return posY >= 16 && posX >= 8
+        return (posY >= 16 && posX >= 8) && (posY <= 160 && posX <= 144)
     }
     
 }

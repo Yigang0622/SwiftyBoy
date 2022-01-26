@@ -25,6 +25,7 @@ class GPU {
     
     public var onFrameUpdate: (([[Int]]) -> Void)?
     public var onFrameUpdateV2: (([UInt32]) -> Void)?
+    public var onViewPortUpdate: (([UInt32]) -> Void)?
     public var onPhaseChange: ((GPUState) -> Void)?
     
     private static let FULL_FRAME_CYCLE = 70224
@@ -177,6 +178,31 @@ class GPU {
             }
         }
     
+      
+        
+        
+        let viewPortWidth = 160
+        let viewPortHeight = 144
+        
+        var viewPortData = Array<UInt32>(repeating: 0x000000FF, count: viewPortWidth * viewPortHeight)
+        
+        for i in 0 ..< 144 {
+            for j in 0 ..< 160 {
+                
+                var iNew = i + scy
+                if iNew > 255 {
+                    iNew -= 255
+                }
+                
+                var jNew = j + scx
+                if jNew > 255 {
+                    jNew -= 255
+                }
+                
+                let dataIdx = iNew * 256 + jNew
+                viewPortData[i * 160 + j] = backgroundData[dataIdx]
+            }
+        }
         // draw sprites
         sprites.forEach { sprite in
             if sprite.visibleOnScreen() {
@@ -189,10 +215,12 @@ class GPU {
                         let tY = sprite.yFlip ? 7 - tileY : tileY
                         let tX = sprite.xFlip ? 7 - tileX : tileX
                         let palatteIndex = tile.getPixel(i: tY, j: tX)
-                        let dataIdx = (y - 16 + tileY) * 256 + x - 8 + tileX
+                        let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
                         if palatteIndex != 0 {
                             let color = self.obj0Palatte.getColor(i: palatteIndex)
-                            backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                            if dataIdx < viewPortData.count {
+                                viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                            }
                         }
                         
                         
@@ -203,24 +231,28 @@ class GPU {
                     let x = sprite.posX
                     let y = sprite.posY + 8
                     let tile = tiles[sprite.patternNumber + 1]
-                                
                     for tileY in 0...7 {
                         for tileX in 0...7 {
                             let tY = sprite.yFlip ? 7 - tileY : tileY
                             let tX = sprite.xFlip ? 7 - tileX : tileX
                             let palatteIndex = tile.getPixel(i: tY, j: tX)
-                            let dataIdx = (y - 16 + tileY) * 256 + x - 8 + tileX
+                            let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
                             if palatteIndex != 0 {
                                 let color = self.obj0Palatte.getColor(i: palatteIndex)
-                                backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                                if dataIdx < viewPortData.count {
+                                    viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                                }
                             }
                         }
                     }
                 }
+                
             }
         }
+        
     
         onFrameUpdateV2?(backgroundData)
+        onViewPortUpdate?(viewPortData)
         
     }
     

@@ -41,9 +41,48 @@ class ViewController: UIViewController {
         self.fpsTimer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
         self.fpsTimer.resume()
         
-        let scale = 3
+        let scale = 1
         let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * scale, height: 256 * scale))
         view.addSubview(imageView)
+        
+        let viewPortImageView = UIImageView(frame: CGRect(x: 10, y: 400, width: 160 * 3, height: 144 * 3))
+        view.addSubview(viewPortImageView)
+        
+        mb.gpu.onViewPortUpdate = { pixels in
+            
+            DispatchQueue.main.async {
+                var pixels = pixels
+                let w = 160
+                let h = 144
+                let rgbColorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
+                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
+                let bitsPerComponent = 8
+                let bitsPerPixel = 32
+
+                let providerRef = CGDataProvider(data: NSData(bytes: &pixels, length: pixels.count * 4))
+
+                let cgim = CGImage(
+                   width: w,
+                   height: h,
+                   bitsPerComponent: bitsPerComponent,
+                   bitsPerPixel: bitsPerPixel,
+                   bytesPerRow: w * 4,
+                   space: rgbColorSpace,
+                   bitmapInfo: bitmapInfo,
+                   provider: providerRef!,
+                   decode: nil,
+                   shouldInterpolate: true,
+                   intent: .defaultIntent
+                   )
+                
+                if let cgImage = cgim {
+                    viewPortImageView.image =  UIImage(cgImage: cgImage, scale: 1, orientation: .up)
+                }
+                
+            }
+            
+        }
+        
         
         mb.gpu.onFrameUpdateV2 = { pixels in
             self.frameCount += 1

@@ -75,22 +75,22 @@ class Motherboard {
             return cart.getMem(address: address)
         } else if address >= 0x8000 && address < 0xA000 {
             // 8kb video ram
-            return Int(gpu.vram[address - 0x8000])
+            return gpu.vram[address - 0x8000]
         } else if address >= 0xA000 && address < 0xC000 {
             // 8kb switchable RAM bank
             return cart.getMem(address: address)
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
-            return Int(ram.internalRam0[address - 0xC000])
+            return ram.internalRam0[address - 0xC000]
         } else if address >= 0xE000 && address < 0xFE00 {
             // Echo of 8kB Internal RAM
             return self.getMem(address: address - 0x2000)
         } else if address >= 0xFE00 && address < 0xFEA0 {
             // OAM
-            return Int(gpu.oam[address - 0xFE00])
+            return gpu.oam[address - 0xFE00]
         } else if address >= 0xFEA0 && address < 0xFF00 {
             // Empty but unusable for I/O
-            return Int(ram.nonIoInternalRam0[address - 0xFEA0])
+            return ram.nonIoInternalRam0[address - 0xFEA0]
         } else if address >= 0xFF00 && address < 0xFF4C {
             // I/O ports
             if address == 0xFF00 {
@@ -155,10 +155,10 @@ class Motherboard {
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
             // non io internal ram
-            return Int(ram.nonIoInternalRam1[address - 0xFF4C])
+            return ram.nonIoInternalRam1[address - 0xFF4C]
         } else if address >= 0xFF80 && address < 0xFFFF {
             // internal ram 1
-            return Int(ram.internalRam1[address - 0xFF80])
+            return ram.internalRam1[address - 0xFF80]
         } else if address == 0xFFFF {
             // IE
             return cpu.interruptEnableRegister.getVal()
@@ -170,39 +170,39 @@ class Motherboard {
     var serialOutput: String = ""
 //
     public func setMem(address: Int, val: Int) {
-        let v = val & 0xFF
+        
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
-            cart.setMem(address: address, val: v)
+            cart.setMem(address: address, val: (val & 0xFF))
         } else if address >= 0x4000 && address < 0x8000 {
             // 16k switchable ROM bank
-            cart.setMem(address: address, val: v)
+            cart.setMem(address: address, val: (val & 0xFF))
         } else if address >= 0x8000 && address < 0xA000 {
             // 8kb video ram
-            gpu.vram[address - 0x8000] = v
+            gpu.vram[address - 0x8000] = (val & 0xFF)
         } else if address >= 0xA000 && address < 0xC000 {
             // 8kb switchable RAM bank
-            cart.setMem(address: address, val: v)
+            cart.setMem(address: address, val: (val & 0xFF))
         } else if address >= 0xC000 && address < 0xE000 {
             // 8kb internal ram 0
-            ram.internalRam0[address - 0xC000] = v
+            ram.internalRam0[address - 0xC000] = (val & 0xFF)
         } else if address >= 0xE000 && address < 0xFE00 {
             // Echo of 8kB Internal RAM
             self.setMem(address: address - 0x2000, val: val)
         } else if address >= 0xFE00 && address < 0xFEA0 {
             // OAM
-            gpu.oam[address - 0xFE00] = v
+            gpu.oam[address - 0xFE00] = (val & 0xFF)
         } else if address >= 0xFEA0 && address < 0xFF00 {
             // Empty but unusable for I/O
-            ram.nonIoInternalRam0[address - 0xFEA0] = v
+            ram.nonIoInternalRam0[address - 0xFEA0] = (val & 0xFF)
         } else if address >= 0xFF00 && address < 0xFF4C {
             // Empty but unusable for I/O
             if address == 0xFF00 {
                 // joypad
-                joypad.setMem(address: address, val: v)
+                joypad.setMem(address: address, val: (val & 0xFF))
             } else if address == 0xFF01 {
                 // todo serial
-                self.ram.ioPortsRAM[address - 0xFF00] = v
+                self.ram.ioPortsRAM[address - 0xFF00] = (val & 0xFF)
             } else if address == 0xFF02 {
                 // serial
                 if val == 0x81 {
@@ -211,30 +211,30 @@ class Motherboard {
                     print(serialOutput)
 //                    cpu.logs.append(serialOutput)
                 }
-                self.ram.ioPortsRAM[address - 0xFF00] = v
+                self.ram.ioPortsRAM[address - 0xFF00] = (val & 0xFF)
             } else if address == 0xFF04 {
                 // timer DIV
                 self.cpuTimer.reset()
             } else if address == 0xFF05 {
                 // timer TIMA
-                self.cpuTimer.tima = v
+                self.cpuTimer.tima = (val & 0xFF)
             } else if address == 0xFF06 {
                 // timer TMA
-                self.cpuTimer.tma = v
+                self.cpuTimer.tma = (val & 0xFF)
             } else if address == 0xFF07 {
                 // timer TAC
-                self.cpuTimer.tac = v
+                self.cpuTimer.tac = (val & 0xFF)
             } else if address == 0xFF0F {
                 // CPU interruptes flag
-                cpu.interruptFlagRegister.setVal(val: v)
+                cpu.interruptFlagRegister.setVal(val: (val & 0xFF))
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
             } else if address == 0xFF40 {
                 // lcdc
-                gpu.lcdcRegister.setVal(val: Int(v))
+                gpu.lcdcRegister.setVal(val: (val & 0xFF))
             } else if address == 0xFF41 {
                 // STAT
-                gpu.statRegister.setVal(val: Int(v))
+                gpu.statRegister.setVal(val: (val & 0xFF))
             } else if address == 0xFF42 {
                 // SCY
                 gpu.scy = val
@@ -249,16 +249,16 @@ class Motherboard {
                 gpu.lyc = val
             } else if address == 0xFF46 {
                 // DMA
-                dma(src: v)
+                dma(src: (val & 0xFF))
             } else if address == 0xFF47 {
                 // BGP
-                gpu.backgroundPalette.setVal(val: Int(v))
+                gpu.backgroundPalette.setVal(val: (val & 0xFF))
             } else if address == 0xFF48 {
                 // OBP0
-                gpu.obj0Palatte.setVal(val: Int(v))
+                gpu.obj0Palatte.setVal(val: (val & 0xFF))
             } else if address == 0xFF49 {
                 // OBP1
-                gpu.obj1Palatte.setVal(val: Int(v))
+                gpu.obj1Palatte.setVal(val: (val & 0xFF))
             } else if address == 0xFF4A {
                 // WY
                 gpu.wy = val
@@ -267,7 +267,7 @@ class Motherboard {
                 gpu.wx = val
             } else {
                 // io ports
-                ram.ioPortsRAM[address - 0xFF00] = v
+                ram.ioPortsRAM[address - 0xFF00] = (val & 0xFF)
             }
         } else if address >= 0xFF4C && address < 0xFF80 {
             if (address == 0xFF50 && val == 1 && self.bootRomEnable) {
@@ -276,13 +276,13 @@ class Motherboard {
                 print("boot end")
             }
             // non io internal ram
-            ram.nonIoInternalRam1[address - 0xFF4C] = v
+            ram.nonIoInternalRam1[address - 0xFF4C] = (val & 0xFF)
         } else if address >= 0xFF80 && address < 0xFFFF {
             // internal ram 1
-            ram.internalRam1[address - 0xFF80] = v
+            ram.internalRam1[address - 0xFF80] = (val & 0xFF)
         } else if address == 0xFFFF {
             // IE
-            cpu.interruptEnableRegister.setVal(val: v)
+            cpu.interruptEnableRegister.setVal(val: (val & 0xFF))
         } else {
             fatalError("[Motherboard] set mem address \(address.asHexString) error")
         }

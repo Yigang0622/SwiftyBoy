@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         view.addSubview(viewPortImageView)
         
         mb.gpu.onViewPortUpdate = { pixels in
-            
+            self.frameCount += 1
             DispatchQueue.main.async {
                 var pixels = pixels
                 let w = 160
@@ -85,7 +85,6 @@ class ViewController: UIViewController {
         
         
         mb.gpu.onFrameUpdateV2 = { pixels in
-            self.frameCount += 1
             
             DispatchQueue.main.async {
                 var pixels = pixels

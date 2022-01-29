@@ -14,7 +14,7 @@ enum JoypadButtonType {
 class Joypad {
     
     private weak var interruptManager: InterruptManager!
-    weak var mb: Motherboard!
+    var mb: Motherboard!
     
     private var p1 = 0
     private var pressedButtons = Set<JoypadButton>()

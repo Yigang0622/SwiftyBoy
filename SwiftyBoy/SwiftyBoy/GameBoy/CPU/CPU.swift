@@ -45,7 +45,7 @@ class CPU {
     let reg8Bit = Set<RegisterType>([.a, .f, .b, .c, .d, .e, .h, .l])
     let reg16Bit = Set<RegisterType>([.af, .bc, .de, .hl, .sp])
     
-    weak var mb: Motherboard!;
+    var mb: Motherboard!;
     
     private var _a: Int = 0x00
     private var _f: Int = 0x00

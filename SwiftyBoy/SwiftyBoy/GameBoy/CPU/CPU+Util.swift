@@ -19,7 +19,7 @@ extension CPU {
     }
     
     func get8BitImmediate() -> Int {
-        let log = "get8BitImmediate \(mb.getMem(address: pc + 1).asHexString)"
+//        let log = "get8BitImmediate \(mb.getMem(address: pc + 1).asHexString)"
 //        logs.append(log)
 //        print(log)
         return mb.getMem(address: pc + 1)

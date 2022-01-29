@@ -27,13 +27,13 @@ extension CPU {
                 pc = 0x40
                 interruptFlagRegister.vblank = false
             } else if interruptFlagRegister.lcdc && interruptEnableRegister.lcdc {
-                print("lcdc")
+//                print("lcdc")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x48
                 interruptFlagRegister.lcdc = false
             } else if interruptFlagRegister.timerOverflow && interruptEnableRegister.timerOverflow {
-                print("overflow")
+//                print("overflow")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x50
@@ -44,7 +44,7 @@ extension CPU {
                 pc = 0x58
                 interruptFlagRegister.serial = false
             } else if interruptFlagRegister.highToLow && interruptEnableRegister.highToLow {
-                print("high to low")
+//                print("high to low")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x60

@@ -1522,8 +1522,7 @@ extension CPU {
     }
     // 0xf0 LDH A,(a8)
     func LDH_F0() -> Int {
-        let v = get8BitImmediate()
-        _ld(to: .a, address: 0xFF00 + v)
+        _ld(to: .a, address: 0xFF00 + get8BitImmediate())
         pc += 2
         return 12
     }

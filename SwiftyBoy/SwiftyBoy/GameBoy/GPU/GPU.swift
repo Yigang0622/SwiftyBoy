@@ -18,7 +18,7 @@ class GPU {
     
     var backgroundPixels = Array(repeating: Array(repeating: 0, count: 256), count: 256)
     
-    weak var mb: Motherboard!
+    var mb: Motherboard!
     
     var vram = Array<Int>(repeating: 0x00, count: 8 * 1024)
     var oam = Array<Int>(repeating: 0x00, count: 0xA0)
@@ -49,7 +49,14 @@ class GPU {
     var wx = 0x00
     var lyMax = 153
     
+    var renderer:Renderer!
+    
     func tick(numOfCycles: Int) {
+        
+        if renderer == nil {
+            renderer = Renderer(gpu: self)
+        }
+        
         clock += numOfCycles
                 
         if targetClock > GPU.FULL_FRAME_CYCLE {
@@ -114,70 +121,74 @@ class GPU {
         if ly == lyc {
             mb.cpu.interruptFlagRegister.lcdc = true
         }
+        if ly >= 0 && ly < 144 {
+//            renderer.drawLine(line: ly)
+        }
+        
     }
     
     func draw() {
-        let offset = 0x8000
-        var backgound = Array(repeating: 0, count: 1024)
-        var window = Array(repeating: 0, count: 1024)
-        
-        var tiles = [Tile]()
-        
-        if lcdcRegister.backgroundTileMapSelect == .map0 {
-            backgound = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
-        } else if lcdcRegister.backgroundTileMapSelect == .map1 {
-            backgound = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
-        }
-        
-        if lcdcRegister.windowTileMapSelect == .map0 {
-            window = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
-        } else if lcdcRegister.windowTileMapSelect == .map1 {
-            window = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
-        }
-        
-        
-        let tileData = Array(vram[(0x8000 - offset)...(0x97FF - offset)])
-        //todo figure out why 0xFF + 1
-        let tileOffset = lcdcRegister.tileDataSelect == .tile0 ? 0xFF + 1 : 0
-        
-        for i in 0...255 + 128 {
-            let start = i * 16
-            let end = start + 16
-            let sub = Array(tileData[start ..< end])
-            let t = Tile.from(with: sub)
-            tiles.append(t)
-        }
-        
-        let sprites: [Sprite] = Array(0..<40).map { i in
-            return Sprite.from(byte0: oam[i * 4 + 0],
-                               byte1: oam[i * 4 + 1],
-                               byte2: oam[i * 4 + 2],
-                               byte3: oam[i * 4 + 3])
-        }
-                            
-        
-        let backgroundWidth = 256
-        let backgroundHeight = 256
-        var backgroundData = Array<UInt32>(repeating: 0x000000FF, count: backgroundWidth * backgroundHeight)
-        for i in 0..<32 {
-            for j in 0..<32 {
-                let idx = i * 32 + j
-                var tileId = Int(backgound[idx])
-                if tileId <= 0x7F {
-                    tileId += tileOffset
-                }
-                
-                for tileY in 0...7 {
-                    for tileX in 0...7 {
-                        let colorIdx = tiles[tileId].getPixel(i: tileY, j: tileX)
-                        let dataIdx = (i * 8 + tileY) * 256 + j * 8 + tileX
-                        let color = self.backgroundPalette.getColor(i: colorIdx)
-                        backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
-                    }
-                }                
-            }
-        }
-    
+//        let offset = 0x8000
+//        var backgound = Array(repeating: 0, count: 1024)
+//        var window = Array(repeating: 0, count: 1024)
+//
+//        var tiles = [Tile]()
+//
+//        if lcdcRegister.backgroundTileMapSelect == .map0 {
+//            backgound = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
+//        } else if lcdcRegister.backgroundTileMapSelect == .map1 {
+//            backgound = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
+//        }
+//
+//        if lcdcRegister.windowTileMapSelect == .map0 {
+//            window = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
+//        } else if lcdcRegister.windowTileMapSelect == .map1 {
+//            window = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
+//        }
+//
+//
+//        let tileData = Array(vram[(0x8000 - offset)...(0x97FF - offset)])
+//        //todo figure out why 0xFF + 1
+//        let tileOffset = lcdcRegister.tileDataSelect == .tile0 ? 0xFF + 1 : 0
+//
+//        for i in 0...255 + 128 {
+//            let start = i * 16
+//            let end = start + 16
+//            let sub = Array(tileData[start ..< end])
+//            let t = Tile.from(with: sub)
+//            tiles.append(t)
+//        }
+//
+//        let sprites: [Sprite] = Array(0..<40).map { i in
+//            return Sprite.from(byte0: oam[i * 4 + 0],
+//                               byte1: oam[i * 4 + 1],
+//                               byte2: oam[i * 4 + 2],
+//                               byte3: oam[i * 4 + 3])
+//        }
+//
+//
+//        let backgroundWidth = 256
+//        let backgroundHeight = 256
+//        var backgroundData = Array<UInt32>(repeating: 0x000000FF, count: backgroundWidth * backgroundHeight)
+//        for i in 0..<32 {
+//            for j in 0..<32 {
+//                let idx = i * 32 + j
+//                var tileId = Int(backgound[idx])
+//                if tileId <= 0x7F {
+//                    tileId += tileOffset
+//                }
+//
+//                for tileY in 0...7 {
+//                    for tileX in 0...7 {
+//                        let colorIdx = tiles[tileId].getPixel(i: tileY, j: tileX)
+//                        let dataIdx = (i * 8 + tileY) * 256 + j * 8 + tileX
+//                        let color = self.backgroundPalette.getColor(i: colorIdx)
+//                        backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+//                    }
+//                }
+//            }
+//        }
+//
       
         
         
@@ -186,72 +197,74 @@ class GPU {
         
         var viewPortData = Array<UInt32>(repeating: 0x000000FF, count: viewPortWidth * viewPortHeight)
         
-        for i in 0 ..< 144 {
-            for j in 0 ..< 160 {
-                
-                var iNew = i + scy
-                if iNew > 255 {
-                    iNew -= 255
-                }
-                
-                var jNew = j + scx
-                if jNew > 255 {
-                    jNew -= 255
-                }
-                
-                let dataIdx = iNew * 256 + jNew
-                viewPortData[i * 160 + j] = backgroundData[dataIdx]
-            }
-        }
-        // draw sprites
-        sprites.forEach { sprite in
-            if sprite.visibleOnScreen() {
-                let x = sprite.posX
-                let y = sprite.posY
-                let tile = tiles[sprite.patternNumber]
-                            
-                for tileY in 0...7 {
-                    for tileX in 0...7 {
-                        let tY = sprite.yFlip ? 7 - tileY : tileY
-                        let tX = sprite.xFlip ? 7 - tileX : tileX
-                        let palatteIndex = tile.getPixel(i: tY, j: tX)
-                        let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
-                        if palatteIndex != 0 {
-                            let color = self.obj0Palatte.getColor(i: palatteIndex)
-                            if dataIdx < viewPortData.count {
-                                viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
-                            }
-                        }
-                        
-                        
-                    }
-                }
-                
-                if lcdcRegister.spriteSize == .size1 {
-                    let x = sprite.posX
-                    let y = sprite.posY + 8
-                    let tile = tiles[sprite.patternNumber + 1]
-                    for tileY in 0...7 {
-                        for tileX in 0...7 {
-                            let tY = sprite.yFlip ? 7 - tileY : tileY
-                            let tX = sprite.xFlip ? 7 - tileX : tileX
-                            let palatteIndex = tile.getPixel(i: tY, j: tX)
-                            let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
-                            if palatteIndex != 0 {
-                                let color = self.obj0Palatte.getColor(i: palatteIndex)
-                                if dataIdx < viewPortData.count {
-                                    viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
-                                }
-                            }
-                        }
-                    }
-                }
-                
-            }
-        }
+//        for i in 0 ..< 144 {
+//            for j in 0 ..< 160 {
+//
+//                var iNew = i + scy
+//                if iNew > 255 {
+//                    iNew -= 255
+//                }
+//
+//                var jNew = j + scx
+//                if jNew > 255 {
+//                    jNew -= 255
+//                }
+//
+//                let dataIdx = iNew * 256 + jNew
+//                viewPortData[i * 160 + j] = backgroundData[dataIdx]
+//            }
+//        }
         
+        viewPortData = renderer.frameData.data
+        // draw sprites
+//        sprites.forEach { sprite in
+//            if sprite.visibleOnScreen() {
+//                let x = sprite.posX
+//                let y = sprite.posY
+//                let tile = tiles[sprite.patternNumber]
+//
+//                for tileY in 0...7 {
+//                    for tileX in 0...7 {
+//                        let tY = sprite.yFlip ? 7 - tileY : tileY
+//                        let tX = sprite.xFlip ? 7 - tileX : tileX
+//                        let palatteIndex = tile.getPixel(i: tY, j: tX)
+//                        let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
+//                        if palatteIndex != 0 {
+//                            let color = self.obj0Palatte.getColor(i: palatteIndex)
+//                            if dataIdx < viewPortData.count {
+//                                viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+//                            }
+//                        }
+//
+//
+//                    }
+//                }
+//
+//                if lcdcRegister.spriteSize == .size1 {
+//                    let x = sprite.posX
+//                    let y = sprite.posY + 8
+//                    let tile = tiles[sprite.patternNumber + 1]
+//                    for tileY in 0...7 {
+//                        for tileX in 0...7 {
+//                            let tY = sprite.yFlip ? 7 - tileY : tileY
+//                            let tX = sprite.xFlip ? 7 - tileX : tileX
+//                            let palatteIndex = tile.getPixel(i: tY, j: tX)
+//                            let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
+//                            if palatteIndex != 0 {
+//                                let color = self.obj0Palatte.getColor(i: palatteIndex)
+//                                if dataIdx < viewPortData.count {
+//                                    viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
+//
     
-        onFrameUpdateV2?(backgroundData)
+//        onFrameUpdateV2?(backgroundData)
         onViewPortUpdate?(viewPortData)
         
     }

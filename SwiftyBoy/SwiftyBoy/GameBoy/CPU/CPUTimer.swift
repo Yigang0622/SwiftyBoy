@@ -9,7 +9,7 @@ import Foundation
 
 class CPUTimer {
     
-    weak var mb:Motherboard!
+    var mb:Motherboard!
     var div = 0
     var tima = 0
     var tma = 0

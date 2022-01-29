@@ -122,7 +122,7 @@ class GPU {
             mb.cpu.interruptFlagRegister.lcdc = true
         }
         if ly >= 0 && ly < 144 {
-//            renderer.drawLine(line: ly)
+            renderer.drawLine(line: ly)
         }
         
     }

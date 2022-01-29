@@ -9,13 +9,13 @@ import Foundation
 
 struct Sprite {
     
-    var posY: Int
-    var posX: Int
-    var patternNumber: Int
-    var priority: Bool
-    var yFlip: Bool
-    var xFlip: Bool
-    var palette: Int
+    var posY: Int = 0
+    var posX: Int = 0
+    var patternNumber: Int = 0
+    var priority: Bool = false
+    var yFlip: Bool = false
+    var xFlip: Bool = false
+    var palette: Int = 0
     
     static func from(byte0: Int, byte1: Int, byte2: Int, byte3: Int) -> Sprite{
         return Sprite(posY: byte0,
@@ -29,7 +29,7 @@ struct Sprite {
     }
     
     func visibleOnScreen() -> Bool {
-        return (posY >= 16 && posX >= 8) && (posY <= 160 && posX <= 144)
+        return (posY >= 16 && posX >= 8) && (posY < 144 + 16 && posX < 160)
     }
     
 }

@@ -67,13 +67,21 @@ class Renderer {
             updateTileCache()
         }
         
-        var vramOffset = 0
+        var backgroundVramOffset = 0
         if gpu.lcdcRegister.backgroundTileMapSelect == .map0 {
-            vramOffset = 0x9800 - Renderer.vramOffset
+            backgroundVramOffset = 0x9800 - Renderer.vramOffset
         } else if gpu.lcdcRegister.backgroundTileMapSelect == .map1 {
-            vramOffset = 0x9C00 - Renderer.vramOffset
+            backgroundVramOffset = 0x9C00 - Renderer.vramOffset
         }
-        let tileOffset = gpu.lcdcRegister.tileDataSelect == .tile0 ? 0xFF + 1 : 0
+        
+        var windowVramOffset = 0
+        if gpu.lcdcRegister.windowTileMapSelect == .map0 {
+            windowVramOffset = 0x9800 - Renderer.vramOffset
+        } else if gpu.lcdcRegister.windowTileMapSelect == .map1 {
+            windowVramOffset = 0x9C00 - Renderer.vramOffset
+        }
+                
+        let tileOffset = gpu.lcdcRegister.tileDataSelect == .tile0 ? 0xFF : 0
         
         for i in 0 ..< Renderer.frameWidth {
             var y = line + gpu.scy
@@ -84,9 +92,11 @@ class Renderer {
             let backgroundX:Int = x / 8
             let backgroundIdx = backgroundY * 32 + backgroundX
             
-            var tileId =  gpu.vram[vramOffset + backgroundIdx]
-            if tileId <= 0x7F {
-                tileId += tileOffset
+            var tileId =  gpu.vram[backgroundVramOffset + backgroundIdx]
+            if gpu.lcdcRegister.tileDataSelect == .tile0 {
+                // converted to signed and plus 256
+//                tileId ^= 0x80 + 0x80
+                tileId = (tileId ^ 0x80) + 128
             }
             
             let tileX = x % 8
@@ -96,17 +106,65 @@ class Renderer {
             
             let frameBufferIdx = line * Renderer.frameWidth + i
             _frameBuffer[frameBufferIdx] = Palette.getPaletteColor(colorCode: colorCode)
+                        
+            // should draw window
+            if gpu.lcdcRegister.windowEnable && line >= gpu.wy && i >= gpu.wx {
+                let y = line - gpu.wy
+                let x = i - gpu.wx
+                let windowY = y / 8
+                let windowX = x / 8
+                let windowIdx = windowY * 32 + windowX
+                var tileId =  gpu.vram[windowVramOffset + windowIdx]
+                if gpu.lcdcRegister.tileDataSelect == .tile0 {
+                    tileId = (tileId ^ 0x80) + 128
+                }
+                let tileX = x % 8
+                let tileY = y % 8
+                let tileData = tileCache[tileId].getPixel(i: tileY, j: tileX)
+                let colorCode = self.gpu.backgroundPalette.getColor(i: tileData)
+                
+                let frameBufferIdx = line * Renderer.frameWidth + i
+                _frameBuffer[frameBufferIdx] = Palette.getPaletteColor(colorCode: colorCode)
+//                _frameBuffer[frameBufferIdx] = 0x993300FF
+               
+            }
         }
         
         // draw sprite
         if line == 143 {
             updateSpriteCache()
-            spriteCache.forEach { sprite in
-                if sprite.visibleOnScreen() {
-                    let x = sprite.posX
-                    let y = sprite.posY
-                    let tile = tileCache[sprite.patternNumber]
+            drawSprites()
+        }
+        
+    }
     
+    
+    private func drawSprites() {
+        spriteCache.forEach { sprite in
+            if sprite.visibleOnScreen() {
+                let x = sprite.posX
+                let y = sprite.posY
+                let tile = tileCache[sprite.patternNumber]
+
+                for tileY in 0...7 {
+                    for tileX in 0...7 {
+                        let tY = sprite.yFlip ? 7 - tileY : tileY
+                        let tX = sprite.xFlip ? 7 - tileX : tileX
+                        let palatteIndex = tile.getPixel(i: tY, j: tX)
+                        let dataIdx = (y - 16 + tileY) * Renderer.frameWidth + (x - 8 + tileX)
+                        if palatteIndex != 0 {
+                            let color = gpu.obj0Palatte.getColor(i: palatteIndex)
+                            if dataIdx >= 0 && dataIdx < _frameBuffer.count {
+                                _frameBuffer[dataIdx] = Palette.getPaletteColor(colorCode: color)
+                            }
+                        }
+                    }
+                }
+
+                if gpu.lcdcRegister.spriteSize == .size1 {
+                    let x = sprite.posX
+                    let y = sprite.posY + 8
+                    let tile = tileCache[sprite.patternNumber + 1]
                     for tileY in 0...7 {
                         for tileX in 0...7 {
                             let tY = sprite.yFlip ? 7 - tileY : tileY
@@ -115,38 +173,16 @@ class Renderer {
                             let dataIdx = (y - 16 + tileY) * Renderer.frameWidth + (x - 8 + tileX)
                             if palatteIndex != 0 {
                                 let color = gpu.obj0Palatte.getColor(i: palatteIndex)
-                                if dataIdx < _frameBuffer.count {
+                                if dataIdx >= 0 && dataIdx < _frameBuffer.count {
                                     _frameBuffer[dataIdx] = Palette.getPaletteColor(colorCode: color)
                                 }
                             }
                         }
                     }
-    
-                    if gpu.lcdcRegister.spriteSize == .size1 {
-                        let x = sprite.posX
-                        let y = sprite.posY + 8
-                        let tile = tileCache[sprite.patternNumber + 1]
-                        for tileY in 0...7 {
-                            for tileX in 0...7 {
-                                let tY = sprite.yFlip ? 7 - tileY : tileY
-                                let tX = sprite.xFlip ? 7 - tileX : tileX
-                                let palatteIndex = tile.getPixel(i: tY, j: tX)
-                                let dataIdx = (y - 16 + tileY) * Renderer.frameWidth + (x - 8 + tileX)
-                                if palatteIndex != 0 {
-                                    let color = gpu.obj0Palatte.getColor(i: palatteIndex)
-                                    if dataIdx < _frameBuffer.count {
-                                        _frameBuffer[dataIdx] = Palette.getPaletteColor(colorCode: color)
-                                    }
-                                }
-                            }
-                        }
-                    }
-    
                 }
+
             }
-            
         }
-        
     }
     
 }

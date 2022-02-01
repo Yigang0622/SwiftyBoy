@@ -10,16 +10,7 @@ import Foundation
 
 
 class MBC1: MBCBase {
-    
-    
-    override init(bytes: [UInt8], name: String, meta: CartridgeMeta) {
-        super.init(bytes: bytes, name: name, meta: meta)
-        externalRamCount = MBC1.externalRamCountLookup[bytes[0x0149]]!
-        print("externalRamCount \(externalRamCount)")
-        super.initRamBanks()
         
-    }
-    
     override func setMem(address: Int, val: Int) {
         if address >= 0x0000 && address < 0x2000 {
             self.ramBankEnabled = (val & 0b0000_1111) == 0b1010

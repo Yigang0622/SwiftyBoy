@@ -756,7 +756,7 @@ extension CPU {
     // 0x76 HALT
     func HALT_76() -> Int {
         self.halted = true
-        print("CPU halt")
+//        print("CPU halt")
         pc += 1
         return 4
     }

@@ -28,7 +28,7 @@ class CartageLoader {
     
     static func loadCartage() -> Cartridge {
         print("loading cartage")
-        let fileName = "Legend of Zelda, The - Link's Awakening (G) [!]"
+        let fileName = "Pokemon Red (UE) [S][!]"
         let bytes = loadTestRom(name: fileName)
         let meta = getCaridgeMeta(flag: bytes[0x0147])
         let name = bytes[0x0134...0x0142].reduce("") { partialResult, next in
@@ -36,12 +36,13 @@ class CartageLoader {
         }
         print("[Cartridge Name] \(name)")
         print(meta)
+//        return DummyCart()
         if meta.type == .MBC1 {
-            return MBC1(bytes: bytes, name: name, meta: meta)
+            return MBC1(bytes: bytes, name: name, meta: meta, fileName: fileName)
         } else if meta.type == .ROMOnly {
-            return ROMOnly(bytes: bytes, name: name, meta: meta)
+            return ROMOnly(bytes: bytes, name: name, meta: meta, fileName: fileName)
         } else if meta.type == .MBC3 {
-            return MBC3(bytes: bytes, name: name, meta: meta)
+            return MBC3(bytes: bytes, name: name, meta: meta, fileName: fileName)
         } else {
             fatalError("cart not supported")
         }

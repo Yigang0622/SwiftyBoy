@@ -68,7 +68,7 @@ extension CPU {
     func fetchAndExecute() -> Int {
         
         if self.halted && interruptRequested() {
-            print("exit halt")
+//            print("exit halt")
             halted = false
         }
         

@@ -11,11 +11,12 @@ class Cartridge {
     
     var name: String!
     var meta: CartridgeMeta!
+    var fileName: String = ""
     
-    init(bytes: [UInt8], name: String, meta: CartridgeMeta) {
+    init(bytes: [UInt8], name: String, meta: CartridgeMeta, fileName: String) {
         self.name = name
         self.meta = meta
-        
+        self.fileName = fileName
     }
     
     func setMem(address: Int, val: Int) {

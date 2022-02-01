@@ -18,9 +18,10 @@ class PaletteRegister: BaseRegister {
 
     override func setVal(val: Int) {
         super.setVal(val: val)
-        for i in 0...3 {
-            palette[i] = (val >> (i * 2)) & 0b11
-        }
+        palette[0] = (val >> (0 * 2)) & 0b11
+        palette[1] = (val >> (1 * 2)) & 0b11
+        palette[2] = (val >> (2 * 2)) & 0b11
+        palette[3] = (val >> (3 * 2)) & 0b11
     }
     
     func getColor(i: Int) -> Int {

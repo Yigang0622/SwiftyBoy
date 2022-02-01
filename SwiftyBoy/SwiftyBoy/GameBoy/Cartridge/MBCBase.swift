@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MBCBase: Cartridge {
     
@@ -34,16 +35,77 @@ class MBCBase: Cartridge {
     
     var rtcEnabled = false
     
-    override init(bytes: [UInt8], name: String, meta: CartridgeMeta) {
-        super.init(bytes: bytes, name: name, meta: meta)
+    override init(bytes: [UInt8], name: String, meta: CartridgeMeta, fileName: String) {
+        super.init(bytes: bytes, name: name, meta: meta, fileName: fileName)
         // 16kb
         let bankSize = 16 * 1024
+        
+        self.externalRomcount = romBanks.count
         romBanks = bytes.chunked(into: bankSize)
         print("[rom banks] \(romBanks.count) ")
-        self.externalRomcount = romBanks.count
+                
         self.externalRamCount = MBCBase.externalRamCountLookup[romBanks[0][0x0149]]!
         initRamBanks()
+                
+        if meta.battery {
+            loadSaveFileToRam()
+            NotificationCenter.default.addObserver(self, selector: #selector(self.cartriageWillEject), name: UIApplication.willTerminateNotification, object: nil)
+        }
         
+    }
+    
+    private func loadSaveFileToRam() {
+        do {
+            let data = try Data(contentsOf: saveFilePath)
+            let dataArray = [UInt8](data)
+            let chunkedData = dataArray.chunked(into: 8 * 1024)
+            if chunkedData.count == ramBanks.count {
+                
+                for (i, each) in chunkedData.enumerated() {
+                    ramBanks[i] = each.compactMap{ Int($0) }
+                }
+                print("save file loaded")
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func saveRamToFile() {
+        let bytes:[UInt8] = ramBanks.flatMap { $0 }.map { UInt8($0) }
+        let data = Data(bytes: bytes, count: bytes.count)
+        do {
+            try data.write(to: saveFilePath)
+            print(saveFilePath.absoluteURL)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    var saveFilePath: URL {
+        get {
+            return FileManager.default.urls(for: .documentDirectory,
+                                                in: .userDomainMask)[0].appendingPathComponent(saveFileName)
+        }
+    }
+    
+    var saveFileName: String {
+        get {
+            return "\(fileName).sav"
+        }
+    }
+    
+    @objc func cartriageWillEject() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willTerminateNotification, object: nil)
+        print("cartriageWillEject!")
+        saveRamToFile()
+    }
+    
+    func initRamBanks() {
+        print("[ram banks] \(externalRamCount)")
+        self.ramBanks =  Array(repeating: Array(repeating: 0, count: 8*1024), count: externalRamCount)
     }
     
     override func getMem(address: Int) -> Int {
@@ -70,11 +132,5 @@ class MBCBase: Cartridge {
     override func setMem(address: Int, val: Int) {
         fatalError("Can't set rom in MBC Base")
     }
-
-    func initRamBanks() {
-        print("init ram bank, count \(externalRamCount)")
-        self.ramBanks =  Array(repeating: Array(repeating: 0, count: 8*1024), count: externalRamCount)
-    }
-    
     
 }

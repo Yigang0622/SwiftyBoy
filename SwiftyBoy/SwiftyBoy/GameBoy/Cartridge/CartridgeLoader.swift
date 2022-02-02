@@ -48,6 +48,31 @@ class CartageLoader {
         }
     }
     
+    static func loadCartridge(url: URL) -> Cartridge? {
+        do {
+            let fileName = url.deletingPathExtension().lastPathComponent
+            let bytes = [UInt8](try Data(contentsOf: url))
+            let meta = getCaridgeMeta(flag: bytes[0x0147])
+            let name = bytes[0x0134...0x0142].reduce("") { partialResult, next in
+                partialResult + String(Character(UnicodeScalar(next)))
+            }
+            print("[Cartridge Name] \(name)")
+            print(meta)
+            if meta.type == .MBC1 {
+                return MBC1(bytes: bytes, name: name, meta: meta, fileName: fileName)
+            } else if meta.type == .ROMOnly {
+                return ROMOnly(bytes: bytes, name: name, meta: meta, fileName: fileName)
+            } else if meta.type == .MBC3 {
+                return MBC3(bytes: bytes, name: name, meta: meta, fileName: fileName)
+            } else {
+                fatalError("cart not supported")
+            }
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
     
     private static func loadTestRom(name: String) -> [UInt8] {
 

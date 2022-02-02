@@ -35,12 +35,6 @@ enum RegisterType {
  GameBoy CPU
  */
 class CPU {
-    var counter = 0
-    var opD = Dictionary<String, Int>()
-    var opS = Set<String>()
-    var logs = [String]()
-    var opArr = [String]()
-    var start = false
     
     let reg8Bit = Set<RegisterType>([.a, .f, .b, .c, .d, .e, .h, .l])
     let reg16Bit = Set<RegisterType>([.af, .bc, .de, .hl, .sp])

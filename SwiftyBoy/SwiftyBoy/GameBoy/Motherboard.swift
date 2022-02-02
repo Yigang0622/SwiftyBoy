@@ -9,52 +9,71 @@ import Foundation
 
 class Motherboard {
     
-    var timer: DispatchSourceTimer!
-    var queue: DispatchQueue!
-    
-    public let cpu = CPU()
+    let cpu = CPU()
     let cpuTimer = CPUTimer()
     let gpu = GPU()
     let ram = RAM()
     let joypad = Joypad(interruptManager: InterruptManager())
-    public var memory = Array<Int>(repeating: 0x00, count: 0xFFFF)
     
     var cart: Cartridge!
     var bootRom = BootRom()
     var bootRomEnable = true
     
-    
+    var timer: DispatchSourceTimer!
+    var queue: DispatchQueue = DispatchQueue(label: "mbtimer")
     let semaphore = DispatchSemaphore(value: 1)
+    private var fpsRestriction = true
     
     init() {
         cpu.mb = self
         gpu.mb = self
         cpuTimer.mb = self
         joypad.mb = self
-        
-        queue = DispatchQueue(label: "mbtimer")
-        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        
-        cart = CartageLoader.loadCartage()
-    }
-    
-    func run() {
-        gpu.onPhaseChange = { phase in
-            if phase == .vBlank {
+                
+        gpu.onPhaseChange = { [self] phase in
+            if phase == .vBlank && fpsRestriction {
                 self.semaphore.wait()
             }
         }
-
+    }
+    
+    func run() {
+        if cart == nil {
+            print("cart is nil")
+            return
+        }
+        
+        setupTimer()
+        startTick()
+    }
+    
+    private func setupTimer() {
+        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
         timer.setEventHandler {
             self.semaphore.signal()
         }
         // 1 / 60s = 17ms
         timer.schedule(deadline: .now(), repeating: .milliseconds(17), leeway: .nanoseconds(1))
         timer.resume()
-        tick()
     }
     
-    func tick() {
+    func setFpsRestriction(enable: Bool) {
+        if enable {
+            if !fpsRestriction {
+                setupTimer()
+                fpsRestriction = true
+            }
+        } else {
+            if fpsRestriction {
+                fpsRestriction = false
+                // prevent thread wait
+                self.semaphore.signal()
+                timer.cancel()
+            }
+        }
+    }
+    
+    private func startTick() {
         while cpu.pc >= 0 {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
@@ -289,29 +308,13 @@ class Motherboard {
     }
     
     
-    func dma(src: Int) {
+    private func dma(src: Int) {
         let dst = 0xFE00
         let offset = src * 0x100
         for i in 0...0xA0 {
             self.setMem(address: dst + i, val: self.getMem(address: i + offset))
         }
     }
-    
-    func loadTestRom(name: String) -> [UInt8] {
-
-        if let fileURL = Bundle.main.url(forResource: name, withExtension: "gb") {
-            
-            do {
-                let raw = try Data(contentsOf: fileURL)
-    
-                return [UInt8](raw)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return []
-    }
-    
     
 }
 

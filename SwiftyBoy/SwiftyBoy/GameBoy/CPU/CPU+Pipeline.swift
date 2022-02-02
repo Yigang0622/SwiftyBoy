@@ -59,12 +59,6 @@ extension CPU {
         return interruptFlagRegister.getVal() > 0
     }
     
-    func printLogs() {
-        for each in logs {
-            print(each)
-        }
-    }
-    
     func fetchAndExecute() -> Int {
         
         if self.halted && interruptRequested() {

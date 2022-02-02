@@ -87,7 +87,7 @@ extension KeyInputMask: UIKeyInput {
     
     
     func insertText(_ text: String) {
-        print(text)
+        
     }
     
     func deleteBackward() {

@@ -7,6 +7,8 @@
 
 import UIKit
 import Foundation
+import MobileCoreServices
+import UniformTypeIdentifiers
 
 class ViewController: UIViewController {
         
@@ -16,9 +18,77 @@ class ViewController: UIViewController {
     var queue: DispatchQueue!
     var frameCount = 0
     
+    let scale = 1
+    let imageView = UIImageView(frame: CGRect(x: 0, y: 100, width: 160 * 4, height: 144 * 4))
+    var gameboy = GameBoy()
+    
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+                
+        presses.forEach { press in
+            if let key = press.key {
+                if(key.keyCode == .keyboardW) {
+                    gameboy.pressButton(button: .up)
+                } else if (key.keyCode == .keyboardA) {
+                    gameboy.pressButton(button: .left)
+                } else if (key.keyCode == .keyboardS) {
+                    gameboy.pressButton(button: .down)
+                } else if (key.keyCode == .keyboardD) {
+                    gameboy.pressButton(button: .right)
+                } else if (key.keyCode == .keyboardJ) {
+                    gameboy.pressButton(button: .a)
+                } else if (key.keyCode == .keyboardK) {
+                    gameboy.pressButton(button: .b)
+                } else if (key.keyCode == .keyboardN) {
+                    gameboy.pressButton(button: .select)
+                } else if (key.keyCode == .keyboardM) {
+                    gameboy.pressButton(button: .start)
+                } else if (key.keyCode == .keyboardSpacebar) {
+                    gameboy.setBoostMode(enable: true)
+                }
+            }
+        }
+        
+    }
+    
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        presses.forEach { press in
+            if let key = press.key {
+                if(key.keyCode == .keyboardW) {
+                    gameboy.releaseButton(button: .up)
+                } else if (key.keyCode == .keyboardA) {
+                    gameboy.releaseButton(button: .left)
+                } else if (key.keyCode == .keyboardS) {
+                    gameboy.releaseButton(button: .down)
+                } else if (key.keyCode == .keyboardD) {
+                    gameboy.releaseButton(button: .right)
+                } else if (key.keyCode == .keyboardJ) {
+                    gameboy.releaseButton(button: .a)
+                } else if (key.keyCode == .keyboardK) {
+                    gameboy.releaseButton(button: .b)
+                } else if (key.keyCode == .keyboardN) {
+                    gameboy.releaseButton(button: .select)
+                } else if (key.keyCode == .keyboardM) {
+                    gameboy.releaseButton(button: .start)
+                }else if (key.keyCode == .keyboardSpacebar) {
+                    gameboy.setBoostMode(enable: false)
+                }
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    
+        let types = UTType.types(tag: "gb", tagClass: UTTagClass.filenameExtension, conformingTo: nil)
+        let documentPickerController = UIDocumentBrowserViewController(forOpening: types)
+        documentPickerController.delegate = self
+        self.present(documentPickerController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        gameboy.delegate = self
     
         let fpsLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 100, height: 50))
         fpsLabel.backgroundColor = .black
@@ -41,8 +111,7 @@ class ViewController: UIViewController {
         self.fpsTimer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
         self.fpsTimer.resume()
         
-        let scale = 1
-        let imageView = UIImageView(frame: CGRect(x: 10, y: 100, width: 256 * scale, height: 256 * scale))
+      
         view.addSubview(imageView)
         
         let viewPortImageView = UIImageView(frame: CGRect(x: 10, y: 400, width: 160 * 3, height: 144 * 3))
@@ -86,7 +155,7 @@ class ViewController: UIViewController {
         
         mb.gpu.onFrameUpdateV2 = { pixels in
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 var pixels = pixels
                 let w = 256
                 let h = 256
@@ -118,67 +187,31 @@ class ViewController: UIViewController {
                 }
                 
             }
-            
+        }
+                
+    }
 
-        }
-        
-        DispatchQueue.global().async {
-            self.mb.run()
+}
+
+extension ViewController: UIDocumentBrowserViewControllerDelegate {
+    
+    func documentBrowser(_ controller: UIDocumentBrowserViewController, didPickDocumentsAt documentURLs: [URL]) {
+        if let url = documentURLs.first {
+            gameboy.loadCartridge(url: url)
             
         }
         
-        
-        let keyInputMask = KeyInputMask(frame: self.view.bounds)
-        keyInputMask.becomeFirstResponder()
-        
-        keyInputMask.onKeyPress = { button in
-            self.mb.joypad.pressButton(type: button)
-        }
-        
-        keyInputMask.onKeyRelease = { button in
-            self.mb.joypad.releaseButton(type: button)
-        }
-        
-        self.view.addSubview(keyInputMask)
     }
     
-    
-    
-    // 16 * 16
-    
-    func drawRectangle(pixels: [[Int]], palette: PaletteRegister) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 256, height: 256))
+}
 
-
-        let img = renderer.image { ctx in
-            for i in 0..<256 {
-                for j in 0..<256 {
-                    let rectangle = CGRect(x: j, y: i, width: 1, height: 1)
-                    var color = pixels[i][j]
-                    color = palette.getColor(i: color)
-                    if color == 0 {
-                        ctx.cgContext.setStrokeColor(UIColor.white.cgColor)
-                    } else if color == 1 {
-                        ctx.cgContext.setStrokeColor(UIColor.lightGray.cgColor)
-                    } else if color == 2 {
-                        ctx.cgContext.setStrokeColor(UIColor.darkGray.cgColor)
-                    } else if color == 3 {
-                        ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
-                    }
-
-                    ctx.cgContext.addRect(rectangle)
-                    ctx.cgContext.drawPath(using: .fillStroke)
-                }
-            }
-            
-            
-        }
+extension ViewController: GameBoyDelegate {
+    
+    func gameBoyDidDrawNewFrame(frame: UIImage) {
         
-       return img
+        imageView.image = frame
     }
     
-
-
 }
 
 extension Array {

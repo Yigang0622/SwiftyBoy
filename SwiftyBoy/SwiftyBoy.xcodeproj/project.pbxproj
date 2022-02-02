@@ -31,6 +31,7 @@
 		DD6C14C627A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DD6C14C527A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb */; };
 		DD897FB227A2FC5D0073C1BB /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD897FB127A2FC5D0073C1BB /* GameController.framework */; };
 		DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */; };
+		DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9027A9876000BBA499 /* GameBoy.swift */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
@@ -110,6 +111,7 @@
 		DD6C14C527A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb"; sourceTree = "<group>"; };
 		DD897FB127A2FC5D0073C1BB /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCart.swift; sourceTree = "<group>"; };
+		DDAB2D9027A9876000BBA499 /* GameBoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoy.swift; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				DD25D09B27623B34005E45D4 /* RAM.swift */,
 				DDE6B622279D194200D74122 /* InterruptManager.swift */,
 				DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */,
+				DDAB2D9027A9876000BBA499 /* GameBoy.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */,
+				DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
 				DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */,

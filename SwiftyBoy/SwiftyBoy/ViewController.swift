@@ -12,11 +12,6 @@ import UniformTypeIdentifiers
 
 class ViewController: UIViewController {
         
-    let mb = Motherboard()
-    
-    var fpsTimer: DispatchSourceTimer!
-    var queue: DispatchQueue!
-    var frameCount = 0
     
     let scale = 1
     let imageView = UIImageView(frame: CGRect(x: 0, y: 100, width: 160 * 4, height: 144 * 4))
@@ -96,98 +91,13 @@ class ViewController: UIViewController {
         fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         self.view.addSubview(fpsLabel)
         
-        queue = DispatchQueue(label: "fpsQueue")
-        fpsTimer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        
-        fpsTimer.setEventHandler {
-            let fps = self.frameCount
-            self.frameCount = 0
-            DispatchQueue.main.async { [self] in
-                fpsLabel.text = "\(fps)"
-            }
-            
-        }
-        
-        self.fpsTimer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
-        self.fpsTimer.resume()
-        
+      
       
         view.addSubview(imageView)
         
         let viewPortImageView = UIImageView(frame: CGRect(x: 10, y: 400, width: 160 * 3, height: 144 * 3))
         view.addSubview(viewPortImageView)
         
-        mb.gpu.onFrameDrawn = { pixels in
-            self.frameCount += 1
-            DispatchQueue.main.async {
-                var pixels = pixels
-                let w = 160
-                let h = 144
-                let rgbColorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
-                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
-                let bitsPerComponent = 8
-                let bitsPerPixel = 32
-
-                let providerRef = CGDataProvider(data: NSData(bytes: &pixels, length: pixels.count * 4))
-
-                let cgim = CGImage(
-                   width: w,
-                   height: h,
-                   bitsPerComponent: bitsPerComponent,
-                   bitsPerPixel: bitsPerPixel,
-                   bytesPerRow: w * 4,
-                   space: rgbColorSpace,
-                   bitmapInfo: bitmapInfo,
-                   provider: providerRef!,
-                   decode: nil,
-                   shouldInterpolate: true,
-                   intent: .defaultIntent
-                   )
-                
-                if let cgImage = cgim {
-                    viewPortImageView.image =  UIImage(cgImage: cgImage, scale: 1, orientation: .up)
-                }
-                
-            }
-            
-        }
-        
-        
-        mb.gpu.onFrameUpdateV2 = { pixels in 
-            
-            DispatchQueue.main.async { [self] in
-                var pixels = pixels
-                let w = 256
-                let h = 256
-                //           var pixels = Array<UInt32>(repeating: 0xAAAAAAff, count: 100 * 100)
-
-                let rgbColorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
-                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
-                let bitsPerComponent = 8
-                let bitsPerPixel = 32
-
-                let providerRef = CGDataProvider(data: NSData(bytes: &pixels, length: pixels.count * 4))
-
-                let cgim = CGImage(
-                   width: w,
-                   height: h,
-                   bitsPerComponent: bitsPerComponent,
-                   bitsPerPixel: bitsPerPixel,
-                   bytesPerRow: w * 4,
-                   space: rgbColorSpace,
-                   bitmapInfo: bitmapInfo,
-                   provider: providerRef!,
-                   decode: nil,
-                   shouldInterpolate: true,
-                   intent: .defaultIntent
-                   )
-                
-                if let cgImage = cgim {
-                    imageView.image =  UIImage(cgImage: cgImage, scale: 2, orientation: .up)
-                }
-                
-            }
-        }
                 
     }
 
@@ -207,9 +117,22 @@ extension ViewController: UIDocumentBrowserViewControllerDelegate {
 
 extension ViewController: GameBoyDelegate {
     
+    func gameBoyCartridgeDidLoad(cart: Cartridge) {
+        FPSMetric.shared.startMoinitoring()
+        FPSMetric.shared.delegate = self
+    }
+    
     func gameBoyDidDrawNewFrame(frame: UIImage) {
-        self.frameCount += 1
+        FPSMetric.shared.increaseCounter()
         imageView.image = frame
+    }
+    
+}
+
+extension ViewController: FPSMetricDelegate {
+    
+    func fpsMetricDidUpdateFps(fps: Int) {
+        fpsLabel.text = "\(FPSMetric.shared.fps)"
     }
     
 }

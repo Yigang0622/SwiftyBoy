@@ -60,7 +60,8 @@ class GameBoy {
     
     func loadCartridge(url: URL) {
         if let cart = CartageLoader.loadCartridge(url: url) {
-            mb.cart = cart            
+            mb.cart = cart
+            delegate?.gameBoyCartridgeDidLoad(cart: cart)
             DispatchQueue.global().async {
                 self.mb.run()
             }
@@ -75,6 +76,8 @@ class GameBoy {
 }
 
 protocol GameBoyDelegate {
+
+    func gameBoyCartridgeDidLoad(cart: Cartridge)
     
     func gameBoyDidDrawNewFrame(frame: UIImage)
     

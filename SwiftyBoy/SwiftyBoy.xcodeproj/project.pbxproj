@@ -33,6 +33,7 @@
 		DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */; };
 		DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9027A9876000BBA499 /* GameBoy.swift */; };
 		DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9227AAC07200BBA499 /* MBC2.swift */; };
+		DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
@@ -114,6 +115,7 @@
 		DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCart.swift; sourceTree = "<group>"; };
 		DDAB2D9027A9876000BBA499 /* GameBoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoy.swift; sourceTree = "<group>"; };
 		DDAB2D9227AAC07200BBA499 /* MBC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC2.swift; sourceTree = "<group>"; };
+		DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSMetric.swift; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
@@ -235,12 +237,12 @@
 				DD25D08A275F96F7005E45D4 /* Cartridge.swift */,
 				DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */,
 				DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */,
-				DDD84FD3276F171E00E475D3 /* MBC1.swift */,
 				DDD84FD7276F21D800E475D3 /* MBCBase.swift */,
-				DDD84FD9276F24F900E475D3 /* ROMOnly.swift */,
-				DDE6B62E279D904F00D74122 /* MBC3.swift */,
-				DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */,
+				DDD84FD3276F171E00E475D3 /* MBC1.swift */,
 				DDAB2D9227AAC07200BBA499 /* MBC2.swift */,
+				DDE6B62E279D904F00D74122 /* MBC3.swift */,
+				DDD84FD9276F24F900E475D3 /* ROMOnly.swift */,
+				DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */,
 			);
 			path = Cartridge;
 			sourceTree = "<group>";
@@ -318,6 +320,7 @@
 				DDF24ED3274FCA8F007929DA /* Assets.xcassets */,
 				DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */,
 				DDF24ED8274FCA8F007929DA /* Info.plist */,
+				DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */,
 			);
 			path = SwiftyBoy;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
+				DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */,
 				DDE6B63527A04F8800D74122 /* Palette.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,

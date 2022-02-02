@@ -15,6 +15,7 @@ class Joypad {
     
     private weak var interruptManager: InterruptManager!
     var mb: Motherboard!
+    let queue = DispatchQueue(label: "it.miketech.swiftboy.joypad", attributes: .concurrent)
     
     private var p1 = 0
     private var pressedButtons = Set<JoypadButton>()
@@ -55,14 +56,17 @@ class Joypad {
     
     func pressButton(type: JoypadButtonType) {
         let button = getButton(type: type)
-        self.pressedButtons.insert(button)
-        // todo request interrupt
-        mb.cpu.interruptFlagRegister.highToLow = true
+        queue.async(flags: .barrier) { [self] in
+            self.pressedButtons.insert(button)
+            mb.cpu.interruptFlagRegister.highToLow = true
+        }
     }
     
     func releaseButton(type: JoypadButtonType) {
         let button = getButton(type: type)
-        self.pressedButtons.remove(button)
+        queue.async(flags: .barrier) { [self] in
+            self.pressedButtons.remove(button)
+        }
     }    
     
 }
@@ -75,10 +79,12 @@ extension Joypad: MemoryAccessable {
     }
     
     func getMem(address: Int) -> Int {
-        var result = p1 | 0b11001111
-        pressedButtons.forEach { b in
-            if b.line & p1 == 0 {
-                result &= 0xFF & ~b.mask
+        var result = p1 | 0b11001111        
+        queue.sync {
+            pressedButtons.forEach { b in
+                if b.line & p1 == 0 {
+                    result &= 0xFF & ~b.mask
+                }
             }
         }
         return result

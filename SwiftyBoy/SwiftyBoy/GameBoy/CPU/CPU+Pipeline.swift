@@ -27,7 +27,6 @@ extension CPU {
                 pc = 0x40
                 interruptFlagRegister.vblank = false
             } else if interruptFlagRegister.lcdc && interruptEnableRegister.lcdc {
-//                print("lcdc")
                 interruptMasterEnable = false
                 pushPCToStack()
                 pc = 0x48
@@ -75,13 +74,9 @@ extension CPU {
         var opcode = mb.getMem(address: pc)
         if opcode == 0xCB {
             opcode = mb.getMem(address: pc + 1)
-//            let log = "\(String(format:"%02X", pc)): \(String(format:"CB-%02X", opcode)) \(cbInstructions[opcode]!.name)"//
-//            logs.append(log)//
             let cycle = cbInstructions[opcode]!.instruction()
             return cycle
         } else {
-//            let log = "\(String(format:"%02X", pc)): \(String(format:"%02X", opcode)) \(baseInstructions[opcode]!.name)"
-//            logs.append(log)//
             let cycle = baseInstructions[opcode]!.instruction()
             return cycle
         }

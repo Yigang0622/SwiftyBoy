@@ -14,7 +14,7 @@ class GameBoy {
     var delegate: GameBoyDelegate?
     
     init() {
-        mb.gpu.onViewPortUpdate = { pixels in
+        mb.gpu.onFrameDrawn = { pixels in
             
             DispatchQueue.main.async { [self] in
                 var pixels = pixels

@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     let scale = 1
     let imageView = UIImageView(frame: CGRect(x: 0, y: 100, width: 160 * 4, height: 144 * 4))
+    let fpsLabel = UILabel(frame: CGRect(x: 0, y: 50, width: 100, height: 50))
     var gameboy = GameBoy()
     
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
@@ -90,7 +91,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         gameboy.delegate = self
     
-        let fpsLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 100, height: 50))
         fpsLabel.backgroundColor = .black
         fpsLabel.textColor = .red
         fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         fpsTimer.setEventHandler {
             let fps = self.frameCount
             self.frameCount = 0
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 fpsLabel.text = "\(fps)"
             }
             
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
         let viewPortImageView = UIImageView(frame: CGRect(x: 10, y: 400, width: 160 * 3, height: 144 * 3))
         view.addSubview(viewPortImageView)
         
-        mb.gpu.onViewPortUpdate = { pixels in
+        mb.gpu.onFrameDrawn = { pixels in
             self.frameCount += 1
             DispatchQueue.main.async {
                 var pixels = pixels
@@ -153,7 +153,7 @@ class ViewController: UIViewController {
         }
         
         
-        mb.gpu.onFrameUpdateV2 = { pixels in
+        mb.gpu.onFrameUpdateV2 = { pixels in 
             
             DispatchQueue.main.async { [self] in
                 var pixels = pixels
@@ -208,7 +208,7 @@ extension ViewController: UIDocumentBrowserViewControllerDelegate {
 extension ViewController: GameBoyDelegate {
     
     func gameBoyDidDrawNewFrame(frame: UIImage) {
-        
+        self.frameCount += 1
         imageView.image = frame
     }
     

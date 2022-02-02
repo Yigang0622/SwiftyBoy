@@ -24,7 +24,7 @@ class GPU {
     
     public var onFrameUpdate: (([[Int]]) -> Void)?
     public var onFrameUpdateV2: (([UInt32]) -> Void)?
-    public var onViewPortUpdate: (([UInt32]) -> Void)?
+    public var onFrameDrawn: (([UInt32]) -> Void)?
     public var onPhaseChange: ((GPUState) -> Void)?
     
     private static let FULL_FRAME_CYCLE = 70224
@@ -72,16 +72,16 @@ class GPU {
                 resetLY()
             }
             
-            if nextState == .vBlank {
-                mb.cpu.interruptFlagRegister.vblank = true
-            }
+//            if nextState == .vBlank {
+//                mb.cpu.interruptFlagRegister.vblank = true
+//            }
             
             currentState = nextState
             if currentState == .oamSearch {
                 // 20 clocks
                 targetClock += 20 * 4
                 nextState = .pixelTransfer
-                increaseLY()
+                
             } else if currentState == .pixelTransfer {
                 targetClock += 43 * 4
                 nextState = .hBlank
@@ -89,10 +89,9 @@ class GPU {
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
                 // TODO draw line
-                
+                increaseLY()
                 // full frame drawn
-                if ly <= 143 {
-//                    print("[GPU] drawn new frame ")
+                if ly < 144 {
                     nextState = .oamSearch
                 } else {
                     nextState = .vBlank
@@ -116,14 +115,13 @@ class GPU {
     }
     
     func increaseLY() {
-        ly += 1
+        ly += 1        
         if ly == lyc {
             mb.cpu.interruptFlagRegister.lcdc = true
         }
         if ly >= 0 && ly < 144 {
             renderer.drawLine(line: ly)
         }
-        
     }
     
     func draw() {
@@ -262,8 +260,8 @@ class GPU {
 //        }
 //
     
-//        onFrameUpdateV2?(backgroundData)
-        onViewPortUpdate?(viewPortData)
+//        onFrameUpdateV2?(backgroundDatar)
+        onFrameDrawn?(viewPortData)
         
     }
     

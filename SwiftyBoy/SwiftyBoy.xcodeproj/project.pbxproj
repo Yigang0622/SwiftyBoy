@@ -32,6 +32,7 @@
 		DD897FB227A2FC5D0073C1BB /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD897FB127A2FC5D0073C1BB /* GameController.framework */; };
 		DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */; };
 		DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9027A9876000BBA499 /* GameBoy.swift */; };
+		DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9227AAC07200BBA499 /* MBC2.swift */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
@@ -112,6 +113,7 @@
 		DD897FB127A2FC5D0073C1BB /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCart.swift; sourceTree = "<group>"; };
 		DDAB2D9027A9876000BBA499 /* GameBoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoy.swift; sourceTree = "<group>"; };
+		DDAB2D9227AAC07200BBA499 /* MBC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC2.swift; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				DDD84FD9276F24F900E475D3 /* ROMOnly.swift */,
 				DDE6B62E279D904F00D74122 /* MBC3.swift */,
 				DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */,
+				DDAB2D9227AAC07200BBA499 /* MBC2.swift */,
 			);
 			path = Cartridge;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */,
+				DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */,
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
 				DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */,
 				DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */,

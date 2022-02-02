@@ -57,14 +57,16 @@ class CartageLoader {
                 partialResult + String(Character(UnicodeScalar(next)))
             }
             print("[Cartridge Name] \(name)")
-            print(meta)
+            print(meta) 
             if meta.type == .MBC1 {
                 return MBC1(bytes: bytes, name: name, meta: meta, fileName: fileName)
             } else if meta.type == .ROMOnly {
                 return ROMOnly(bytes: bytes, name: name, meta: meta, fileName: fileName)
             } else if meta.type == .MBC3 {
                 return MBC3(bytes: bytes, name: name, meta: meta, fileName: fileName)
-            } else {
+            }  else if meta.type == .MBC2 {
+                return MBC2(bytes: bytes, name: name, meta: meta, fileName: fileName)
+            }else {
                 fatalError("cart not supported")
             }
         } catch {

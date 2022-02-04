@@ -39,7 +39,7 @@ class Motherboard {
         }
     }
     
-    private func reset() {
+    func reset() {
         running = false
         if timer != nil {
             timer.cancel()
@@ -48,6 +48,7 @@ class Motherboard {
         running = false
         bootRomEnable = true
         cpu.reset()
+        gpu.reset()
     }
     
     func run() {
@@ -55,7 +56,6 @@ class Motherboard {
             print("cart is nil")
             return
         }
-        reset()
         setupTimer()
         running = true
         startTick()

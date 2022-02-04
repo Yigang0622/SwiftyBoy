@@ -59,6 +59,7 @@ class GameBoy {
     }
     
     func loadCartridge(url: URL) {
+        mb.reset()
         if let cart = CartageLoader.loadCartridge(url: url) {
             mb.cart = cart
             delegate?.gameBoyCartridgeDidLoad(cart: cart)
@@ -74,7 +75,7 @@ class GameBoy {
     
 }
 
-@objc protocol GameBoyDelegate: AnyObject {
+@objc protocol GameBoyDelegate {
 
     func gameBoyCartridgeDidLoad(cart: Cartridge)
     

@@ -35,6 +35,8 @@
 		DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9227AAC07200BBA499 /* MBC2.swift */; };
 		DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */; };
 		DDAB2D9727AC3D8900BBA499 /* GameBoyLCDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */; };
+		DDAB2D9927AD44F600BBA499 /* pixelated.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDAB2D9827AD44F600BBA499 /* pixelated.ttf */; };
+		DDAB2D9B27AD757A00BBA499 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
 		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
@@ -118,6 +120,8 @@
 		DDAB2D9227AAC07200BBA499 /* MBC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC2.swift; sourceTree = "<group>"; };
 		DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSMetric.swift; sourceTree = "<group>"; };
 		DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoyLCDView.swift; sourceTree = "<group>"; };
+		DDAB2D9827AD44F600BBA499 /* pixelated.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pixelated.ttf; sourceTree = "<group>"; };
+		DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
 		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
@@ -317,9 +321,11 @@
 				DDF24ECA274FCA8C007929DA /* AppDelegate.swift */,
 				DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */,
 				DDF24ECE274FCA8C007929DA /* ViewController.swift */,
+				DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */,
 				DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */,
 				DDF24ED0274FCA8C007929DA /* Main.storyboard */,
 				DDF24ED3274FCA8F007929DA /* Assets.xcassets */,
+				DDAB2D9827AD44F600BBA499 /* pixelated.ttf */,
 				DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */,
 				DDF24ED8274FCA8F007929DA /* Info.plist */,
 				DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */,
@@ -463,6 +469,7 @@
 				DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */,
 				DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */,
 				DDE6B60B2799B46500D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb in Resources */,
+				DDAB2D9927AD44F600BBA499 /* pixelated.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +522,7 @@
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
+				DDAB2D9B27AD757A00BBA499 /* MainMenuView.swift in Sources */,
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
 				DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */,

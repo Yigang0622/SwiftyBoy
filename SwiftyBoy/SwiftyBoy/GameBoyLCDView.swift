@@ -41,10 +41,9 @@ class GameBoyLCDView: UIView {
         fpsLabel = UILabel()
         fpsLabel.alpha = 0.8
         fpsLabel.translatesAutoresizingMaskIntoConstraints = false
-        fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+        fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         fpsLabel.textColor = .systemRed
         self.addSubview(fpsLabel)
-        
         
         NSLayoutConstraint.activate([
             fpsLabel.topAnchor.constraint(equalTo: self.topAnchor),

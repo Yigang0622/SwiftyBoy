@@ -50,12 +50,30 @@ class GPU {
     
     var renderer:Renderer!
     
+    func reset() {
+        clock = 0
+        targetClock = 0
+        currentState = .oamSearch
+        nextState = .oamSearch
+        statRegister = STATRegister(val: 0)
+        lcdcRegister = LCDCRegister(val: 0)
+        scy = 0x00
+        scx = 0x00
+        ly = 0x00
+        lyc = 0x00
+        backgroundPalette = PaletteRegister(val: 0xFC)
+        obj0Palatte = PaletteRegister(val: 0xFF)
+        obj1Palatte = PaletteRegister(val: 0xFF)
+        wy = 0x00
+        wx = 0x00
+    }
+    
+    init() {
+        renderer = Renderer(gpu: self)
+    }
+    
     func tick(numOfCycles: Int) {
-        
-        if renderer == nil {
-            renderer = Renderer(gpu: self)
-        }
-        
+                
         clock += numOfCycles
                 
         if targetClock > GPU.FULL_FRAME_CYCLE {
@@ -65,7 +83,6 @@ class GPU {
         
         // should change state
         if clock > targetClock {
-//            print("[GPU] clock \(clock) target \(targetClock)")
             
             if ly == lyMax {
                 nextState = .oamSearch
@@ -88,7 +105,6 @@ class GPU {
                 
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
-                // TODO draw line
                 increaseLY()
                 // full frame drawn
                 if ly < 144 {

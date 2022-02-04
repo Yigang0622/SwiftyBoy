@@ -20,7 +20,7 @@ class FPSMetric: NSObject {
     
     var delegate: FPSMetricDelegate?
     
-    private var gameboyDelegate: GameBoyDelegate?
+    
     
     var fps: Int {
         get {
@@ -53,22 +53,26 @@ class FPSMetric: NSObject {
         }
     }
     
-    func bind(gameboyDelegate: GameBoyDelegate) {
+    private var aaa: AnyObject!
+    
+    func bind(gameboyDelegate: AnyObject) {
         print("bind \(gameboyDelegate)")
-        let originalSelector = #selector(gameboyDelegate.gameBoyDidDrawNewFrame(frame:))
-        let swizzledSelector = #selector(self.swizzledGameBoyDidDrawNewFrame(frame:))
         
-//        let aClass: AnyClass! = object_getClass(GameBoyDelegate())
-        
-//        let originalMethod = class_getInstanceMethod(gameboyDelegate, originalSelector)
+//        self.aaa = gameboyDelegate
+//        let originalSelector = #selector(gameboyDelegate.gameBoyDidDrawNewFrame(frame:))
+//        let swizzledSelector = #selector(self.swizzledGameBoyDidDrawNewFrame(frame:))
+//
+//        let aClass: AnyClass! = object_getClass(gameboyDelegate)
+//        let originalMethod = class_getInstanceMethod(aClass, originalSelector);
 //        let swizzledMethod = class_getInstanceMethod(FPSMetric.self, swizzledSelector)
-
-
+//        method_exchangeImplementations(originalMethod!, swizzledMethod!)
+      
     }
     
     @objc private func swizzledGameBoyDidDrawNewFrame(frame: UIImage) {
-        print("swizzledGameBoyDidDrawNewFrame")
-        
+        print("calling")
+        print(self)
+//        self.performSelector(onMainThread: NSSelectorFromString("gameBoyDidDrawNewFrame"), with: frame, waitUntilDone: true)
     }
     
 }

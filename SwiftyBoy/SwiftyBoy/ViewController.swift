@@ -14,6 +14,7 @@ class ViewController: UIViewController {
         
     var gameboy = GameBoy()
     var gameboyLcd: GameBoyLCDView!
+    var mainMenu: MainMenuView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -22,7 +23,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         gameboy.delegate = self
-        self.view.backgroundColor = .blue
+        self.view.backgroundColor = .white
+        
         gameboyLcd = GameBoyLCDView()
         self.view.addSubview(gameboyLcd)
         gameboyLcd.translatesAutoresizingMaskIntoConstraints = false
@@ -33,14 +35,23 @@ class ViewController: UIViewController {
             gameboyLcd.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
-//
 //        FPSMetric.shared.bind(gameboyDelegate: self)
+    
+        mainMenu = MainMenuView()
+        self.view.addSubview(mainMenu)
+        mainMenu.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mainMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            mainMenu.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            mainMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        mainMenu.loadCartridgeButton.addTarget(self, action: #selector(self.showLoadCartridgeDialog), for: .touchUpInside)
+        
     }
     
-    private func setupContextMenu() {
-        let interaction = UIContextMenuInteraction(delegate: self)
-        self.view.addInteraction(interaction)
-    }
+    
+    
     
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
                 
@@ -139,6 +150,8 @@ extension ViewController: UIDocumentBrowserViewControllerDelegate {
 extension ViewController: GameBoyDelegate {
     
     func gameBoyCartridgeDidLoad(cart: Cartridge) {
+        self.view.bringSubviewToFront(self.gameboyLcd)
+        print("gameBoyCartridgeDidLoad")
         FPSMetric.shared.startMoinitoring()
         FPSMetric.shared.delegate = self
     }
@@ -157,14 +170,4 @@ extension ViewController: FPSMetricDelegate {
     }
     
 }
-
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
-
-}
-
 

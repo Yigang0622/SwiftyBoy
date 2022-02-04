@@ -13,8 +13,6 @@
 		DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094B6275C952500A5AAEB /* Motherboard.swift */; };
 		DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C1275C979100A5AAEB /* CPU+Pipeline.swift */; };
 		DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tile.swift */; };
-		DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
-		DD1094C8275DF59600A5AAEB /* cpu_instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */; };
 		DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08A275F96F7005E45D4 /* Cartridge.swift */; };
 		DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */; };
 		DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08E275FA01C005E45D4 /* BootRom.swift */; };
@@ -24,11 +22,7 @@
 		DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0972760F5F1005E45D4 /* STATRegister.swift */; };
 		DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */; };
 		DD25D09C27623B34005E45D4 /* RAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D09B27623B34005E45D4 /* RAM.swift */; };
-		DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D09D276241DE005E45D4 /* ld_r_r.gb */; };
-		DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D09F276382C5005E45D4 /* Tetris.gb */; };
-		DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */ = {isa = PBXBuildFile; fileRef = DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */; };
 		DD6C14C427A5861400809779 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C14C327A5861400809779 /* Renderer.swift */; };
-		DD6C14C627A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DD6C14C527A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb */; };
 		DD897FB227A2FC5D0073C1BB /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD897FB127A2FC5D0073C1BB /* GameController.framework */; };
 		DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */; };
 		DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9027A9876000BBA499 /* GameBoy.swift */; };
@@ -44,30 +38,13 @@
 		DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD9276F24F900E475D3 /* ROMOnly.swift */; };
 		DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */; };
 		DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */; };
-		DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5F42793E37000D74122 /* 05-op rp.gb */; };
-		DDE6B5F72794147E00D74122 /* 08-misc instrs.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5F62794147D00D74122 /* 08-misc instrs.gb */; };
-		DDE6B5F92794150000D74122 /* 03-op sp,hl.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */; };
-		DDE6B5FB27941AE800D74122 /* 09-op r,r.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */; };
-		DDE6B6012794202700D74122 /* 01-special.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6002794202700D74122 /* 01-special.gb */; };
-		DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B604279712C000D74122 /* 02-interrupts.gb */; };
 		DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B60627985B9300D74122 /* CPUTimer.swift */; };
-		DDE6B6092799AE0000D74122 /* 175-sprite-parallax-starfield.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6082799AE0000D74122 /* 175-sprite-parallax-starfield.gb */; };
-		DDE6B60B2799B46500D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B60A2799B46400D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb */; };
-		DDE6B6112799B69A00D74122 /* Pac-Man (U) (Namco).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */; };
-		DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */; };
-		DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */; };
-		DDE6B6172799B81A00D74122 /* Doraemon 2 (J).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */; };
-		DDE6B6192799C9A700D74122 /* Pokemon Red (UE) [S][!].gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */; };
 		DDE6B61C279D0B0700D74122 /* JoypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61B279D0B0700D74122 /* JoypadButton.swift */; };
 		DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61D279D0B8000D74122 /* Joypad.swift */; };
 		DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */; };
 		DDE6B623279D194200D74122 /* InterruptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B622279D194200D74122 /* InterruptManager.swift */; };
-		DDE6B627279D447900D74122 /* Example.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B626279D447900D74122 /* Example.gb */; };
-		DDE6B629279D461200D74122 /* main.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B628279D461200D74122 /* main.gb */; };
-		DDE6B62B279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */; };
 		DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */; };
 		DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62E279D904F00D74122 /* MBC3.swift */; };
-		DDE6B631279D994000D74122 /* Crayon Shin-Chan (J).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */; };
 		DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63227A03B0B00D74122 /* Sprite.swift */; };
 		DDE6B63527A04F8800D74122 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63427A04F8800D74122 /* Palette.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
@@ -77,9 +54,6 @@
 		DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED3274FCA8F007929DA /* Assets.xcassets */; };
 		DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */; };
 		DDF24EE2274FCA8F007929DA /* SwiftyBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */; };
-		DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */ = {isa = PBXBuildFile; fileRef = DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */; };
-		DDF7A771276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDF7A770276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb */; };
-		DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */ = {isa = PBXBuildFile; fileRef = DDF7A772276615150016F1A1 /* 04-op r,imm.gb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +73,6 @@
 		DD1094B6275C952500A5AAEB /* Motherboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Motherboard.swift; sourceTree = "<group>"; };
 		DD1094C1275C979100A5AAEB /* CPU+Pipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+Pipeline.swift"; sourceTree = "<group>"; };
 		DD1094C3275CF4A600A5AAEB /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
-		DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = cpu_instrs.gb; sourceTree = "<group>"; };
 		DD25D08A275F96F7005E45D4 /* Cartridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartridge.swift; sourceTree = "<group>"; };
 		DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeMeta.swift; sourceTree = "<group>"; };
 		DD25D08E275FA01C005E45D4 /* BootRom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRom.swift; sourceTree = "<group>"; };
@@ -109,11 +82,7 @@
 		DD25D0972760F5F1005E45D4 /* STATRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STATRegister.swift; sourceTree = "<group>"; };
 		DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteRegister.swift; sourceTree = "<group>"; };
 		DD25D09B27623B34005E45D4 /* RAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAM.swift; sourceTree = "<group>"; };
-		DD25D09D276241DE005E45D4 /* ld_r_r.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = ld_r_r.gb; sourceTree = "<group>"; };
-		DD25D09F276382C5005E45D4 /* Tetris.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tetris.gb; sourceTree = "<group>"; };
-		DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "10-bit ops.gb"; sourceTree = "<group>"; };
 		DD6C14C327A5861400809779 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		DD6C14C527A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb"; sourceTree = "<group>"; };
 		DD897FB127A2FC5D0073C1BB /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCart.swift; sourceTree = "<group>"; };
 		DDAB2D9027A9876000BBA499 /* GameBoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoy.swift; sourceTree = "<group>"; };
@@ -129,30 +98,13 @@
 		DDD84FD9276F24F900E475D3 /* ROMOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMOnly.swift; sourceTree = "<group>"; };
 		DDD84FDB276F64B000E475D3 /* InterruptEnableRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptEnableRegister.swift; sourceTree = "<group>"; };
 		DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptFlagRegister.swift; sourceTree = "<group>"; };
-		DDE6B5F42793E37000D74122 /* 05-op rp.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "05-op rp.gb"; sourceTree = "<group>"; };
-		DDE6B5F62794147D00D74122 /* 08-misc instrs.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "08-misc instrs.gb"; sourceTree = "<group>"; };
-		DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "03-op sp,hl.gb"; sourceTree = "<group>"; };
-		DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "09-op r,r.gb"; sourceTree = "<group>"; };
-		DDE6B6002794202700D74122 /* 01-special.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "01-special.gb"; sourceTree = "<group>"; };
-		DDE6B604279712C000D74122 /* 02-interrupts.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "02-interrupts.gb"; sourceTree = "<group>"; };
 		DDE6B60627985B9300D74122 /* CPUTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUTimer.swift; sourceTree = "<group>"; };
-		DDE6B6082799AE0000D74122 /* 175-sprite-parallax-starfield.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "175-sprite-parallax-starfield.gb"; sourceTree = "<group>"; };
-		DDE6B60A2799B46400D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb"; sourceTree = "<group>"; };
-		DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pac-Man (U) (Namco).gb"; sourceTree = "<group>"; };
-		DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Super Mario Land (JUE) (V1.1) [!].gb"; sourceTree = "<group>"; };
-		DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tetris (JUE) (V1.1) [!].gb"; sourceTree = "<group>"; };
-		DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Doraemon 2 (J).gb"; sourceTree = "<group>"; };
-		DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon Red (UE) [S][!].gb"; sourceTree = "<group>"; };
 		DDE6B61B279D0B0700D74122 /* JoypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoypadButton.swift; sourceTree = "<group>"; };
 		DDE6B61D279D0B8000D74122 /* Joypad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joypad.swift; sourceTree = "<group>"; };
 		DDE6B61F279D10C900D74122 /* MemoryAccessable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAccessable.swift; sourceTree = "<group>"; };
 		DDE6B622279D194200D74122 /* InterruptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptManager.swift; sourceTree = "<group>"; };
-		DDE6B626279D447900D74122 /* Example.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = Example.gb; sourceTree = "<group>"; };
-		DDE6B628279D461200D74122 /* main.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.gb; sourceTree = "<group>"; };
-		DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kirby's Dream Land (USA, Europe).gb"; sourceTree = "<group>"; };
 		DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyInputMask.swift; sourceTree = "<group>"; };
 		DDE6B62E279D904F00D74122 /* MBC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC3.swift; sourceTree = "<group>"; };
-		DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Crayon Shin-Chan (J).gb"; sourceTree = "<group>"; };
 		DDE6B63227A03B0B00D74122 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		DDE6B63427A04F8800D74122 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,9 +118,6 @@
 		DDF24EDD274FCA8F007929DA /* SwiftyBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBoyTests.swift; sourceTree = "<group>"; };
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
-		DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "11-op a,(hl).gb"; sourceTree = "<group>"; };
-		DDF7A770276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "07-jr,jp,call,ret,rst.gb"; sourceTree = "<group>"; };
-		DDF7A772276615150016F1A1 /* 04-op r,imm.gb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "04-op r,imm.gb"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,38 +152,6 @@
 				DDD84FDD276F663800E475D3 /* InterruptFlagRegister.swift */,
 			);
 			path = CPU;
-			sourceTree = "<group>";
-		};
-		DD1094C5275DF50A00A5AAEB /* Roms */ = {
-			isa = PBXGroup;
-			children = (
-				DD6C14C527A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb */,
-				DDE6B62A279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb */,
-				DDE6B628279D461200D74122 /* main.gb */,
-				DDE6B626279D447900D74122 /* Example.gb */,
-				DDE6B6182799C9A700D74122 /* Pokemon Red (UE) [S][!].gb */,
-				DDE6B6102799B69900D74122 /* Pac-Man (U) (Namco).gb */,
-				DDE6B6002794202700D74122 /* 01-special.gb */,
-				DDE6B604279712C000D74122 /* 02-interrupts.gb */,
-				DDE6B5F82794150000D74122 /* 03-op sp,hl.gb */,
-				DDF7A772276615150016F1A1 /* 04-op r,imm.gb */,
-				DDE6B5F42793E37000D74122 /* 05-op rp.gb */,
-				DD25D09D276241DE005E45D4 /* ld_r_r.gb */,
-				DDF7A770276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb */,
-				DDE6B5F62794147D00D74122 /* 08-misc instrs.gb */,
-				DDE6B5FA27941AE800D74122 /* 09-op r,r.gb */,
-				DD25D0A12763AC7F005E45D4 /* 10-bit ops.gb */,
-				DDF7A76E276613650016F1A1 /* 11-op a,(hl).gb */,
-				DD25D09F276382C5005E45D4 /* Tetris.gb */,
-				DD1094C6275DF59600A5AAEB /* cpu_instrs.gb */,
-				DDE6B6082799AE0000D74122 /* 175-sprite-parallax-starfield.gb */,
-				DDE6B60A2799B46400D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb */,
-				DDE6B6122799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb */,
-				DDE6B6142799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb */,
-				DDE6B630279D993F00D74122 /* Crayon Shin-Chan (J).gb */,
-				DDE6B6162799B81A00D74122 /* Doraemon 2 (J).gb */,
-			);
-			path = Roms;
 			sourceTree = "<group>";
 		};
 		DD25D089275F96E6005E45D4 /* Cartridge */ = {
@@ -316,7 +233,6 @@
 		DDF24EC9274FCA8C007929DA /* SwiftyBoy */ = {
 			isa = PBXGroup;
 			children = (
-				DD1094C5275DF50A00A5AAEB /* Roms */,
 				DDF24EFA274FCAD6007929DA /* GameBoy */,
 				DDF24ECA274FCA8C007929DA /* AppDelegate.swift */,
 				DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */,
@@ -441,34 +357,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDE6B629279D461200D74122 /* main.gb in Resources */,
-				DD25D09E2762429B005E45D4 /* ld_r_r.gb in Resources */,
-				DDE6B627279D447900D74122 /* Example.gb in Resources */,
-				DDF7A771276613E10016F1A1 /* 07-jr,jp,call,ret,rst.gb in Resources */,
-				DDE6B6012794202700D74122 /* 01-special.gb in Resources */,
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
-				DD25D0A22763AC80005E45D4 /* 10-bit ops.gb in Resources */,
-				DDE6B6092799AE0000D74122 /* 175-sprite-parallax-starfield.gb in Resources */,
-				DDE6B5F92794150000D74122 /* 03-op sp,hl.gb in Resources */,
-				DDE6B6192799C9A700D74122 /* Pokemon Red (UE) [S][!].gb in Resources */,
-				DDE6B605279712EF00D74122 /* 02-interrupts.gb in Resources */,
-				DDE6B6172799B81A00D74122 /* Doraemon 2 (J).gb in Resources */,
-				DDF7A773276615150016F1A1 /* 04-op r,imm.gb in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
-				DDE6B5F52793E37000D74122 /* 05-op rp.gb in Resources */,
-				DD25D0A0276382C5005E45D4 /* Tetris.gb in Resources */,
-				DDE6B5F72794147E00D74122 /* 08-misc instrs.gb in Resources */,
-				DDE6B631279D994000D74122 /* Crayon Shin-Chan (J).gb in Resources */,
-				DDE6B5FB27941AE800D74122 /* 09-op r,r.gb in Resources */,
-				DD1094C7275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
-				DD6C14C627A8529700809779 /* Legend of Zelda, The - Link's Awakening (U) (V1.2) [!].gb in Resources */,
-				DDE6B6112799B69A00D74122 /* Pac-Man (U) (Namco).gb in Resources */,
-				DDF7A76F276613650016F1A1 /* 11-op a,(hl).gb in Resources */,
-				DDE6B62B279D686800D74122 /* Kirby's Dream Land (USA, Europe).gb in Resources */,
 				DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */,
-				DDE6B6152799B79F00D74122 /* Tetris (JUE) (V1.1) [!].gb in Resources */,
-				DDE6B6132799B73300D74122 /* Super Mario Land (JUE) (V1.1) [!].gb in Resources */,
-				DDE6B60B2799B46500D74122 /* Game Boy Test Cartridge (USA, Europe) (Proto) (Test Program).gb in Resources */,
 				DDAB2D9927AD44F600BBA499 /* pixelated.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,7 +368,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD1094C8275DF59600A5AAEB /* cpu_instrs.gb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

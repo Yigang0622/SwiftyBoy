@@ -9,7 +9,7 @@ import Foundation
 
 class Motherboard {
     
-    let cpu = CPU()
+    var cpu = CPU()
     let cpuTimer = CPUTimer()
     let gpu = GPU()
     let ram = RAM()
@@ -19,10 +19,12 @@ class Motherboard {
     var bootRom = BootRom()
     var bootRomEnable = true
     
+    private var running = false
     var timer: DispatchSourceTimer!
     var queue: DispatchQueue = DispatchQueue(label: "mbtimer")
     let semaphore = DispatchSemaphore(value: 1)
     private var fpsRestriction = true
+    
     
     init() {
         cpu.mb = self
@@ -31,10 +33,21 @@ class Motherboard {
         joypad.mb = self
                 
         gpu.onPhaseChange = { [self] phase in
-            if phase == .vBlank && fpsRestriction {
+            if phase == .vBlank && fpsRestriction && running {
                 self.semaphore.wait()
             }
         }
+    }
+    
+    private func reset() {
+        running = false
+        if timer != nil {
+            timer.cancel()
+        }
+        semaphore.signal()
+        running = false
+        bootRomEnable = true
+        cpu.reset()
     }
     
     func run() {
@@ -42,8 +55,9 @@ class Motherboard {
             print("cart is nil")
             return
         }
-        
+        reset()
         setupTimer()
+        running = true
         startTick()
     }
     
@@ -58,6 +72,10 @@ class Motherboard {
     }
     
     func setFpsRestriction(enable: Bool) {
+        if !running {
+            return
+        }
+        
         if enable {
             if !fpsRestriction {
                 setupTimer()
@@ -74,11 +92,12 @@ class Motherboard {
     }
     
     private func startTick() {
-        while cpu.pc >= 0 {
+        while running {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
             cpuTimer.tick(cycles: cycles)
         }
+        print("Motherboard Stopped")
     }
     
     public func getMem(address: Int) -> Int {

@@ -56,8 +56,6 @@ class CPU {
     private var _sp: Int = 0x0000
     private var _pc: Int = 0x0000
     
-    private var duringInterrupt = false
-    
     public var halted: Bool = false
     public var interruptMasterEnable = false
     public var interruptEnableRegister = InterruptEnableRegister(val: 0)
@@ -230,6 +228,21 @@ class CPU {
         }
     }
     
+    func reset() {
+        interruptFlagRegister.setVal(val: 0)
+        interruptEnableRegister.setVal(val: 0)
+        interruptMasterEnable = false
+        halted = false
+        pc = 0
+        sp = 0
+        a = 0
+        b = 0
+        c = 0
+        d = 0
+        e = 0
+        h = 0
+        l = 0       
+    }
     
     var baseInstructions = Array<CPUInstruction?>(repeating: nil, count: 256)
     var cbInstructions = Array<CPUInstruction?>(repeating: nil, count: 256)

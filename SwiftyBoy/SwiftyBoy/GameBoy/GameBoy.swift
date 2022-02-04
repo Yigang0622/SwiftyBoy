@@ -72,10 +72,9 @@ class GameBoy {
         mb.setFpsRestriction(enable: !enable)
     }
     
-    
 }
 
-protocol GameBoyDelegate {
+@objc protocol GameBoyDelegate: AnyObject {
 
     func gameBoyCartridgeDidLoad(cart: Cartridge)
     

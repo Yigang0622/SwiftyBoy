@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Cartridge {
+class Cartridge: NSObject {
     
     var name: String!
     var meta: CartridgeMeta!

@@ -12,11 +12,35 @@ import UniformTypeIdentifiers
 
 class ViewController: UIViewController {
         
-    
-    let scale = 1
-    let imageView = UIImageView(frame: CGRect(x: 0, y: 100, width: 160 * 4, height: 144 * 4))
-    let fpsLabel = UILabel(frame: CGRect(x: 0, y: 50, width: 100, height: 50))
     var gameboy = GameBoy()
+    var gameboyLcd: GameBoyLCDView!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        gameboy.delegate = self
+        self.view.backgroundColor = .blue
+        gameboyLcd = GameBoyLCDView()
+        self.view.addSubview(gameboyLcd)
+        gameboyLcd.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            gameboyLcd.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            gameboyLcd.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            gameboyLcd.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gameboyLcd.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+//
+//        FPSMetric.shared.bind(gameboyDelegate: self)
+    }
+    
+    private func setupContextMenu() {
+        let interaction = UIContextMenuInteraction(delegate: self)
+        self.view.addInteraction(interaction)
+    }
     
     override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
                 
@@ -72,35 +96,32 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+ 
+
+}
+
+extension ViewController: UIContextMenuInteractionDelegate {
     
+    @objc func showLoadCartridgeDialog() {
         let types = UTType.types(tag: "gb", tagClass: UTTagClass.filenameExtension, conformingTo: nil)
         let documentPickerController = UIDocumentBrowserViewController(forOpening: types)
         documentPickerController.delegate = self
         self.present(documentPickerController, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        gameboy.delegate = self
-    
-        fpsLabel.backgroundColor = .black
-        fpsLabel.textColor = .red
-        fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        self.view.addSubview(fpsLabel)
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let loadAction = UIAction(title: "111", image: nil, identifier: nil, discoverabilityTitle: "", attributes: [], state: .on) { action in
+            
+        }        
         
-      
-      
-        view.addSubview(imageView)
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { elements in
+            return UIMenu(title: "menu", subtitle: nil, image: nil, identifier: nil, options: [], children: [loadAction])
+        }
         
-        let viewPortImageView = UIImageView(frame: CGRect(x: 10, y: 400, width: 160 * 3, height: 144 * 3))
-        view.addSubview(viewPortImageView)
+        return config
         
-                
     }
-
+    
 }
 
 extension ViewController: UIDocumentBrowserViewControllerDelegate {
@@ -124,7 +145,7 @@ extension ViewController: GameBoyDelegate {
     
     func gameBoyDidDrawNewFrame(frame: UIImage) {
         FPSMetric.shared.increaseCounter()
-        imageView.image = frame
+        gameboyLcd.setFrame(frame: frame)
     }
     
 }
@@ -132,7 +153,7 @@ extension ViewController: GameBoyDelegate {
 extension ViewController: FPSMetricDelegate {
     
     func fpsMetricDidUpdateFps(fps: Int) {
-        fpsLabel.text = "\(FPSMetric.shared.fps)"
+        gameboyLcd.setFpsText(fps: fps)
     }
     
 }

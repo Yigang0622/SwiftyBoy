@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-class FPSMetric {
+class FPSMetric: NSObject {
     
     static let shared = FPSMetric()
     
@@ -18,6 +19,8 @@ class FPSMetric {
     private var queue = DispatchQueue(label: "it.miketech.SwiftyBoy.fpsMetric")
     
     var delegate: FPSMetricDelegate?
+    
+    private var gameboyDelegate: GameBoyDelegate?
     
     var fps: Int {
         get {
@@ -36,7 +39,7 @@ class FPSMetric {
             self.fpsCounter = 0
             DispatchQueue.main.async {
                 delegate?.fpsMetricDidUpdateFps(fps: _fps)
-            }            
+            }
         }
         self.fpsTimer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
         self.fpsTimer.resume()
@@ -48,6 +51,24 @@ class FPSMetric {
             self.fpsCounter = 0
             fpsTimer.cancel()
         }
+    }
+    
+    func bind(gameboyDelegate: GameBoyDelegate) {
+        print("bind \(gameboyDelegate)")
+        let originalSelector = #selector(gameboyDelegate.gameBoyDidDrawNewFrame(frame:))
+        let swizzledSelector = #selector(self.swizzledGameBoyDidDrawNewFrame(frame:))
+        
+//        let aClass: AnyClass! = object_getClass(GameBoyDelegate())
+        
+//        let originalMethod = class_getInstanceMethod(gameboyDelegate, originalSelector)
+//        let swizzledMethod = class_getInstanceMethod(FPSMetric.self, swizzledSelector)
+
+
+    }
+    
+    @objc private func swizzledGameBoyDidDrawNewFrame(frame: UIImage) {
+        print("swizzledGameBoyDidDrawNewFrame")
+        
     }
     
 }

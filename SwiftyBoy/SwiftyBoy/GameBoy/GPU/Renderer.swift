@@ -85,8 +85,8 @@ class Renderer {
         for i in 0 ..< Renderer.frameWidth {
             var y = line + gpu.scy
             var x = i + gpu.scx
-            if y > 255 { y -= 255 }
-            if x > 255 { x -= 255 }
+            if y >= 255 { y -= 255 }
+            if x >= 255 { x -= 255 }
             let backgroundY:Int = y / 8
             let backgroundX:Int = x / 8
             let backgroundIdx = backgroundY * 32 + backgroundX

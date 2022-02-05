@@ -66,7 +66,9 @@ class CartageLoader {
                 return MBC3(bytes: bytes, name: name, meta: meta, fileName: fileName)
             }  else if meta.type == .MBC2 {
                 return MBC2(bytes: bytes, name: name, meta: meta, fileName: fileName)
-            }else {
+            } else if meta.type == .MBC5 {
+                return MBC5(bytes: bytes, name: name, meta: meta, fileName: fileName)
+            } else {
                 fatalError("cart not supported")
             }
         } catch {

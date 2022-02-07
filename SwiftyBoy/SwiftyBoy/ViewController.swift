@@ -114,8 +114,7 @@ class ViewController: UIViewController {
 extension ViewController: UIContextMenuInteractionDelegate {
     
     @objc func showLoadCartridgeDialog() {
-        let types = UTType.types(tag: "gb", tagClass: UTTagClass.filenameExtension, conformingTo: nil)
-        
+        let types = UTType.types(tag: ".gb", tagClass: UTTagClass.filenameExtension, conformingTo: nil)        
         let documentPickerController = UIDocumentBrowserViewController(forOpening: types)
         documentPickerController.delegate = self
         self.present(documentPickerController, animated: true, completion: nil)

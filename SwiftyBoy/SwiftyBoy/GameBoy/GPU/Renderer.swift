@@ -147,7 +147,7 @@ class Renderer {
             let x = sprite.posX - 8
             let y = sprite.posY - 16
                         
-            if gpu.lcdcRegister.spriteSize == .size1 {
+            if gpu.lcdcRegister.spriteSize == .size8x16 {
                 // 8 x 16
                 if sprite.yFlip {
                     drawSpriteTile(x: x, y: y, tileId: sprite.patternNumber + 1, xFlip: sprite.xFlip, yFlip: sprite.yFlip, palette: sprite.palette, priority: sprite.priority)
@@ -157,7 +157,7 @@ class Renderer {
                     drawSpriteTile(x: x, y: y + 8, tileId: sprite.patternNumber + 1, xFlip: sprite.xFlip, yFlip: sprite.yFlip, palette: sprite.palette, priority: sprite.priority)
                 }
                 
-            } else if gpu.lcdcRegister.spriteSize == .size0 {
+            } else if gpu.lcdcRegister.spriteSize == .size8x8 {
                 drawSpriteTile(x: x, y: y, tileId: sprite.patternNumber, xFlip: sprite.xFlip, yFlip: sprite.yFlip, palette: sprite.palette, priority: sprite.priority)
             }
             

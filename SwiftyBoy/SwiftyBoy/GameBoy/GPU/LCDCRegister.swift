@@ -18,8 +18,8 @@ enum LCDCTileDataSelect {
 }
 
 enum LCDCSpriteSize {
-    case size0
-    case size1
+    case size8x8
+    case size8x16
 }
 
 class LCDCRegister: BaseRegister {
@@ -29,7 +29,7 @@ class LCDCRegister: BaseRegister {
     var windowEnable = false
     var tileDataSelect: LCDCTileDataSelect = .tile0
     var backgroundTileMapSelect: LCDCTileMapSelect = .map0
-    var spriteSize: LCDCSpriteSize = .size0
+    var spriteSize: LCDCSpriteSize = .size8x8
     var spriteEnable = false
     var backgroundEnable = false
     
@@ -46,7 +46,7 @@ class LCDCRegister: BaseRegister {
         windowEnable = getBit(n: 5)
         tileDataSelect = getBit(n: 4) ? .tile1 : .tile0
         backgroundTileMapSelect = getBit(n: 3) ? .map1 : .map0
-        spriteSize = getBit(n: 2) ? .size1 : .size0
+        spriteSize = getBit(n: 2) ? .size8x16 : .size8x8
         spriteEnable = getBit(n: 1)
         backgroundEnable = getBit(n: 0)
     }

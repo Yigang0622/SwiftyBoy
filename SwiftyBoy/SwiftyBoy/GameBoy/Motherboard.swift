@@ -44,6 +44,9 @@ class Motherboard {
         if timer != nil {
             timer.cancel()
         }
+        if cart != nil {
+            (cart as? MBCBase)?.cartriageWillEject()
+        }
         semaphore.signal()
         running = false
         bootRomEnable = true
@@ -277,7 +280,7 @@ class Motherboard {
                 // SCY
                 gpu.scy = val
             } else if address == 0xFF43 {
-                // SCX
+                // SCX         
                 gpu.scx = val
             } else if address == 0xFF44 {
                 // LY

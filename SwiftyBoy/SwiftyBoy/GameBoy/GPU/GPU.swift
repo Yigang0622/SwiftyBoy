@@ -89,37 +89,46 @@ class GPU {
                 resetLY()
             }
             
-//            if nextState == .vBlank {
-//                mb.cpu.interruptFlagRegister.vblank = true
-//            }
-            
             currentState = nextState
             if currentState == .oamSearch {
                 // 20 clocks
                 targetClock += 20 * 4
                 nextState = .pixelTransfer
-                
+                statRegister.modeFlag = .mode10
+                if statRegister.mode10InterruptEnable {
+                    mb.cpu.interruptFlagRegister.lcdc = true
+                }
+                increaseLY()
             } else if currentState == .pixelTransfer {
                 targetClock += 43 * 4
-                nextState = .hBlank
-                
+                statRegister.modeFlag = .mode11
+                nextState = .hBlank                
             } else if currentState == .hBlank {
                 targetClock += 51 * 4
-                increaseLY()
+                statRegister.modeFlag = .mode00
+                if statRegister.mode00InterruptEnable {
+                    mb.cpu.interruptFlagRegister.lcdc = true
+                }
+                if ly >= 0 && ly < 144 {
+                    renderer.drawLine(line: ly)
+                }
                 // full frame drawn
                 if ly < 144 {
                     nextState = .oamSearch
                 } else {
                     nextState = .vBlank
                 }
-                
             } else if currentState == .vBlank {
                 targetClock += (20 + 43 + 51) * 4
+                statRegister.modeFlag = .mode01
+                if statRegister.mode01InterruptEnable {
+                    mb.cpu.interruptFlagRegister.lcdc = true
+                }
                 nextState = .vBlank
                 if ly == 144 {
-                    self.draw()
                     mb.cpu.interruptFlagRegister.vblank = true
                     onPhaseChange?(.vBlank)
+                    self.draw()
                 }
                 increaseLY()
             }
@@ -131,12 +140,10 @@ class GPU {
     }
     
     func increaseLY() {
-        ly += 1        
-        if ly == lyc {
+        ly += 1
+        statRegister.lyMatchFlag = (ly == lyc)
+        if statRegister.lyMatchFlag && statRegister.lyMatchInterruptEnable {
             mb.cpu.interruptFlagRegister.lcdc = true
-        }
-        if ly >= 0 && ly < 144 {
-            renderer.drawLine(line: ly)
         }
     }
     

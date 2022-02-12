@@ -16,7 +16,7 @@ class Motherboard {
     let joypad = Joypad(interruptManager: InterruptManager())
     
     var cart: Cartridge!
-    var bootRom = BootRom()
+    var bootRom: BootRom?
     var bootRomEnable = true
     
     private var running = false
@@ -58,6 +58,46 @@ class Motherboard {
         if cart == nil {
             print("cart is nil")
             return
+        }
+        if bootRom == nil {
+            bootRomEnable = false
+            cpu.pc = 0x100
+            cpu.af = 0x01B0
+            cpu.bc = 0x0013
+            cpu.de = 0x00D8
+            cpu.hl = 0x014D
+            cpu.sp = 0xFFFE
+            setMem(address: 0xFF05, val: 0x00)
+            setMem(address: 0xFF06, val: 0x00)
+            setMem(address: 0xFF07, val: 0x00)
+            setMem(address: 0xFF10, val: 0x80)
+            setMem(address: 0xFF11, val: 0xBF)
+            setMem(address: 0xFF12, val: 0xF3)
+            setMem(address: 0xFF14, val: 0xBF)
+            setMem(address: 0xFF16, val: 0x3F)
+            setMem(address: 0xFF17, val: 0x00)
+            setMem(address: 0xFF19, val: 0xBF)
+            setMem(address: 0xFF1A, val: 0x7F)
+            setMem(address: 0xFF1B, val: 0xFF)
+            setMem(address: 0xFF1C, val: 0x9F)
+            setMem(address: 0xFF1E, val: 0xBF)
+            setMem(address: 0xFF20, val: 0xFF)
+            setMem(address: 0xFF21, val: 0x00)
+            setMem(address: 0xFF22, val: 0x00)
+            setMem(address: 0xFF23, val: 0xBF)
+            setMem(address: 0xFF24, val: 0x77)
+            setMem(address: 0xFF25, val: 0xF3)
+            setMem(address: 0xFF26, val: 0xF1)
+            setMem(address: 0xFF40, val: 0x91)
+            setMem(address: 0xFF42, val: 0x00)
+            setMem(address: 0xFF43, val: 0x00)
+            setMem(address: 0xFF45, val: 0x00)
+            setMem(address: 0xFF47, val: 0xFC)
+            setMem(address: 0xFF48, val: 0xFF)
+            setMem(address: 0xFF49, val: 0xFF)
+            setMem(address: 0xFF4A, val: 0x00)
+            setMem(address: 0xFF4B, val: 0x00)
+            setMem(address: 0xFFFF, val: 0x00)            
         }
         setupTimer()
         running = true
@@ -107,7 +147,7 @@ class Motherboard {
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
             if address <= 0xFF && bootRomEnable {
-                return bootRom.getMem(address: address)
+                return bootRom!.getMem(address: address)
             } else {
                 return cart.getMem(address: address)
             }

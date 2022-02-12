@@ -11,7 +11,9 @@ import Darwin
 class MainMenuView: UIView {
     
     var loadCartridgeButton: UIButton!
+    var loadBootRomButton: UIButton!
     var titleLabel: UILabel!
+    var stackView: UIStackView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,18 +42,45 @@ class MainMenuView: UIView {
         titleLabel.text = ""
         titleLabel.font = UIFont.pixelatedFont(ofSize: 80)
         
+        stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints =  false
+        self.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.heightAnchor.constraint(equalToConstant: 200),
+            stackView.widthAnchor.constraint(equalToConstant: 350),
+            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+        ])
+        stackView.backgroundColor = .red
+        stackView.alignment = UIStackView.Alignment.center
+        stackView.axis = NSLayoutConstraint.Axis.vertical
+        
         loadCartridgeButton = UIButton()
         loadCartridgeButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(loadCartridgeButton)
-        NSLayoutConstraint.activate([
-            loadCartridgeButton.heightAnchor.constraint(equalToConstant: 50),
-            loadCartridgeButton.widthAnchor.constraint(equalToConstant: 350),
-            loadCartridgeButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            loadCartridgeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
         loadCartridgeButton.setTitle("LOAD CARTRIDGE", for: .normal)
         loadCartridgeButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
         loadCartridgeButton.setTitleColor(.black, for: .normal)
+        
+        stackView.addArrangedSubview(loadCartridgeButton)
+        
+        loadBootRomButton = UIButton()
+        loadBootRomButton.translatesAutoresizingMaskIntoConstraints = false
+        loadBootRomButton.setTitle("SET BOOTROM", for: .normal)
+        loadBootRomButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
+        loadBootRomButton.setTitleColor(.black, for: .normal)
+        stackView.addArrangedSubview(loadBootRomButton)
+        
+        
+//        self.addSubview(loadCartridgeButton)
+//        NSLayoutConstraint.activate([
+//            loadCartridgeButton.heightAnchor.constraint(equalToConstant: 50),
+//            loadCartridgeButton.widthAnchor.constraint(equalToConstant: 350),
+//            loadCartridgeButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//            loadCartridgeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+//        ])
+//        loadCartridgeButton.setTitle("LOAD CARTRIDGE", for: .normal)
+//        loadCartridgeButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
+//        loadCartridgeButton.setTitleColor(.black, for: .normal)
     }
     
 }

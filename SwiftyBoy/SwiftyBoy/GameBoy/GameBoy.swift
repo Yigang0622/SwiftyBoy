@@ -69,6 +69,13 @@ class GameBoy {
         }
     }
     
+    func loadBootRom(url: URL) {
+        if let bootrom = BootRomLoader.loadBootRom(url: url) {
+            print("set bootrom success")
+            mb.bootRom = bootrom
+        }
+    }
+    
     func setBoostMode(enable: Bool) {
         mb.setFpsRestriction(enable: !enable)
     }

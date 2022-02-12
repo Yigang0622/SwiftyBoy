@@ -35,7 +35,6 @@ class ViewController: UIViewController {
             gameboyLcd.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
-//        FPSMetric.shared.bind(gameboyDelegate: self)
     
         mainMenu = MainMenuView()
         self.view.addSubview(mainMenu)
@@ -47,6 +46,7 @@ class ViewController: UIViewController {
             mainMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         mainMenu.loadCartridgeButton.addTarget(self, action: #selector(self.showLoadCartridgeDialog), for: .touchUpInside)
+        mainMenu.loadBootRomButton.addTarget(self, action: #selector(self.showSetBootromDialog), for: .touchUpInside)
         
     }
     
@@ -111,41 +111,30 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UIContextMenuInteractionDelegate {
+let picker = MyDocumentPicker()
+
+extension ViewController {
+
     
     @objc func showLoadCartridgeDialog() {
-        let types = UTType.types(tag: ".gb", tagClass: UTTagClass.filenameExtension, conformingTo: nil)        
-        let documentPickerController = UIDocumentBrowserViewController(forOpening: types)
-        documentPickerController.delegate = self
-        self.present(documentPickerController, animated: true, completion: nil)
+        picker.showPicker(fromController: self, fileType: ".gb") { [self] url in
+            if let url = url {
+                gameboy.loadCartridge(url: url)
+            }
+        }
     }
     
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        let loadAction = UIAction(title: "111", image: nil, identifier: nil, discoverabilityTitle: "", attributes: [], state: .on) { action in
-            
-        }        
-        
-        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { elements in
-            return UIMenu(title: "menu", subtitle: nil, image: nil, identifier: nil, options: [], children: [loadAction])
+    @objc func showSetBootromDialog() {
+        picker.showPicker(fromController: self, fileType: "") { [self] url in
+            if let url = url {
+                gameboy.loadBootRom(url: url)
+            }
         }
-        
-        return config
-        
     }
+    
     
 }
 
-extension ViewController: UIDocumentBrowserViewControllerDelegate {
-    
-    func documentBrowser(_ controller: UIDocumentBrowserViewController, didPickDocumentsAt documentURLs: [URL]) {
-        if let url = documentURLs.first {
-            gameboy.loadCartridge(url: url)
-            
-        }
-        
-    }
-    
-}
 
 extension ViewController: GameBoyDelegate {
     

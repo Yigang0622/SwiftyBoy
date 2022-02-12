@@ -15,7 +15,6 @@
 		DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1094C3275CF4A600A5AAEB /* Tile.swift */; };
 		DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08A275F96F7005E45D4 /* Cartridge.swift */; };
 		DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */; };
-		DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D08E275FA01C005E45D4 /* BootRom.swift */; };
 		DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D090275FAB5A005E45D4 /* GPU.swift */; };
 		DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D093275FBD53005E45D4 /* LCDCRegister.swift */; };
 		DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0952760E7D7005E45D4 /* BaseRegister.swift */; };
@@ -23,6 +22,9 @@
 		DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */; };
 		DD25D09C27623B34005E45D4 /* RAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D09B27623B34005E45D4 /* RAM.swift */; };
 		DD6C14C427A5861400809779 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C14C327A5861400809779 /* Renderer.swift */; };
+		DD70BF6F27B7992B00CA9F1C /* BootRom.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70BF6E27B7992B00CA9F1C /* BootRom.swift */; };
+		DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70BF7127B7995400CA9F1C /* BootRomLoader.swift */; };
+		DD70BF7427B7A20900CA9F1C /* MyDocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD70BF7327B7A20900CA9F1C /* MyDocumentPicker.swift */; };
 		DD897FB227A2FC5D0073C1BB /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD897FB127A2FC5D0073C1BB /* GameController.framework */; };
 		DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */; };
 		DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9027A9876000BBA499 /* GameBoy.swift */; };
@@ -76,7 +78,6 @@
 		DD1094C3275CF4A600A5AAEB /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		DD25D08A275F96F7005E45D4 /* Cartridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartridge.swift; sourceTree = "<group>"; };
 		DD25D08C275F9895005E45D4 /* CartridgeMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeMeta.swift; sourceTree = "<group>"; };
-		DD25D08E275FA01C005E45D4 /* BootRom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRom.swift; sourceTree = "<group>"; };
 		DD25D090275FAB5A005E45D4 /* GPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPU.swift; sourceTree = "<group>"; };
 		DD25D093275FBD53005E45D4 /* LCDCRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDCRegister.swift; sourceTree = "<group>"; };
 		DD25D0952760E7D7005E45D4 /* BaseRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRegister.swift; sourceTree = "<group>"; };
@@ -84,6 +85,9 @@
 		DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteRegister.swift; sourceTree = "<group>"; };
 		DD25D09B27623B34005E45D4 /* RAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAM.swift; sourceTree = "<group>"; };
 		DD6C14C327A5861400809779 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		DD70BF6E27B7992B00CA9F1C /* BootRom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRom.swift; sourceTree = "<group>"; };
+		DD70BF7127B7995400CA9F1C /* BootRomLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRomLoader.swift; sourceTree = "<group>"; };
+		DD70BF7327B7A20900CA9F1C /* MyDocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDocumentPicker.swift; sourceTree = "<group>"; };
 		DD897FB127A2FC5D0073C1BB /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		DDAB2D8E27A95E1F00BBA499 /* DummyCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyCart.swift; sourceTree = "<group>"; };
 		DDAB2D9027A9876000BBA499 /* GameBoy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoy.swift; sourceTree = "<group>"; };
@@ -188,6 +192,15 @@
 			path = GPU;
 			sourceTree = "<group>";
 		};
+		DD70BF7027B7993100CA9F1C /* BootRom */ = {
+			isa = PBXGroup;
+			children = (
+				DD70BF6E27B7992B00CA9F1C /* BootRom.swift */,
+				DD70BF7127B7995400CA9F1C /* BootRomLoader.swift */,
+			);
+			path = BootRom;
+			sourceTree = "<group>";
+		};
 		DD897FB027A2FC5D0073C1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +262,7 @@
 				DDF24ED8274FCA8F007929DA /* Info.plist */,
 				DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */,
 				DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */,
+				DD70BF7327B7A20900CA9F1C /* MyDocumentPicker.swift */,
 			);
 			path = SwiftyBoy;
 			sourceTree = "<group>";
@@ -264,13 +278,13 @@
 		DDF24EFA274FCAD6007929DA /* GameBoy */ = {
 			isa = PBXGroup;
 			children = (
+				DD70BF7027B7993100CA9F1C /* BootRom */,
 				DDE6B621279D157200D74122 /* Common */,
 				DDE6B61A279D0AE900D74122 /* Joypad */,
 				DD25D092275FBD3E005E45D4 /* GPU */,
 				DD25D089275F96E6005E45D4 /* Cartridge */,
 				DD1094BC275C953300A5AAEB /* CPU */,
 				DD1094B6275C952500A5AAEB /* Motherboard.swift */,
-				DD25D08E275FA01C005E45D4 /* BootRom.swift */,
 				DD25D09B27623B34005E45D4 /* RAM.swift */,
 				DDE6B622279D194200D74122 /* InterruptManager.swift */,
 				DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */,
@@ -384,11 +398,13 @@
 				DDE6B62D279D6E8600D74122 /* KeyInputMask.swift in Sources */,
 				DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */,
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
+				DD70BF7427B7A20900CA9F1C /* MyDocumentPicker.swift in Sources */,
 				DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */,
 				DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */,
 				DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */,
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
+				DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */,
 				DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */,
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
 				DDAB2D9727AC3D8900BBA499 /* GameBoyLCDView.swift in Sources */,
@@ -415,11 +431,11 @@
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */,
+				DD70BF6F27B7992B00CA9F1C /* BootRom.swift in Sources */,
 				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
 				DDAB2D9B27AD757A00BBA499 /* MainMenuView.swift in Sources */,
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
-				DD25D08F275FA01C005E45D4 /* BootRom.swift in Sources */,
 				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,
 				DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */,
 				DDE6B61C279D0B0700D74122 /* JoypadButton.swift in Sources */,

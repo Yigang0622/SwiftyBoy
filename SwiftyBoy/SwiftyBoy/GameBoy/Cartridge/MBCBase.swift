@@ -44,7 +44,7 @@ class MBCBase: Cartridge {
         romBanks = bytes.chunked(into: bankSize)
         print("[rom banks] \(romBanks.count) ")
                 
-        self.externalRamCount = MBCBase.externalRamCountLookup[romBanks[0][0x0149]]!
+        self.externalRamCount = MBCBase.externalRamCountLookup[romBanks[0][0x0149]] ?? 0
         initRamBanks()
                 
         if meta.battery {

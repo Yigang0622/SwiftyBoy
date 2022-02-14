@@ -51,7 +51,6 @@ class MainMenuView: UIView {
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
-        stackView.backgroundColor = .red
         stackView.alignment = UIStackView.Alignment.center
         stackView.axis = NSLayoutConstraint.Axis.vertical
         
@@ -71,6 +70,10 @@ class MainMenuView: UIView {
         stackView.addArrangedSubview(loadBootRomButton)
         
         
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
 //        self.addSubview(loadCartridgeButton)
 //        NSLayoutConstraint.activate([
 //            loadCartridgeButton.heightAnchor.constraint(equalToConstant: 50),

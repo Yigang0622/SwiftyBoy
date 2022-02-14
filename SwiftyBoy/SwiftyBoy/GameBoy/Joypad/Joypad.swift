@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum JoypadButtonType {
+enum JoypadButtonType: Int {
     case up, down, left, right, a, b, select, start
 }
 

@@ -13,9 +13,9 @@ class MyDocumentPicker: NSObject, UIDocumentBrowserViewControllerDelegate, UIDoc
     
     var completion: ((URL?) -> Void)?
     
-    func showPicker(fromController: ViewController, fileType: String, completion: @escaping ((URL?) -> Void)) {
+    func showPicker(fromController: UIViewController, fileType: String, completion: @escaping ((URL?) -> Void)) {
         self.completion = completion
-        let types = UTType.types(tag: fileType, tagClass: UTTagClass.filenameExtension, conformingTo: nil)
+//        let types = UTType.types(tag: fileType, tagClass: UTTagClass.filenameExtension, conformingTo: nil)
 //        let documentPickerController = UIDocumentBrowserViewController(forOpening: types)
 //        documentPickerController.delegate = self
 //        fromController.present(documentPickerController, animated: true, completion: nil)

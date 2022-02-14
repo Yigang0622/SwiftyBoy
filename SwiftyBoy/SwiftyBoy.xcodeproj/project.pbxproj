@@ -31,9 +31,14 @@
 		DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9227AAC07200BBA499 /* MBC2.swift */; };
 		DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */; };
 		DDAB2D9727AC3D8900BBA499 /* GameBoyLCDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */; };
-		DDAB2D9927AD44F600BBA499 /* pixelated.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDAB2D9827AD44F600BBA499 /* pixelated.ttf */; };
 		DDAB2D9B27AD757A00BBA499 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */; };
 		DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */; };
+		DDB24A4527B7F7AB00435CC2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB24A4427B7F7AB00435CC2 /* MainViewController.swift */; };
+		DDB24A4727B7F81000435CC2 /* VirtualJoyPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB24A4627B7F81000435CC2 /* VirtualJoyPadView.swift */; };
+		DDB24A4A27B7F93C00435CC2 /* VirtualJoyPadInteractiveZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB24A4927B7F93C00435CC2 /* VirtualJoyPadInteractiveZone.swift */; };
+		DDB24A5227B954FD00435CC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB24A5127B954FD00435CC2 /* Main.storyboard */; };
+		DDB24A5327B956A700435CC2 /* pixelated.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDAB2D9827AD44F600BBA499 /* pixelated.ttf */; };
+		DDB24A5527B961F200435CC2 /* VirtualJoyPadDPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB24A5427B961F200435CC2 /* VirtualJoyPadDPad.swift */; };
 		DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD4A04127AEC32300A6AF07 /* MBC5.swift */; };
 		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
@@ -51,9 +56,7 @@
 		DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63227A03B0B00D74122 /* Sprite.swift */; };
 		DDE6B63527A04F8800D74122 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63427A04F8800D74122 /* Palette.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
-		DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
-		DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED0274FCA8C007929DA /* Main.storyboard */; };
 		DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED3274FCA8F007929DA /* Assets.xcassets */; };
 		DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */; };
 		DDF24EE2274FCA8F007929DA /* SwiftyBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */; };
@@ -97,6 +100,11 @@
 		DDAB2D9827AD44F600BBA499 /* pixelated.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pixelated.ttf; sourceTree = "<group>"; };
 		DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		DDADA168275E564200ACFBA8 /* CPU+CBInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPU+CBInstructions.swift"; sourceTree = "<group>"; };
+		DDB24A4427B7F7AB00435CC2 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DDB24A4627B7F81000435CC2 /* VirtualJoyPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualJoyPadView.swift; sourceTree = "<group>"; };
+		DDB24A4927B7F93C00435CC2 /* VirtualJoyPadInteractiveZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualJoyPadInteractiveZone.swift; sourceTree = "<group>"; };
+		DDB24A5127B954FD00435CC2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DDB24A5427B961F200435CC2 /* VirtualJoyPadDPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualJoyPadDPad.swift; sourceTree = "<group>"; };
 		DDD4A04127AEC32300A6AF07 /* MBC5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC5.swift; sourceTree = "<group>"; };
 		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
@@ -115,12 +123,9 @@
 		DDE6B63427A04F8800D74122 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECE274FCA8C007929DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DDF24ED1274FCA8C007929DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDF24ED3274FCA8F007929DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF24ED6274FCA8F007929DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DDF24ED8274FCA8F007929DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDF24EDD274FCA8F007929DA /* SwiftyBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBoyTests.swift; sourceTree = "<group>"; };
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
@@ -209,6 +214,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DDB24A4827B7F8D400435CC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDB24A4B27B7F96B00435CC2 /* VirtualJoyPad */,
+				DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */,
+				DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDB24A4B27B7F96B00435CC2 /* VirtualJoyPad */ = {
+			isa = PBXGroup;
+			children = (
+				DDB24A4627B7F81000435CC2 /* VirtualJoyPadView.swift */,
+				DDB24A4927B7F93C00435CC2 /* VirtualJoyPadInteractiveZone.swift */,
+				DDB24A5427B961F200435CC2 /* VirtualJoyPadDPad.swift */,
+			);
+			path = VirtualJoyPad;
+			sourceTree = "<group>";
+		};
+		DDB24A4D27B9517000435CC2 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		DDE6B61A279D0AE900D74122 /* Joypad */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,20 +281,19 @@
 		DDF24EC9274FCA8C007929DA /* SwiftyBoy */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24EFA274FCAD6007929DA /* GameBoy */,
-				DDF24ECA274FCA8C007929DA /* AppDelegate.swift */,
-				DDF24ECC274FCA8C007929DA /* SceneDelegate.swift */,
-				DDF24ECE274FCA8C007929DA /* ViewController.swift */,
-				DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */,
-				DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */,
-				DDF24ED0274FCA8C007929DA /* Main.storyboard */,
-				DDF24ED3274FCA8F007929DA /* Assets.xcassets */,
 				DDAB2D9827AD44F600BBA499 /* pixelated.ttf */,
-				DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */,
-				DDF24ED8274FCA8F007929DA /* Info.plist */,
-				DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */,
-				DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */,
+				DDB24A4D27B9517000435CC2 /* Font */,
+				DDF24EFA274FCAD6007929DA /* GameBoy */,
+				DDB24A4827B7F8D400435CC2 /* View */,
+				DDF24ECA274FCA8C007929DA /* AppDelegate.swift */,
 				DD70BF7327B7A20900CA9F1C /* MyDocumentPicker.swift */,
+				DDB24A4427B7F7AB00435CC2 /* MainViewController.swift */,
+				DDF24ECE274FCA8C007929DA /* ViewController.swift */,
+				DDAB2D9427AAF47000BBA499 /* FPSMetric.swift */,
+				DDF24ED3274FCA8F007929DA /* Assets.xcassets */,
+				DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */,
+				DDB24A5127B954FD00435CC2 /* Main.storyboard */,
+				DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */,
 			);
 			path = SwiftyBoy;
 			sourceTree = "<group>";
@@ -374,10 +405,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB24A5227B954FD00435CC2 /* Main.storyboard in Resources */,
+				DDB24A5327B956A700435CC2 /* pixelated.ttf in Resources */,
 				DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */,
 				DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */,
-				DDF24ED2274FCA8C007929DA /* Main.storyboard in Resources */,
-				DDAB2D9927AD44F600BBA499 /* pixelated.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,8 +436,10 @@
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
 				DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */,
+				DDB24A4727B7F81000435CC2 /* VirtualJoyPadView.swift in Sources */,
 				DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */,
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
+				DDB24A4A27B7F93C00435CC2 /* VirtualJoyPadInteractiveZone.swift in Sources */,
 				DDAB2D9727AC3D8900BBA499 /* GameBoyLCDView.swift in Sources */,
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
@@ -418,10 +451,12 @@
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
+				DDB24A4527B7F7AB00435CC2 /* MainViewController.swift in Sources */,
 				DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */,
 				DDE6B63527A04F8800D74122 /* Palette.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,
+				DDB24A5527B961F200435CC2 /* VirtualJoyPadDPad.swift in Sources */,
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,
 				DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
@@ -432,7 +467,6 @@
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
 				DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */,
 				DD70BF6F27B7992B00CA9F1C /* BootRom.swift in Sources */,
-				DDF24ECD274FCA8C007929DA /* SceneDelegate.swift in Sources */,
 				DDAB2D9B27AD757A00BBA499 /* MainMenuView.swift in Sources */,
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
@@ -461,14 +495,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DDF24ED0274FCA8C007929DA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDF24ED1274FCA8C007929DA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -609,7 +635,6 @@
 				INFOPLIST_FILE = SwiftyBoy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -639,7 +664,6 @@
 				INFOPLIST_FILE = SwiftyBoy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

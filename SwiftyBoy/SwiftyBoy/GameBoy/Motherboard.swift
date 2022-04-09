@@ -14,6 +14,7 @@ class Motherboard {
     let gpu = GPU()
     let ram = RAM()
     let joypad = Joypad(interruptManager: InterruptManager())
+    let sound = SoundController()
     
     var cart: Cartridge!
     var bootRom: BootRom?
@@ -193,6 +194,16 @@ class Motherboard {
                 return cpu.interruptFlagRegister.getVal()
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
+                // sound
+                if address == 0xFF16 {
+                    return sound.getReg(reg: .nr21)
+                } else if address == 0xFF17 {
+                    return sound.getReg(reg: .nr22)
+                } else if address == 0xFF18 {
+                    return sound.getReg(reg: .nr23)
+                } else if address == 0xFF19 {
+                    return sound.getReg(reg: .nr24)
+                }
                 return 0
             } else if address == 0xFF40 {
                 // lcdc
@@ -310,6 +321,15 @@ class Motherboard {
                 cpu.interruptFlagRegister.setVal(val: (val & 0xFF))
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
+                if address == 0xFF16 {
+                    sound.setReg(reg: .nr21, val: val)
+                } else if address == 0xFF17 {
+                    sound.setReg(reg: .nr22, val: val)
+                } else if address == 0xFF18 {
+                    sound.setReg(reg: .nr23, val: val)
+                } else if address == 0xFF19 {
+                    sound.setReg(reg: .nr24, val: val)
+                }
             } else if address == 0xFF40 {
                 // lcdc
                 gpu.lcdcRegister.setVal(val: (val & 0xFF))

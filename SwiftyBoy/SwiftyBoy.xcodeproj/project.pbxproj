@@ -41,6 +41,10 @@
 		DDB24A5227B954FD00435CC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB24A5127B954FD00435CC2 /* Main.storyboard */; };
 		DDB24A5327B956A700435CC2 /* pixelated.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDAB2D9827AD44F600BBA499 /* pixelated.ttf */; };
 		DDB24A5527B961F200435CC2 /* VirtualJoyPadDPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB24A5427B961F200435CC2 /* VirtualJoyPadDPad.swift */; };
+		DDBF87062801D56600E608C7 /* SoundChannel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF87052801D56600E608C7 /* SoundChannel2.swift */; };
+		DDBF87082801D5BE00E608C7 /* ToneSoundChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF87072801D5BD00E608C7 /* ToneSoundChannel.swift */; };
+		DDBF870A2802BADF00E608C7 /* SoundChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF87092802BADF00E608C7 /* SoundChannelDelegate.swift */; };
+		DDBF870C2802D30700E608C7 /* SoundChannel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBF870B2802D30700E608C7 /* SoundChannel1.swift */; };
 		DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD4A04127AEC32300A6AF07 /* MBC5.swift */; };
 		DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */; };
 		DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD84FD3276F171E00E475D3 /* MBC1.swift */; };
@@ -108,6 +112,10 @@
 		DDB24A4927B7F93C00435CC2 /* VirtualJoyPadInteractiveZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualJoyPadInteractiveZone.swift; sourceTree = "<group>"; };
 		DDB24A5127B954FD00435CC2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DDB24A5427B961F200435CC2 /* VirtualJoyPadDPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualJoyPadDPad.swift; sourceTree = "<group>"; };
+		DDBF87052801D56600E608C7 /* SoundChannel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundChannel2.swift; sourceTree = "<group>"; };
+		DDBF87072801D5BD00E608C7 /* ToneSoundChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneSoundChannel.swift; sourceTree = "<group>"; };
+		DDBF87092802BADF00E608C7 /* SoundChannelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundChannelDelegate.swift; sourceTree = "<group>"; };
+		DDBF870B2802D30700E608C7 /* SoundChannel1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundChannel1.swift; sourceTree = "<group>"; };
 		DDD4A04127AEC32300A6AF07 /* MBC5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC5.swift; sourceTree = "<group>"; };
 		DDD84FD1276EFFF200E475D3 /* CartridgeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartridgeLoader.swift; sourceTree = "<group>"; };
 		DDD84FD3276F171E00E475D3 /* MBC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC1.swift; sourceTree = "<group>"; };
@@ -205,6 +213,10 @@
 			isa = PBXGroup;
 			children = (
 				DD68123D2801961300164A32 /* SoundController.swift */,
+				DDBF87052801D56600E608C7 /* SoundChannel2.swift */,
+				DDBF87072801D5BD00E608C7 /* ToneSoundChannel.swift */,
+				DDBF87092802BADF00E608C7 /* SoundChannelDelegate.swift */,
+				DDBF870B2802D30700E608C7 /* SoundChannel1.swift */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -456,6 +468,7 @@
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
 				DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */,
 				DDB24A4727B7F81000435CC2 /* VirtualJoyPadView.swift in Sources */,
+				DDBF87062801D56600E608C7 /* SoundChannel2.swift in Sources */,
 				DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */,
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
 				DD68123E2801961300164A32 /* SoundController.swift in Sources */,
@@ -470,7 +483,9 @@
 				DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
+				DDBF870A2802BADF00E608C7 /* SoundChannelDelegate.swift in Sources */,
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
+				DDBF87082801D5BE00E608C7 /* ToneSoundChannel.swift in Sources */,
 				DDB24A4527B7F7AB00435CC2 /* MainViewController.swift in Sources */,
 				DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */,
 				DDE6B63527A04F8800D74122 /* Palette.swift in Sources */,
@@ -491,6 +506,7 @@
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
 				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,
+				DDBF870C2802D30700E608C7 /* SoundChannel1.swift in Sources */,
 				DDD84FD4276F171E00E475D3 /* MBC1.swift in Sources */,
 				DDE6B61C279D0B0700D74122 /* JoypadButton.swift in Sources */,
 			);

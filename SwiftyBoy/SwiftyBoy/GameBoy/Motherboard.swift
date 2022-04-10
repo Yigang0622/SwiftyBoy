@@ -140,6 +140,7 @@ class Motherboard {
             let cycles = cpu.fetchAndExecute()
             gpu.tick(numOfCycles: cycles)
             cpuTimer.tick(cycles: cycles)
+            sound.tick(cycles: cycles)
         }
         print("Motherboard Stopped")
     }
@@ -195,7 +196,15 @@ class Motherboard {
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
                 // sound
-                if address == 0xFF16 {
+                if address == 0xFF11 {
+                    return sound.getReg(reg: .nr11)
+                } else if address == 0xFF12 {
+                    return sound.getReg(reg: .nr12)
+                } else if address == 0xFF13 {
+                    return sound.getReg(reg: .nr13)
+                } else if address == 0xFF14 {
+                    return sound.getReg(reg: .nr14)
+                } else if address == 0xFF16 {
                     return sound.getReg(reg: .nr21)
                 } else if address == 0xFF17 {
                     return sound.getReg(reg: .nr22)
@@ -321,7 +330,15 @@ class Motherboard {
                 cpu.interruptFlagRegister.setVal(val: (val & 0xFF))
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
-                if address == 0xFF16 {
+                if address == 0xFF11 {
+                    sound.setReg(reg: .nr11, val: val)
+                } else if address == 0xFF12 {
+                    sound.setReg(reg: .nr12, val: val)
+                } else if address == 0xFF13 {
+                    sound.setReg(reg: .nr13, val: val)
+                } else if address == 0xFF14 {
+                    sound.setReg(reg: .nr14, val: val)
+                } else if address == 0xFF16 {
                     sound.setReg(reg: .nr21, val: val)
                 } else if address == 0xFF17 {
                     sound.setReg(reg: .nr22, val: val)

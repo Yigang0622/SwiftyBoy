@@ -17,13 +17,19 @@ enum WaveDuty: Int {
 }
 
 enum SoundRegister {
-    case nr21, nr22, nr23, nr24
+    case nr11, nr12, nr13, nr14, nr21, nr22, nr23, nr24
 }
 
 class SoundController {
     
     let engine = AudioEngine()
-    let osc = DynamicOscillator()
+    
+    
+    // sound channel 1
+    var regNR11: BaseRegister;
+    var regNR12: BaseRegister;
+    var regNR13: BaseRegister;
+    var regNR14: BaseRegister;
     
     // sound channel 2
     var regNR21: BaseRegister;
@@ -31,74 +37,124 @@ class SoundController {
     var regNR23: BaseRegister;
     var regNR24: BaseRegister;
     
-    var waveDuty: WaveDuty = .duty0
-    var frequency = 0
+    var soundChannel2: SoundChannel2!
+    var soundChannel1: ToneSoundChannel!
     
-    private var waveTable: [WaveDuty: Table]!
+    private let queue = DispatchQueue(label: "it.miketech.SwiftyBoy.sound")
+    private var timer: DispatchSourceTimer!
     
+    private var cpuTickCount = 0
+    private var frameSequencerTickCount = 0
+    private static let CPU_TICK_NUM_ONE_SEC = 4194304
+    private static let FRAME_SEQUENCER_FREQUENCE = 512
+    private let TICK_NUM_TARGET = CPU_TICK_NUM_ONE_SEC / FRAME_SEQUENCER_FREQUENCE
     
     init() {
+        regNR11 = BaseRegister(val: 0)
+        regNR12 = BaseRegister(val: 0)
+        regNR13 = BaseRegister(val: 0)
+        regNR14 = BaseRegister(val: 0)
+        
         regNR21 = BaseRegister(val: 0)
         regNR22 = BaseRegister(val: 0)
         regNR23 = BaseRegister(val: 0)
         regNR24 = BaseRegister(val: 0)
         
-        waveTable = [
-            .duty0:  audioKitTable(dutyCycle: 0),
-            .duty12_5: audioKitTable(dutyCycle: 0.125),
-            .duty25: audioKitTable(dutyCycle: 0.25),
-            .duty50: audioKitTable(dutyCycle: 0.50),
-            .duty75: audioKitTable(dutyCycle: 0.75)]
         
-        engine.output = osc
-        osc.amplitude = 0.5
-        osc.frequency = 0
+        soundChannel2 = SoundChannel2()
+        soundChannel1 = ToneSoundChannel()
+        
+        let mixer = Mixer(soundChannel2.osc, soundChannel1.osc)
+        engine.output = mixer
         
         do {
             try engine.start()
-            osc.start()
+            soundChannel2.osc.start()
+            soundChannel1.osc.start()
         } catch let err {
             print(err.localizedDescription)
         }
-            
+        
+    }
+    
+    var tempCounter = 0
+    func setupTestTimer() {
+        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
+        timer.setEventHandler { [self] in
+            print(tempCounter)
+            tempCounter = 0
+            frameSequencerTickCount = 0
+            cpuTickCount = 0
+        }
+        timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
+        timer.resume()
         
     }
     
     
-    func updateFrequency(x: Int) {
+    func updateFrequency(x: Int, toneSoundChannel: ToneSoundChannel) {
+//        toneSoundChannel.frequency = Float(x)
         if x >= 0 && x < 2048 {
-            frequency = 131072 / (2048 - x)
-            // update frequency
-            print("changing freq \(frequency)")
-            osc.frequency = AUValue(frequency)
+            let frequency = 131072 / (2048 - x)
+            toneSoundChannel.frequency = Float(frequency)
         }
     }
     
-    func updateWaveDuty(duty: WaveDuty) {
-        let waveform = self.waveTable[duty]
-        osc.setWaveTable(waveform: waveform!)
-    }
     
     func setReg(reg: SoundRegister, val: Int){
         switch reg {
+        case .nr11:
+            regNR11.setVal(val: val)
+            soundChannel1.waveDuty = WaveDuty(rawValue: val >> 6)!
+            soundChannel1.soundLength = val & 0b11111
+            break
+        case .nr12:
+            regNR12.setVal(val: val)
+            soundChannel1.startVolume = (val & 0xF0) >> 4
+            soundChannel1.volEnvelopeMode = (val & 0x0b00001000) >> 3
+            soundChannel1.volEnvelopePeriod = val & 0b00000111
+            break
+        case .nr13:
+            regNR13.setVal(val: val)
+            let x = val | (regNR14.getVal() & 0b111) << 8
+            updateFrequency(x: x, toneSoundChannel: soundChannel1)
+        case .nr14:
+            regNR14.setVal(val: val)
+            let x = val | (regNR14.getVal() & 0b111) << 8
+            updateFrequency(x: x, toneSoundChannel: soundChannel1)
+            soundChannel1.lengthEnable = !regNR24.getBit(n: 6)
+            
+            if regNR14.getBit(n: 7) {
+                soundChannel1.onTriggerEvent()
+            }
+            break
+            
+            
         case .nr21:
             regNR21.setVal(val: val)
-            let v = val >> 6
-            let duty = WaveDuty(rawValue: v)
-            updateWaveDuty(duty: duty!)
+            soundChannel2.waveDuty = WaveDuty(rawValue: val >> 6)!
+            soundChannel2.soundLength = val & 0b11111
             break
         case .nr22:
-            
+            regNR22.setVal(val: val)
+            soundChannel2.startVolume = (val & 0xF0) >> 4
+            soundChannel2.volEnvelopeMode = (val & 0x0b00001000) >> 3
+            soundChannel2.volEnvelopePeriod = val & 0b00000111
             break
         case .nr23:
             regNR23.setVal(val: val)
             let x = val | (regNR24.getVal() & 0b111) << 8
-            updateFrequency(x: x)
+            updateFrequency(x: x, toneSoundChannel: soundChannel2)
             break
         case .nr24:
             regNR24.setVal(val: val)
             let x = val | (regNR24.getVal() & 0b111) << 8
-            updateFrequency(x: x)
+            updateFrequency(x: x, toneSoundChannel: soundChannel2)
+            soundChannel2.lengthEnable = !regNR24.getBit(n: 6)
+            
+            if regNR24.getBit(n: 7) {
+                soundChannel2.onTriggerEvent()
+            }
             break
         }
         
@@ -114,15 +170,51 @@ class SoundController {
             return regNR23.getVal()
         case .nr24:
             return regNR24.getVal()
+        case .nr11:
+            return regNR11.getVal()
+        case .nr12:
+            return regNR12.getVal()
+        case .nr13:
+            return regNR13.getVal()
+        case .nr14:
+            return regNR14.getVal()
         }
     }
     
+    
+
     func tick(cycles: Int) {
-        
+        cpuTickCount += cycles
+        // 512Hz frequency divide
+        if cpuTickCount >= TICK_NUM_TARGET {
+            frameSequencerTickCount += 1
+            cpuTickCount = 0
+            
+            let step = frameSequencerTickCount % 8
+            
+            // 256Hz
+            if step == 0 || step == 2 || step == 4 || step == 6 {
+                soundChannel2.onLengthCounterTick()
+                soundChannel1.onLengthCounterTick()
+                // 128 Hz
+                if step == 2 || step == 6 {
+                    soundChannel2.onSweepTick()
+                    soundChannel1.onSweepTick()
+                }
+                
+            } else if step == 7 {
+                // 64Hz
+                soundChannel2.onVolumEnvlopTick()
+                soundChannel1.onVolumEnvlopTick()
+            }
+            
+        }
+        if frameSequencerTickCount > 512 {
+            frameSequencerTickCount = 0
+        }
     }
     
     func audioKitTable(dutyCycle: Double) -> Table {
-//        return Table(.square)
         let size = 4096
         var content = [Table.Element](zeros: size)
         for i in 0..<Int(Double(size) * dutyCycle) {

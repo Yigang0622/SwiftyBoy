@@ -66,6 +66,8 @@
 		DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED3274FCA8F007929DA /* Assets.xcassets */; };
 		DDF24ED7274FCA8F007929DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */; };
 		DDF24EE2274FCA8F007929DA /* SwiftyBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */; };
+		DDF47ED22803216300018667 /* SoundChannelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED12803216300018667 /* SoundChannelBase.swift */; };
+		DDF47ED42803236600018667 /* RegNR52.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED32803236600018667 /* RegNR52.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +142,8 @@
 		DDF24EDD274FCA8F007929DA /* SwiftyBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyBoyTests.swift; sourceTree = "<group>"; };
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
+		DDF47ED12803216300018667 /* SoundChannelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundChannelBase.swift; sourceTree = "<group>"; };
+		DDF47ED32803236600018667 /* RegNR52.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR52.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,11 +216,13 @@
 		DD68123C28018D2300164A32 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				DD68123D2801961300164A32 /* SoundController.swift */,
-				DDBF87052801D56600E608C7 /* SoundChannel2.swift */,
+				DDF47ED12803216300018667 /* SoundChannelBase.swift */,
 				DDBF87072801D5BD00E608C7 /* ToneSoundChannel.swift */,
-				DDBF87092802BADF00E608C7 /* SoundChannelDelegate.swift */,
 				DDBF870B2802D30700E608C7 /* SoundChannel1.swift */,
+				DDBF87052801D56600E608C7 /* SoundChannel2.swift */,
+				DD68123D2801961300164A32 /* SoundController.swift */,
+				DDBF87092802BADF00E608C7 /* SoundChannelDelegate.swift */,
+				DDF47ED32803236600018667 /* RegNR52.swift */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -488,6 +494,8 @@
 				DDBF87082801D5BE00E608C7 /* ToneSoundChannel.swift in Sources */,
 				DDB24A4527B7F7AB00435CC2 /* MainViewController.swift in Sources */,
 				DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */,
+				DDF47ED42803236600018667 /* RegNR52.swift in Sources */,
+				DDF47ED22803216300018667 /* SoundChannelBase.swift in Sources */,
 				DDE6B63527A04F8800D74122 /* Palette.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
 				DDADA169275E564200ACFBA8 /* CPU+CBInstructions.swift in Sources */,

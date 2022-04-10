@@ -214,6 +214,8 @@ class Motherboard {
                     return sound.getReg(reg: .nr23)
                 } else if address == 0xFF19 {
                     return sound.getReg(reg: .nr24)
+                } else if address == 0xFF26 {
+                    return sound.getReg(reg: .nr52)
                 }
                 return 0
             } else if address == 0xFF40 {
@@ -350,6 +352,8 @@ class Motherboard {
                     sound.setReg(reg: .nr23, val: val)
                 } else if address == 0xFF19 {
                     sound.setReg(reg: .nr24, val: val)
+                } else if address == 0xFF26 {
+                    sound.setReg(reg: .nr52, val: val)
                 }
             } else if address == 0xFF40 {
                 // lcdc

@@ -8,9 +8,8 @@
 import Foundation
 import AudioKit
 
-class ToneSoundChannel : SoundChannelDelegate {
+class ToneSoundChannel: SoundChannelBase, SoundChannelDelegate {
     
-    var osc: DynamicOscillator!
     var oscBaseAmplitude: Float = 0.5
     
     var waveDuty: WaveDuty = .duty0
@@ -21,7 +20,7 @@ class ToneSoundChannel : SoundChannelDelegate {
     var startVolume: Int = 0xF
     var _volume: Int = 0xF
     var volEnvelopeMode: Int = 0
-    private var _volEnvelopePeriod: Int = 0
+    private var volEnvelopPeriodCounter = 0
     var volEnvelopePeriod: Int = 0
     
     var soundLength: Int {
@@ -34,30 +33,17 @@ class ToneSoundChannel : SoundChannelDelegate {
     }
     
     private let TICK_NUM_ONE_SEC = 4194304
-    
-    var stop: Bool {
-        set {
-            osc.stop()
-        }
-        get {
-            osc.isStopped
-        }
-    }
 
     private var waveTable: [WaveDuty: Table]!
     
-    init() {
+    override init() {
+        super.init()
         waveTable = [
             .duty0:  audioKitTable(dutyCycle: 0),
             .duty12_5: audioKitTable(dutyCycle: 0.125),
             .duty25: audioKitTable(dutyCycle: 0.25),
             .duty50: audioKitTable(dutyCycle: 0.50),
             .duty75: audioKitTable(dutyCycle: 0.75)]
-    
-        osc = DynamicOscillator()
-        osc.amplitude = 0.5
-        osc.frequency = 0
-        
     }
     
     private func audioKitTable(dutyCycle: Double) -> Table {
@@ -77,7 +63,7 @@ class ToneSoundChannel : SoundChannelDelegate {
             self._soundLength = 64
         }
         // Volume envelope timer is reloaded with period.
-        _volEnvelopePeriod = volEnvelopeMode
+        volEnvelopPeriodCounter = 0
         // Channel volume is reloaded from NRx2.
         _volume = startVolume
         // freq & waveform update
@@ -94,6 +80,7 @@ class ToneSoundChannel : SoundChannelDelegate {
         if lengthEnable && _soundLength > 0 {
             _soundLength -= 1            
             if _soundLength == 0 {
+                print("stop")
                 osc.stop()
             }
         }
@@ -101,18 +88,25 @@ class ToneSoundChannel : SoundChannelDelegate {
     }
     
     func onVolumEnvlopTick() {
-        if _volEnvelopePeriod > 0 {
-            _volEnvelopePeriod -= 1
+        volEnvelopPeriodCounter += 1
+        if volEnvelopPeriodCounter == volEnvelopePeriod {
+            volEnvelopPeriodCounter = 0
             if volEnvelopeMode == 1 {
+                print("update volum + \(_volume)")
                 _volume += 1
             } else {
+                print("update volum - \(_volume)")
                 _volume -= 1
             }
         }
         
         if _volume >= 0 && _volume <= 15 {
             osc.amplitude = oscBaseAmplitude * (Float(_volume) / 15.0)
+        } else if _volume < 0 {
+            // todo write back to register
+            osc.stop()
         }
+        
     }
     
     func onSweepTick() {

@@ -13,7 +13,7 @@ class SoundChannel1: ToneSoundChannel {
     var sweepDirection = 0
     var sweepShift = 0
     
-    private var sweepShiftLeft = 0
+//    private var sweepShiftLeft = 0
     private var sweepTickCounter = 0
     
     private var sweepEnabled: Bool {
@@ -29,9 +29,9 @@ class SoundChannel1: ToneSoundChannel {
      When it generates a clock and the sweep's internal enabled flag is set and the sweep period is not zero, a new frequency is calculated and the overflow check is performed. If the new frequency is 2047 or less and the sweep shift is not zero, this new frequency is written back to the shadow frequency and square 1's frequency in NR13 and NR14, then frequency calculation and overflow check are run AGAIN immediately using this new value, but this second new frequency is not written back.
      */
     override func onSweepTick() {
-        if sweepEnabled && sweepShiftLeft > 0 {
+        if sweepEnabled {
             sweepTickCounter += 1
-            sweepShiftLeft -= 1
+//            sweepShiftLeft -= 1
             if sweepTickCounter == sweepPeriod {
                 sweepTickCounter = 0
                 calculateAndUpdateSweepFrequency()
@@ -52,9 +52,11 @@ class SoundChannel1: ToneSoundChannel {
         if newFrequency > 2047 {
             osc.stop()
         } else {
-            print("update sweep freq \(newFrequency)")
-            osc.frequency = newFrequency
-            lastFrequency = newFrequency
+            if !osc.isStopped {
+                print("update sweep freq \(newFrequency)")
+                osc.frequency = newFrequency
+                lastFrequency = newFrequency
+            }           
         }
     }
     
@@ -64,7 +66,6 @@ class SoundChannel1: ToneSoundChannel {
         lastFrequency = frequency
         // The sweep timer is reloaded.
         sweepTickCounter = 0
-        sweepShiftLeft = sweepShift
         // The internal enabled flag is set if either the sweep period or shift are non-zero, cleared otherwise.
         
         // If the sweep shift is non-zero, frequency calculation and the overflow check are performed immediately.

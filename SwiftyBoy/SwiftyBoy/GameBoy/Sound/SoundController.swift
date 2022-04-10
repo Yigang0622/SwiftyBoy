@@ -17,7 +17,7 @@ enum WaveDuty: Int {
 }
 
 enum SoundRegister {
-    case nr11, nr12, nr13, nr14, nr21, nr22, nr23, nr24
+    case nr10, nr11, nr12, nr13, nr14, nr21, nr22, nr23, nr24
 }
 
 class SoundController {
@@ -26,19 +26,21 @@ class SoundController {
     
     
     // sound channel 1
-    var regNR11: BaseRegister;
-    var regNR12: BaseRegister;
-    var regNR13: BaseRegister;
-    var regNR14: BaseRegister;
+    var regNR10: BaseRegister!
+    var regNR11: BaseRegister!
+    var regNR12: BaseRegister!
+    var regNR13: BaseRegister!
+    var regNR14: BaseRegister!
     
     // sound channel 2
-    var regNR21: BaseRegister;
-    var regNR22: BaseRegister;
-    var regNR23: BaseRegister;
-    var regNR24: BaseRegister;
+    var regNR21: BaseRegister!
+    var regNR22: BaseRegister!
+    var regNR23: BaseRegister!
+    var regNR24: BaseRegister!
     
+    var soundChannel1: SoundChannel1!
     var soundChannel2: SoundChannel2!
-    var soundChannel1: ToneSoundChannel!
+    
     
     private let queue = DispatchQueue(label: "it.miketech.SwiftyBoy.sound")
     private var timer: DispatchSourceTimer!
@@ -50,6 +52,7 @@ class SoundController {
     private let TICK_NUM_TARGET = CPU_TICK_NUM_ONE_SEC / FRAME_SEQUENCER_FREQUENCE
     
     init() {
+        regNR10 = BaseRegister(val: 0)
         regNR11 = BaseRegister(val: 0)
         regNR12 = BaseRegister(val: 0)
         regNR13 = BaseRegister(val: 0)
@@ -62,7 +65,7 @@ class SoundController {
         
         
         soundChannel2 = SoundChannel2()
-        soundChannel1 = ToneSoundChannel()
+        soundChannel1 = SoundChannel1()
         
         let mixer = Mixer(soundChannel2.osc, soundChannel1.osc)
         engine.output = mixer
@@ -103,6 +106,13 @@ class SoundController {
     
     func setReg(reg: SoundRegister, val: Int){
         switch reg {
+        case .nr10:
+            regNR10.setVal(val: val)
+            soundChannel1.sweepPeriod = (val & 0b01110000) >> 4
+            print("soundChannel1 period set \((val & 0b01110000) >> 4)")
+            soundChannel1.sweepDirection = (val & 0b00001000) >> 3
+            soundChannel1.sweepShift = val & 0b00000111
+            break
         case .nr11:
             regNR11.setVal(val: val)
             soundChannel1.waveDuty = WaveDuty(rawValue: val >> 6)!
@@ -170,6 +180,8 @@ class SoundController {
             return regNR23.getVal()
         case .nr24:
             return regNR24.getVal()
+        case .nr10:
+            return regNR10.getVal()
         case .nr11:
             return regNR11.getVal()
         case .nr12:

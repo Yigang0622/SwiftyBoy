@@ -196,7 +196,9 @@ class Motherboard {
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
                 // sound
-                if address == 0xFF11 {
+                if address == 0xFF10 {
+                    return sound.getReg(reg: .nr10)
+                } else if address == 0xFF11 {
                     return sound.getReg(reg: .nr11)
                 } else if address == 0xFF12 {
                     return sound.getReg(reg: .nr12)
@@ -330,7 +332,9 @@ class Motherboard {
                 cpu.interruptFlagRegister.setVal(val: (val & 0xFF))
             } else if address >= 0xFF10 && address < 0xFF40 {
                 // sound
-                if address == 0xFF11 {
+                if address == 0xFF10 {
+                    sound.setReg(reg: .nr10, val: val)
+                } else if address == 0xFF11 {
                     sound.setReg(reg: .nr11, val: val)
                 } else if address == 0xFF12 {
                     sound.setReg(reg: .nr12, val: val)

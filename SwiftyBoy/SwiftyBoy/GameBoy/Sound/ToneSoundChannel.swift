@@ -92,10 +92,8 @@ class ToneSoundChannel : SoundChannelDelegate {
      */
     func onLengthCounterTick() {
         if lengthEnable && _soundLength > 0 {
-            _soundLength -= 1
-            
+            _soundLength -= 1            
             if _soundLength == 0 {
-                print("stop")
                 osc.stop()
             }
         }

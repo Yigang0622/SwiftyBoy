@@ -68,6 +68,18 @@
 		DDF24EE2274FCA8F007929DA /* SwiftyBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24EE1274FCA8F007929DA /* SwiftyBoyTests.swift */; };
 		DDF47ED22803216300018667 /* SoundChannelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED12803216300018667 /* SoundChannelBase.swift */; };
 		DDF47ED42803236600018667 /* RegNR52.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED32803236600018667 /* RegNR52.swift */; };
+		DDF47ED62803D0D800018667 /* SoundChannel3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED52803D0D800018667 /* SoundChannel3.swift */; };
+		DDF47ED82803D6FB00018667 /* RegNR30.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED72803D6FB00018667 /* RegNR30.swift */; };
+		DDF47EDA2803D7AB00018667 /* RegNR31.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47ED92803D7AB00018667 /* RegNR31.swift */; };
+		DDF47EDC2803D83600018667 /* RegNR32.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EDB2803D83600018667 /* RegNR32.swift */; };
+		DDF47EDE2803D93C00018667 /* RegNR33.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EDD2803D93C00018667 /* RegNR33.swift */; };
+		DDF47EE02803DA7100018667 /* RegNR34.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EDF2803DA7100018667 /* RegNR34.swift */; };
+		DDF47EE228043FD500018667 /* RegSweepParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EE128043FD500018667 /* RegSweepParam.swift */; };
+		DDF47EE62804417F00018667 /* RegSoundLengthAndWaveDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EE52804417F00018667 /* RegSoundLengthAndWaveDuty.swift */; };
+		DDF47EE82804421700018667 /* SoundModeReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EE72804421700018667 /* SoundModeReg.swift */; };
+		DDF47EEA2804427C00018667 /* RegEnvelopParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EE92804427C00018667 /* RegEnvelopParam.swift */; };
+		DDF47EEC280443A700018667 /* RegFrequencyLo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EEB280443A700018667 /* RegFrequencyLo.swift */; };
+		DDF47EEE280444ED00018667 /* RegInitializeParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF47EED280444ED00018667 /* RegInitializeParam.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +156,18 @@
 		DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftyBoy.entitlements; sourceTree = "<group>"; };
 		DDF47ED12803216300018667 /* SoundChannelBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundChannelBase.swift; sourceTree = "<group>"; };
 		DDF47ED32803236600018667 /* RegNR52.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR52.swift; sourceTree = "<group>"; };
+		DDF47ED52803D0D800018667 /* SoundChannel3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundChannel3.swift; sourceTree = "<group>"; };
+		DDF47ED72803D6FB00018667 /* RegNR30.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR30.swift; sourceTree = "<group>"; };
+		DDF47ED92803D7AB00018667 /* RegNR31.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR31.swift; sourceTree = "<group>"; };
+		DDF47EDB2803D83600018667 /* RegNR32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR32.swift; sourceTree = "<group>"; };
+		DDF47EDD2803D93C00018667 /* RegNR33.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR33.swift; sourceTree = "<group>"; };
+		DDF47EDF2803DA7100018667 /* RegNR34.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegNR34.swift; sourceTree = "<group>"; };
+		DDF47EE128043FD500018667 /* RegSweepParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegSweepParam.swift; sourceTree = "<group>"; };
+		DDF47EE52804417F00018667 /* RegSoundLengthAndWaveDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegSoundLengthAndWaveDuty.swift; sourceTree = "<group>"; };
+		DDF47EE72804421700018667 /* SoundModeReg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModeReg.swift; sourceTree = "<group>"; };
+		DDF47EE92804427C00018667 /* RegEnvelopParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegEnvelopParam.swift; sourceTree = "<group>"; };
+		DDF47EEB280443A700018667 /* RegFrequencyLo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegFrequencyLo.swift; sourceTree = "<group>"; };
+		DDF47EED280444ED00018667 /* RegInitializeParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegInitializeParam.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,9 +244,21 @@
 				DDBF87072801D5BD00E608C7 /* ToneSoundChannel.swift */,
 				DDBF870B2802D30700E608C7 /* SoundChannel1.swift */,
 				DDBF87052801D56600E608C7 /* SoundChannel2.swift */,
+				DDF47ED52803D0D800018667 /* SoundChannel3.swift */,
 				DD68123D2801961300164A32 /* SoundController.swift */,
 				DDBF87092802BADF00E608C7 /* SoundChannelDelegate.swift */,
+				DDF47EE72804421700018667 /* SoundModeReg.swift */,
 				DDF47ED32803236600018667 /* RegNR52.swift */,
+				DDF47ED72803D6FB00018667 /* RegNR30.swift */,
+				DDF47ED92803D7AB00018667 /* RegNR31.swift */,
+				DDF47EDB2803D83600018667 /* RegNR32.swift */,
+				DDF47EDD2803D93C00018667 /* RegNR33.swift */,
+				DDF47EDF2803DA7100018667 /* RegNR34.swift */,
+				DDF47EE128043FD500018667 /* RegSweepParam.swift */,
+				DDF47EE52804417F00018667 /* RegSoundLengthAndWaveDuty.swift */,
+				DDF47EE92804427C00018667 /* RegEnvelopParam.swift */,
+				DDF47EEB280443A700018667 /* RegFrequencyLo.swift */,
+				DDF47EED280444ED00018667 /* RegInitializeParam.swift */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -472,8 +508,12 @@
 				DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */,
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
+				DDF47EDE2803D93C00018667 /* RegNR33.swift in Sources */,
+				DDF47EE82804421700018667 /* SoundModeReg.swift in Sources */,
+				DDF47ED82803D6FB00018667 /* RegNR30.swift in Sources */,
 				DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */,
 				DDB24A4727B7F81000435CC2 /* VirtualJoyPadView.swift in Sources */,
+				DDF47EEE280444ED00018667 /* RegInitializeParam.swift in Sources */,
 				DDBF87062801D56600E608C7 /* SoundChannel2.swift in Sources */,
 				DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */,
 				DD1094BB275C952500A5AAEB /* Motherboard.swift in Sources */,
@@ -484,17 +524,23 @@
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */,
 				DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */,
+				DDF47EEA2804427C00018667 /* RegEnvelopParam.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
+				DDF47EDA2803D7AB00018667 /* RegNR31.swift in Sources */,
 				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
 				DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
 				DDBF870A2802BADF00E608C7 /* SoundChannelDelegate.swift in Sources */,
+				DDF47ED62803D0D800018667 /* SoundChannel3.swift in Sources */,
+				DDF47EEC280443A700018667 /* RegFrequencyLo.swift in Sources */,
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
 				DDBF87082801D5BE00E608C7 /* ToneSoundChannel.swift in Sources */,
+				DDF47EE228043FD500018667 /* RegSweepParam.swift in Sources */,
 				DDB24A4527B7F7AB00435CC2 /* MainViewController.swift in Sources */,
 				DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */,
 				DDF47ED42803236600018667 /* RegNR52.swift in Sources */,
+				DDF47EE62804417F00018667 /* RegSoundLengthAndWaveDuty.swift in Sources */,
 				DDF47ED22803216300018667 /* SoundChannelBase.swift in Sources */,
 				DDE6B63527A04F8800D74122 /* Palette.swift in Sources */,
 				DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */,
@@ -511,6 +557,8 @@
 				DDD84FDC276F64B000E475D3 /* InterruptEnableRegister.swift in Sources */,
 				DD70BF6F27B7992B00CA9F1C /* BootRom.swift in Sources */,
 				DDAB2D9B27AD757A00BBA499 /* MainMenuView.swift in Sources */,
+				DDF47EDC2803D83600018667 /* RegNR32.swift in Sources */,
+				DDF47EE02803DA7100018667 /* RegNR34.swift in Sources */,
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
 				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,

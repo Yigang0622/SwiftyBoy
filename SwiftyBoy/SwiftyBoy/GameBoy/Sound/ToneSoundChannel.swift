@@ -8,18 +8,19 @@
 import Foundation
 import AudioKit
 
-class ToneSoundChannel: SoundChannelBase, SoundChannelDelegate {
+class ToneSoundChannel: SoundChannelBase {
     
     var oscBaseAmplitude: Float = 0.5
     
     var waveDuty: WaveDuty = .duty0
-    var frequency: Float = 0
+//    var frequency: Float = 0
+    var frequencyData: Int = 0
     var lengthEnable = false
     private var _soundLength = 0
     
     var startVolume: Int = 0xF
     var _volume: Int = 0xF
-    var volEnvelopeMode: Int = 0
+    var volEnvelopeMode: EnvelopMode = .attenuate
     private var volEnvelopPeriodCounter = 0
     var volEnvelopePeriod: Int = 0
     
@@ -55,7 +56,7 @@ class ToneSoundChannel: SoundChannelBase, SoundChannelDelegate {
         return Table(content)
     }
     
-    func onTriggerEvent() {
+    override func onTriggerEvent() {
         // channel is enabled
         osc.start()
         // length counter reset
@@ -67,16 +68,17 @@ class ToneSoundChannel: SoundChannelBase, SoundChannelDelegate {
         // Channel volume is reloaded from NRx2.
         _volume = startVolume
         // freq & waveform update
-        osc.frequency = frequency
+        setOscFrequency(x: frequencyData)
         let waveform = self.waveTable[self.waveDuty]
         osc.setWaveTable(waveform: waveform!)
     }
     
+ 
     
     /**
      Each length counter is clocked at 256 Hz by the frame sequencer. When clocked while enabled by NRx4 and the counter is not zero, it is decremented. If it becomes zero, the channel is disabled.
      */
-    func onLengthCounterTick() {
+    override func onLengthCounterTick() {
         if lengthEnable && _soundLength > 0 {
             _soundLength -= 1            
             if _soundLength == 0 {
@@ -87,17 +89,19 @@ class ToneSoundChannel: SoundChannelBase, SoundChannelDelegate {
         
     }
     
-    func onVolumEnvlopTick() {
+    override func onVolumEnvlopTick() {
         volEnvelopPeriodCounter += 1
         if volEnvelopPeriodCounter == volEnvelopePeriod {
             volEnvelopPeriodCounter = 0
-            if volEnvelopeMode == 1 {
-                print("update volum + \(_volume)")
-                _volume += 1
-            } else {
-                print("update volum - \(_volume)")
-                _volume -= 1
-            }
+            if _volume > 0 && _volume < 16 {
+                if volEnvelopeMode == .amplify {
+                    print("\(self) update volum + \(_volume)")
+                    _volume += 1
+                } else if volEnvelopeMode == .attenuate {
+                    print("\(self) update volum - \(_volume)")
+                    _volume -= 1
+                }
+            }            
         }
         
         if _volume >= 0 && _volume <= 15 {
@@ -109,7 +113,7 @@ class ToneSoundChannel: SoundChannelBase, SoundChannelDelegate {
         
     }
     
-    func onSweepTick() {
+    override func onSweepTick() {
         
     }
 

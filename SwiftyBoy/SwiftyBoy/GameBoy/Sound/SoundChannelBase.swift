@@ -8,7 +8,7 @@
 import Foundation
 import AudioKit
 
-class SoundChannelBase {
+class SoundChannelBase: SoundChannelDelegate {
     
     var osc: DynamicOscillator!
  
@@ -26,6 +26,29 @@ class SoundChannelBase {
     
     func stop() {
         osc.stop()
-    }    
+    }
+    
+    func setOscFrequency(x: Int) {
+        let f = 131072 / (2048 - x)
+        print("\(self) freq \(f)")
+        osc.frequency = Float(f)
+        
+    }
+    
+    func onTriggerEvent() {
+        
+    }
+    
+    func onVolumEnvlopTick() {
+        
+    }
+    
+    func onSweepTick() {
+        
+    }
+    
+    func onLengthCounterTick() {
+        
+    }
     
 }

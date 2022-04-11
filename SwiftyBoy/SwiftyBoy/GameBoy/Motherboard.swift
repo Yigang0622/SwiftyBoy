@@ -214,8 +214,21 @@ class Motherboard {
                     return sound.getReg(reg: .nr23)
                 } else if address == 0xFF19 {
                     return sound.getReg(reg: .nr24)
-                } else if address == 0xFF26 {
+                }else if address == 0xFF1A {
+                    return sound.getReg(reg: .nr30)
+                } else if address == 0xFF1B {
+                    return sound.getReg(reg: .nr31)
+                } else if address == 0xFF1C {
+                    return sound.getReg(reg: .nr32)
+                } else if address == 0xFF1D {
+                    return sound.getReg(reg: .nr33)
+                } else if address == 0xFF1E {
+                    return sound.getReg(reg: .nr34)
+                }  else if address == 0xFF26 {
                     return sound.getReg(reg: .nr52)
+                } else if address >= 0xFF30 && address <= 0xFF3F {
+                    // wave table
+                    return sound.getWaveReg(index: (address - 0xFF30))
                 }
                 return 0
             } else if address == 0xFF40 {
@@ -352,8 +365,21 @@ class Motherboard {
                     sound.setReg(reg: .nr23, val: val)
                 } else if address == 0xFF19 {
                     sound.setReg(reg: .nr24, val: val)
+                } else if address == 0xFF1A {
+                    sound.setReg(reg: .nr30, val: val)
+                } else if address == 0xFF1B {
+                    sound.setReg(reg: .nr31, val: val)
+                } else if address == 0xFF1C {
+                    sound.setReg(reg: .nr32, val: val)
+                } else if address == 0xFF1D {
+                    sound.setReg(reg: .nr33, val: val)
+                } else if address == 0xFF1E {
+                    sound.setReg(reg: .nr34, val: val)
                 } else if address == 0xFF26 {
                     sound.setReg(reg: .nr52, val: val)
+                } else if address >= 0xFF30 && address <= 0xFF3F {
+                    // wave table
+                    sound.setWaveReg(index:  (address - 0xFF30), val: val)
                 }
             } else if address == 0xFF40 {
                 // lcdc

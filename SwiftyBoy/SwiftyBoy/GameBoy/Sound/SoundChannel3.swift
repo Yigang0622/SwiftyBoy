@@ -33,10 +33,25 @@ class SoundChannel3: SoundChannelBase {
         if self._soundLength == 0 {
             self._soundLength = 256
         }
+        
         // freq & waveform update
         setOscFrequency(x: frequencyData)
-        let waveform = waveform()
-        osc.setWaveTable(waveform: waveform)
+        osc.setWaveTable(waveform: waveform())
+        // vol
+        switch outputLevel {
+        case .mute:
+            osc.amplitude = 0
+            break
+        case .unmodified:
+            osc.amplitude = oscBaseAmplitude
+            break
+        case .shift1bit:
+            osc.amplitude = oscBaseAmplitude * 0.5
+            break
+        case .shift2bit2:
+            osc.amplitude = oscBaseAmplitude * 0.25
+            break
+        }
         
     }
     

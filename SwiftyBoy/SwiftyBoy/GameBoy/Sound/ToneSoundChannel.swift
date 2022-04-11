@@ -10,8 +10,7 @@ import AudioKit
 
 class ToneSoundChannel: SoundChannelBase {
     
-    var oscBaseAmplitude: Float = 0.5
-    
+
     var waveDuty: WaveDuty = .duty0
 //    var frequency: Float = 0
     var frequencyData: Int = 0

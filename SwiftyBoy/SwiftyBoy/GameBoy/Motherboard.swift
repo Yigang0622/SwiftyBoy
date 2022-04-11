@@ -51,6 +51,7 @@ class Motherboard {
         semaphore.signal()
         running = false
         bootRomEnable = true
+        sound.reset()
         cpu.reset()
         gpu.reset()
     }

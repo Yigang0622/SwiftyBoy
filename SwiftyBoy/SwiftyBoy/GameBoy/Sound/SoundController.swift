@@ -262,8 +262,8 @@ class SoundController {
             
             // 256Hz
             if step == 0 || step == 2 || step == 4 || step == 6 {
-                soundChannel2.onLengthCounterTick()
                 soundChannel1.onLengthCounterTick()
+                soundChannel2.onLengthCounterTick()                
                 soundChannel3.onLengthCounterTick()
                 // 128 Hz
                 if step == 2 || step == 6 {
@@ -280,6 +280,12 @@ class SoundController {
         if frameSequencerTickCount > 512 {
             frameSequencerTickCount = 0
         }
+    }
+    
+    func reset() {
+        soundChannel1.reset()
+        soundChannel2.reset()
+        soundChannel3.reset()
     }
     
 }

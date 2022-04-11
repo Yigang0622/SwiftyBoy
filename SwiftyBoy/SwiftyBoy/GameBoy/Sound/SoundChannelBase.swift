@@ -11,6 +11,7 @@ import AudioKit
 class SoundChannelBase: SoundChannelDelegate {
     
     var osc: DynamicOscillator!
+    var oscBaseAmplitude: Float = 0.5
  
     var stopped: Bool {
         get {
@@ -49,6 +50,11 @@ class SoundChannelBase: SoundChannelDelegate {
     
     func onLengthCounterTick() {
         
+    }
+    
+    func reset() {
+        osc.amplitude = oscBaseAmplitude
+        osc.stop()        
     }
     
 }

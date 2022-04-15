@@ -20,7 +20,7 @@ class RegSweepParam: BaseRegister {
     var sweepShift: Int = 0
     
     override func getVal() -> Int {
-        return getVal() & 0b01111111
+        return super.getVal() & 0b01111111
     }
     
     override func setVal(val: Int) {

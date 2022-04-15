@@ -14,6 +14,7 @@
 		DD68122B28017BE200164A32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD68122A28017BE200164A32 /* Assets.xcassets */; };
 		DD68122E28017BE200164A32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD68122C28017BE200164A32 /* LaunchScreen.storyboard */; };
 		DD68123B28017F6A00164A32 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD68123A28017F6A00164A32 /* AudioKit */; };
+		DDCBC57528094479006D8D0D /* LSFR.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCBC57428094479006D8D0D /* LSFR.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		DD68122D28017BE200164A32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD68122F28017BE200164A32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD68123528017BF800164A32 /* AudioKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioKitDemo.entitlements; sourceTree = "<group>"; };
+		DDCBC57428094479006D8D0D /* LSFR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFR.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				DD68122A28017BE200164A32 /* Assets.xcassets */,
 				DD68122C28017BE200164A32 /* LaunchScreen.storyboard */,
 				DD68122F28017BE200164A32 /* Info.plist */,
+				DDCBC57428094479006D8D0D /* LSFR.swift */,
 			);
 			path = AudioKitDemo;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDCBC57528094479006D8D0D /* LSFR.swift in Sources */,
 				DD68122628017BE000164A32 /* ViewController.swift in Sources */,
 				DD68122228017BE000164A32 /* AppDelegate.swift in Sources */,
 				DD68122428017BE000164A32 /* SceneDelegate.swift in Sources */,

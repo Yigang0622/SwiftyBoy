@@ -10,7 +10,12 @@ import UIKit
 class RegFrequencyLo: BaseRegister {
     
     var frequencyLoData: Int {
-        return getVal()
+        get {
+            return getVal()
+        }
+        set {
+            setVal(val: newValue)
+        }        
     }
 
 }

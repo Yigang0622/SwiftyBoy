@@ -10,27 +10,79 @@ import AudioKit
 
 class ToneSoundChannel: SoundChannelBase {
     
-
-    var waveDuty: WaveDuty = .duty0
-//    var frequency: Float = 0
-    var frequencyData: Int = 0
-    var lengthEnable = false
-    private var _soundLength = 0
+    var regNRx1: RegSoundLengthAndWaveDuty = RegSoundLengthAndWaveDuty(val: 0)
+    var regNRx2: RegEnvelopParam = RegEnvelopParam(val: 0)
+    var regNRx3: RegFrequencyLo = RegFrequencyLo(val: 0)
+    var regNRx4: RegInitializeParam = RegInitializeParam(val: 0)
     
-    var startVolume: Int = 0xF
-    var _volume: Int = 0xF
-    var volEnvelopeMode: EnvelopMode = .attenuate
-    private var volEnvelopPeriodCounter = 0
-    var volEnvelopePeriod: Int = 0
-    
-    var soundLength: Int {
+    internal var waveDuty: WaveDuty {
         get {
-            return _soundLength
+            regNRx1.waveDuty
         }
         set {
-            _soundLength = 64 - newValue
+            regNRx1.waveDuty = newValue
         }
     }
+    
+    internal var frequencyData: Int {
+        get {
+            return regNRx4.frequencyHiData << 8 | regNRx3.frequencyLoData
+        }
+        set {
+            regNRx3.frequencyLoData = newValue & 0xFF
+            regNRx4.frequencyHiData = (newValue & 0b111_00000000) >> 8
+        }
+    }
+    
+    internal var lengthEnable: Bool {
+        get {
+            return regNRx4.lengthEnable
+        }
+        set {
+            regNRx4.lengthEnable = newValue
+        }
+    }
+    
+    
+    internal var startVolume: Int {
+        get {
+            return regNRx2.startVolume
+        }
+        set {
+            regNRx2.startVolume = newValue
+        }
+    }
+    
+    internal var volEnvelopePeriod: Int {
+        get {
+            return regNRx2.volEnvelopePeriod
+        }
+        set {
+            regNRx2.volEnvelopePeriod = newValue
+        }
+    }
+    
+    internal var volEnvelopeMode: EnvelopMode {
+        get {
+            return regNRx2.volEnvelopeMode
+        }
+        set {
+            regNRx2.volEnvelopeMode = newValue
+        }
+    }
+    
+    internal var soundLength: Int {
+        get {
+            return regNRx1.soundLength
+        }
+        set {
+            regNRx1.soundLength = newValue
+        }
+    }
+    
+    private var _volume: Int = 0xF
+    private var _volEnvelopPeriodCounter = 0
+    private var _soundLength = 0
     
     private let TICK_NUM_ONE_SEC = 4194304
 
@@ -59,11 +111,10 @@ class ToneSoundChannel: SoundChannelBase {
         // channel is enabled
         osc.start()
         // length counter reset
-        if self._soundLength == 0 {
-            self._soundLength = 64
-        }
+        
+        self._soundLength = 64 - soundLength
         // Volume envelope timer is reloaded with period.
-        volEnvelopPeriodCounter = 0
+        _volEnvelopPeriodCounter = 0
         // Channel volume is reloaded from NRx2.
         _volume = startVolume
         // freq & waveform update
@@ -84,14 +135,13 @@ class ToneSoundChannel: SoundChannelBase {
                 print("stop")
                 osc.stop()
             }
-        }
-        
+        }        
     }
     
     override func onVolumEnvlopTick() {
-        volEnvelopPeriodCounter += 1
-        if volEnvelopPeriodCounter == volEnvelopePeriod {
-            volEnvelopPeriodCounter = 0
+        _volEnvelopPeriodCounter += 1
+        if _volEnvelopPeriodCounter == volEnvelopePeriod {
+            _volEnvelopPeriodCounter = 0
             if _volume > 0 && _volume < 16 {
                 if volEnvelopeMode == .amplify {
                     print("\(self) update volum + \(_volume)")
@@ -108,8 +158,7 @@ class ToneSoundChannel: SoundChannelBase {
         } else if _volume < 0 {
             // todo write back to register
             osc.stop()
-        }
-        
+        }        
     }
     
     override func onSweepTick() {

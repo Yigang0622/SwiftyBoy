@@ -23,7 +23,7 @@ class RegNR34: BaseRegister {
     
     var frequencyDataHi: Int {
         get {
-            return getVal() & 0b00000111
+            return Int(_val) & 0b00000111
         }
     }
     

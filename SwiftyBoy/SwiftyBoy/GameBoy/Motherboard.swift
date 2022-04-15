@@ -225,7 +225,15 @@ class Motherboard {
                     return sound.getReg(reg: .nr33)
                 } else if address == 0xFF1E {
                     return sound.getReg(reg: .nr34)
-                }  else if address == 0xFF26 {
+                } else if address == 0xFF20 {
+                    return sound.getReg(reg: .nr41)
+                } else if address == 0xFF21 {
+                    return sound.getReg(reg: .nr42)
+                } else if address == 0xFF22 {
+                    return sound.getReg(reg: .nr43)
+                } else if address == 0xFF23 {
+                    return sound.getReg(reg: .nr44)
+                } else if address == 0xFF26 {
                     return sound.getReg(reg: .nr52)
                 } else if address >= 0xFF30 && address <= 0xFF3F {
                     // wave table
@@ -376,6 +384,14 @@ class Motherboard {
                     sound.setReg(reg: .nr33, val: val)
                 } else if address == 0xFF1E {
                     sound.setReg(reg: .nr34, val: val)
+                } else if address == 0xFF20 {
+                    sound.setReg(reg: .nr41, val: val)
+                } else if address == 0xFF21 {
+                    sound.setReg(reg: .nr42, val: val)
+                } else if address == 0xFF22 {
+                    sound.setReg(reg: .nr43, val: val)
+                } else if address == 0xFF23 {
+                    sound.setReg(reg: .nr44, val: val)
                 } else if address == 0xFF26 {
                     sound.setReg(reg: .nr52, val: val)
                 } else if address >= 0xFF30 && address <= 0xFF3F {

@@ -13,7 +13,6 @@ class SoundChannel1: ToneSoundChannel {
     var sweepDirection: SweepDirection = .addition
     var sweepShift = 0
     
-//    private var sweepShiftLeft = 0
     private var sweepTickCounter = 0
     
     private var sweepEnabled: Bool {
@@ -31,7 +30,6 @@ class SoundChannel1: ToneSoundChannel {
     override func onSweepTick() {
         if sweepEnabled {
             sweepTickCounter += 1
-//            sweepShiftLeft -= 1
             if sweepTickCounter == sweepPeriod {
                 sweepTickCounter = 0
                 calculateAndUpdateSweepFrequency()

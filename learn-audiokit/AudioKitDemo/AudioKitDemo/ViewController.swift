@@ -21,9 +21,15 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         engin.output = osc
-        osc.frequency = 440
+        
+        var lsfr = LSFR(length: 15)
+        let table = Table(lsfr.next(step: 10699).map({ each in
+            return Float(each)
+        }))
+        
+        osc.frequency = 1
         osc.amplitude = 0.5
-        osc.setWaveTable(waveform: audioKitTable(dutyCycle: 0.5))
+        osc.setWaveTable(waveform: table)
         osc.start()
         
         do {
@@ -31,11 +37,9 @@ class ViewController: UIViewController {
         } catch let err {
             print(err.localizedDescription)
         }
-        print("play")
+//        print("play")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [self] in
-            osc.frequency = 1000
-        }
+        
     }
 
     

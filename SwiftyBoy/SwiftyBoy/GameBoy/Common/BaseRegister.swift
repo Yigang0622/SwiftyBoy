@@ -9,7 +9,7 @@ import Foundation
 
 class BaseRegister {
     
-    private var _val: UInt8 = 0
+    internal var _val: UInt8 = 0
     
     func setVal(val: Int) {
         self._val = UInt8(val & 0xFF)

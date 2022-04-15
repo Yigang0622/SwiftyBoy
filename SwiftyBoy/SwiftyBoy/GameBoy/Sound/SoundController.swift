@@ -20,6 +20,7 @@ enum SoundRegister {
     case nr10, nr11, nr12, nr13, nr14,
          nr21, nr22, nr23, nr24,
          nr30, nr31, nr32, nr33, nr34,
+         nr41, nr42, nr43, nr44,
          nr52
 }
 
@@ -27,19 +28,8 @@ class SoundController {
     
     let engine = AudioEngine()
     
-    
     // sound channel 1
     var regNR10: RegNR10 = RegNR10(val: 0)
-    var regNR11: RegNR11 = RegNR11(val: 0)
-    var regNR12: RegNR12 = RegNR12(val: 0)
-    var regNR13: RegNR13 = RegNR13(val: 0)
-    var regNR14: RegNR14 = RegNR14(val: 0)
-    
-    // sound channel 2
-    var regNR21: RegNR21 = RegNR21(val: 0)
-    var regNR22: RegNR22 = RegNR22(val: 0)
-    var regNR23: RegNR23 = RegNR23(val: 0)
-    var regNR24: RegNR24 = RegNR24(val: 0)
     
     var regNR30: RegNR30 = RegNR30(val: 0)
     var regNR31: RegNR31 = RegNR31(val: 0)
@@ -53,6 +43,7 @@ class SoundController {
     var soundChannel1: SoundChannel1 = SoundChannel1()
     var soundChannel2: SoundChannel2 = SoundChannel2()
     var soundChannel3: SoundChannel3 = SoundChannel3()
+    var soundChannel4: SoundChannel4 = SoundChannel4()
     
     private let queue = DispatchQueue(label: "it.miketech.SwiftyBoy.sound")
     private var timer: DispatchSourceTimer!
@@ -65,7 +56,11 @@ class SoundController {
     
     init() {
         
-        let mixer = Mixer(soundChannel2.osc, soundChannel1.osc,soundChannel3.osc)
+        let mixer = Mixer(soundChannel1.osc,
+                          soundChannel2.osc,
+                          soundChannel3.osc,
+                          soundChannel4.osc)
+    
         engine.output = mixer
     
         do {
@@ -112,50 +107,35 @@ class SoundController {
             print("soundChannel1 nr10 \(val.asHexString) sweep period set \(soundChannel1.sweepPeriod) shift \(soundChannel1.sweepShift)")
             break
         case .nr11:
-            regNR11.setVal(val: val)
-            soundChannel1.waveDuty = regNR11.waveDuty
-            soundChannel1.soundLength = regNR11.soundLength
+            soundChannel1.regNRx1.setVal(val: val)
             break
         case .nr12:
-            regNR12.setVal(val: val)
-            soundChannel1.startVolume = regNR12.startVolume
-            soundChannel1.volEnvelopeMode = regNR12.volEnvelopeMode
-            soundChannel1.volEnvelopePeriod = regNR12.volEnvelopePeriod
+            soundChannel1.regNRx2.setVal(val: val)
             break
         case .nr13:
-            regNR13.setVal(val: val)
-            soundChannel1.frequencyData = regNR13.frequencyLoData | regNR14.frequencyHiData << 8
+            soundChannel1.regNRx3.setVal(val: val)
             break
         case .nr14:
-            regNR14.setVal(val: val)
-            soundChannel1.frequencyData = regNR13.frequencyLoData | regNR14.frequencyHiData << 8
-            soundChannel1.lengthEnable = regNR14.lengthEnable
-            if regNR14.initialize {
+            soundChannel1.regNRx4.setVal(val: val)
+            if soundChannel1.regNRx4.initialize {
                 soundChannel1.onTriggerEvent()
             }
             break
                  
         // square 2
         case .nr21:
-            regNR21.setVal(val: val)
-            soundChannel2.waveDuty = regNR21.waveDuty
-            soundChannel2.soundLength = regNR21.soundLength
+            soundChannel2.regNRx1.setVal(val: val)
             break
         case .nr22:
-            regNR22.setVal(val: val)
-            soundChannel2.startVolume = regNR22.startVolume
-            soundChannel2.volEnvelopeMode = regNR22.volEnvelopeMode
-            soundChannel2.volEnvelopePeriod = regNR22.volEnvelopePeriod
+            soundChannel2.regNRx2.setVal(val: val)
             break
         case .nr23:
-            regNR23.setVal(val: val)
-            soundChannel2.frequencyData = regNR23.frequencyLoData | regNR24.frequencyHiData << 8
+            soundChannel2.regNRx3.setVal(val: val)
             break
         case .nr24:
-            regNR24.setVal(val: val)
-            soundChannel2.frequencyData = regNR23.frequencyLoData | regNR24.frequencyHiData << 8
-            soundChannel2.lengthEnable = regNR24.lengthEnable
-            if regNR24.initialize {
+            soundChannel2.regNRx4.setVal(val: val)
+            
+            if soundChannel2.regNRx4.initialize {
                 soundChannel2.onTriggerEvent()
             }
             break
@@ -187,6 +167,23 @@ class SoundController {
                 soundChannel3.onTriggerEvent()
             }
             break
+            
+        // white noise
+        case .nr41:
+            soundChannel4.regNR41.setVal(val: val)
+            break
+        case .nr42:
+            soundChannel4.regNR42.setVal(val: val)
+            break
+        case .nr43:
+            soundChannel4.regNR43.setVal(val: val)
+            break
+        case .nr44:
+            soundChannel4.regNR44.setVal(val: val)
+            if soundChannel4.regNR44.initialize {
+                soundChannel4.onTriggerEvent()
+            }
+            break
         
         // sound control
         case .nr52:
@@ -196,6 +193,7 @@ class SoundController {
                 soundChannel1.stop()
                 soundChannel2.stop()
                 soundChannel3.stop()
+                soundChannel4.stop()
             }
             
             if !regNR52.sound1Enabled {
@@ -209,31 +207,41 @@ class SoundController {
             if !regNR52.sound3Enabled {
                 soundChannel3.stop()
             }
+            
+            if !regNR52.sound4Enabled {
+                soundChannel4.stop()
+            }
             break
+        
         }
         
     }
     
     func getReg(reg: SoundRegister) -> Int {
         switch reg {
-        case .nr21:
-            return regNR21.getVal()
-        case .nr22:
-            return regNR22.getVal()
-        case .nr23:
-            return regNR23.getVal()
-        case .nr24:
-            return regNR24.getVal()
+      
         case .nr10:
             return regNR10.getVal()
         case .nr11:
-            return regNR11.getVal()
+            return soundChannel1.regNRx1.getVal()
         case .nr12:
-            return regNR12.getVal()
+            return soundChannel1.regNRx2.getVal()
         case .nr13:
-            return regNR13.getVal()
+            return soundChannel1.regNRx3.getVal()
         case .nr14:
-            return regNR14.getVal()
+            return soundChannel1.regNRx4.getVal()
+            
+            
+        case .nr21:
+            return soundChannel2.regNRx1.getVal()
+        case .nr22:
+            return soundChannel2.regNRx2.getVal()
+        case .nr23:
+            return soundChannel2.regNRx3.getVal()
+        case .nr24:
+            return soundChannel2.regNRx4.getVal()
+            
+            
         case .nr52:
             return regNR52.getVal()
         case .nr30:
@@ -246,11 +254,18 @@ class SoundController {
             return regNR33.getVal()
         case .nr34:
             return regNR34.getVal()
+            
+        case .nr41:
+            return soundChannel4.regNR41.getVal()
+        case .nr42:
+            return soundChannel4.regNR42.getVal()
+        case .nr43:
+            return soundChannel4.regNR43.getVal()
+        case .nr44:
+            return soundChannel4.regNR44.getVal()
         }
     }
     
-    
-
     func tick(cycles: Int) {
         cpuTickCount += cycles
         // 512Hz frequency divide
@@ -265,6 +280,7 @@ class SoundController {
                 soundChannel1.onLengthCounterTick()
                 soundChannel2.onLengthCounterTick()                
                 soundChannel3.onLengthCounterTick()
+                soundChannel4.onLengthCounterTick()
                 // 128 Hz
                 if step == 2 || step == 6 {
                     soundChannel1.onSweepTick()
@@ -272,8 +288,9 @@ class SoundController {
                 
             } else if step == 7 {
                 // 64Hz
-                soundChannel2.onVolumEnvlopTick()
                 soundChannel1.onVolumEnvlopTick()
+                soundChannel2.onVolumEnvlopTick()
+                soundChannel4.onVolumEnvlopTick()
             }
             
         }
@@ -286,6 +303,8 @@ class SoundController {
         soundChannel1.reset()
         soundChannel2.reset()
         soundChannel3.reset()
+        soundChannel4.reset()
     }
     
 }
+

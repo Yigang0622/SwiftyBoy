@@ -20,8 +20,8 @@ class RegNR32: BaseRegister {
     var outputLevel: WaveOutputLevel = .mute
     
     override func setVal(val: Int) {
+        super.setVal(val: (val & 0b01100000))
         outputLevel = WaveOutputLevel(rawValue: (val & 0b01100000) >> 5)!
-        super.setVal(val: (val & 0b01100000))        
     }
     
     override func getVal() -> Int {

@@ -11,6 +11,7 @@ protocol SoundChannelDelegate {
 
     func onTriggerEvent()
     
+    // Frame sequencer
     func onLengthCounterTick()
     
     func onVolumEnvlopTick()

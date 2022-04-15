@@ -9,11 +9,36 @@ import Foundation
 
 class SoundChannel1: ToneSoundChannel {
     
-    var sweepPeriod = 0
-    var sweepDirection: SweepDirection = .addition
-    var sweepShift = 0
+    var regNR10: RegNR10 = RegNR10(val: 0)
     
-    private var sweepTickCounter = 0
+    private var sweepPeriod: Int {
+        get {
+            return regNR10.sweepPeriod
+        }
+        set {
+            regNR10.sweepPeriod = newValue
+        }
+    }
+    
+    
+    private var sweepDirection: SweepDirection {
+        get {
+            return regNR10.sweepDirection
+        }
+        set {
+            regNR10.sweepDirection = newValue
+        }
+    }
+    private var sweepShift: Int {
+        get {
+            return regNR10.sweepShift
+        }
+        set {
+            regNR10.sweepShift = newValue
+        }
+    }
+    
+    private var _sweepTickCounter = 0
     
     private var sweepEnabled: Bool {
         get {
@@ -29,9 +54,9 @@ class SoundChannel1: ToneSoundChannel {
      */
     override func onSweepTick() {
         if sweepEnabled {
-            sweepTickCounter += 1
-            if sweepTickCounter == sweepPeriod {
-                sweepTickCounter = 0
+            _sweepTickCounter += 1
+            if _sweepTickCounter == sweepPeriod {
+                _sweepTickCounter = 0
                 calculateAndUpdateSweepFrequency()
             }
         }
@@ -63,7 +88,7 @@ class SoundChannel1: ToneSoundChannel {
         // Square 1's frequency is copied to the shadow register.
         lastFrequencyData = frequencyData
         // The sweep timer is reloaded.
-        sweepTickCounter = 0
+        _sweepTickCounter = 0
         // The internal enabled flag is set if either the sweep period or shift are non-zero, cleared otherwise.
         
         // If the sweep shift is non-zero, frequency calculation and the overflow check are performed immediately.

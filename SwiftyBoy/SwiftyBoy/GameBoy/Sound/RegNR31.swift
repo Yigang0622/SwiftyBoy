@@ -13,6 +13,9 @@ class RegNR31: BaseRegister {
         get {
             return (getVal() & 0b11111000) >> 3
         }
+        set {
+            _val = UInt8((newValue & 0b11111) << 3)
+        }
     }
 
 }

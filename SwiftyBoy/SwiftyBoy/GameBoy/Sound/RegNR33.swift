@@ -9,9 +9,12 @@ import UIKit
 
 class RegNR33: BaseRegister {
     
-    var frequencyDataLo: Int {
+    var frequencyLoData: Int {
         get {
             return getVal()
+        }
+        set {
+            setVal(val: newValue)
         }
     }
 

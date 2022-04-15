@@ -26,27 +26,14 @@ enum SoundRegister {
 
 class SoundController {
     
-    let engine = AudioEngine()
+    private let engine = AudioEngine()
+            
+    private var regNR52: RegNR52 = RegNR52(val: 0)
     
-    // sound channel 1
-    var regNR10: RegNR10 = RegNR10(val: 0)
-    
-    var regNR30: RegNR30 = RegNR30(val: 0)
-    var regNR31: RegNR31 = RegNR31(val: 0)
-    var regNR32: RegNR32 = RegNR32(val: 0)
-    var regNR33: RegNR33 = RegNR33(val: 0)
-    var regNR34: RegNR34 = RegNR34(val: 0)
-    
-    var waveTableRegisters = Array(repeating: BaseRegister(val: 0), count: 16)
-    var regNR52: RegNR52 = RegNR52(val: 0)
-    
-    var soundChannel1: SoundChannel1 = SoundChannel1()
-    var soundChannel2: SoundChannel2 = SoundChannel2()
-    var soundChannel3: SoundChannel3 = SoundChannel3()
-    var soundChannel4: SoundChannel4 = SoundChannel4()
-    
-    private let queue = DispatchQueue(label: "it.miketech.SwiftyBoy.sound")
-    private var timer: DispatchSourceTimer!
+    private var soundChannel1: SoundChannel1 = SoundChannel1()
+    private var soundChannel2: SoundChannel2 = SoundChannel2()
+    private var soundChannel3: SoundChannel3 = SoundChannel3()
+    private var soundChannel4: SoundChannel4 = SoundChannel4()
     
     private var cpuTickCount = 0
     private var frameSequencerTickCount = 0
@@ -71,40 +58,20 @@ class SoundController {
         
     }
     
-    
-    var tempCounter = 0
-    func setupTestTimer() {
-        timer = DispatchSource.makeTimerSource(flags: .strict, queue: queue)
-        timer.setEventHandler { [self] in
-            print(tempCounter)
-            tempCounter = 0
-            frameSequencerTickCount = 0
-            cpuTickCount = 0
-        }
-        timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
-        timer.resume()
-        
-    }
-    
     func setWaveReg(index: Int, val: Int) {
-        waveTableRegisters[index].setVal(val: val)
-        soundChannel3.waveTableArray[index * 2] = (val & 0xF0) >> 4
-        soundChannel3.waveTableArray[index * 2 + 1] = val & 0x0F
+        soundChannel3.setWaveReg(index: index, val: val)
     }
     
     func getWaveReg(index: Int) -> Int {
-        return waveTableRegisters[index].getVal()
+        return soundChannel3.getWaveReg(index: index)
     }
     
     func setReg(reg: SoundRegister, val: Int){
         switch reg {
         // square 1
         case .nr10:
-            regNR10.setVal(val: val)
-            soundChannel1.sweepPeriod = regNR10.sweepPeriod
-            soundChannel1.sweepDirection = regNR10.sweepDirection
-            soundChannel1.sweepShift = regNR10.sweepShift
-            print("soundChannel1 nr10 \(val.asHexString) sweep period set \(soundChannel1.sweepPeriod) shift \(soundChannel1.sweepShift)")
+            soundChannel1.regNR10.setVal(val: val)
+            print("soundChannel1 nr10 \(val.asHexString) sweep period set \(soundChannel1.regNR10.sweepPeriod) shift \(soundChannel1.regNR10.sweepShift)")
             break
         case .nr11:
             soundChannel1.regNRx1.setVal(val: val)
@@ -142,28 +109,23 @@ class SoundController {
             
         // wave
         case .nr30:
-            regNR30.setVal(val: val)
-            if !regNR30.soundEnable {
+            soundChannel3.regNR30.setVal(val: val)
+            if !soundChannel3.regNR30.soundEnable {
                 soundChannel3.stop()
             }
             break
         case .nr31:
-            regNR31.setVal(val: val)
-            soundChannel3.soundLength = regNR31.soundLength
+            soundChannel3.regNR31.setVal(val: val)
             break
         case .nr32:
-            regNR32.setVal(val: val)
-            soundChannel3.outputLevel = regNR32.outputLevel
+            soundChannel3.regNR32.setVal(val: val)
             break
         case .nr33:
-            regNR33.setVal(val: val)
-            soundChannel3.frequencyData = regNR33.frequencyDataLo | regNR34.frequencyDataHi << 8
+            soundChannel3.regNR33.setVal(val: val)
             break
         case .nr34:
-            regNR34.setVal(val: val)
-            soundChannel3.frequencyData = regNR33.frequencyDataLo | regNR34.frequencyDataHi << 8
-            soundChannel3.lengthEnable = regNR34.lengthEnabled
-            if regNR34.initializationFlag {
+            soundChannel3.regNR34.setVal(val: val)
+            if soundChannel3.regNR34.initializationFlag {
                 soundChannel3.onTriggerEvent()
             }
             break
@@ -221,7 +183,7 @@ class SoundController {
         switch reg {
       
         case .nr10:
-            return regNR10.getVal()
+            return soundChannel1.regNR10.getVal()
         case .nr11:
             return soundChannel1.regNRx1.getVal()
         case .nr12:
@@ -245,15 +207,15 @@ class SoundController {
         case .nr52:
             return regNR52.getVal()
         case .nr30:
-            return regNR30.getVal()
+            return soundChannel3.regNR30.getVal()
         case .nr31:
-            return regNR31.getVal()
+            return soundChannel3.regNR31.getVal()
         case .nr32:
-            return regNR32.getVal()
+            return soundChannel3.regNR32.getVal()
         case .nr33:
-            return regNR33.getVal()
+            return soundChannel3.regNR33.getVal()
         case .nr34:
-            return regNR34.getVal()
+            return soundChannel3.regNR34.getVal()
             
         case .nr41:
             return soundChannel4.regNR41.getVal()

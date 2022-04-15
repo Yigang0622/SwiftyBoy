@@ -9,15 +9,51 @@ import UIKit
 import AudioKit
 
 class SoundChannel3: SoundChannelBase {
-
+    
+    var regNR30: RegNR30 = RegNR30(val: 0)
+    var regNR31: RegNR31 = RegNR31(val: 0)
+    var regNR32: RegNR32 = RegNR32(val: 0)
+    var regNR33: RegNR33 = RegNR33(val: 0)
+    var regNR34: RegNR34 = RegNR34(val: 0)
     var waveTableArray: [Int] = Array(repeating: 0, count: 32)
+    var waveTableRegisters = Array(repeating: BaseRegister(val: 0), count: 16)
     
-    var _soundLength: Int = 0
-    var soundLength: Int = 0
+    private var _soundLength: Int = 0
     
-    var outputLevel: WaveOutputLevel = .mute
-    var frequencyData: Int = 0
-    var lengthEnable: Bool = false
+    private var soundLength: Int {
+        get {
+            return regNR31.soundLength
+        }
+        set {
+            regNR31.soundLength = newValue
+        }
+    }
+    
+    private var outputLevel: WaveOutputLevel {
+        get {
+            return regNR32.outputLevel
+        }
+        set {
+            regNR32.outputLevel = newValue
+        }
+    }
+    private var frequencyData: Int {
+        get {
+            return regNR34.frequencyHiData << 8 | regNR33.frequencyLoData
+        }
+        set {
+            regNR33.frequencyLoData = newValue & 0xFF
+            regNR34.frequencyHiData = (newValue & 0b111_00000000) >> 8
+        }
+    }
+    private var lengthEnable: Bool {
+        get {
+            return regNR34.lengthEnabled
+        }
+        set {
+            regNR34.lengthEnabled = newValue
+        }
+    }
     
     override func onTriggerEvent() {
         // channel is enabled
@@ -66,6 +102,16 @@ class SoundChannel3: SoundChannelBase {
         }
         print(elementes)
         return Table(elementes)
+    }
+    
+    func setWaveReg(index: Int, val: Int) {
+        waveTableRegisters[index].setVal(val: val)
+        waveTableArray[index * 2] = (val & 0xF0) >> 4
+        waveTableArray[index * 2 + 1] = val & 0x0F
+    }
+    
+    func getWaveReg(index: Int) -> Int {
+        return waveTableRegisters[index].getVal()
     }
     
     

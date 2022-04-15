@@ -19,11 +19,17 @@ class RegNR34: BaseRegister {
         get {
             return getBit(n: 6)
         }
+        set {
+            newValue ? setBit(n: 6) : clearBit(n: 6)
+        }
     }
     
-    var frequencyDataHi: Int {
+    var frequencyHiData: Int {
         get {
-            return Int(_val) & 0b00000111
+            return Int(_val) & 0b111
+        }
+        set {
+            _val = (_val & 0b11111000) | (UInt8(newValue) & 0b00000111)
         }
     }
     

@@ -9,15 +9,15 @@ import Foundation
 
 class CPUTimer {
     
-    var mb:Motherboard!
     var div = 0
     var tima = 0
     var tma = 0
     var tac = 0
-    
-    
+        
     var divCounter = 0
     var timaCounter = 0
+    
+    var onTimerOverflow: (() -> Void)!
     
     func tick(cycles: Int) {
         self.divCounter += cycles
@@ -39,7 +39,7 @@ class CPUTimer {
             if self.tima > 0xFF {
                 self.tima = self.tma
                 self.tima &= 0xFF
-                mb.cpu.interruptFlagRegister.timerOverflow = true
+                onTimerOverflow()
             }
             
         }

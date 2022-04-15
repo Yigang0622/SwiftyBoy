@@ -107,6 +107,8 @@ class SoundChannel4: SoundChannelBase {
         var count = div
         if oscFreq == 0 {
             oscFreq = 1
+            // sound be count = x, x is a number below 32768, but it will cause AudioKit crash, sometimes
+            // so let's just set it to 32768
             count = 32768
         }
         

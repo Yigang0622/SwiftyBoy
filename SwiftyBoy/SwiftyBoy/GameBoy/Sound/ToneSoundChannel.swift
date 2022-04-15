@@ -91,7 +91,6 @@ class ToneSoundChannel: SoundChannelBase {
     override init() {
         super.init()
         waveTable = [
-            .duty0:  audioKitTable(dutyCycle: 0),
             .duty12_5: audioKitTable(dutyCycle: 0.125),
             .duty25: audioKitTable(dutyCycle: 0.25),
             .duty50: audioKitTable(dutyCycle: 0.50),

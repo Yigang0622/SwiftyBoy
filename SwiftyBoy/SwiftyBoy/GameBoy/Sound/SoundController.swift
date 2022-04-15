@@ -9,7 +9,6 @@ import Foundation
 import AudioKit
 
 enum WaveDuty: Int {
-    case duty0
     case duty12_5
     case duty25
     case duty50

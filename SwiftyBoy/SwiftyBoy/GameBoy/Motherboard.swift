@@ -30,9 +30,12 @@ class Motherboard {
     init() {
         cpu.mb = self
         gpu.mb = self
-        cpuTimer.mb = self
         joypad.mb = self
                 
+        cpuTimer.onTimerOverflow = { [self] in
+            cpu.interruptFlagRegister.timerOverflow = true
+        }
+        
         gpu.onPhaseChange = { [self] phase in
             if phase == .vBlank && fpsRestriction && running {
                 self.semaphore.wait()

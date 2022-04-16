@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GPUState {
+enum GPUPhase {
     case oamSearch
     case pixelTransfer
     case hBlank
@@ -15,25 +15,22 @@ enum GPUState {
 }
 
 class GPU {
-    
-    
+        
     var mb: Motherboard!
     
     var vram = ContiguousArray<Int>(repeating: 0x00, count: 8 * 1024)
     var oam = ContiguousArray<Int>(repeating: 0x00, count: 0xA0)
     
-    public var onFrameUpdate: (([[Int]]) -> Void)?
-    public var onFrameUpdateV2: (([UInt32]) -> Void)?
-    public var onFrameDrawn: (([UInt32]) -> Void)?
-    public var onPhaseChange: ((GPUState) -> Void)?
-    
+    public var onFrameDrawn: ((FrameData) -> Void)?
+    public var onPhaseChange: ((GPUPhase) -> Void)?
+        
     private static let FULL_FRAME_CYCLE = 70224
 //    private var LY = 0
     private var clock:Int = 0
     private var targetClock:Int = 0
     
-    private var currentState: GPUState = .oamSearch
-    private var nextState: GPUState = .oamSearch
+    private var currentPhase: GPUPhase = .oamSearch
+    private var nextPhase: GPUPhase = .oamSearch
     
     var statRegister = STATRegister(val: 0)
     var lcdcRegister = LCDCRegister(val: 0)
@@ -53,8 +50,8 @@ class GPU {
     func reset() {
         clock = 0
         targetClock = 0
-        currentState = .oamSearch
-        nextState = .oamSearch
+        currentPhase = .oamSearch
+        nextPhase = .oamSearch
         statRegister = STATRegister(val: 0)
         lcdcRegister = LCDCRegister(val: 0)
         scy = 0x00
@@ -85,25 +82,25 @@ class GPU {
         if clock > targetClock {
             
             if ly == lyMax {
-                nextState = .oamSearch
+                nextPhase = .oamSearch
                 resetLY()
             }
             
-            currentState = nextState
-            if currentState == .oamSearch {
+            currentPhase = nextPhase
+            if currentPhase == .oamSearch {
                 // 20 clocks
                 targetClock += 20 * 4
-                nextState = .pixelTransfer
+                nextPhase = .pixelTransfer
                 statRegister.modeFlag = .mode10
                 if statRegister.mode10InterruptEnable {
                     mb.cpu.interruptFlagRegister.lcdc = true
                 }
                 increaseLY()
-            } else if currentState == .pixelTransfer {
+            } else if currentPhase == .pixelTransfer {
                 targetClock += 43 * 4
                 statRegister.modeFlag = .mode11
-                nextState = .hBlank                
-            } else if currentState == .hBlank {
+                nextPhase = .hBlank                
+            } else if currentPhase == .hBlank {
                 targetClock += 51 * 4
                 statRegister.modeFlag = .mode00
                 if statRegister.mode00InterruptEnable {
@@ -114,21 +111,21 @@ class GPU {
                 }
                 // full frame drawn
                 if ly < 144 {
-                    nextState = .oamSearch
+                    nextPhase = .oamSearch
                 } else {
-                    nextState = .vBlank
+                    nextPhase = .vBlank
                 }
-            } else if currentState == .vBlank {
+            } else if currentPhase == .vBlank {
                 targetClock += (20 + 43 + 51) * 4
                 statRegister.modeFlag = .mode01
                 if statRegister.mode01InterruptEnable {
                     mb.cpu.interruptFlagRegister.lcdc = true
                 }
-                nextState = .vBlank
+                nextPhase = .vBlank
                 if ly == 144 {
                     mb.cpu.interruptFlagRegister.vblank = true
                     onPhaseChange?(.vBlank)
-                    self.draw()
+                    onFrameDrawn?(renderer.frameData)
                 }
                 increaseLY()
             }
@@ -146,147 +143,5 @@ class GPU {
             mb.cpu.interruptFlagRegister.lcdc = true
         }
     }
-    
-    func draw() {
-//        let offset = 0x8000
-//        var backgound = Array(repeating: 0, count: 1024)
-//        var window = Array(repeating: 0, count: 1024)
-//
-//        var tiles = [Tile]()
-//
-//        if lcdcRegister.backgroundTileMapSelect == .map0 {
-//            backgound = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
-//        } else if lcdcRegister.backgroundTileMapSelect == .map1 {
-//            backgound = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
-//        }
-//
-//        if lcdcRegister.windowTileMapSelect == .map0 {
-//            window = Array(vram[(0x9800 - offset)...(0x9BFF - offset)])
-//        } else if lcdcRegister.windowTileMapSelect == .map1 {
-//            window = Array(vram[0x9C00 - offset ... 0x9FFF - offset])
-//        }
-//
-//
-//        let tileData = Array(vram[(0x8000 - offset)...(0x97FF - offset)])
-//        //todo figure out why 0xFF + 1
-//        let tileOffset = lcdcRegister.tileDataSelect == .tile0 ? 0xFF + 1 : 0
-//
-//        for i in 0...255 + 128 {
-//            let start = i * 16
-//            let end = start + 16
-//            let sub = Array(tileData[start ..< end])
-//            let t = Tile.from(with: sub)
-//            tiles.append(t)
-//        }
-//
-//        let sprites: [Sprite] = Array(0..<40).map { i in
-//            return Sprite.from(byte0: oam[i * 4 + 0],
-//                               byte1: oam[i * 4 + 1],
-//                               byte2: oam[i * 4 + 2],
-//                               byte3: oam[i * 4 + 3])
-//        }
-//
-//
-//        let backgroundWidth = 256
-//        let backgroundHeight = 256
-//        var backgroundData = Array<UInt32>(repeating: 0x000000FF, count: backgroundWidth * backgroundHeight)
-//        for i in 0..<32 {
-//            for j in 0..<32 {
-//                let idx = i * 32 + j
-//                var tileId = Int(window[idx])
-//                if lcdcRegister.tileDataSelect == .tile0 {
-//                    tileId = (tileId ^ 0x80) + 128
-//                }
-//                for tileY in 0...7 {
-//                    for tileX in 0...7 {
-//                        let colorIdx = tiles[tileId].getPixel(i: tileY, j: tileX)
-//                        let dataIdx = (i * 8 + tileY) * 256 + j * 8 + tileX
-//                        let color = self.backgroundPalette.getColor(i: colorIdx)
-//                        backgroundData[dataIdx] = Palette.getPaletteColor(colorCode: color)
-//                    }
-//                }
-//            }
-//        }
-//
-//
-        
-        
-        let viewPortWidth = 160
-        let viewPortHeight = 144
-        
-        var viewPortData = Array<UInt32>(repeating: 0x000000FF, count: viewPortWidth * viewPortHeight)
-        
-//        for i in 0 ..< 144 {
-//            for j in 0 ..< 160 {
-//
-//                var iNew = i + scy
-//                if iNew > 255 {
-//                    iNew -= 255
-//                }
-//
-//                var jNew = j + scx
-//                if jNew > 255 {
-//                    jNew -= 255
-//                }
-//
-//                let dataIdx = iNew * 256 + jNew
-//                viewPortData[i * 160 + j] = backgroundData[dataIdx]
-//            }
-//        }
-        
-        viewPortData = renderer.frameData.data
-        // draw sprites
-//        sprites.forEach { sprite in
-//            if sprite.visibleOnScreen() {
-//                let x = sprite.posX
-//                let y = sprite.posY
-//                let tile = tiles[sprite.patternNumber]
-//
-//                for tileY in 0...7 {
-//                    for tileX in 0...7 {
-//                        let tY = sprite.yFlip ? 7 - tileY : tileY
-//                        let tX = sprite.xFlip ? 7 - tileX : tileX
-//                        let palatteIndex = tile.getPixel(i: tY, j: tX)
-//                        let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
-//                        if palatteIndex != 0 {
-//                            let color = self.obj0Palatte.getColor(i: palatteIndex)
-//                            if dataIdx < viewPortData.count {
-//                                viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
-//                            }
-//                        }
-//
-//
-//                    }
-//                }
-//
-//                if lcdcRegister.spriteSize == .size1 {
-//                    let x = sprite.posX
-//                    let y = sprite.posY + 8
-//                    let tile = tiles[sprite.patternNumber + 1]
-//                    for tileY in 0...7 {
-//                        for tileX in 0...7 {
-//                            let tY = sprite.yFlip ? 7 - tileY : tileY
-//                            let tX = sprite.xFlip ? 7 - tileX : tileX
-//                            let palatteIndex = tile.getPixel(i: tY, j: tX)
-//                            let dataIdx = (y - 16 + tileY) * viewPortWidth + (x - 8 + tileX)
-//                            if palatteIndex != 0 {
-//                                let color = self.obj0Palatte.getColor(i: palatteIndex)
-//                                if dataIdx < viewPortData.count {
-//                                    viewPortData[dataIdx] = Palette.getPaletteColor(colorCode: color)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
-//
-    
-//        onFrameUpdateV2?(backgroundDatar)
-        onFrameDrawn?(viewPortData)
-        
-    }
-    
     
 }

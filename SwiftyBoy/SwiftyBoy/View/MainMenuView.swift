@@ -12,6 +12,8 @@ class MainMenuView: UIView {
     
     var loadCartridgeButton: UIButton!
     var loadBootRomButton: UIButton!
+    var devModeButton: UIButton!
+    
     var titleLabel: UILabel!
     var stackView: UIStackView!
 
@@ -53,6 +55,7 @@ class MainMenuView: UIView {
         ])
         stackView.alignment = UIStackView.Alignment.center
         stackView.axis = NSLayoutConstraint.Axis.vertical
+        stackView.distribution = .equalSpacing
         
         loadCartridgeButton = UIButton()
         loadCartridgeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -69,21 +72,12 @@ class MainMenuView: UIView {
         loadBootRomButton.setTitleColor(.black, for: .normal)
         stackView.addArrangedSubview(loadBootRomButton)
         
-        
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
-//        self.addSubview(loadCartridgeButton)
-//        NSLayoutConstraint.activate([
-//            loadCartridgeButton.heightAnchor.constraint(equalToConstant: 50),
-//            loadCartridgeButton.widthAnchor.constraint(equalToConstant: 350),
-//            loadCartridgeButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            loadCartridgeButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-//        ])
-//        loadCartridgeButton.setTitle("LOAD CARTRIDGE", for: .normal)
-//        loadCartridgeButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
-//        loadCartridgeButton.setTitleColor(.black, for: .normal)
+        devModeButton = UIButton()
+        devModeButton.translatesAutoresizingMaskIntoConstraints = false
+        devModeButton.setTitle("DEV MODE", for: .normal)
+        devModeButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
+        devModeButton.setTitleColor(.black, for: .normal)
+        stackView.addArrangedSubview(devModeButton)
     }
     
 }

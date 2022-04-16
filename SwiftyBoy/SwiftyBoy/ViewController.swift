@@ -9,12 +9,15 @@ import UIKit
 import Foundation
 import MobileCoreServices
 import UniformTypeIdentifiers
+import SnapKit
 
 class ViewController: UIViewController {
         
     var gameboy = GameBoy()
     var gameboyLcd: GameBoyLCDView!
     var mainMenu: MainMenuView!
+    var devPannel: DevPanelView = DevPanelView()
+    var devMode = false
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -27,26 +30,27 @@ class ViewController: UIViewController {
         
         gameboyLcd = GameBoyLCDView()
         self.view.addSubview(gameboyLcd)
-        gameboyLcd.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            gameboyLcd.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            gameboyLcd.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            gameboyLcd.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            gameboyLcd.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        gameboyLcd.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.equalToSuperview().offset(40)
+            make.width.equalTo(gameboyLcd.snp.height).multipliedBy(160 / 144)
+        }
         
-    
+
         mainMenu = MainMenuView()
         self.view.addSubview(mainMenu)
-        mainMenu.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mainMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            mainMenu.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            mainMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainMenu.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        mainMenu.snp.makeConstraints { make in
+            make.edges.equalTo(gameboyLcd)
+        }
+        
         mainMenu.loadCartridgeButton.addTarget(self, action: #selector(self.showLoadCartridgeDialog), for: .touchUpInside)
         mainMenu.loadBootRomButton.addTarget(self, action: #selector(self.showSetBootromDialog), for: .touchUpInside)
+        mainMenu.devModeButton.addTarget(self, action: #selector(self.toggleDevMode), for: .touchUpInside)
+        
+        devPannel.updateSoundChannelStatus = { [self] channel, enable in
+            gameboy.mb.sound.setChannelStatus(channel: channel, enable: enable)
+        }
         
     }
     
@@ -132,6 +136,24 @@ extension ViewController {
         }
     }
     
+    @objc func toggleDevMode() {
+        self.devMode = !self.devMode
+        if devMode {
+            WindowUtil.setDevWidnowSize()
+            
+            self.view.addSubview(devPannel)
+            devPannel.snp.makeConstraints { make in
+                make.left.equalTo(gameboyLcd.snp.right)
+                make.right.equalToSuperview()
+                make.top.equalToSuperview()
+                make.bottom.equalToSuperview()
+            }
+        } else {
+            WindowUtil.setNormalWindowSize()
+            devPannel.snp.removeConstraints()
+            devPannel.removeFromSuperview()
+        }
+    }
     
 }
 
@@ -148,6 +170,13 @@ extension ViewController: GameBoyDelegate {
     func gameBoyDidDrawNewFrame(frame: UIImage) {
         FPSMetric.shared.increaseCounter()
         gameboyLcd.setFrame(frame: frame)
+        
+        if devMode {
+            devPannel.backgroundLayer.image = gameboy.mb.gpu.renderer.getBackgroundLayer().toImage()
+            devPannel.windowLayer.image = gameboy.mb.gpu.renderer.getWindowLayer().toImage()
+            devPannel.spriteLayer.image = gameboy.mb.gpu.renderer.getSpriteLayer().toImage()
+        }
+       
     }
     
 }

@@ -15,12 +15,6 @@ class InterruptFlagRegister: BaseRegister {
     var serial = false
     var highToLow = false
     
-    
-    override init(val: Int) {
-        super.init(val: val)
-        setVal(val: val)
-    }
-    
     override func setVal(val: Int) {
         super.setVal(val: val)
         vblank = getBit(n: 0)

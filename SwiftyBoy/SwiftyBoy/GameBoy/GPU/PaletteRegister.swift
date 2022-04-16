@@ -25,7 +25,11 @@ class PaletteRegister: BaseRegister {
     }
     
     func getColor(i: Int) -> Int {
-        return self.palette[i]
+        if i >= 0 && i < 4 {
+            return self.palette[i]
+        } else {
+            return 0
+        }        
     }
     
     

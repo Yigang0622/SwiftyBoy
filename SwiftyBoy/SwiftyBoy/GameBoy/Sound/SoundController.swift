@@ -23,9 +23,17 @@ enum SoundRegister {
          nr52
 }
 
+enum SoundChannelType {
+    case channel1
+    case channel2
+    case channel3
+    case channel4
+}
+
 class SoundController {
     
     private let engine = AudioEngine()
+    private let mixer = Mixer()
             
     private var regNR52: RegNR52 = RegNR52(val: 0)
     
@@ -42,11 +50,10 @@ class SoundController {
     
     init() {
         
-        let mixer = Mixer(soundChannel1.osc,
-                          soundChannel2.osc,
-                          soundChannel3.osc,
-                          soundChannel4.osc)
-    
+        mixer.addInput(soundChannel1.osc)
+        mixer.addInput(soundChannel2.osc)
+        mixer.addInput(soundChannel3.osc)
+        mixer.addInput(soundChannel4.osc)
         engine.output = mixer
     
         do {
@@ -261,10 +268,31 @@ class SoundController {
     }
     
     func reset() {
+        
         soundChannel1.reset()
         soundChannel2.reset()
         soundChannel3.reset()
         soundChannel4.reset()
+    }
+    
+    func setChannelStatus(channel: SoundChannelType, enable: Bool) {
+        let sound: SoundChannelBase
+        switch channel {
+        case .channel1:
+            sound = soundChannel1
+        case .channel2:
+            sound = soundChannel2
+        case .channel3:
+            sound = soundChannel3
+        case .channel4:
+            sound = soundChannel4
+        }
+        
+        if enable {
+            mixer.addInput(sound.osc)
+        } else {
+            mixer.removeInput(sound.osc)
+        }
     }
     
 }

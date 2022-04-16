@@ -14,39 +14,10 @@ class GameBoy {
     var delegate: GameBoyDelegate?
     
     init() {
-        mb.gpu.onFrameDrawn = { pixels in
-            
+        mb.gpu.onFrameDrawn = { frame in
             DispatchQueue.main.async { [self] in
-                var pixels = pixels
-                let w = 160
-                let h = 144
-                let rgbColorSpace = CGColorSpace(name: CGColorSpace.sRGB)!
-                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
-                let bitsPerComponent = 8
-                let bitsPerPixel = 32
-
-                let providerRef = CGDataProvider(data: NSData(bytes: &pixels, length: pixels.count * 4))
-
-                let cgim = CGImage(
-                   width: w,
-                   height: h,
-                   bitsPerComponent: bitsPerComponent,
-                   bitsPerPixel: bitsPerPixel,
-                   bytesPerRow: w * 4,
-                   space: rgbColorSpace,
-                   bitmapInfo: bitmapInfo,
-                   provider: providerRef!,
-                   decode: nil,
-                   shouldInterpolate: true,
-                   intent: .defaultIntent
-                   )
-                
-                if let cgImage = cgim {
-                    delegate?.gameBoyDidDrawNewFrame(frame: UIImage(cgImage: cgImage, scale: 1, orientation: .up))
-                }
-                
+                delegate?.gameBoyDidDrawNewFrame(frame: frame.toImage())
             }
-            
         }
     }
     

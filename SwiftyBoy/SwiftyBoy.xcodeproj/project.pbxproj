@@ -21,6 +21,10 @@
 		DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0972760F5F1005E45D4 /* STATRegister.swift */; };
 		DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */; };
 		DD25D09C27623B34005E45D4 /* RAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD25D09B27623B34005E45D4 /* RAM.swift */; };
+		DD5A71D2280A77BD00ED994F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD5A71D1280A77BD00ED994F /* SnapKit */; };
+		DD5A71D4280AE39F00ED994F /* DevPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D3280AE39F00ED994F /* DevPanelView.swift */; };
+		DD5A71D6280B0DC600ED994F /* WindowUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D5280B0DC600ED994F /* WindowUtil.swift */; };
+		DD5A71D8280B192900ED994F /* SwitchWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D7280B192900ED994F /* SwitchWithTitle.swift */; };
 		DD68123E2801961300164A32 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD68123D2801961300164A32 /* SoundController.swift */; };
 		DD68124128019A3900164A32 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD68124028019A3900164A32 /* AudioKit */; };
 		DD6C14C427A5861400809779 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C14C327A5861400809779 /* Renderer.swift */; };
@@ -113,6 +117,9 @@
 		DD25D0972760F5F1005E45D4 /* STATRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STATRegister.swift; sourceTree = "<group>"; };
 		DD25D0992760F8DD005E45D4 /* PaletteRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteRegister.swift; sourceTree = "<group>"; };
 		DD25D09B27623B34005E45D4 /* RAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAM.swift; sourceTree = "<group>"; };
+		DD5A71D3280AE39F00ED994F /* DevPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelView.swift; sourceTree = "<group>"; };
+		DD5A71D5280B0DC600ED994F /* WindowUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowUtil.swift; sourceTree = "<group>"; };
+		DD5A71D7280B192900ED994F /* SwitchWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchWithTitle.swift; sourceTree = "<group>"; };
 		DD68123D2801961300164A32 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
 		DD6C14C327A5861400809779 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		DD70BF6E27B7992B00CA9F1C /* BootRom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRom.swift; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5A71D2280A77BD00ED994F /* SnapKit in Frameworks */,
 				DD68124128019A3900164A32 /* AudioKit in Frameworks */,
 				DD897FB227A2FC5D0073C1BB /* GameController.framework in Frameworks */,
 			);
@@ -304,6 +312,8 @@
 				DDB24A4B27B7F96B00435CC2 /* VirtualJoyPad */,
 				DDAB2D9627AC3D8900BBA499 /* GameBoyLCDView.swift */,
 				DDAB2D9A27AD757A00BBA499 /* MainMenuView.swift */,
+				DD5A71D3280AE39F00ED994F /* DevPanelView.swift */,
+				DD5A71D7280B192900ED994F /* SwitchWithTitle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,6 +388,7 @@
 				DDF24ED5274FCA8F007929DA /* LaunchScreen.storyboard */,
 				DDB24A5127B954FD00435CC2 /* Main.storyboard */,
 				DDF24EFD274FCCD9007929DA /* SwiftyBoy.entitlements */,
+				DD5A71D5280B0DC600ED994F /* WindowUtil.swift */,
 			);
 			path = SwiftyBoy;
 			sourceTree = "<group>";
@@ -427,6 +438,7 @@
 			name = SwiftyBoy;
 			packageProductDependencies = (
 				DD68124028019A3900164A32 /* AudioKit */,
+				DD5A71D1280A77BD00ED994F /* SnapKit */,
 			);
 			productName = SwiftyBoy;
 			productReference = DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */;
@@ -480,6 +492,7 @@
 			mainGroup = DDF24EBE274FCA8C007929DA;
 			packageReferences = (
 				DD68123F2801997200164A32 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				DDCBC57A280A7732006D8D0D /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = DDF24EC8274FCA8C007929DA /* Products */;
 			projectDirPath = "";
@@ -528,6 +541,7 @@
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
 				DDF47EDE2803D93C00018667 /* RegNR33.swift in Sources */,
 				DDF47EE82804421700018667 /* SoundModeReg.swift in Sources */,
+				DD5A71D8280B192900ED994F /* SwitchWithTitle.swift in Sources */,
 				DDF47ED82803D6FB00018667 /* RegNR30.swift in Sources */,
 				DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */,
 				DDCBC573280863FD006D8D0D /* SoundChannel4.swift in Sources */,
@@ -545,6 +559,7 @@
 				DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */,
 				DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */,
 				DDF47EEA2804427C00018667 /* RegEnvelopParam.swift in Sources */,
+				DD5A71D4280AE39F00ED994F /* DevPanelView.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DDF47EDA2803D7AB00018667 /* RegNR31.swift in Sources */,
 				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
@@ -569,6 +584,7 @@
 				DDB24A5527B961F200435CC2 /* VirtualJoyPadDPad.swift in Sources */,
 				DDCBC56F28086208006D8D0D /* RegNR43.swift in Sources */,
 				DDCBC56B2808611F006D8D0D /* RegNR41.swift in Sources */,
+				DD5A71D6280B0DC600ED994F /* WindowUtil.swift in Sources */,
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,
 				DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
@@ -887,9 +903,22 @@
 				version = 5.0.1;
 			};
 		};
+		DDCBC57A280A7732006D8D0D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DD5A71D1280A77BD00ED994F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDCBC57A280A7732006D8D0D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		DD68124028019A3900164A32 /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DD68123F2801997200164A32 /* XCRemoteSwiftPackageReference "AudioKit" */;

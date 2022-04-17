@@ -31,26 +31,23 @@ class GameBoyLCDView: UIView {
         mainImageView.backgroundColor = .black
         mainImageView.contentMode = .scaleAspectFit
         self.addSubview(mainImageView)
-        NSLayoutConstraint.activate([
-            mainImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            mainImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            mainImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
+        
+        mainImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         fpsLabel = UILabel()
-        fpsLabel.alpha = 0.8
+        fpsLabel.alpha = 0.3
         fpsLabel.translatesAutoresizingMaskIntoConstraints = false
         fpsLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        fpsLabel.textColor = .systemRed
+        fpsLabel.backgroundColor = .black
+        fpsLabel.textColor = .white
         self.addSubview(fpsLabel)
-        
-        NSLayoutConstraint.activate([
-            fpsLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            fpsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            fpsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            fpsLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        fpsLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+            make.height.equalTo(30)
+        }
         
     }
     

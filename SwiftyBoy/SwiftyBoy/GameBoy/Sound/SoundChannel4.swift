@@ -92,7 +92,6 @@ class SoundChannel4: SoundChannelBase {
         let shiftRatio: [Float] = [2.0, 1.0, 1/2.0 , 1/3.0, 1/4.0, 1/5.0, 1/6.0, 1/7.0]
         let frequency = 4194304.0 * divRatop[s] / 8.0 * shiftRatio[r]
         
-        print("\(self) pre calc \(frequency) s\(s) r\(r)")
         setOscFrequency(x: Int(frequency))
        
     }
@@ -114,7 +113,6 @@ class SoundChannel4: SoundChannelBase {
         
         osc.frequency = AUValue(oscFreq)
         
-        print("\(self) --> f \(oscFreq) count \(count) step \(regNR43.counterStep)")
         var table: [Float] = []
         switch regNR43.counterStep {
         case .step7:
@@ -138,7 +136,7 @@ class SoundChannel4: SoundChannelBase {
         if lengthEnable && _soundLength > 0 {
             _soundLength -= 1
             if _soundLength == 0 {
-                print("\(self) stop")
+//                print("\(self) stop")
                 osc.stop()
             }
         }
@@ -151,10 +149,10 @@ class SoundChannel4: SoundChannelBase {
             _volEnvelopPeriodCounter = 0
             if _volume > 0 && _volume < 16 {
                 if volEnvelopeMode == .amplify {
-                    print("\(self) update volum + \(_volume)")
+//                    print("\(self) update volum + \(_volume)")
                     _volume += 1
                 } else if volEnvelopeMode == .attenuate {
-                    print("\(self) update volum - \(_volume)")
+//                    print("\(self) update volum - \(_volume)")
                     _volume -= 1
                 }
             }

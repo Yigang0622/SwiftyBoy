@@ -27,7 +27,7 @@ class DevPanelView: UIView {
     }
     
     private func setupViews() {
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .systemGray6
        
         let vramLabel = UILabel()
         vramLabel.font = UIFont.systemFont(ofSize: 25, weight: .medium)

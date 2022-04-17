@@ -25,6 +25,7 @@
 		DD5A71D4280AE39F00ED994F /* DevPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D3280AE39F00ED994F /* DevPanelView.swift */; };
 		DD5A71D6280B0DC600ED994F /* WindowUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D5280B0DC600ED994F /* WindowUtil.swift */; };
 		DD5A71D8280B192900ED994F /* SwitchWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D7280B192900ED994F /* SwitchWithTitle.swift */; };
+		DD5A71DA280B2FD300ED994F /* Renderer+DevMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5A71D9280B2FD200ED994F /* Renderer+DevMode.swift */; };
 		DD68123E2801961300164A32 /* SoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD68123D2801961300164A32 /* SoundController.swift */; };
 		DD68124128019A3900164A32 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD68124028019A3900164A32 /* AudioKit */; };
 		DD6C14C427A5861400809779 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C14C327A5861400809779 /* Renderer.swift */; };
@@ -120,6 +121,7 @@
 		DD5A71D3280AE39F00ED994F /* DevPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevPanelView.swift; sourceTree = "<group>"; };
 		DD5A71D5280B0DC600ED994F /* WindowUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowUtil.swift; sourceTree = "<group>"; };
 		DD5A71D7280B192900ED994F /* SwitchWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchWithTitle.swift; sourceTree = "<group>"; };
+		DD5A71D9280B2FD200ED994F /* Renderer+DevMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Renderer+DevMode.swift"; sourceTree = "<group>"; };
 		DD68123D2801961300164A32 /* SoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundController.swift; sourceTree = "<group>"; };
 		DD6C14C327A5861400809779 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		DD70BF6E27B7992B00CA9F1C /* BootRom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootRom.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				DDE6B63227A03B0B00D74122 /* Sprite.swift */,
 				DDE6B63427A04F8800D74122 /* Palette.swift */,
 				DD6C14C327A5861400809779 /* Renderer.swift */,
+				DD5A71D9280B2FD200ED994F /* Renderer+DevMode.swift */,
 			);
 			path = GPU;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
 				DD6C14C427A5861400809779 /* Renderer.swift in Sources */,
+				DD5A71DA280B2FD300ED994F /* Renderer+DevMode.swift in Sources */,
 				DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */,
 				DDE6B623279D194200D74122 /* InterruptManager.swift in Sources */,
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,

@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var mainMenu: MainMenuView!
     var devPannel: DevPanelView = DevPanelView()
     var devMode = false
+    let container = UIView()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -28,25 +29,34 @@ class ViewController: UIViewController {
         gameboy.delegate = self
         self.view.backgroundColor = .white
         
-        gameboyLcd = GameBoyLCDView()
-        self.view.addSubview(gameboyLcd)
-        gameboyLcd.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+        
+        
+        self.view.addSubview(container)
+        container.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.topMargin)
             make.left.equalToSuperview()
-            make.height.equalToSuperview().offset(40)
-            make.width.equalTo(gameboyLcd.snp.height).multipliedBy(160 / 144)
+            make.bottom.equalToSuperview()
+            make.width.equalTo(container.snp.height).multipliedBy(160.0 / 144.0)
+        }
+        
+        
+        gameboyLcd = GameBoyLCDView()
+        container.addSubview(gameboyLcd)
+        gameboyLcd.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
 
         mainMenu = MainMenuView()
-        self.view.addSubview(mainMenu)
+        container.addSubview(mainMenu)
         mainMenu.snp.makeConstraints { make in
-            make.edges.equalTo(gameboyLcd)
+            make.edges.equalToSuperview()
         }
         
         mainMenu.loadCartridgeButton.addTarget(self, action: #selector(self.showLoadCartridgeDialog), for: .touchUpInside)
         mainMenu.loadBootRomButton.addTarget(self, action: #selector(self.showSetBootromDialog), for: .touchUpInside)
         mainMenu.devModeButton.addTarget(self, action: #selector(self.toggleDevMode), for: .touchUpInside)
+        mainMenu.helpButton.addTarget(self, action: #selector(self.showHelpDialog), for: .touchUpInside)
         
         devPannel.updateSoundChannelStatus = { [self] channel, enable in
             gameboy.mb.sound.setChannelStatus(channel: channel, enable: enable)
@@ -69,9 +79,9 @@ class ViewController: UIViewController {
                     gameboy.pressButton(button: .down)
                 } else if (key.keyCode == .keyboardD) {
                     gameboy.pressButton(button: .right)
-                } else if (key.keyCode == .keyboardJ) {
-                    gameboy.pressButton(button: .a)
                 } else if (key.keyCode == .keyboardK) {
+                    gameboy.pressButton(button: .a)
+                } else if (key.keyCode == .keyboardJ) {
                     gameboy.pressButton(button: .b)
                 } else if (key.keyCode == .keyboardN) {
                     gameboy.pressButton(button: .select)
@@ -96,9 +106,9 @@ class ViewController: UIViewController {
                     gameboy.releaseButton(button: .down)
                 } else if (key.keyCode == .keyboardD) {
                     gameboy.releaseButton(button: .right)
-                } else if (key.keyCode == .keyboardJ) {
-                    gameboy.releaseButton(button: .a)
                 } else if (key.keyCode == .keyboardK) {
+                    gameboy.releaseButton(button: .a)
+                } else if (key.keyCode == .keyboardJ) {
                     gameboy.releaseButton(button: .b)
                 } else if (key.keyCode == .keyboardN) {
                     gameboy.releaseButton(button: .select)
@@ -119,6 +129,13 @@ let picker = MyDocumentPicker()
 
 extension ViewController {
 
+    @objc func showHelpDialog() {
+        let alert = UIAlertController(title: "Help", message: "UP - W\nDown - S\nLeft - A\nRight - D\nB - J\nA - K\nSelect - N\nStart - M\nTurbo - Space", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true)
+             
+    }
     
     @objc func showLoadCartridgeDialog() {
         picker.showPicker(fromController: self, fileType: ".gb") { [self] url in
@@ -161,7 +178,7 @@ extension ViewController {
 extension ViewController: GameBoyDelegate {
     
     func gameBoyCartridgeDidLoad(cart: Cartridge) {
-        self.view.bringSubviewToFront(self.gameboyLcd)
+        self.container.bringSubviewToFront(self.gameboyLcd)
         print("gameBoyCartridgeDidLoad")
         FPSMetric.shared.startMoinitoring()
         FPSMetric.shared.delegate = self

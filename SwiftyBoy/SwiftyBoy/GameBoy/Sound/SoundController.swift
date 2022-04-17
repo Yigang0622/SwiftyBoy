@@ -55,13 +55,18 @@ class SoundController {
         mixer.addInput(soundChannel3.osc)
         mixer.addInput(soundChannel4.osc)
         engine.output = mixer
+    }
     
+    func start() {
         do {
             try engine.start()
         } catch let err {
             print(err.localizedDescription)
         }
-        
+    }
+    
+    func stop() {
+        engine.stop()
     }
     
     func setWaveReg(index: Int, val: Int) {
@@ -268,11 +273,11 @@ class SoundController {
     }
     
     func reset() {
-        
+        stop()
         soundChannel1.reset()
         soundChannel2.reset()
         soundChannel3.reset()
-        soundChannel4.reset()
+        soundChannel4.reset()        
     }
     
     func setChannelStatus(channel: SoundChannelType, enable: Bool) {

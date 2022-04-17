@@ -105,6 +105,7 @@ class Motherboard {
             setMem(address: 0xFFFF, val: 0x00)            
         }
         setupTimer()
+        sound.start()
         running = true
         startTick()
     }

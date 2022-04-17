@@ -13,6 +13,7 @@ class MainMenuView: UIView {
     var loadCartridgeButton: UIButton!
     var loadBootRomButton: UIButton!
     var devModeButton: UIButton!
+    var helpButton: UIButton!
     
     var titleLabel: UILabel!
     var stackView: UIStackView!
@@ -47,37 +48,37 @@ class MainMenuView: UIView {
         stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints =  false
         self.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: 200),
-            stackView.widthAnchor.constraint(equalToConstant: 350),
-            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
+        stackView.snp.makeConstraints { make in
+            make.height.equalTo(250)
+            make.width.equalTo(350)
+            make.center.equalToSuperview()
+        }
+       
         stackView.alignment = UIStackView.Alignment.center
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.distribution = .equalSpacing
         
-        loadCartridgeButton = UIButton()
-        loadCartridgeButton.translatesAutoresizingMaskIntoConstraints = false
-        loadCartridgeButton.setTitle("LOAD CARTRIDGE", for: .normal)
-        loadCartridgeButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
-        loadCartridgeButton.setTitleColor(.black, for: .normal)
-        
+        loadCartridgeButton = buttonWithTitle(title: "LOAD CARTRIDGE")
         stackView.addArrangedSubview(loadCartridgeButton)
         
-        loadBootRomButton = UIButton()
-        loadBootRomButton.translatesAutoresizingMaskIntoConstraints = false
-        loadBootRomButton.setTitle("SET BOOTROM", for: .normal)
-        loadBootRomButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
-        loadBootRomButton.setTitleColor(.black, for: .normal)
+        loadBootRomButton = buttonWithTitle(title: "SET BOOTROM")
         stackView.addArrangedSubview(loadBootRomButton)
         
-        devModeButton = UIButton()
-        devModeButton.translatesAutoresizingMaskIntoConstraints = false
-        devModeButton.setTitle("DEV MODE", for: .normal)
-        devModeButton.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
-        devModeButton.setTitleColor(.black, for: .normal)
+        devModeButton = buttonWithTitle(title: "DEV MODE")
         stackView.addArrangedSubview(devModeButton)
+        
+        helpButton = buttonWithTitle(title: "HELP")
+        stackView.addArrangedSubview(helpButton)
+    }
+    
+    
+    func buttonWithTitle(title: String) -> UIButton {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.pixelatedFont(ofSize: 40)
+        button.setTitleColor(.black, for: .normal)
+        return button
     }
     
 }

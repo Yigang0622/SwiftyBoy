@@ -72,6 +72,16 @@
 		DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B62E279D904F00D74122 /* MBC3.swift */; };
 		DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63227A03B0B00D74122 /* Sprite.swift */; };
 		DDE6B63527A04F8800D74122 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B63427A04F8800D74122 /* Palette.swift */; };
+		DDED671D280C6A5B00D35792 /* Sound+MemoryAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED671C280C6A5B00D35792 /* Sound+MemoryAccess.swift */; };
+		DDED671F280C6B1100D35792 /* GPU+MemoryAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED671E280C6B1100D35792 /* GPU+MemoryAccess.swift */; };
+		DDED6721280C6D8500D35792 /* CPUTimer+MemoryAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6720280C6D8500D35792 /* CPUTimer+MemoryAccess.swift */; };
+		DDED6723280C6F3700D35792 /* DMAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6722280C6F3700D35792 /* DMAController.swift */; };
+		DDED6725280C6FBB00D35792 /* DMA+MemoryAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6724280C6FBB00D35792 /* DMA+MemoryAccess.swift */; };
+		DDED6728280C72E800D35792 /* BootRom+MemoryAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6727280C72E800D35792 /* BootRom+MemoryAccess.swift */; };
+		DDED672A280C741100D35792 /* RamBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6729280C741100D35792 /* RamBase.swift */; };
+		DDED672C280C756000D35792 /* RAMComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED672B280C756000D35792 /* RAMComponents.swift */; };
+		DDED6730280C7CBD00D35792 /* CPU+MemoryAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED672F280C7CBD00D35792 /* CPU+MemoryAccess.swift */; };
+		DDED6732280D194000D35792 /* SerialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED6731280D194000D35792 /* SerialController.swift */; };
 		DDF24ECB274FCA8C007929DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECA274FCA8C007929DA /* AppDelegate.swift */; };
 		DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24ECE274FCA8C007929DA /* ViewController.swift */; };
 		DDF24ED4274FCA8F007929DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF24ED3274FCA8F007929DA /* Assets.xcassets */; };
@@ -167,6 +177,16 @@
 		DDE6B62E279D904F00D74122 /* MBC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBC3.swift; sourceTree = "<group>"; };
 		DDE6B63227A03B0B00D74122 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		DDE6B63427A04F8800D74122 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		DDED671C280C6A5B00D35792 /* Sound+MemoryAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sound+MemoryAccess.swift"; sourceTree = "<group>"; };
+		DDED671E280C6B1100D35792 /* GPU+MemoryAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPU+MemoryAccess.swift"; sourceTree = "<group>"; };
+		DDED6720280C6D8500D35792 /* CPUTimer+MemoryAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CPUTimer+MemoryAccess.swift"; sourceTree = "<group>"; };
+		DDED6722280C6F3700D35792 /* DMAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMAController.swift; sourceTree = "<group>"; };
+		DDED6724280C6FBB00D35792 /* DMA+MemoryAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DMA+MemoryAccess.swift"; sourceTree = "<group>"; };
+		DDED6727280C72E800D35792 /* BootRom+MemoryAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BootRom+MemoryAccess.swift"; sourceTree = "<group>"; };
+		DDED6729280C741100D35792 /* RamBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamBase.swift; sourceTree = "<group>"; };
+		DDED672B280C756000D35792 /* RAMComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMComponents.swift; sourceTree = "<group>"; };
+		DDED672F280C7CBD00D35792 /* CPU+MemoryAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CPU+MemoryAccess.swift"; sourceTree = "<group>"; };
+		DDED6731280D194000D35792 /* SerialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialController.swift; sourceTree = "<group>"; };
 		DDF24EC7274FCA8C007929DA /* SwiftyBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF24ECA274FCA8C007929DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF24ECE274FCA8C007929DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -356,6 +376,28 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		DDED6719280C66E700D35792 /* MemoryAccess */ = {
+			isa = PBXGroup;
+			children = (
+				DDED671C280C6A5B00D35792 /* Sound+MemoryAccess.swift */,
+				DDED671E280C6B1100D35792 /* GPU+MemoryAccess.swift */,
+				DDED6720280C6D8500D35792 /* CPUTimer+MemoryAccess.swift */,
+				DDED6724280C6FBB00D35792 /* DMA+MemoryAccess.swift */,
+				DDED6727280C72E800D35792 /* BootRom+MemoryAccess.swift */,
+				DDED672F280C7CBD00D35792 /* CPU+MemoryAccess.swift */,
+			);
+			path = MemoryAccess;
+			sourceTree = "<group>";
+		};
+		DDED6726280C70F300D35792 /* RAM */ = {
+			isa = PBXGroup;
+			children = (
+				DDED6729280C741100D35792 /* RamBase.swift */,
+				DDED672B280C756000D35792 /* RAMComponents.swift */,
+			);
+			path = RAM;
+			sourceTree = "<group>";
+		};
 		DDF24EBE274FCA8C007929DA = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +449,8 @@
 		DDF24EFA274FCAD6007929DA /* GameBoy */ = {
 			isa = PBXGroup;
 			children = (
+				DDED6726280C70F300D35792 /* RAM */,
+				DDED6719280C66E700D35792 /* MemoryAccess */,
 				DD68123C28018D2300164A32 /* Sound */,
 				DD70BF7027B7993100CA9F1C /* BootRom */,
 				DDE6B621279D157200D74122 /* Common */,
@@ -419,6 +463,8 @@
 				DDE6B622279D194200D74122 /* InterruptManager.swift */,
 				DDE6B62C279D6E8600D74122 /* KeyInputMask.swift */,
 				DDAB2D9027A9876000BBA499 /* GameBoy.swift */,
+				DDED6722280C6F3700D35792 /* DMAController.swift */,
+				DDED6731280D194000D35792 /* SerialController.swift */,
 			);
 			path = GameBoy;
 			sourceTree = "<group>";
@@ -537,18 +583,21 @@
 				DDAB2D9327AAC07200BBA499 /* MBC2.swift in Sources */,
 				DD1094B7275C952500A5AAEB /* CPU.swift in Sources */,
 				DD70BF7427B7A20900CA9F1C /* MyDocumentPicker.swift in Sources */,
+				DDED6723280C6F3700D35792 /* DMAController.swift in Sources */,
 				DD1094C4275CF4A600A5AAEB /* Tile.swift in Sources */,
 				DD25D0982760F5F1005E45D4 /* STATRegister.swift in Sources */,
 				DD25D091275FAB5A005E45D4 /* GPU.swift in Sources */,
 				DD1094B8275C952500A5AAEB /* CPU+BaseInstructions.swift in Sources */,
 				DD25D08B275F96F7005E45D4 /* Cartridge.swift in Sources */,
 				DDF47EDE2803D93C00018667 /* RegNR33.swift in Sources */,
+				DDED672A280C741100D35792 /* RamBase.swift in Sources */,
 				DDF47EE82804421700018667 /* SoundModeReg.swift in Sources */,
 				DD5A71D8280B192900ED994F /* SwitchWithTitle.swift in Sources */,
 				DDF47ED82803D6FB00018667 /* RegNR30.swift in Sources */,
 				DD70BF7227B7995400CA9F1C /* BootRomLoader.swift in Sources */,
 				DDCBC573280863FD006D8D0D /* SoundChannel4.swift in Sources */,
 				DDB24A4727B7F81000435CC2 /* VirtualJoyPadView.swift in Sources */,
+				DDED6725280C6FBB00D35792 /* DMA+MemoryAccess.swift in Sources */,
 				DDF47EEE280444ED00018667 /* RegInitializeParam.swift in Sources */,
 				DDBF87062801D56600E608C7 /* SoundChannel2.swift in Sources */,
 				DDD4A04227AEC32300A6AF07 /* MBC5.swift in Sources */,
@@ -560,12 +609,14 @@
 				DDF24ECF274FCA8C007929DA /* ViewController.swift in Sources */,
 				DDD84FD2276EFFF200E475D3 /* CartridgeLoader.swift in Sources */,
 				DDE6B62F279D904F00D74122 /* MBC3.swift in Sources */,
+				DDED671F280C6B1100D35792 /* GPU+MemoryAccess.swift in Sources */,
 				DDAB2D9127A9876000BBA499 /* GameBoy.swift in Sources */,
 				DDF47EEA2804427C00018667 /* RegEnvelopParam.swift in Sources */,
 				DD5A71D4280AE39F00ED994F /* DevPanelView.swift in Sources */,
 				DD25D08D275F9895005E45D4 /* CartridgeMeta.swift in Sources */,
 				DDF47EDA2803D7AB00018667 /* RegNR31.swift in Sources */,
 				DDE6B61E279D0B8000D74122 /* Joypad.swift in Sources */,
+				DDED6732280D194000D35792 /* SerialController.swift in Sources */,
 				DDE6B63327A03B0C00D74122 /* Sprite.swift in Sources */,
 				DDD84FDE276F663800E475D3 /* InterruptFlagRegister.swift in Sources */,
 				DD1094C2275C979100A5AAEB /* CPU+Pipeline.swift in Sources */,
@@ -575,6 +626,7 @@
 				DDE6B60727985B9300D74122 /* CPUTimer.swift in Sources */,
 				DDBF87082801D5BE00E608C7 /* ToneSoundChannel.swift in Sources */,
 				DDF47EE228043FD500018667 /* RegSweepParam.swift in Sources */,
+				DDED6721280C6D8500D35792 /* CPUTimer+MemoryAccess.swift in Sources */,
 				DDCBC571280863D4006D8D0D /* RegNR44.swift in Sources */,
 				DDB24A4527B7F7AB00435CC2 /* MainViewController.swift in Sources */,
 				DDAB2D9527AAF47000BBA499 /* FPSMetric.swift in Sources */,
@@ -587,13 +639,16 @@
 				DDB24A5527B961F200435CC2 /* VirtualJoyPadDPad.swift in Sources */,
 				DDCBC56F28086208006D8D0D /* RegNR43.swift in Sources */,
 				DDCBC56B2808611F006D8D0D /* RegNR41.swift in Sources */,
+				DDED6730280C7CBD00D35792 /* CPU+MemoryAccess.swift in Sources */,
 				DD5A71D6280B0DC600ED994F /* WindowUtil.swift in Sources */,
 				DDD84FD8276F21D800E475D3 /* MBCBase.swift in Sources */,
 				DDE6B620279D10C900D74122 /* MemoryAccessable.swift in Sources */,
 				DD25D09A2760F8DD005E45D4 /* PaletteRegister.swift in Sources */,
 				DD6C14C427A5861400809779 /* Renderer.swift in Sources */,
+				DDED6728280C72E800D35792 /* BootRom+MemoryAccess.swift in Sources */,
 				DD5A71DA280B2FD300ED994F /* Renderer+DevMode.swift in Sources */,
 				DDAB2D8F27A95E1F00BBA499 /* DummyCart.swift in Sources */,
+				DDED672C280C756000D35792 /* RAMComponents.swift in Sources */,
 				DDE6B623279D194200D74122 /* InterruptManager.swift in Sources */,
 				DD25D09C27623B34005E45D4 /* RAM.swift in Sources */,
 				DD1094BA275C952500A5AAEB /* CPU+Util.swift in Sources */,
@@ -604,6 +659,7 @@
 				DDF47EDC2803D83600018667 /* RegNR32.swift in Sources */,
 				DDF47EE02803DA7100018667 /* RegNR34.swift in Sources */,
 				DDD84FDA276F24F900E475D3 /* ROMOnly.swift in Sources */,
+				DDED671D280C6A5B00D35792 /* Sound+MemoryAccess.swift in Sources */,
 				DD25D0962760E7D7005E45D4 /* BaseRegister.swift in Sources */,
 				DD25D094275FBD53005E45D4 /* LCDCRegister.swift in Sources */,
 				DDBF870C2802D30700E608C7 /* SoundChannel1.swift in Sources */,

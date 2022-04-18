@@ -108,6 +108,7 @@ class MBCBase: Cartridge {
         self.ramBanks =  Array(repeating: Array(repeating: 0, count: 8*1024), count: externalRamCount)
     }
     
+
     override func getMem(address: Int) -> Int {
         if address >= 0x0000 && address < 0x4000 {
             return Int(romBanks[0][address])

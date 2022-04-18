@@ -15,6 +15,16 @@ class Motherboard {
     let ram = RAM()
     let joypad = Joypad(interruptManager: InterruptManager())
     let sound = SoundController()
+    let dmaController = DMAController()
+    var serialController: SerialController!
+    
+    let internalRam0 = InternalRam0()
+    let nonIoInternalRam0 = NonIoInternalRam0()
+    let ioPortsRam = IoPortsRam()
+    let nonIoInternalRam1 = NonIoInternalRam1()
+    let internalRam1 = InternalRam1()
+    
+    var memoryAccessableComponents: [MemoryAccessable?]!
     
     var cart: Cartridge!
     var bootRom: BootRom?
@@ -31,6 +41,8 @@ class Motherboard {
         cpu.mb = self
         gpu.mb = self
         joypad.mb = self
+        dmaController.mb = self
+        serialController = SerialController(mb: self)
                 
         cpuTimer.onTimerOverflow = { [self] in
             cpu.interruptFlagRegister.timerOverflow = true
@@ -104,6 +116,24 @@ class Motherboard {
             setMem(address: 0xFF4B, val: 0x00)
             setMem(address: 0xFFFF, val: 0x00)            
         }
+        
+        memoryAccessableComponents = [
+           bootRom,
+           cart,
+           gpu,
+           cpu,
+           joypad,
+           cpuTimer,
+           sound,
+           serialController,
+           dmaController,
+           internalRam0,
+           nonIoInternalRam0,
+           ioPortsRam,
+           nonIoInternalRam1,
+           internalRam1
+       ]
+        
         setupTimer()
         sound.start()
         running = true
@@ -150,7 +180,23 @@ class Motherboard {
         print("Motherboard Stopped")
     }
     
+    
+    
     public func getMem(address: Int) -> Int {
+        
+        if address <= 0xFF && bootRomEnable {
+            return bootRom!.getMem(address: address)
+        } else {
+            for i in 0 ..< memoryAccessableComponents.count {
+                if memoryAccessableComponents[i]!.canAccess(address: address) {
+                    print("\(memoryAccessableComponents[i]) accessing \(address.asHexString)")
+                    return memoryAccessableComponents[i]!.getMem(address: address)
+                }
+            }
+        }
+        fatalError("get mem error \(address)")
+       
+        
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
             if address <= 0xFF && bootRomEnable {
@@ -302,6 +348,21 @@ class Motherboard {
 //
     public func setMem(address: Int, val: Int) {
         
+        if (address == 0xFF50 && val == 1 && self.bootRomEnable) {
+            self.bootRomEnable = false
+//                cpu.logs.removeAll()
+            print("boot end")
+        }
+        
+        for i in 0 ..< memoryAccessableComponents.count {
+            if memoryAccessableComponents[i]!.canAccess(address: address) {
+                memoryAccessableComponents[i]!.setMem(address: address, val: (val & 0xFF))
+            }
+        }
+        
+        return
+        
+        
         if address >= 0x0000 && address < 0x4000 {
             // 16k ROM bank 0
             cart.setMem(address: address, val: (val & 0xFF))
@@ -422,7 +483,7 @@ class Motherboard {
                 gpu.lyc = val
             } else if address == 0xFF46 {
                 // DMA
-                dma(src: (val & 0xFF))
+                dmaController.dma(src: (val & 0xFF))
             } else if address == 0xFF47 {
                 // BGP
                 gpu.backgroundPalette.setVal(val: (val & 0xFF))
@@ -461,14 +522,6 @@ class Motherboard {
         }
     }
     
-    
-    private func dma(src: Int) {
-        let dst = 0xFE00
-        let offset = src * 0x100
-        for i in 0...0xA0 {
-            self.setMem(address: dst + i, val: self.getMem(address: i + offset))
-        }
-    }
     
 }
 

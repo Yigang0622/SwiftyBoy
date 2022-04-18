@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BootRom: NSObject, MemoryAccessable {
+class BootRom: NSObject {
     
     let bytes:[UInt8]
     
@@ -15,20 +15,5 @@ class BootRom: NSObject, MemoryAccessable {
         self.bytes = bytes
     }
     
-    func getMem(address: Int) -> Int {
-        if address < bytes.count {
-            return Int(bytes[address])
-        } else {
-            return 0xFF
-        }
-    }
-    
-    func setMem(address: Int, val: Int) {
-        
-    }
-    
-    func canAccess(address: Int) -> Bool {
-        return address < 100
-    }
     
 }
